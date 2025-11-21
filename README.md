@@ -27,6 +27,7 @@
   - [Installation](#installation)
   - [Development](#development)
   - [Production Build](#production-build)
+- [✏️ Editing Content](#editing-content)
 - [Project Structure](#project-structure)
 - [Deployment](#deployment)
 - [Service Offerings](#service-offerings)
@@ -140,6 +141,31 @@ Preview the production build locally:
 ```bash
 npm run preview
 ```
+
+---
+
+## ✏️ Editing Content
+
+**Want to update your website content yourself?**
+
+📖 **[Read the Complete Editing Guide →](EDITING-GUIDE.md)**
+
+This comprehensive guide shows you how to:
+- ✅ Update contact information (phone, email, address)
+- ✅ Add/edit projects in your portfolio
+- ✅ Modify services and descriptions
+- ✅ Update training courses and prices
+- ✅ Change statistics on the home page
+- ✅ Edit equipment rental listings
+- ✅ Make changes without coding knowledge
+
+**Quick Edit Locations:**
+- 📞 **Contact Info:** `constants.ts` (lines 28-33)
+- 📊 **Statistics:** `constants.ts` (lines 35-40)
+- 🏗️ **Projects:** `constants.ts` (lines 42-75)
+- 🔧 **Services:** `constants.ts` (lines 108-167)
+- 🎓 **Training:** `constants.ts` (lines 77-106)
+- 🛠️ **Equipment:** `constants.ts` (lines 169-174)
 
 ---
 
