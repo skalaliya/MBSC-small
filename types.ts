@@ -34,9 +34,3 @@ export interface NavigationItem {
   label: string;
   page: Page;
 }
-
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
-  timestamp: Date;
-}

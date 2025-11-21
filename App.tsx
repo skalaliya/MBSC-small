@@ -3,7 +3,6 @@ import { CheckCircle, ArrowRight, PenTool, Phone, Mail, Globe, BookOpen, Video, 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
-import ChatWidget from './components/ChatWidget';
 import { SERVICES_DATA, EQUIPMENT_RENTAL, CONTACT_INFO, TRAINING_COURSES, PROJECTS_DATA, STATS_DATA } from './constants';
 import { Page } from './types';
 
@@ -620,7 +619,6 @@ function App() {
       </main>
 
       <Footer onNavigate={setCurrentPage} />
-      <ChatWidget />
     </div>
   );
 }
