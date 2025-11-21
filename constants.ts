@@ -8,16 +8,20 @@ import {
   Landmark,
   GraduationCap,
   Globe,
-  Users
+  Users,
+  Trophy,
+  Timer,
+  Briefcase
 } from 'lucide-react';
-import { NavigationItem, Page, ServiceItem } from './types';
+import { NavigationItem, Page, ServiceItem, ProjectItem } from './types';
 
 export const NAV_ITEMS: NavigationItem[] = [
   { label: 'Home', page: Page.HOME },
   { label: 'Services', page: Page.SERVICES },
-  { label: 'Training & Edu', page: Page.TRAINING },
-  { label: 'Equipment Rental', page: Page.RENTAL },
-  { label: 'About Us', page: Page.ABOUT },
+  { label: 'Projects', page: Page.PROJECTS },
+  { label: 'Training', page: Page.TRAINING },
+  { label: 'Rental', page: Page.RENTAL },
+  { label: 'About', page: Page.ABOUT },
   { label: 'Contact', page: Page.CONTACT },
 ];
 
@@ -27,6 +31,52 @@ export const CONTACT_INFO = {
   email: "enquiries@mbscaustralia.com.au",
   hours: "Mon - Fri: 07:00 - 17:00"
 };
+
+export const STATS_DATA = [
+  { label: 'Projects Delivered', value: '1,200+', icon: Briefcase },
+  { label: 'Safety Hours', value: '500k+', icon: ShieldCheck },
+  { label: 'Meters Drilled', value: '85,000m', icon: Drill },
+  { label: 'Assets Protected', value: '$4.5B', icon: Landmark },
+];
+
+export const PROJECTS_DATA: ProjectItem[] = [
+  {
+    id: 'p1',
+    title: 'Pilbara Rail Expansion',
+    category: 'Mining Infrastructure',
+    description: 'Geotechnical investigation for 400km of new heavy-haul rail alignment.',
+    imageUrl: 'https://picsum.photos/seed/pilbara/800/600',
+    location: 'Pilbara, WA',
+    outcome: 'Delivered 3 weeks ahead of schedule, enabling early track laying.'
+  },
+  {
+    id: 'p2',
+    title: 'Perth CBD High-Rise',
+    category: 'Civil Construction',
+    description: 'Foundation pile testing and vibration monitoring for a 50-storey tower.',
+    imageUrl: 'https://picsum.photos/seed/perth/800/600',
+    location: 'Perth CBD',
+    outcome: 'Verified pile integrity to AS 2159 standards with zero defects.'
+  },
+  {
+    id: 'p3',
+    title: 'Offshore Platform NDT',
+    category: 'Oil & Gas',
+    description: 'Comprehensive non-destructive testing of platform jacket legs using phased array ultrasonics.',
+    imageUrl: 'https://picsum.photos/seed/rig/800/600',
+    location: 'North West Shelf',
+    outcome: 'Identified critical fatigue cracking, allowing for preventative maintenance.'
+  },
+  {
+    id: 'p4',
+    title: 'Highway Bridge Upgrade',
+    category: 'Infrastructure',
+    description: 'GPR scanning and concrete strength assessment for aging bridge assets.',
+    imageUrl: 'https://picsum.photos/seed/bridge/800/600',
+    location: 'Regional NSW',
+    outcome: 'Mapped all reinforcement, ensuring safe drilling for widening works.'
+  }
+];
 
 export const TRAINING_COURSES = [
   {

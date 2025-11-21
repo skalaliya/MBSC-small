@@ -20,6 +20,16 @@ export interface ServiceItem {
   features: string[];
 }
 
+export interface ProjectItem {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  imageUrl: string;
+  location: string;
+  outcome: string;
+}
+
 export interface NavigationItem {
   label: string;
   page: Page;

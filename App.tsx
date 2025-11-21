@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, ArrowRight, PenTool, Phone, Mail, Globe, BookOpen, Video } from 'lucide-react';
+import { CheckCircle, ArrowRight, PenTool, Phone, Mail, Globe, BookOpen, Video, MapPin, HardHat } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
 import ChatWidget from './components/ChatWidget';
-import { SERVICES_DATA, EQUIPMENT_RENTAL, CONTACT_INFO, TRAINING_COURSES } from './constants';
+import { SERVICES_DATA, EQUIPMENT_RENTAL, CONTACT_INFO, TRAINING_COURSES, PROJECTS_DATA, STATS_DATA } from './constants';
 import { Page } from './types';
 
 function App() {
@@ -19,6 +19,25 @@ function App() {
     <>
       <Hero onNavigate={setCurrentPage} />
       
+      {/* Stats Dashboard - "The Fun Part" for Engineers (Big Numbers) */}
+      <section className="bg-teal-900 py-12 border-b border-teal-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {STATS_DATA.map((stat, idx) => (
+              <div key={idx} className="text-center transform hover:-translate-y-1 transition-transform duration-300">
+                <div className="flex justify-center mb-3">
+                  <div className="bg-teal-800 p-3 rounded-full shadow-lg">
+                    <stat.icon className="h-6 w-6 text-amber-400" />
+                  </div>
+                </div>
+                <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-teal-200 text-sm uppercase tracking-wider font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Intro Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,25 +65,35 @@ function App() {
               <div className="flex space-x-6">
                 <button 
                   onClick={() => setCurrentPage(Page.ABOUT)}
-                  className="text-teal-700 font-bold uppercase text-sm tracking-wider flex items-center hover:text-teal-800"
+                  className="text-teal-700 font-bold uppercase text-sm tracking-wider flex items-center hover:text-teal-800 group"
                 >
-                  About Our Company <ArrowRight className="ml-2 h-4 w-4" />
+                  About Our Company <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button 
                   onClick={() => setCurrentPage(Page.TRAINING)}
-                  className="text-amber-600 font-bold uppercase text-sm tracking-wider flex items-center hover:text-amber-700"
+                  className="text-amber-600 font-bold uppercase text-sm tracking-wider flex items-center hover:text-amber-700 group"
                 >
-                  View Training <ArrowRight className="ml-2 h-4 w-4" />
+                  View Training <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
-            <div className="relative">
-              <div className="absolute -inset-4 bg-slate-100 rounded-lg transform rotate-2"></div>
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-teal-50 rounded-lg transform rotate-2 group-hover:rotate-1 transition-transform duration-500"></div>
               <img 
                 src="https://picsum.photos/seed/engineering/800/600" 
                 alt="Engineers on site" 
-                className="relative rounded-lg shadow-xl grayscale hover:grayscale-0 transition-all duration-500"
+                className="relative rounded-lg shadow-xl grayscale group-hover:grayscale-0 transition-all duration-500"
               />
+              {/* Interactive Floating Card */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded shadow-lg border-l-4 border-amber-500 hidden md:block">
+                <div className="flex items-center gap-3">
+                  <HardHat className="h-8 w-8 text-slate-800" />
+                  <div>
+                    <p className="text-xs text-slate-500 font-bold uppercase">Site Safety</p>
+                    <p className="text-lg font-bold text-slate-900">100% Compliant</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -81,7 +110,7 @@ function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {SERVICES_DATA.slice(0, 3).map((service) => (
-              <div key={service.id} className="bg-white p-8 rounded border border-slate-200 hover:shadow-lg transition-shadow group">
+              <div key={service.id} className="bg-white p-8 rounded border border-slate-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group cursor-default">
                 <div className="bg-slate-100 p-3 rounded w-fit mb-6 group-hover:bg-teal-50 transition-colors">
                   <service.icon className="h-8 w-8 text-slate-700 group-hover:text-teal-700" />
                 </div>
@@ -89,9 +118,9 @@ function App() {
                 <p className="text-slate-600 mb-6 text-sm leading-relaxed">{service.shortDescription}</p>
                 <button 
                   onClick={() => setCurrentPage(Page.SERVICES)}
-                  className="text-sm font-semibold text-teal-700 flex items-center uppercase tracking-wide"
+                  className="text-sm font-semibold text-teal-700 flex items-center uppercase tracking-wide group-hover:text-teal-800"
                 >
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  Learn More <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             ))}
@@ -99,14 +128,110 @@ function App() {
           <div className="mt-12 text-center">
             <button 
               onClick={() => setCurrentPage(Page.SERVICES)}
-              className="bg-slate-900 text-white px-8 py-3 text-sm font-bold uppercase tracking-wider hover:bg-slate-800 transition-colors"
+              className="bg-slate-900 text-white px-8 py-3 text-sm font-bold uppercase tracking-wider hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl"
             >
               View All Services
             </button>
           </div>
         </div>
       </section>
+
+      {/* Featured Projects Teaser */}
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+              <div>
+                <span className="text-amber-500 font-bold tracking-widest uppercase text-xs">Case Studies</span>
+                <h2 className="text-3xl font-bold text-slate-900 mt-2">Recent Works</h2>
+              </div>
+              <button 
+                onClick={() => setCurrentPage(Page.PROJECTS)}
+                className="hidden md:flex items-center text-slate-600 hover:text-teal-700 font-medium transition-colors"
+              >
+                View Project Gallery <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
+           </div>
+
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {PROJECTS_DATA.map((project) => (
+                <div key={project.id} className="group relative h-80 rounded-lg overflow-hidden cursor-pointer" onClick={() => setCurrentPage(Page.PROJECTS)}>
+                  <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                    <p className="text-xs font-bold text-amber-400 uppercase mb-1">{project.category}</p>
+                    <h3 className="text-lg font-bold leading-tight">{project.title}</h3>
+                  </div>
+                </div>
+              ))}
+           </div>
+
+           <div className="mt-8 text-center md:hidden">
+              <button 
+                onClick={() => setCurrentPage(Page.PROJECTS)}
+                className="inline-flex items-center text-teal-700 font-bold"
+              >
+                View All Projects <ArrowRight className="ml-2 h-4 w-4" />
+              </button>
+           </div>
+        </div>
+      </section>
     </>
+  );
+
+  const renderProjects = () => (
+    <div className="min-h-screen bg-slate-50">
+      <div className="bg-slate-900 text-white py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="text-amber-500 font-bold tracking-widest uppercase text-xs mb-2 block">Portfolio</span>
+          <h1 className="text-4xl font-bold mb-6">Featured Projects</h1>
+          <p className="text-slate-400 text-lg max-w-2xl">
+            A showcase of technical excellence across Australia's most demanding environments.
+          </p>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 gap-12">
+          {PROJECTS_DATA.map((project, index) => (
+            <div key={project.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col lg:flex-row">
+              <div className="lg:w-2/5 relative overflow-hidden">
+                <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover min-h-[300px]" />
+                <div className="absolute top-4 left-4 bg-teal-900/90 text-white text-xs font-bold px-3 py-1 uppercase tracking-wide rounded">
+                  {project.category}
+                </div>
+              </div>
+              <div className="lg:w-3/5 p-8 flex flex-col justify-center">
+                <div className="flex items-center text-sm text-slate-500 mb-4 font-medium">
+                  <MapPin className="h-4 w-4 text-amber-500 mr-2" />
+                  {project.location}
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">{project.title}</h3>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                <div className="bg-slate-50 border-l-4 border-teal-500 p-4 rounded-r">
+                  <h4 className="text-sm font-bold text-slate-900 uppercase mb-1">Project Outcome</h4>
+                  <p className="text-sm text-slate-700 italic">"{project.outcome}"</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-20 bg-teal-900 rounded-2xl p-12 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+          <div className="relative z-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Have a complex project in mind?</h2>
+            <p className="text-teal-100 mb-8 max-w-2xl mx-auto">Our engineering team is ready to deploy nationwide for site investigations and testing.</p>
+            <button onClick={() => setCurrentPage(Page.CONTACT)} className="bg-amber-500 hover:bg-amber-400 text-white px-8 py-3 text-sm font-bold uppercase tracking-wider transition-colors rounded shadow-lg transform hover:scale-105">
+              Get in Touch
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 
   const renderServices = () => (
@@ -120,7 +245,7 @@ function App() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 grid gap-12">
         {SERVICES_DATA.map((service, index) => (
-          <div key={service.id} className={`bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 flex flex-col md:flex-row ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+          <div key={service.id} className={`bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 flex flex-col md:flex-row ${index % 2 === 1 ? 'md:flex-row-reverse' : ''} hover:shadow-lg transition-shadow duration-300`}>
             <div className="md:w-1/2 h-64 md:h-auto relative overflow-hidden group">
                <img 
                 src={service.imageUrl} 
@@ -161,6 +286,7 @@ function App() {
       <div className="relative bg-teal-900 text-white py-24">
         <div className="absolute inset-0 overflow-hidden">
           <img src="https://picsum.photos/seed/workshop/1920/600" alt="Training Workshop" className="w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-teal-900 via-teal-900/80 to-transparent"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="text-amber-500 font-bold tracking-widest uppercase text-xs mb-2 block">MBSC Education</span>
@@ -175,17 +301,17 @@ function App() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Value Props */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white p-8 rounded shadow-sm border-l-4 border-teal-600">
+          <div className="bg-white p-8 rounded shadow-sm border-l-4 border-teal-600 hover:translate-y-[-4px] transition-transform duration-300">
             <Globe className="h-8 w-8 text-teal-600 mb-4" />
             <h3 className="text-lg font-bold text-slate-900 mb-2">Global Reach</h3>
             <p className="text-slate-600 text-sm">We deploy our senior engineers worldwide to conduct on-site training tailored to your project environment.</p>
           </div>
-          <div className="bg-white p-8 rounded shadow-sm border-l-4 border-amber-500">
+          <div className="bg-white p-8 rounded shadow-sm border-l-4 border-amber-500 hover:translate-y-[-4px] transition-transform duration-300">
             <BookOpen className="h-8 w-8 text-amber-500 mb-4" />
             <h3 className="text-lg font-bold text-slate-900 mb-2">Certified Curriculum</h3>
             <p className="text-slate-600 text-sm">Courses designed to meet Australian Standards (AS) and ISO requirements for NDT and Geotechnical safety.</p>
           </div>
-          <div className="bg-white p-8 rounded shadow-sm border-l-4 border-teal-600">
+          <div className="bg-white p-8 rounded shadow-sm border-l-4 border-teal-600 hover:translate-y-[-4px] transition-transform duration-300">
             <Video className="h-8 w-8 text-teal-600 mb-4" />
             <h3 className="text-lg font-bold text-slate-900 mb-2">Hybrid Learning</h3>
             <p className="text-slate-600 text-sm">Flexible delivery options including virtual classrooms, interactive webinars, and practical field days.</p>
@@ -196,7 +322,7 @@ function App() {
         <h2 className="text-2xl font-bold text-slate-900 mb-8">Available Courses</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {TRAINING_COURSES.map((course, idx) => (
-            <div key={idx} className="bg-white rounded border border-slate-200 p-6 hover:border-teal-500 transition-colors flex flex-col sm:flex-row gap-6">
+            <div key={idx} className="bg-white rounded border border-slate-200 p-6 hover:border-teal-500 transition-colors flex flex-col sm:flex-row gap-6 hover:shadow-md">
               <div className="bg-slate-100 p-4 rounded flex items-center justify-center sm:w-24 sm:h-24 shrink-0">
                 <course.icon className="h-8 w-8 text-slate-700" />
               </div>
@@ -383,7 +509,7 @@ function App() {
 
                {/* Placeholder Map */}
                <div className="w-full h-64 bg-slate-200 rounded border border-slate-300 flex items-center justify-center">
-                 <p className="text-slate-500 font-medium">Google Map Integration Placeholder</p>
+                 <p className="text-slate-500 font-medium flex items-center"><MapPin className="mr-2"/> Perth, Western Australia</p>
                </div>
             </div>
           </div>
@@ -402,6 +528,7 @@ function App() {
         {currentPage === Page.ABOUT && renderAbout()}
         {currentPage === Page.RENTAL && renderRental()}
         {currentPage === Page.TRAINING && renderTraining()}
+        {currentPage === Page.PROJECTS && renderProjects()}
         {currentPage === Page.CONTACT && renderContact()}
       </main>
 
