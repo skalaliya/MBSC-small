@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, ArrowRight, PenTool, Phone, Mail, Globe, BookOpen, Video, MapPin, HardHat } from 'lucide-react';
+import { CheckCircle, ArrowRight, PenTool, Phone, Mail, Globe, BookOpen, Video, MapPin, HardHat, Loader2 } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
@@ -9,11 +9,35 @@ import { Page } from './types';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>(Page.HOME);
+  
+  // Contact Form State
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    service: 'General Enquiry',
+    message: ''
+  });
 
   // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    // Simulate network request
+    setTimeout(() => {
+      setFormStatus('success');
+      setFormData({ firstName: '', lastName: '', email: '', service: 'General Enquiry', message: '' });
+    }, 1500);
+  };
 
   const renderHome = () => (
     <>
@@ -448,38 +472,98 @@ function App() {
           {/* Contact Form */}
           <div className="bg-slate-50 p-8 rounded border border-slate-200">
             <h2 className="text-2xl font-bold text-slate-900 mb-6">Send an Enquiry</h2>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
-                  <input type="text" className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border" />
+            
+            {formStatus === 'success' ? (
+              <div className="bg-teal-50 border border-teal-100 rounded p-8 text-center">
+                 <div className="flex justify-center mb-4">
+                   <div className="bg-teal-100 p-3 rounded-full">
+                     <CheckCircle className="h-8 w-8 text-teal-600" />
+                   </div>
+                 </div>
+                 <h3 className="text-xl font-bold text-slate-900 mb-2">Enquiry Received</h3>
+                 <p className="text-slate-600 mb-6">Thank you. Our engineering team will review your request and respond within 24 hours.</p>
+                 <button 
+                   onClick={() => setFormStatus('idle')}
+                   className="text-teal-700 font-bold uppercase text-sm hover:text-teal-800"
+                 >
+                   Send Another Message
+                 </button>
+              </div>
+            ) : (
+              <form className="space-y-6" onSubmit={handleFormSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+                    <input 
+                      type="text" 
+                      name="firstName"
+                      required
+                      value={formData.firstName}
+                      onChange={handleFormChange}
+                      className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border" 
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+                    <input 
+                      type="text" 
+                      name="lastName"
+                      required
+                      value={formData.lastName}
+                      onChange={handleFormChange}
+                      className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border" 
+                    />
+                  </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
-                  <input type="text" className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border" />
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+                  <input 
+                    type="email" 
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleFormChange}
+                    className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border" 
+                  />
                 </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
-                <input type="email" className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Service Interest</label>
-                <select className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border bg-white">
-                  <option>General Enquiry</option>
-                  {SERVICES_DATA.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}
-                  <option>Training & Education</option>
-                  <option>Equipment Rental</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Message</label>
-                <textarea rows={4} className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border"></textarea>
-              </div>
-              <button type="button" className="w-full bg-teal-800 text-white font-bold uppercase tracking-wider py-3 rounded hover:bg-teal-700 transition-colors shadow-md">
-                Submit Enquiry
-              </button>
-            </form>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Service Interest</label>
+                  <select 
+                    name="service"
+                    value={formData.service}
+                    onChange={handleFormChange}
+                    className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border bg-white"
+                  >
+                    <option>General Enquiry</option>
+                    {SERVICES_DATA.map(s => <option key={s.id} value={s.title}>{s.title}</option>)}
+                    <option>Training & Education</option>
+                    <option>Equipment Rental</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Message</label>
+                  <textarea 
+                    name="message"
+                    rows={4} 
+                    required
+                    value={formData.message}
+                    onChange={handleFormChange}
+                    className="w-full rounded border-slate-300 px-4 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none border"
+                  ></textarea>
+                </div>
+                <button 
+                  type="submit" 
+                  disabled={formStatus === 'submitting'}
+                  className="w-full bg-teal-800 text-white font-bold uppercase tracking-wider py-3 rounded hover:bg-teal-700 transition-colors shadow-md flex justify-center items-center disabled:opacity-70"
+                >
+                  {formStatus === 'submitting' ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    "Submit Enquiry"
+                  )}
+                </button>
+              </form>
+            )}
           </div>
 
           {/* Info */}
@@ -508,8 +592,11 @@ function App() {
                </div>
 
                {/* Placeholder Map */}
-               <div className="w-full h-64 bg-slate-200 rounded border border-slate-300 flex items-center justify-center">
-                 <p className="text-slate-500 font-medium flex items-center"><MapPin className="mr-2"/> Perth, Western Australia</p>
+               <div className="w-full h-64 bg-slate-200 rounded border border-slate-300 flex items-center justify-center bg-[url('https://picsum.photos/seed/map/800/400')] bg-cover bg-center grayscale opacity-80">
+                 <div className="bg-white/90 p-3 rounded shadow-md flex items-center">
+                    <MapPin className="text-red-600 h-5 w-5 mr-2"/>
+                    <span className="text-slate-900 font-bold text-sm">Perth HQ</span>
+                 </div>
                </div>
             </div>
           </div>
