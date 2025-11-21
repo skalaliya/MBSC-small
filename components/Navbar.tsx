@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, HardHat } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { Page } from '../types';
 
@@ -21,13 +21,15 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => handleNav(Page.HOME)}>
-            <div className="bg-teal-900 p-2 rounded mr-3">
-              <HardHat className="h-6 w-6 text-amber-500" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-xl tracking-tight text-slate-900 uppercase">MBSC</span>
-              <span className="text-xs tracking-widest text-teal-700 font-bold uppercase">Australia</span>
+          <div className="flex-shrink-0 flex items-center cursor-pointer gap-3" onClick={() => handleNav(Page.HOME)}>
+            <img 
+              src="https://raw.githubusercontent.com/MBSC-Australia/MBSC-Australia-PTY-LTD-/main/MBSC%20LOGO.jpg" 
+              alt="MBSC Australia Logo" 
+              className="h-12 w-12 rounded-full object-cover shadow-sm" 
+            />
+            <div className="flex flex-col justify-center">
+              <span className="font-bold text-xl tracking-tight text-slate-900 uppercase leading-none">MBSC</span>
+              <span className="text-xs tracking-widest text-teal-700 font-bold uppercase leading-tight mt-0.5">Australia</span>
             </div>
           </div>
 

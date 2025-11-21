@@ -1,5 +1,5 @@
 import React from 'react';
-import { HardHat, Phone, Mail, MapPin, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin, Linkedin } from 'lucide-react';
 import { CONTACT_INFO, NAV_ITEMS } from '../constants';
 import { Page } from '../types';
 
@@ -15,9 +15,13 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           {/* Brand Column */}
           <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center mb-6">
-              <HardHat className="h-8 w-8 text-teal-500 mr-2" />
-              <span className="font-bold text-xl text-white uppercase tracking-wider">MBSC</span>
+            <div className="flex items-center mb-6 gap-3">
+              <img 
+                src="https://raw.githubusercontent.com/MBSC-Australia/MBSC-Australia-PTY-LTD-/main/MBSC%20LOGO.jpg" 
+                alt="MBSC Australia Logo" 
+                className="h-12 w-12 rounded-full object-cover border-2 border-slate-700" 
+              />
+              <span className="font-bold text-xl text-white uppercase tracking-wider">MBSC Australia</span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
               Delivering advanced engineering solutions and testing integrity for Australia's toughest industries.
@@ -80,7 +84,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
         
         <div className="border-t border-slate-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} MBSC Australia. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} MBSC Australia Pty Ltd. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white">Privacy Policy</a>
             <a href="#" className="hover:text-white">Terms of Service</a>
