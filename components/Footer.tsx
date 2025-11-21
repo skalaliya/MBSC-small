@@ -2,6 +2,7 @@ import React from 'react';
 import { Phone, Mail, MapPin, Linkedin } from 'lucide-react';
 import { CONTACT_INFO, NAV_ITEMS } from '../constants';
 import { Page } from '../types';
+import logo from '../assets/logo.svg';
 
 interface FooterProps {
   onNavigate: (page: Page) => void;
@@ -17,9 +18,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center mb-6 gap-3">
               <img 
-                src="assets/logo.svg" 
+                src={logo}
                 alt="MBSC Australia Logo" 
-                className="h-12 w-auto object-contain" 
+                className="h-16 w-auto object-contain" 
               />
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
