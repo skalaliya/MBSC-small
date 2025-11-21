@@ -17,11 +17,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center mb-6 gap-3">
               <img 
-                src="https://raw.githubusercontent.com/MBSC-Australia/MBSC-Australia-PTY-LTD-/main/MBSC%20LOGO.jpg" 
+                src="assets/logo.svg" 
                 alt="MBSC Australia Logo" 
-                className="h-12 w-12 rounded-full object-cover border-2 border-slate-700" 
+                className="h-12 w-auto object-contain" 
               />
-              <span className="font-bold text-xl text-white uppercase tracking-wider">MBSC Australia</span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
               Delivering advanced engineering solutions and testing integrity for Australia's toughest industries.

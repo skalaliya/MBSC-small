@@ -23,14 +23,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center cursor-pointer gap-3" onClick={() => handleNav(Page.HOME)}>
             <img 
-              src="https://raw.githubusercontent.com/MBSC-Australia/MBSC-Australia-PTY-LTD-/main/MBSC%20LOGO.jpg" 
+              src="assets/logo.svg" 
               alt="MBSC Australia Logo" 
-              className="h-12 w-12 rounded-full object-cover shadow-sm" 
+              className="h-12 w-auto object-contain" 
             />
-            <div className="flex flex-col justify-center">
-              <span className="font-bold text-xl tracking-tight text-slate-900 uppercase leading-none">MBSC</span>
-              <span className="text-xs tracking-widest text-teal-700 font-bold uppercase leading-tight mt-0.5">Australia</span>
-            </div>
           </div>
 
           {/* Desktop Menu */}
