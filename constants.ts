@@ -1,0 +1,124 @@
+import { 
+  HardHat, 
+  Activity, 
+  Drill, 
+  Scan, 
+  ShieldCheck, 
+  Pickaxe,
+  Landmark,
+  GraduationCap,
+  Globe,
+  Users
+} from 'lucide-react';
+import { NavigationItem, Page, ServiceItem } from './types';
+
+export const NAV_ITEMS: NavigationItem[] = [
+  { label: 'Home', page: Page.HOME },
+  { label: 'Services', page: Page.SERVICES },
+  { label: 'Training & Edu', page: Page.TRAINING },
+  { label: 'Equipment Rental', page: Page.RENTAL },
+  { label: 'About Us', page: Page.ABOUT },
+  { label: 'Contact', page: Page.CONTACT },
+];
+
+export const CONTACT_INFO = {
+  address: "123 Industrial Ave, Perth WA 6000",
+  phone: "+61 8 9000 1234",
+  email: "enquiries@mbscaustralia.com.au",
+  hours: "Mon - Fri: 07:00 - 17:00"
+};
+
+export const TRAINING_COURSES = [
+  {
+    title: 'NDT Level 1 & 2 Certification',
+    description: 'Comprehensive training in ultrasonic testing, magnetic particle, and dye penetrant inspection according to ISO 9712.',
+    icon: GraduationCap,
+    duration: '5 Days',
+    location: 'Perth / Global On-site'
+  },
+  {
+    title: 'Geotechnical Safety Leadership',
+    description: 'Risk management workshops for site supervisors managing drilling and excavation operations.',
+    icon: Users,
+    duration: '2 Days',
+    location: 'On-site'
+  },
+  {
+    title: 'Advanced GPR Interpretation',
+    description: 'Master the art of reading radargrams for concrete scanning and utility mapping. Includes practical field modules.',
+    icon: Activity,
+    duration: '3 Days',
+    location: 'Global Virtual / Hybrid'
+  },
+  {
+    title: 'Corporate Engineering Standards',
+    description: 'Customised training programs helping organisations align with AS/NZS standards and best practices.',
+    icon: Globe,
+    duration: 'Custom',
+    location: 'Worldwide'
+  }
+];
+
+export const SERVICES_DATA: ServiceItem[] = [
+  {
+    id: 'geotech',
+    title: 'Geotechnical Investigations',
+    shortDescription: 'Comprehensive ground analysis for civil and mining infrastructure.',
+    fullDescription: 'MBSC Australia provides rigorous geotechnical site investigations to ensure foundational integrity. Our services include borehole drilling, soil sampling, laboratory testing, and detailed reporting compliant with AS 1726 standards.',
+    icon: Drill,
+    imageUrl: 'https://picsum.photos/seed/geotech/800/600',
+    features: ['Standard Penetration Testing (SPT)', 'Cone Penetration Testing (CPT)', 'Soil & Rock Logging', 'Laboratory Analysis']
+  },
+  {
+    id: 'ndt',
+    title: 'Concrete NDT',
+    shortDescription: 'Non-destructive testing ensuring structural longevity and safety.',
+    fullDescription: 'Utilising advanced Ultrasonic Pulse Velocity (UPV) and Ground Penetrating Radar (GPR), we assess concrete integrity without structural damage. We detect voids, rebar corrosion, and delamination in critical infrastructure.',
+    icon: Activity,
+    imageUrl: 'https://picsum.photos/seed/concrete/800/600',
+    features: ['GPR Scanning', 'Ultrasonic Pulse Velocity', 'Rebound Hammer Testing', 'Cover Meter Surveys']
+  },
+  {
+    id: 'geophysics',
+    title: 'Engineering Geophysics',
+    shortDescription: 'Subsurface mapping using state-of-the-art sensing technology.',
+    fullDescription: 'Our geophysical surveys provide non-invasive mapping of subsurface conditions. Essential for cavity detection, bedrock profiling, and utility mapping in complex industrial environments.',
+    icon: Scan,
+    imageUrl: 'https://picsum.photos/seed/physics/800/600',
+    features: ['Seismic Refraction', 'Electrical Resistivity Imaging', 'Electromagnetic Surveys', 'Vibration Monitoring']
+  },
+  {
+    id: 'precast',
+    title: 'Precast Concrete QC',
+    shortDescription: 'Rigorous quality control for precast manufacturing and installation.',
+    fullDescription: 'We ensure precast elements meet stringent project specifications (AS 3850). From pre-pour inspections to post-cure strength testing, our QC protocols mitigate risk in large-scale construction.',
+    icon: ShieldCheck,
+    imageUrl: 'https://picsum.photos/seed/precast/800/600',
+    features: ['Dimensional Tolerance Checks', 'Pre-pour Inspections', 'Curing Verification', 'Lifting Insert Testing']
+  },
+  {
+    id: 'mining',
+    title: 'Mining Services',
+    shortDescription: 'Specialised testing and inspection for the resources sector.',
+    fullDescription: 'Supporting the lifecycle of mine sites from exploration to rehabilitation. We offer tailings dam monitoring, shaft integrity testing, and heavy-machinery foundation analysis.',
+    icon: Pickaxe,
+    imageUrl: 'https://picsum.photos/seed/mining/800/600',
+    features: ['Tailings Dam Monitoring', 'Shaft Inspection', 'Haul Road Analysis', 'Compliance Audits']
+  },
+  {
+    id: 'civil',
+    title: 'Civil Infrastructure',
+    shortDescription: 'End-to-end engineering support for public and private works.',
+    fullDescription: 'Partnering with government and private contractors to deliver safe, compliant infrastructure. Bridges, tunnels, roads, and marine structures benefit from our lifecycle testing services.',
+    icon: Landmark,
+    imageUrl: 'https://picsum.photos/seed/civil/800/600',
+    features: ['Bridge Deck Analysis', 'Pavement Testing', 'Tunnel Lining Inspection', 'Asset Management']
+  }
+];
+
+export const EQUIPMENT_RENTAL = [
+  { name: 'GPR Systems', desc: 'High-frequency GPR for concrete scanning.', price: '$450/day' },
+  { name: 'Ultrasonic Testers', desc: 'Pundit Lab+ for UPV measurement.', price: '$200/day' },
+  { name: 'Cover Meters', desc: 'Profometer 6 for rebar location.', price: '$150/day' },
+  { name: 'Vibration Monitors', desc: 'Tri-axial geophones for site compliance.', price: '$300/day' },
+];
