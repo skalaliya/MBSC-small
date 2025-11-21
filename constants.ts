@@ -26,9 +26,9 @@ export const NAV_ITEMS: NavigationItem[] = [
 ];
 
 export const CONTACT_INFO = {
-  address: "123 Industrial Ave, Perth WA 6000",
-  phone: "+61 8 9000 1234",
-  email: "enquiries@mbscaustralia.com.au",
+  address: "Melbourne HQ",
+  phone: "+61 414 955 631",
+  email: "admin@mbscaustralia.com.au",
   hours: "Mon - Fri: 07:00 - 17:00"
 };
 
@@ -84,7 +84,7 @@ export const TRAINING_COURSES = [
     description: 'Comprehensive training in ultrasonic testing, magnetic particle, and dye penetrant inspection according to ISO 9712.',
     icon: GraduationCap,
     duration: '5 Days',
-    location: 'Perth / Global On-site'
+    location: 'Melbourne / Global On-site'
   },
   {
     title: 'Geotechnical Safety Leadership',

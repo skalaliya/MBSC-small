@@ -306,9 +306,9 @@ Unauthorized copying, modification, distribution, or use of this software is str
 
 **MBSC Australia**
 
-- 📧 Email: enquiries@mbscaustralia.com.au
-- 📱 Phone: +61 8 9000 1234
-- 🏢 Address: 123 Industrial Ave, Perth WA 6000
+- 📧 Email: admin@mbscaustralia.com.au
+- 📱 Phone: +61 414 955 631
+- 🏢 Address: Melbourne HQ
 - ⏰ Hours: Monday - Friday, 07:00 - 17:00
 
 **Project Links:**

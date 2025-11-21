@@ -594,7 +594,7 @@ function App() {
                <div className="w-full h-64 bg-slate-200 rounded border border-slate-300 flex items-center justify-center bg-[url('https://picsum.photos/seed/map/800/400')] bg-cover bg-center grayscale opacity-80">
                  <div className="bg-white/90 p-3 rounded shadow-md flex items-center">
                     <MapPin className="text-red-600 h-5 w-5 mr-2"/>
-                    <span className="text-slate-900 font-bold text-sm">Perth HQ</span>
+                    <span className="text-slate-900 font-bold text-sm">Melbourne HQ</span>
                  </div>
                </div>
             </div>
