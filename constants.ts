@@ -54,7 +54,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: 'Perth CBD High-Rise',
     category: 'Civil Construction',
     description: 'Foundation pile testing and vibration monitoring for a 50-storey tower.',
-    imageUrl: 'https://picsum.photos/seed/perth/800/600',
+    imageUrl: 'public/Perth-CBD-High-Rise.jpg',
     location: 'Perth CBD',
     outcome: 'Verified pile integrity to AS 2159 standards with zero defects.'
   },
