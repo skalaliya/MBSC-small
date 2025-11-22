@@ -81,7 +81,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: 'Moomba SA Cementing for Santos',
     category: 'Oil & Gas',
     description: 'Comprehensive cementing quality assurance and non-destructive testing services for Santos oil and gas operations at Moomba.',
-    imageUrl: 'https://picsum.photos/seed/moomba/800/600',
+    imageUrl: '/moomba.jpg',
     location: 'Moomba, SA',
     outcome: 'Ensured cementing integrity across multiple wells, meeting stringent Santos specifications and industry standards.'
   },
