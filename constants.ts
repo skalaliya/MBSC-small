@@ -126,7 +126,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: 'Port of Melbourne Wharf Refurbishment',
     category: 'Marine & Offshore',
     description: 'Structural remediation and modernisation of port-side assets with marine concrete testing and corrosion assessment.',
-    imageUrl: 'https://picsum.photos/seed/portmelb/800/600',
+    imageUrl: 'public/Port-of-Melbourne-Wharf-Refurbishment.jpg',
     location: 'Port of Melbourne, VIC',
     outcome: 'Identified critical structural defects and guided remediation works, ensuring continued safe port operations and cargo handling.'
   }
