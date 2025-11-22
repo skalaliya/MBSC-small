@@ -12,7 +12,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 overflow-hidden">
         <img
-          src="/assets/melbourne-hero.jpg"
+          src="/assets/melbourne-hero.svg"
           alt="Moomba Engineering Site"
           className="w-full h-full object-cover opacity-40 grayscale"
         />
