@@ -99,7 +99,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: 'Melbourne Metro Tunnel Expansion',
     category: 'Civil Construction',
     description: 'Major upgrade works supporting the city\'s core transport network with comprehensive structural testing and monitoring.',
-    imageUrl: 'https://picsum.photos/seed/melbmetro/800/600',
+    imageUrl: '/Melbourne-Metro-Tunnel-Expansion.jpg',
     location: 'Melbourne, VIC',
     outcome: 'Successfully delivered critical testing services ensuring tunnel integrity and passenger safety for Melbourne\'s expanding metro system.'
   },
