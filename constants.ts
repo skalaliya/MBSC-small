@@ -206,7 +206,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDescription: 'Specialised testing and inspection for the resources sector.',
     fullDescription: 'Supporting the lifecycle of mine sites from exploration to rehabilitation. We offer tailings dam monitoring, shaft integrity testing, and heavy-machinery foundation analysis.',
     icon: Pickaxe,
-    imageUrl: 'https://picsum.photos/seed/mining/800/600',
+    imageUrl: '/Mining-Services.jpg',
     features: ['Tailings Dam Monitoring', 'Shaft Inspection', 'Haul Road Analysis', 'Compliance Audits']
   },
   {
