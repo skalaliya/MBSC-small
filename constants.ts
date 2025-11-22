@@ -93,6 +93,42 @@ export const PROJECTS_DATA: ProjectItem[] = [
     imageUrl: 'https://picsum.photos/seed/olympicdam/800/600',
     location: 'Olympic Dam, SA',
     outcome: 'Delivered critical foundation analysis supporting safe mine expansion, completed ahead of schedule with zero safety incidents.'
+  },
+  {
+    id: 'p7',
+    title: 'Melbourne Metro Tunnel Expansion',
+    category: 'Civil Construction',
+    description: 'Major upgrade works supporting the city\'s core transport network with comprehensive structural testing and monitoring.',
+    imageUrl: 'https://picsum.photos/seed/melbmetro/800/600',
+    location: 'Melbourne, VIC',
+    outcome: 'Successfully delivered critical testing services ensuring tunnel integrity and passenger safety for Melbourne\'s expanding metro system.'
+  },
+  {
+    id: 'p8',
+    title: 'West Gate Bridge Strengthening',
+    category: 'Infrastructure',
+    description: 'Reinforcement and structural reliability improvements for Melbourne\'s iconic bridge with advanced NDT and assessment.',
+    imageUrl: 'https://picsum.photos/seed/westgate/800/600',
+    location: 'Melbourne, VIC',
+    outcome: 'Comprehensive structural analysis enabled targeted strengthening works, extending bridge service life by 25 years.'
+  },
+  {
+    id: 'p9',
+    title: 'Western Suburbs Pipeline Upgrade',
+    category: 'Oil & Gas',
+    description: 'Critical pipeline enhancements improving supply reliability in the western corridor with integrity testing and monitoring.',
+    imageUrl: 'https://picsum.photos/seed/pipeline/800/600',
+    location: 'Melbourne Western Suburbs, VIC',
+    outcome: 'Delivered comprehensive pipeline integrity assessment ensuring safe, reliable energy supply to growing western communities.'
+  },
+  {
+    id: 'p10',
+    title: 'Port of Melbourne Wharf Refurbishment',
+    category: 'Marine & Offshore',
+    description: 'Structural remediation and modernisation of port-side assets with marine concrete testing and corrosion assessment.',
+    imageUrl: 'https://picsum.photos/seed/portmelb/800/600',
+    location: 'Port of Melbourne, VIC',
+    outcome: 'Identified critical structural defects and guided remediation works, ensuring continued safe port operations and cargo handling.'
   }
 ];
 
