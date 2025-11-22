@@ -75,6 +75,24 @@ export const PROJECTS_DATA: ProjectItem[] = [
     imageUrl: 'https://picsum.photos/seed/bridge/800/600',
     location: 'Regional NSW',
     outcome: 'Mapped all reinforcement, ensuring safe drilling for widening works.'
+  },
+  {
+    id: 'p5',
+    title: 'Moomba SA Cementing for Santos',
+    category: 'Oil & Gas',
+    description: 'Comprehensive cementing quality assurance and non-destructive testing services for Santos oil and gas operations at Moomba.',
+    imageUrl: 'https://picsum.photos/seed/moomba/800/600',
+    location: 'Moomba, SA',
+    outcome: 'Ensured cementing integrity across multiple wells, meeting stringent Santos specifications and industry standards.'
+  },
+  {
+    id: 'p6',
+    title: 'Olympic Dam Mining Project',
+    category: 'Mining Infrastructure',
+    description: 'Large-scale geotechnical investigations and structural testing for underground mine expansion at Olympic Dam copper-uranium mine.',
+    imageUrl: 'https://picsum.photos/seed/olympicdam/800/600',
+    location: 'Olympic Dam, SA',
+    outcome: 'Delivered critical foundation analysis supporting safe mine expansion, completed ahead of schedule with zero safety incidents.'
   }
 ];
 
