@@ -63,7 +63,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: 'Offshore Platform NDT',
     category: 'Oil & Gas',
     description: 'Comprehensive non-destructive testing of platform jacket legs using phased array ultrasonics.',
-    imageUrl: 'https://picsum.photos/seed/rig/800/600',
+    imageUrl: '/North-West-Shelf.jpg',
     location: 'North West Shelf',
     outcome: 'Identified critical fatigue cracking, allowing for preventative maintenance.'
   },
