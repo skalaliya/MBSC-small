@@ -12,8 +12,8 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 overflow-hidden">
         <img
-          src="https://picsum.photos/seed/construction/1920/1080"
-          alt="Industrial Construction Site"
+          src="/assets/melbourne-hero.jpg"
+          alt="Moomba Engineering Site"
           className="w-full h-full object-cover opacity-40 grayscale"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
