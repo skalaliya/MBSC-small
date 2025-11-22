@@ -179,7 +179,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDescription: 'Non-destructive testing ensuring structural longevity and safety.',
     fullDescription: 'Utilising advanced Ultrasonic Pulse Velocity (UPV) and Ground Penetrating Radar (GPR), we assess concrete integrity without structural damage. We detect voids, rebar corrosion, and delamination in critical infrastructure.',
     icon: Activity,
-    imageUrl: 'https://picsum.photos/seed/concrete/800/600',
+    imageUrl: '/non-destructive-testing.jpg',
     features: ['GPR Scanning', 'Ultrasonic Pulse Velocity', 'Rebound Hammer Testing', 'Cover Meter Surveys']
   },
   {
