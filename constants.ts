@@ -45,7 +45,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: 'Pilbara Rail Expansion',
     category: 'Mining Infrastructure',
     description: 'Geotechnical investigation for 400km of new heavy-haul rail alignment.',
-    imageUrl: 'https://picsum.photos/seed/pilbara/800/600',
+    imageUrl: '/Pilbara-Rail-Expansion.jpg',
     location: 'Pilbara, WA',
     outcome: 'Delivered 3 weeks ahead of schedule, enabling early track laying.'
   },
