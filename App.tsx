@@ -103,7 +103,7 @@ function App() {
             <div className="relative group">
               <div className="absolute -inset-4 bg-teal-50 rounded-lg transform rotate-2 group-hover:rotate-1 transition-transform duration-500"></div>
               <img 
-                src="/assets/site-photo.jpg" 
+                src="/workspaces/MBSC-small/public/site-photo.jpg" 
                 alt="MBSC engineering team" 
                 className="relative rounded-lg shadow-xl grayscale group-hover:grayscale-0 transition-all duration-500"
               />
