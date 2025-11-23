@@ -188,7 +188,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDescription: 'Non-destructive testing and rigorous quality control for concrete structures and precast manufacturing.',
     fullDescription: 'Utilising advanced Ultrasonic Pulse Velocity (UPV) and Ground Penetrating Radar (GPR), we assess concrete integrity without structural damage. We detect voids, rebar corrosion, and delamination in critical infrastructure. We ensure precast elements meet stringent project specifications (AS 3850). From pre-pour inspections to post-cure strength testing, our QC protocols mitigate risk in large-scale construction.',
     icon: Activity,
-    imageUrl: '/concrete.jpg',
+    imageUrl: '/non-destructive-testing.jpg',
     features: ['GPR Scanning', 'Ultrasonic Pulse Velocity', 'Rebound Hammer Testing', 'Cover Meter Surveys', 'Dimensional Tolerance Checks', 'Pre-pour Inspections', 'Curing Verification', 'Lifting Insert Testing']
   },
   {

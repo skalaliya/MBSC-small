@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { Page } from '../types';
-import logo from '../assets/logo.svg';
+
 
 interface NavbarProps {
   currentPage: Page;
@@ -22,13 +22,17 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-24">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center cursor-pointer gap-3 py-2" onClick={() => handleNav(Page.HOME)}>
+          <div 
+            className="flex-shrink-0 flex items-center cursor-pointer gap-3 py-2" 
+            onClick={() => handleNav(Page.HOME)}
+          >
             <img 
-              src={logo} 
-              alt="MBSC Australia Logo" 
-              className="h-20 w-auto object-contain hover:opacity-90 transition-opacity" 
+              src="/logo.jpg"
+              alt="MBSC Australia Logo"
+              className="h-20 w-auto object-contain hover:opacity-90 transition-opacity"
             />
           </div>
+
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
