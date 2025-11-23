@@ -165,6 +165,15 @@ export const TRAINING_COURSES = [
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
+    id: 'oilandgas',
+    title: 'Oil & Gas Engineering Services',
+    shortDescription: 'High-end engineering support and integrity services for the upstream and midstream sectors.',
+    fullDescription: 'MBSC Australia provides specialised engineering and integrity solutions for drilling, reservoir, and production operations. This includes cementing QA/QC, well integrity diagnostics, structural assessment, corrosion evaluation, and production optimisation support.',
+    icon: Landmark,
+    imageUrl: '/oilandgas.jpg',
+    features: ['Drilling Engineering', 'Reservoir Engineering', 'Production Engineering', 'Well Integrity Technology']
+  },
+  {
     id: 'geotech',
     title: 'Geotechnical Investigations',
     shortDescription: 'Comprehensive ground analysis for civil and mining infrastructure.',
@@ -174,31 +183,22 @@ export const SERVICES_DATA: ServiceItem[] = [
     features: ['Standard Penetration Testing (SPT)', 'Cone Penetration Testing (CPT)', 'Soil & Rock Logging', 'Laboratory Analysis']
   },
   {
-    id: 'ndt-geophysics',
-    title: 'Concrete NDT & Engineering Geophysics',
-    shortDescription: 'Non-destructive testing and subsurface mapping ensuring structural integrity and safety.',
-    fullDescription: 'Utilising advanced Ultrasonic Pulse Velocity (UPV) and Ground Penetrating Radar (GPR), we assess concrete integrity without structural damage. We detect voids, rebar corrosion, and delamination in critical infrastructure. Our geophysical surveys provide non-invasive mapping of subsurface conditions. Essential for cavity detection, bedrock profiling, and utility mapping in complex industrial environments.',
+    id: 'concrete-ndt-precast',
+    title: 'Concrete NDT & Precast QC',
+    shortDescription: 'Non-destructive testing and rigorous quality control for concrete structures and precast manufacturing.',
+    fullDescription: 'Utilising advanced Ultrasonic Pulse Velocity (UPV) and Ground Penetrating Radar (GPR), we assess concrete integrity without structural damage. We detect voids, rebar corrosion, and delamination in critical infrastructure. We ensure precast elements meet stringent project specifications (AS 3850). From pre-pour inspections to post-cure strength testing, our QC protocols mitigate risk in large-scale construction.',
     icon: Activity,
-    imageUrl: '/ndt-geophysics.jpg',
-    features: ['GPR Scanning', 'Ultrasonic Pulse Velocity', 'Rebound Hammer Testing', 'Cover Meter Surveys', 'Seismic Refraction', 'Electrical Resistivity Imaging', 'Electromagnetic Surveys', 'Vibration Monitoring']
+    imageUrl: '/concrete.jpg',
+    features: ['GPR Scanning', 'Ultrasonic Pulse Velocity', 'Rebound Hammer Testing', 'Cover Meter Surveys', 'Dimensional Tolerance Checks', 'Pre-pour Inspections', 'Curing Verification', 'Lifting Insert Testing']
   },
   {
-    id: 'oilandgas',
-    title: 'Oil & Gas Integrity Services',
-    shortDescription: 'Specialised testing, inspection, and integrity assurance for upstream and midstream assets.',
-    fullDescription: 'MBSC Australia provides end-to-end integrity services for oil and gas operators, covering cementing QA/QC, well integrity diagnostics, pipeline testing, corrosion assessment, and structural evaluation for critical onshore and offshore assets.',
-    icon: Landmark,
-    imageUrl: '/oilandgas.jpg',
-    features: ['Cementing Quality Assurance', 'Well Integrity Diagnostics', 'Pipeline Testing & Monitoring', 'Corrosion & Thickness Evaluation']
-  },
-  {
-    id: 'precast',
-    title: 'Precast Concrete QC',
-    shortDescription: 'Rigorous quality control for precast manufacturing and installation.',
-    fullDescription: 'We ensure precast elements meet stringent project specifications (AS 3850). From pre-pour inspections to post-cure strength testing, our QC protocols mitigate risk in large-scale construction.',
-    icon: ShieldCheck,
-    imageUrl: 'https://picsum.photos/seed/precast/800/600',
-    features: ['Dimensional Tolerance Checks', 'Pre-pour Inspections', 'Curing Verification', 'Lifting Insert Testing']
+    id: 'geophysics',
+    title: 'Engineering Geophysics',
+    shortDescription: 'Subsurface mapping using state-of-the-art sensing technology.',
+    fullDescription: 'Our geophysical surveys provide non-invasive mapping of subsurface conditions. Essential for cavity detection, bedrock profiling, and utility mapping in complex industrial environments.',
+    icon: Scan,
+    imageUrl: 'https://picsum.photos/seed/physics/800/600',
+    features: ['Seismic Refraction', 'Electrical Resistivity Imaging', 'Electromagnetic Surveys', 'Vibration Monitoring']
   },
   {
     id: 'mining',
