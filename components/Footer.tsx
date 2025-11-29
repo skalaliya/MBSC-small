@@ -1,14 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Phone, Mail, MapPin, Linkedin } from 'lucide-react';
 import { CONTACT_INFO, NAV_ITEMS } from '../constants';
 import { Page } from '../types';
-import logo from '../assets/logo.svg';
 
 interface FooterProps {
   onNavigate: (page: Page) => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
   return (
     <footer className="bg-slate-900 text-slate-300 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -18,13 +19,13 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center mb-6 gap-3">
               <img 
-                src={logo}
+                src="/logo.jpg"
                 alt="MBSC Australia Logo" 
                 className="h-16 w-auto object-contain" 
               />
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              Delivering advanced engineering solutions and testing integrity for Australia's toughest industries.
+              {t('footer.tagline')}
             </p>
             <div className="flex space-x-4">
                 <a href="#" className="text-slate-400 hover:text-amber-500 transition-colors">
@@ -35,7 +36,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6">Navigation</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6">{t('footer.navigation')}</h3>
             <ul className="space-y-3">
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
@@ -43,7 +44,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     onClick={() => onNavigate(item.page)}
                     className="text-sm text-slate-400 hover:text-teal-400 transition-colors"
                   >
-                    {item.label}
+                    {t(`nav.${item.label.toLowerCase().replace(/ /g, '')}`)}
                   </button>
                 </li>
               ))}
@@ -52,19 +53,19 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Services */}
           <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6">Core Services</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6">{t('footer.coreServices')}</h3>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li>Geotechnical Investigations</li>
-              <li>Concrete NDT</li>
-              <li>Engineering Geophysics</li>
-              <li>Global Training</li>
-              <li>Mining Compliance</li>
+              <li>{t('footer.services.geotech')}</li>
+              <li>{t('footer.services.concreteNdt')}</li>
+              <li>{t('footer.services.geophysics')}</li>
+              <li>{t('footer.services.training')}</li>
+              <li>{t('footer.services.mining')}</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6">Head Office</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6">{t('footer.headOffice')}</h3>
             <ul className="space-y-4 text-sm text-slate-400">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-teal-500 mr-3 shrink-0" />
@@ -84,11 +85,11 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
         
         <div className="border-t border-slate-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} MBSC Australia Pty Ltd. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {t('footer.copyright')}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <a href="#" className="hover:text-white">Terms of Service</a>
-            <a href="#" className="hover:text-white">Sitemap</a>
+            <a href="#" className="hover:text-white">{t('footer.privacyPolicy')}</a>
+            <a href="#" className="hover:text-white">{t('footer.termsOfService')}</a>
+            <a href="#" className="hover:text-white">{t('footer.sitemap')}</a>
           </div>
         </div>
       </div>

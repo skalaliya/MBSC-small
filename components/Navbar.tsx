@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { NAV_ITEMS } from '../constants';
 import { Page } from '../types';
 
@@ -11,57 +12,121 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const handleNav = (page: Page) => {
     onNavigate(page);
     setIsOpen(false);
   };
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
-    <nav className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-50 shadow-sm" role="navigation" aria-label={t('seo.ariaLabels.mainNavigation')}>
+      {/* Subtle gradient accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal-500/30 to-transparent"></div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-24">
+        <div className="flex justify-between items-center h-24">
           {/* Logo */}
           <div 
-            className="flex-shrink-0 flex items-center cursor-pointer gap-3 py-2" 
+            className="flex-shrink-0 flex items-center cursor-pointer gap-3 py-2 group" 
             onClick={() => handleNav(Page.HOME)}
           >
             <img 
               src="/logo.jpg"
               alt="MBSC Australia Logo"
-              className="h-20 w-auto object-contain hover:opacity-90 transition-opacity"
+              className="h-20 w-auto object-contain group-hover:opacity-80 transition-all duration-300 group-hover:scale-[1.02]"
             />
           </div>
 
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center gap-2">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.label}
                 onClick={() => handleNav(item.page)}
-                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wide
+                className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 uppercase tracking-wide rounded-lg group
                   ${currentPage === item.page 
-                    ? 'text-teal-800 border-b-2 border-teal-800' 
-                    : 'text-slate-600 hover:text-teal-800'
+                    ? 'text-teal-800 bg-teal-50/80 shadow-sm' 
+                    : 'text-slate-600 hover:text-teal-700 hover:bg-slate-50/80'
                   }`}
               >
-                {item.label}
+                {t(`nav.${item.label}`)}
+                {currentPage === item.page && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-teal-600 rounded-full"></span>
+                )}
               </button>
             ))}
+            
+            {/* Language Switcher - Pill Style */}
+            <div className="flex items-center gap-3 ml-4 pl-6 border-l border-slate-200/60" aria-label={t('seo.ariaLabels.languageSwitcher')}>
+              <Globe className="h-4 w-4 text-slate-400" aria-hidden="true" />
+              <div className="relative inline-flex items-center bg-slate-100/80 rounded-full p-1 shadow-inner">
+                <button
+                  onClick={() => changeLanguage('en')}
+                  className={`relative px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 ${
+                    i18n.language === 'en' 
+                      ? 'bg-teal-600 text-white shadow-md' 
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => changeLanguage('fr')}
+                  className={`relative px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 ${
+                    i18n.language === 'fr' 
+                      ? 'bg-teal-600 text-white shadow-md' 
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  FR
+                </button>
+              </div>
+            </div>
+
             <button 
               onClick={() => handleNav(Page.CONTACT)}
-              className="bg-amber-500 text-white px-5 py-2.5 text-sm font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors shadow-sm"
+              className="ml-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-2.5 text-sm font-bold uppercase tracking-wider hover:from-amber-400 hover:to-amber-500 transition-all duration-300 shadow-md hover:shadow-lg rounded-lg transform hover:-translate-y-0.5"
+              aria-label={t('seo.ariaLabels.getQuoteButton')}
             >
-              Get a Quote
+              {t('nav.getQuote')}
             </button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex items-center lg:hidden">
+          <div className="flex items-center gap-3 lg:hidden">
+            {/* Mobile Language Switcher Compact */}
+            <div className="inline-flex items-center bg-slate-100 rounded-full p-0.5 shadow-sm">
+              <button
+                onClick={() => changeLanguage('en')}
+                className={`px-2.5 py-1 text-xs font-bold uppercase rounded-full transition-all duration-200 ${
+                  i18n.language === 'en' 
+                    ? 'bg-teal-600 text-white' 
+                    : 'text-slate-500'
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => changeLanguage('fr')}
+                className={`px-2.5 py-1 text-xs font-bold uppercase rounded-full transition-all duration-200 ${
+                  i18n.language === 'fr' 
+                    ? 'bg-teal-600 text-white' 
+                    : 'text-slate-500'
+                }`}
+              >
+                FR
+              </button>
+            </div>
+            
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-slate-600 hover:text-teal-700 hover:bg-slate-100 focus:outline-none transition-all duration-200"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -71,21 +136,29 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-100">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-lg">
+          <div className="px-3 py-4 space-y-2">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.label}
                 onClick={() => handleNav(item.page)}
-                className={`block w-full text-left px-3 py-4 text-base font-medium uppercase tracking-wide border-l-4
-                  ${currentPage === item.page 
-                    ? 'bg-slate-50 border-teal-800 text-teal-800' 
-                    : 'border-transparent text-slate-600 hover:bg-slate-50 hover:text-teal-800'
-                  }`}
+                className={`block w-full text-left px-4 py-3.5 text-base font-semibold uppercase tracking-wide rounded-lg transition-all duration-200 ${
+                  currentPage === item.page 
+                    ? 'bg-teal-50 text-teal-800 shadow-sm border-l-4 border-teal-600' 
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-teal-700 border-l-4 border-transparent'
+                }`}
               >
-                {item.label}
+                {t(`nav.${item.label}`)}
               </button>
             ))}
+            
+            {/* Mobile Get Quote Button */}
+            <button 
+              onClick={() => handleNav(Page.CONTACT)}
+              className="w-full mt-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3.5 text-sm font-bold uppercase tracking-wider rounded-lg shadow-md active:scale-95 transition-all duration-200"
+            >
+              {t('nav.getQuote')}
+            </button>
           </div>
         </div>
       )}

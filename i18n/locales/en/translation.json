@@ -1,0 +1,358 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "projects": "Projects",
+    "training": "Training",
+    "rental": "Rental",
+    "about": "About",
+    "contact": "Contact",
+    "getQuote": "Get a Quote"
+  },
+  "hero": {
+    "badge": "ISO 9001 Certified",
+    "title": "Precision Engineering.",
+    "titleHighlight": "Australian Tough.",
+    "subtitle": "MBSC Australia delivers tier-one engineering, testing, and inspection services. From the Pilbara to the city, we ensure structural integrity and compliance.",
+    "ctaPrimary": "View Our Services",
+    "ctaSecondary": "Explore Training"
+  },
+  "stats": {
+    "projectsDelivered": "Projects Delivered",
+    "safetyHours": "Safety Hours",
+    "metersDrilled": "Meters Drilled",
+    "assetsProtected": "Assets Protected"
+  },
+  "home": {
+    "intro": {
+      "title": "Industry Leading Technical Excellence",
+      "body": "MBSC Australia sets the benchmark in technical services for the construction, mining, and oil & gas industries. With a focus on precision, compliance, and reliability, we deliver data-driven insights that secure your assets.",
+      "listItem1": "NATA Accredited Laboratories",
+      "listItem2": "Advanced NDT Technology",
+      "listItem3": "Certified Engineering Specialists",
+      "listItem4": "Global Training Programs",
+      "aboutCta": "About Our Company",
+      "trainingCta": "View Training",
+      "siteSafety": "Site Safety",
+      "compliant": "100% Compliant"
+    },
+    "servicesPreview": {
+      "sectionBadge": "Our Capabilities",
+      "sectionTitle": "Specialised Engineering Solutions",
+      "sectionSubtitle": "Deploying advanced methodologies for complex infrastructure challenges.",
+      "learnMore": "Learn More",
+      "viewAllServices": "View All Services"
+    },
+    "projectsTeaser": {
+      "sectionBadge": "Case Studies",
+      "sectionTitle": "Recent Works",
+      "viewGallery": "View Project Gallery",
+      "viewAllProjects": "View All Projects"
+    },
+    "projectsCta": {
+      "title": "Have a complex project in mind?",
+      "subtitle": "Our engineering team is ready to deploy nationwide for site investigations and testing.",
+      "cta": "Get in Touch"
+    }
+  },
+  "projects": {
+    "pageTitle": "Featured Projects",
+    "pageBadge": "Portfolio",
+    "pageSubtitle": "A showcase of technical excellence across Australia's most demanding environments.",
+    "outcome": "Project Outcome",
+    "p1": {
+      "title": "Pilbara Rail Expansion",
+      "category": "Mining Infrastructure",
+      "description": "Geotechnical investigation for 400km of new heavy-haul rail alignment.",
+      "location": "Pilbara, WA",
+      "outcome": "Delivered 3 weeks ahead of schedule, enabling early track laying."
+    },
+    "p2": {
+      "title": "Perth CBD High-Rise",
+      "category": "Civil Construction",
+      "description": "Foundation pile testing and vibration monitoring for a 50-storey tower.",
+      "location": "Perth CBD",
+      "outcome": "Verified pile integrity to AS 2159 standards with zero defects."
+    },
+    "p3": {
+      "title": "Offshore Platform NDT",
+      "category": "Oil & Gas",
+      "description": "Comprehensive non-destructive testing of platform jacket legs using phased array ultrasonics.",
+      "location": "North West Shelf",
+      "outcome": "Identified critical fatigue cracking, allowing for preventative maintenance."
+    },
+    "p4": {
+      "title": "Highway Bridge Upgrade",
+      "category": "Infrastructure",
+      "description": "GPR scanning and concrete strength assessment for aging bridge assets.",
+      "location": "Regional NSW",
+      "outcome": "Mapped all reinforcement, ensuring safe drilling for widening works."
+    },
+    "p5": {
+      "title": "Moomba SA Cementing for Santos",
+      "category": "Oil & Gas",
+      "description": "Comprehensive cementing quality assurance and non-destructive testing services for Santos oil and gas operations at Moomba.",
+      "location": "Moomba, SA",
+      "outcome": "Ensured cementing integrity across multiple wells, meeting stringent Santos specifications and industry standards."
+    },
+    "p6": {
+      "title": "Olympic Dam Mining Project",
+      "category": "Mining Infrastructure",
+      "description": "Large-scale geotechnical investigations and structural testing for underground mine expansion at Olympic Dam copper-uranium mine.",
+      "location": "Olympic Dam, SA",
+      "outcome": "Delivered critical foundation analysis supporting safe mine expansion, completed ahead of schedule with zero safety incidents."
+    },
+    "p7": {
+      "title": "Melbourne Metro Tunnel Expansion",
+      "category": "Civil Construction",
+      "description": "Major upgrade works supporting the city's core transport network with comprehensive structural testing and monitoring.",
+      "location": "Melbourne, VIC",
+      "outcome": "Successfully delivered critical testing services ensuring tunnel integrity and passenger safety for Melbourne's expanding metro system."
+    },
+    "p8": {
+      "title": "West Gate Bridge Strengthening",
+      "category": "Infrastructure",
+      "description": "Reinforcement and structural reliability improvements for Melbourne's iconic bridge with advanced NDT and assessment.",
+      "location": "Melbourne, VIC",
+      "outcome": "Comprehensive structural analysis enabled targeted strengthening works, extending bridge service life by 25 years."
+    },
+    "p9": {
+      "title": "Western Suburbs Pipeline Upgrade",
+      "category": "Oil & Gas",
+      "description": "Critical pipeline enhancements improving supply reliability in the western corridor with integrity testing and monitoring.",
+      "location": "Melbourne Western Suburbs, VIC",
+      "outcome": "Delivered comprehensive pipeline integrity assessment ensuring safe, reliable energy supply to growing western communities."
+    },
+    "p10": {
+      "title": "Port of Melbourne Wharf Refurbishment",
+      "category": "Marine & Offshore",
+      "description": "Structural remediation and modernisation of port-side assets with marine concrete testing and corrosion assessment.",
+      "location": "Port of Melbourne, VIC",
+      "outcome": "Identified critical structural defects and guided remediation works, ensuring continued safe port operations and cargo handling."
+    }
+  },
+  "services": {
+    "pageTitle": "Our Services",
+    "pageSubtitle": "Comprehensive testing, inspection, and engineering solutions for mission-critical projects.",
+    "keyApplications": "Key Applications",
+    "oilandgas": {
+      "title": "Oil & Gas Engineering Services",
+      "short": "High-end engineering support and integrity services for the upstream and midstream sectors.",
+      "full": "MBSC Australia provides specialised engineering and integrity solutions for drilling, reservoir, and production operations. This includes cementing QA/QC, well integrity diagnostics, structural assessment, corrosion evaluation, and production optimisation support.",
+      "feature1": "Drilling Engineering",
+      "feature2": "Reservoir Engineering",
+      "feature3": "Production Engineering",
+      "feature4": "Well Integrity Technology"
+    },
+    "geotech": {
+      "title": "Geotechnical Investigations",
+      "short": "Comprehensive ground analysis for civil and mining infrastructure.",
+      "full": "MBSC Australia provides rigorous geotechnical site investigations to ensure foundational integrity. Our services include borehole drilling, soil sampling, laboratory testing, and detailed reporting compliant with AS 1726 standards.",
+      "feature1": "Standard Penetration Testing (SPT)",
+      "feature2": "Cone Penetration Testing (CPT)",
+      "feature3": "Soil & Rock Logging",
+      "feature4": "Laboratory Analysis"
+    },
+    "concreteNdt": {
+      "title": "Concrete NDT & Precast QC",
+      "short": "Non-destructive testing and rigorous quality control for concrete structures and precast manufacturing.",
+      "full": "Utilising advanced Ultrasonic Pulse Velocity (UPV) and Ground Penetrating Radar (GPR), we assess concrete integrity without structural damage. We detect voids, rebar corrosion, and delamination in critical infrastructure. We ensure precast elements meet stringent project specifications (AS 3850). From pre-pour inspections to post-cure strength testing, our QC protocols mitigate risk in large-scale construction.",
+      "feature1": "GPR Scanning",
+      "feature2": "Ultrasonic Pulse Velocity",
+      "feature3": "Rebound Hammer Testing",
+      "feature4": "Cover Meter Surveys",
+      "feature5": "Dimensional Tolerance Checks",
+      "feature6": "Pre-pour Inspections",
+      "feature7": "Curing Verification",
+      "feature8": "Lifting Insert Testing"
+    },
+    "geophysics": {
+      "title": "Engineering Geophysics",
+      "short": "Subsurface mapping using state-of-the-art sensing technology.",
+      "full": "Our geophysical surveys provide non-invasive mapping of subsurface conditions. Essential for cavity detection, bedrock profiling, and utility mapping in complex industrial environments.",
+      "feature1": "Seismic Refraction",
+      "feature2": "Electrical Resistivity Imaging",
+      "feature3": "Electromagnetic Surveys",
+      "feature4": "Vibration Monitoring"
+    },
+    "mining": {
+      "title": "Mining Services",
+      "short": "Specialised testing and inspection for the resources sector.",
+      "full": "Supporting the lifecycle of mine sites from exploration to rehabilitation. We offer tailings dam monitoring, shaft integrity testing, and heavy-machinery foundation analysis.",
+      "feature1": "Tailings Dam Monitoring",
+      "feature2": "Shaft Inspection",
+      "feature3": "Haul Road Analysis",
+      "feature4": "Compliance Audits"
+    },
+    "civil": {
+      "title": "Civil Infrastructure",
+      "short": "End-to-end engineering support for public and private works.",
+      "full": "Partnering with government and private contractors to deliver safe, compliant infrastructure. Bridges, tunnels, roads, and marine structures benefit from our lifecycle testing services.",
+      "feature1": "Bridge Deck Analysis",
+      "feature2": "Pavement Testing",
+      "feature3": "Tunnel Lining Inspection",
+      "feature4": "Asset Management"
+    }
+  },
+  "training": {
+    "pageBadge": "MBSC Education",
+    "pageTitle": "Global Engineering Training",
+    "pageSubtitle": "Upskilling the global workforce with industry-leading technical education. We provide specialised training for organisations and individuals in NDT, Geophysics, and Safety Compliance.",
+    "valueProps": {
+      "globalReach": {
+        "title": "Global Reach",
+        "description": "We deploy our senior engineers worldwide to conduct on-site training tailored to your project environment."
+      },
+      "certified": {
+        "title": "Certified Curriculum",
+        "description": "Courses designed to meet Australian Standards (AS) and ISO requirements for NDT and Geotechnical safety."
+      },
+      "hybrid": {
+        "title": "Hybrid Learning",
+        "description": "Flexible delivery options including virtual classrooms, interactive webinars, and practical field days."
+      }
+    },
+    "coursesTitle": "Available Courses",
+    "courses": {
+      "ndt": {
+        "title": "NDT Level 1 & 2 Certification",
+        "description": "Comprehensive training in ultrasonic testing, magnetic particle, and dye penetrant inspection according to ISO 9712.",
+        "duration": "5 Days",
+        "location": "Melbourne / Global On-site"
+      },
+      "safety": {
+        "title": "Geotechnical Safety Leadership",
+        "description": "Risk management workshops for site supervisors managing drilling and excavation operations.",
+        "duration": "2 Days",
+        "location": "On-site"
+      },
+      "gpr": {
+        "title": "Advanced GPR Interpretation",
+        "description": "Master the art of reading radargrams for concrete scanning and utility mapping. Includes practical field modules.",
+        "duration": "3 Days",
+        "location": "Global Virtual / Hybrid"
+      },
+      "corporate": {
+        "title": "Corporate Engineering Standards",
+        "description": "Customised training programs helping organisations align with AS/NZS standards and best practices.",
+        "duration": "Custom",
+        "location": "Worldwide"
+      }
+    },
+    "cta": {
+      "title": "Organise Training for Your Team",
+      "subtitle": "Contact our education department to discuss bespoke corporate packages and international deployment schedules.",
+      "button": "Request Training Syllabus"
+    }
+  },
+  "about": {
+    "pageTitle": "About MBSC",
+    "pageSubtitle": "Built on a foundation of technical expertise and unwavering safety standards.",
+    "overviewTitle": "Corporate Overview",
+    "overviewBody": "MBSC Australia is a leading provider of specialized engineering and testing services. We partner with major asset owners, contractors, and consultants to mitigate risk and ensure quality in the built environment. Our team comprises senior geotechnical engineers, geophysicists, and materials technicians dedicated to solving complex site challenges.",
+    "mission": {
+      "title": "Our Mission",
+      "body": "To deliver data-driven engineering insights that ensure the safety, longevity, and compliance of Australia's critical infrastructure."
+    },
+    "values": {
+      "title": "Our Values",
+      "value1": "Technical Precision",
+      "value2": "Uncompromised Safety",
+      "value3": "Client Integrity"
+    }
+  },
+  "rental": {
+    "pageTitle": "Equipment Rental",
+    "pageSubtitle": "Professional-grade testing equipment for short and long-term hire.",
+    "tableHeaders": {
+      "equipment": "Equipment",
+      "description": "Description",
+      "dailyRate": "Daily Rate (ex GST)",
+      "action": "Action"
+    },
+    "equipment": {
+      "gpr": {
+        "name": "GPR Systems",
+        "desc": "High-frequency GPR for concrete scanning."
+      },
+      "ultrasonic": {
+        "name": "Ultrasonic Testers",
+        "desc": "Pundit Lab+ for UPV measurement."
+      },
+      "coverMeter": {
+        "name": "Cover Meters",
+        "desc": "Profometer 6 for rebar location."
+      },
+      "vibration": {
+        "name": "Vibration Monitors",
+        "desc": "Tri-axial geophones for site compliance."
+      }
+    },
+    "enquireBtn": "Enquire",
+    "calibrationNotice": "All equipment is calibrated to manufacturer standards prior to dispatch."
+  },
+  "contact": {
+    "pageTitle": "Contact Us",
+    "pageSubtitle": "Get in touch with our engineering team for quotes and technical advice.",
+    "form": {
+      "title": "Send an Enquiry",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "service": "Service Interest",
+      "message": "Message",
+      "submit": "Submit Enquiry",
+      "successTitle": "Enquiry Received",
+      "successMessage": "Thank you. Our engineering team will review your request and respond within 24 hours.",
+      "sendAnother": "Send Another Message",
+      "serviceOptions": {
+        "general": "General Enquiry",
+        "training": "Training & Education",
+        "rental": "Equipment Rental"
+      }
+    },
+    "info": {
+      "headOffice": "Head Office",
+      "phone": "Phone",
+      "email": "Email",
+      "mapLabel": "Melbourne HQ"
+    }
+  },
+  "footer": {
+    "tagline": "Delivering advanced engineering solutions and testing integrity for Australia's toughest industries.",
+    "navigation": "Navigation",
+    "coreServices": "Core Services",
+    "services": {
+      "geotech": "Geotechnical Investigations",
+      "concreteNdt": "Concrete NDT",
+      "geophysics": "Engineering Geophysics",
+      "training": "Global Training",
+      "mining": "Mining Compliance"
+    },
+    "headOffice": "Head Office",
+    "copyright": "MBSC Australia Pty Ltd. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "sitemap": "Sitemap"
+  },
+  "common": {
+    "hours": "Mon - Fri: 07:00 - 17:00"
+  },
+  "seo": {
+    "imageAlt": {
+      "logo": "MBSC Australia - Engineering Services Logo",
+      "siteTeam": "MBSC Australia engineering team conducting geotechnical site investigation and NDT testing services",
+      "hero": "MBSC Australia Engineering Site - Mining and Infrastructure Projects",
+      "trainingWorkshop": "MBSC Australia engineering training workshop - NDT certification and technical education"
+    },
+    "ariaLabels": {
+      "mainNavigation": "Main navigation menu",
+      "languageSwitcher": "Switch language between English and French",
+      "getQuoteButton": "Request a quote for engineering services",
+      "socialMediaLinks": "Social media links",
+      "contactForm": "Contact enquiry form",
+      "serviceLinks": "Engineering service offerings",
+      "projectGallery": "Featured engineering projects gallery"
+    }
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "projects": "Projets",
+    "training": "Formation",
+    "rental": "Location",
+    "about": "À Propos",
+    "contact": "Contact",
+    "getQuote": "Demander un Devis"
+  },
+  "hero": {
+    "badge": "Certifié ISO 9001",
+    "title": "Ingénierie de Précision.",
+    "titleHighlight": "Robustesse Australienne.",
+    "subtitle": "MBSC Australia fournit des services d'ingénierie, de tests et d'inspection de premier ordre. Du Pilbara à la ville, nous assurons l'intégrité structurelle et la conformité.",
+    "ctaPrimary": "Voir Nos Services",
+    "ctaSecondary": "Explorer la Formation"
+  },
+  "stats": {
+    "projectsDelivered": "Projets Réalisés",
+    "safetyHours": "Heures de Sécurité",
+    "metersDrilled": "Mètres Forés",
+    "assetsProtected": "Actifs Protégés"
+  },
+  "home": {
+    "intro": {
+      "title": "Excellence Technique de Premier Plan",
+      "body": "MBSC Australia établit la référence en matière de services techniques pour les secteurs de la construction, des mines et du pétrole et gaz. En mettant l'accent sur la précision, la conformité et la fiabilité, nous fournissons des analyses basées sur des données qui sécurisent vos actifs.",
+      "listItem1": "Laboratoires Accrédités NATA",
+      "listItem2": "Technologie END Avancée",
+      "listItem3": "Spécialistes en Ingénierie Certifiés",
+      "listItem4": "Programmes de Formation Internationaux",
+      "aboutCta": "À Propos de Notre Entreprise",
+      "trainingCta": "Voir la Formation",
+      "siteSafety": "Sécurité du Site",
+      "compliant": "100% Conforme"
+    },
+    "servicesPreview": {
+      "sectionBadge": "Nos Capacités",
+      "sectionTitle": "Solutions d'Ingénierie Spécialisées",
+      "sectionSubtitle": "Déploiement de méthodologies avancées pour les défis d'infrastructure complexes.",
+      "learnMore": "En Savoir Plus",
+      "viewAllServices": "Voir Tous les Services"
+    },
+    "projectsTeaser": {
+      "sectionBadge": "Études de Cas",
+      "sectionTitle": "Travaux Récents",
+      "viewGallery": "Voir la Galerie de Projets",
+      "viewAllProjects": "Voir Tous les Projets"
+    },
+    "projectsCta": {
+      "title": "Vous avez un projet complexe en tête ?",
+      "subtitle": "Notre équipe d'ingénierie est prête à se déployer dans tout le pays pour des investigations et des essais sur site.",
+      "cta": "Contactez-Nous"
+    }
+  },
+  "projects": {
+    "pageTitle": "Projets Phares",
+    "pageBadge": "Portfolio",
+    "pageSubtitle": "Une vitrine d'excellence technique dans les environnements les plus exigeants d'Australie.",
+    "outcome": "Résultat du Projet",
+    "p1": {
+      "title": "Expansion Ferroviaire du Pilbara",
+      "category": "Infrastructure Minière",
+      "description": "Investigation géotechnique pour 400 km de nouvel alignement ferroviaire à fort tonnage.",
+      "location": "Pilbara, WA",
+      "outcome": "Livré 3 semaines en avance, permettant la pose anticipée des rails."
+    },
+    "p2": {
+      "title": "Tour de Grande Hauteur Perth CBD",
+      "category": "Construction Civile",
+      "description": "Essais de pieux de fondation et surveillance des vibrations pour une tour de 50 étages.",
+      "location": "Perth CBD",
+      "outcome": "Intégrité des pieux vérifiée selon les normes AS 2159 sans aucun défaut."
+    },
+    "p3": {
+      "title": "END de Plateforme Offshore",
+      "category": "Pétrole et Gaz",
+      "description": "Essais non destructifs complets des jambes de jacket de plateforme utilisant des ultrasons à réseau phasé.",
+      "location": "North West Shelf",
+      "outcome": "Identification de fissures de fatigue critiques, permettant une maintenance préventive."
+    },
+    "p4": {
+      "title": "Modernisation de Pont Autoroutier",
+      "category": "Infrastructure",
+      "description": "Scan GPR et évaluation de la résistance du béton pour des ouvrages d'art vieillissants.",
+      "location": "Regional NSW",
+      "outcome": "Cartographie complète des armatures, garantissant un forage sûr pour les travaux d'élargissement."
+    },
+    "p5": {
+      "title": "Cimentation Moomba SA pour Santos",
+      "category": "Pétrole et Gaz",
+      "description": "Services complets d'assurance qualité de cimentation et d'essais non destructifs pour les opérations pétrolières et gazières de Santos à Moomba.",
+      "location": "Moomba, SA",
+      "outcome": "Intégrité de cimentation assurée sur plusieurs puits, répondant aux spécifications strictes de Santos et aux normes de l'industrie."
+    },
+    "p6": {
+      "title": "Projet Minier Olympic Dam",
+      "category": "Infrastructure Minière",
+      "description": "Investigations géotechniques à grande échelle et essais structurels pour l'expansion de la mine souterraine d'Olympic Dam (cuivre-uranium).",
+      "location": "Olympic Dam, SA",
+      "outcome": "Analyse de fondation critique soutenant l'expansion sûre de la mine, achevée en avance avec zéro incident de sécurité."
+    },
+    "p7": {
+      "title": "Expansion du Tunnel Métro de Melbourne",
+      "category": "Construction Civile",
+      "description": "Travaux de modernisation majeurs soutenant le réseau de transport principal de la ville avec des essais structurels et une surveillance complète.",
+      "location": "Melbourne, VIC",
+      "outcome": "Services d'essais critiques livrés avec succès garantissant l'intégrité du tunnel et la sécurité des passagers pour le métro en expansion de Melbourne."
+    },
+    "p8": {
+      "title": "Renforcement du Pont West Gate",
+      "category": "Infrastructure",
+      "description": "Améliorations du renforcement et de la fiabilité structurelle pour le pont emblématique de Melbourne avec END et évaluation avancées.",
+      "location": "Melbourne, VIC",
+      "outcome": "Une analyse structurelle complète a permis des travaux de renforcement ciblés, prolongeant la durée de vie du pont de 25 ans."
+    },
+    "p9": {
+      "title": "Modernisation du Pipeline des Banlieues Ouest",
+      "category": "Pétrole et Gaz",
+      "description": "Améliorations critiques du pipeline améliorant la fiabilité de l'approvisionnement dans le corridor ouest avec essais d'intégrité et surveillance.",
+      "location": "Melbourne Western Suburbs, VIC",
+      "outcome": "Évaluation complète de l'intégrité du pipeline garantissant un approvisionnement énergétique sûr et fiable aux communautés croissantes de l'ouest."
+    },
+    "p10": {
+      "title": "Rénovation du Quai du Port de Melbourne",
+      "category": "Maritime et Offshore",
+      "description": "Remise en état structurelle et modernisation des actifs portuaires avec essais du béton marin et évaluation de la corrosion.",
+      "location": "Port of Melbourne, VIC",
+      "outcome": "Identification de défauts structurels critiques et orientation des travaux de remise en état, assurant la continuité des opérations portuaires et de la manutention des marchandises."
+    }
+  },
+  "services": {
+    "pageTitle": "Nos Services",
+    "pageSubtitle": "Solutions complètes d'essais, d'inspection et d'ingénierie pour les projets critiques.",
+    "keyApplications": "Applications Clés",
+    "oilandgas": {
+      "title": "Services d'Ingénierie Pétrole et Gaz",
+      "short": "Support d'ingénierie haut de gamme et services d'intégrité pour les secteurs amont et intermédiaire.",
+      "full": "MBSC Australia fournit des solutions d'ingénierie et d'intégrité spécialisées pour les opérations de forage, de réservoir et de production. Cela comprend l'AQ/CQ de cimentation, les diagnostics d'intégrité de puits, l'évaluation structurelle, l'évaluation de la corrosion et le support d'optimisation de la production.",
+      "feature1": "Ingénierie de Forage",
+      "feature2": "Ingénierie de Réservoir",
+      "feature3": "Ingénierie de Production",
+      "feature4": "Technologie d'Intégrité de Puits"
+    },
+    "geotech": {
+      "title": "Investigations Géotechniques",
+      "short": "Analyse complète du sol pour les infrastructures civiles et minières.",
+      "full": "MBSC Australia fournit des investigations géotechniques rigoureuses pour assurer l'intégrité des fondations. Nos services comprennent le forage de trous de sondage, l'échantillonnage des sols, les essais en laboratoire et des rapports détaillés conformes aux normes AS 1726.",
+      "feature1": "Essai de Pénétration Standard (SPT)",
+      "feature2": "Essai de Pénétration au Cône (CPT)",
+      "feature3": "Diagraphie Sol et Roche",
+      "feature4": "Analyse en Laboratoire"
+    },
+    "concreteNdt": {
+      "title": "END Béton et CQ Préfabriqué",
+      "short": "Essais non destructifs et contrôle qualité rigoureux pour structures en béton et fabrication de préfabriqués.",
+      "full": "En utilisant des technologies avancées de vitesse d'impulsion ultrasonique (VIU) et de radar de pénétration du sol (GPR), nous évaluons l'intégrité du béton sans dommage structurel. Nous détectons les vides, la corrosion des armatures et la délamination dans les infrastructures critiques. Nous assurons que les éléments préfabriqués répondent aux spécifications strictes du projet (AS 3850). Des inspections pré-coulage aux essais de résistance post-durcissement, nos protocoles de CQ atténuent les risques dans la construction à grande échelle.",
+      "feature1": "Scan GPR",
+      "feature2": "Vitesse d'Impulsion Ultrasonique",
+      "feature3": "Essai au Marteau de Rebond",
+      "feature4": "Relevés au Pachomètre",
+      "feature5": "Vérifications de Tolérance Dimensionnelle",
+      "feature6": "Inspections Pré-coulage",
+      "feature7": "Vérification du Durcissement",
+      "feature8": "Essai d'Insert de Levage"
+    },
+    "geophysics": {
+      "title": "Géophysique d'Ingénierie",
+      "short": "Cartographie du sous-sol utilisant une technologie de détection de pointe.",
+      "full": "Nos études géophysiques fournissent une cartographie non invasive des conditions souterraines. Essentiel pour la détection de cavités, le profilage du substratum rocheux et la cartographie des services publics dans des environnements industriels complexes.",
+      "feature1": "Réfraction Sismique",
+      "feature2": "Imagerie par Résistivité Électrique",
+      "feature3": "Études Électromagnétiques",
+      "feature4": "Surveillance des Vibrations"
+    },
+    "mining": {
+      "title": "Services Miniers",
+      "short": "Essais et inspection spécialisés pour le secteur des ressources.",
+      "full": "Soutien du cycle de vie des sites miniers de l'exploration à la réhabilitation. Nous offrons la surveillance des barrages de résidus, les essais d'intégrité de puits et l'analyse des fondations de machines lourdes.",
+      "feature1": "Surveillance des Barrages de Résidus",
+      "feature2": "Inspection de Puits",
+      "feature3": "Analyse des Routes de Roulage",
+      "feature4": "Audits de Conformité"
+    },
+    "civil": {
+      "title": "Infrastructure Civile",
+      "short": "Support d'ingénierie de bout en bout pour les travaux publics et privés.",
+      "full": "Partenariat avec les propriétaires d'actifs majeurs, entrepreneurs et consultants pour fournir une infrastructure sûre et conforme. Ponts, tunnels, routes et structures marines bénéficient de nos services d'essais tout au long du cycle de vie.",
+      "feature1": "Analyse de Tablier de Pont",
+      "feature2": "Essais de Chaussée",
+      "feature3": "Inspection de Revêtement de Tunnel",
+      "feature4": "Gestion d'Actifs"
+    }
+  },
+  "training": {
+    "pageBadge": "MBSC Éducation",
+    "pageTitle": "Formation d'Ingénierie Internationale",
+    "pageSubtitle": "Amélioration des compétences de la main-d'œuvre mondiale avec une formation technique de premier plan. Nous fournissons une formation spécialisée pour les organisations et les particuliers en END, géophysique et conformité de sécurité.",
+    "valueProps": {
+      "globalReach": {
+        "title": "Portée Mondiale",
+        "description": "Nous déployons nos ingénieurs seniors dans le monde entier pour dispenser une formation sur site adaptée à votre environnement de projet."
+      },
+      "certified": {
+        "title": "Programme Certifié",
+        "description": "Cours conçus pour répondre aux normes australiennes (AS) et aux exigences ISO pour la sécurité en END et géotechnique."
+      },
+      "hybrid": {
+        "title": "Apprentissage Hybride",
+        "description": "Options de livraison flexibles incluant salles de classe virtuelles, webinaires interactifs et journées pratiques sur le terrain."
+      }
+    },
+    "coursesTitle": "Cours Disponibles",
+    "courses": {
+      "ndt": {
+        "title": "Certification END Niveau 1 et 2",
+        "description": "Formation complète aux essais par ultrasons, magnétoscopie et ressuage selon ISO 9712.",
+        "duration": "5 Jours",
+        "location": "Melbourne / International sur Site"
+      },
+      "safety": {
+        "title": "Leadership en Sécurité Géotechnique",
+        "description": "Ateliers de gestion des risques pour les superviseurs de site gérant les opérations de forage et d'excavation.",
+        "duration": "2 Jours",
+        "location": "Sur Site"
+      },
+      "gpr": {
+        "title": "Interprétation GPR Avancée",
+        "description": "Maîtriser l'art de la lecture des radargrammes pour le balayage du béton et la cartographie des services publics. Comprend des modules pratiques sur le terrain.",
+        "duration": "3 Jours",
+        "location": "Virtuel International / Hybride"
+      },
+      "corporate": {
+        "title": "Normes d'Ingénierie d'Entreprise",
+        "description": "Programmes de formation personnalisés aidant les organisations à s'aligner sur les normes AS/NZS et les meilleures pratiques.",
+        "duration": "Personnalisé",
+        "location": "Mondial"
+      }
+    },
+    "cta": {
+      "title": "Organiser une Formation pour Votre Équipe",
+      "subtitle": "Contactez notre département éducation pour discuter de forfaits d'entreprise sur mesure et de calendriers de déploiement international.",
+      "button": "Demander le Programme de Formation"
+    }
+  },
+  "about": {
+    "pageTitle": "À Propos de MBSC",
+    "pageSubtitle": "Construit sur une base d'expertise technique et de normes de sécurité inébranlables.",
+    "overviewTitle": "Présentation de l'Entreprise",
+    "overviewBody": "MBSC Australia est un fournisseur leader de services d'ingénierie et d'essais spécialisés. Nous nous associons avec les principaux propriétaires d'actifs, entrepreneurs et consultants pour atténuer les risques et assurer la qualité dans l'environnement bâti. Notre équipe comprend des ingénieurs géotechniciens seniors, des géophysiciens et des techniciens en matériaux dédiés à la résolution de défis complexes sur site.",
+    "mission": {
+      "title": "Notre Mission",
+      "body": "Fournir des analyses d'ingénierie basées sur des données qui garantissent la sécurité, la longévité et la conformité des infrastructures critiques d'Australie."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "value1": "Précision Technique",
+      "value2": "Sécurité sans Compromis",
+      "value3": "Intégrité Client"
+    }
+  },
+  "rental": {
+    "pageTitle": "Location d'Équipement",
+    "pageSubtitle": "Équipement d'essai de qualité professionnelle pour location à court et long terme.",
+    "tableHeaders": {
+      "equipment": "Équipement",
+      "description": "Description",
+      "dailyRate": "Tarif Journalier (HT)",
+      "action": "Action"
+    },
+    "equipment": {
+      "gpr": {
+        "name": "Systèmes GPR",
+        "desc": "GPR haute fréquence pour balayage du béton."
+      },
+      "ultrasonic": {
+        "name": "Testeurs Ultrasoniques",
+        "desc": "Pundit Lab+ pour mesure VIU."
+      },
+      "coverMeter": {
+        "name": "Pachomètres",
+        "desc": "Profometer 6 pour localisation des armatures."
+      },
+      "vibration": {
+        "name": "Moniteurs de Vibration",
+        "desc": "Géophones triaxiaux pour conformité de site."
+      }
+    },
+    "enquireBtn": "Renseignements",
+    "calibrationNotice": "Tous les équipements sont calibrés selon les normes du fabricant avant expédition."
+  },
+  "contact": {
+    "pageTitle": "Contactez-Nous",
+    "pageSubtitle": "Contactez notre équipe d'ingénierie pour des devis et des conseils techniques.",
+    "form": {
+      "title": "Envoyer une Demande",
+      "firstName": "Prénom",
+      "lastName": "Nom de Famille",
+      "email": "Adresse E-mail",
+      "service": "Service d'Intérêt",
+      "message": "Message",
+      "submit": "Soumettre la Demande",
+      "successTitle": "Demande Reçue",
+      "successMessage": "Merci. Notre équipe d'ingénierie examinera votre demande et vous répondra dans les 24 heures.",
+      "sendAnother": "Envoyer un Autre Message",
+      "serviceOptions": {
+        "general": "Demande Générale",
+        "training": "Formation et Éducation",
+        "rental": "Location d'Équipement"
+      }
+    },
+    "info": {
+      "headOffice": "Siège Social",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "mapLabel": "Siège Melbourne"
+    }
+  },
+  "footer": {
+    "tagline": "Fournir des solutions d'ingénierie avancées et une intégrité d'essais pour les industries les plus exigeantes d'Australie.",
+    "navigation": "Navigation",
+    "coreServices": "Services Principaux",
+    "services": {
+      "geotech": "Investigations Géotechniques",
+      "concreteNdt": "END Béton",
+      "geophysics": "Géophysique d'Ingénierie",
+      "training": "Formation Internationale",
+      "mining": "Conformité Minière"
+    },
+    "headOffice": "Siège Social",
+    "copyright": "MBSC Australia Pty Ltd. Tous droits réservés.",
+    "privacyPolicy": "Politique de Confidentialité",
+    "termsOfService": "Conditions d'Utilisation",
+    "sitemap": "Plan du Site"
+  },
+  "common": {
+    "hours": "Lun - Ven : 07h00 - 17h00"
+  },
+  "seo": {
+    "imageAlt": {
+      "logo": "MBSC Australia - Logo Services d'Ingénierie",
+      "siteTeam": "Équipe d'ingénierie MBSC Australia effectuant une investigation géotechnique de site et des services d'essais END",
+      "hero": "Site d'Ingénierie MBSC Australia - Projets Miniers et d'Infrastructure",
+      "trainingWorkshop": "Atelier de formation en ingénierie MBSC Australia - Certification END et éducation technique"
+    },
+    "ariaLabels": {
+      "mainNavigation": "Menu de navigation principal",
+      "languageSwitcher": "Changer de langue entre anglais et français",
+      "getQuoteButton": "Demander un devis pour les services d'ingénierie",
+      "socialMediaLinks": "Liens vers les réseaux sociaux",
+      "contactForm": "Formulaire de demande de contact",
+      "serviceLinks": "Offres de services d'ingénierie",
+      "projectGallery": "Galerie de projets d'ingénierie phares"
+    }
+  }
+}

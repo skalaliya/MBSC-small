@@ -16,13 +16,13 @@ import {
 import { NavigationItem, Page, ServiceItem, ProjectItem } from './types';
 
 export const NAV_ITEMS: NavigationItem[] = [
-  { label: 'Home', page: Page.HOME },
-  { label: 'Services', page: Page.SERVICES },
-  { label: 'Projects', page: Page.PROJECTS },
-  { label: 'Training', page: Page.TRAINING },
-  { label: 'Rental', page: Page.RENTAL },
-  { label: 'About', page: Page.ABOUT },
-  { label: 'Contact', page: Page.CONTACT },
+  { label: 'home', page: Page.HOME },
+  { label: 'services', page: Page.SERVICES },
+  { label: 'projects', page: Page.PROJECTS },
+  { label: 'training', page: Page.TRAINING },
+  { label: 'rental', page: Page.RENTAL },
+  { label: 'about', page: Page.ABOUT },
+  { label: 'contact', page: Page.CONTACT },
 ];
 
 export const CONTACT_INFO = {
@@ -33,10 +33,10 @@ export const CONTACT_INFO = {
 };
 
 export const STATS_DATA = [
-  { label: 'Projects Delivered', value: '1,200+', icon: Briefcase },
-  { label: 'Safety Hours', value: '500k+', icon: ShieldCheck },
-  { label: 'Meters Drilled', value: '85,000m', icon: Drill },
-  { label: 'Assets Protected', value: '$4.5B', icon: Landmark },
+  { labelKey: 'stats.projectsDelivered', value: '1,200+', icon: Briefcase },
+  { labelKey: 'stats.safetyHours', value: '500k+', icon: ShieldCheck },
+  { labelKey: 'stats.metersDrilled', value: '85,000m', icon: Drill },
+  { labelKey: 'stats.assetsProtected', value: '$4.5B', icon: Landmark },
 ];
 
 export const PROJECTS_DATA: ProjectItem[] = [
@@ -183,7 +183,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     features: ['Standard Penetration Testing (SPT)', 'Cone Penetration Testing (CPT)', 'Soil & Rock Logging', 'Laboratory Analysis']
   },
   {
-    id: 'concrete-ndt-precast',
+    id: 'concreteNdt',
     title: 'Concrete NDT & Precast QC',
     shortDescription: 'Non-destructive testing and rigorous quality control for concrete structures and precast manufacturing.',
     fullDescription: 'Utilising advanced Ultrasonic Pulse Velocity (UPV) and Ground Penetrating Radar (GPR), we assess concrete integrity without structural damage. We detect voids, rebar corrosion, and delamination in critical infrastructure. We ensure precast elements meet stringent project specifications (AS 3850). From pre-pour inspections to post-cure strength testing, our QC protocols mitigate risk in large-scale construction.',
