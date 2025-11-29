@@ -99,34 +99,40 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex items-center gap-3 lg:hidden">
-            {/* Mobile Language Switcher Compact */}
-            <div className="inline-flex items-center bg-slate-100 rounded-full p-0.5 shadow-sm">
-              <button
-                onClick={() => changeLanguage('en')}
-                className={`px-2.5 py-1 text-xs font-bold uppercase rounded-full transition-all duration-200 ${
-                  i18n.language === 'en' 
-                    ? 'bg-teal-600 text-white' 
-                    : 'text-slate-500'
-                }`}
-              >
-                EN
-              </button>
-              <button
-                onClick={() => changeLanguage('fr')}
-                className={`px-2.5 py-1 text-xs font-bold uppercase rounded-full transition-all duration-200 ${
-                  i18n.language === 'fr' 
-                    ? 'bg-teal-600 text-white' 
-                    : 'text-slate-500'
-                }`}
-              >
-                FR
-              </button>
+          <div className="flex items-center gap-4 lg:hidden">
+            {/* Mobile Language Switcher - Enhanced for Touch */}
+            <div className="flex items-center gap-2">
+              <Globe className="h-4 w-4 text-slate-400" aria-hidden="true" />
+              <div className="inline-flex items-center bg-slate-100/90 rounded-full p-1 shadow-sm border border-slate-200/50">
+                <button
+                  onClick={() => changeLanguage('en')}
+                  className={`px-4 py-2 text-sm font-bold uppercase rounded-full transition-all duration-200 min-w-[44px] ${
+                    i18n.language === 'en' 
+                      ? 'bg-teal-600 text-white shadow-md' 
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                  aria-label="Switch to English"
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => changeLanguage('fr')}
+                  className={`px-4 py-2 text-sm font-bold uppercase rounded-full transition-all duration-200 min-w-[44px] ${
+                    i18n.language === 'fr' 
+                      ? 'bg-teal-600 text-white shadow-md' 
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                  aria-label="Changer en français"
+                >
+                  FR
+                </button>
+              </div>
             </div>
             
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-lg text-slate-600 hover:text-teal-700 hover:bg-slate-100 focus:outline-none transition-all duration-200"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
