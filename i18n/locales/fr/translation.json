@@ -7,7 +7,7 @@
     "rental": "Location",
     "about": "À propos",
     "contact": "Contact",
-    "getQuote": "Demander un devis"
+    "getQuote": "Contactez-nous"
   },
   "hero": {
     "badge": "Certifié ISO 9001",
@@ -339,7 +339,7 @@
     "ariaLabels": {
       "mainNavigation": "Menu de navigation principal",
       "languageSwitcher": "Changer de langue entre anglais et français",
-      "getQuoteButton": "Demander une consultation pour les services d'ingénierie",
+      "getQuoteButton": "Contactez notre équipe d'ingénierie",
       "socialMediaLinks": "Liens vers les réseaux sociaux",
       "contactForm": "Formulaire de demande de contact",
       "serviceLinks": "Offres de services d'ingénierie",

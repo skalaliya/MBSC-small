@@ -7,7 +7,7 @@
     "rental": "Rental",
     "about": "About",
     "contact": "Contact",
-    "getQuote": "Get a Quote"
+    "getQuote": "Get in Touch"
   },
   "hero": {
     "badge": "ISO 9001 Certified",
@@ -339,7 +339,7 @@
     "ariaLabels": {
       "mainNavigation": "Main navigation menu",
       "languageSwitcher": "Switch language between English and French",
-      "getQuoteButton": "Request a consultation for engineering services",
+      "getQuoteButton": "Get in touch with our engineering team",
       "socialMediaLinks": "Social media links",
       "contactForm": "Contact enquiry form",
       "serviceLinks": "Engineering service offerings",
