@@ -55,11 +55,11 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-widest mb-4 sm:mb-6">{t('footer.coreServices')}</h3>
             <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base text-slate-400">
-              <li>{t('footer.services.geotech')}</li>
-              <li>{t('footer.services.concreteNdt')}</li>
-              <li>{t('footer.services.geophysics')}</li>
+              <li>{t('footer.services.oilgas')}</li>
               <li>{t('footer.services.training')}</li>
+              <li>{t('footer.services.digital')}</li>
               <li>{t('footer.services.mining')}</li>
+              <li>{t('footer.services.safety')}</li>
             </ul>
           </div>
 

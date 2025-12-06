@@ -157,7 +157,7 @@ function App() {
               <div className="absolute -inset-4 bg-teal-50 rounded-lg transform rotate-2 group-hover:rotate-1 transition-transform duration-500"></div>
               <img 
                 src="/site-photo.jpg" 
-                alt="MBSC Australia engineering team conducting geotechnical site investigation and NDT testing services" 
+                alt="MBSC Australia engineering consultants delivering technical services for oil & gas, mining, and infrastructure projects" 
                 className="relative rounded-lg shadow-xl grayscale group-hover:grayscale-0 transition-all duration-500"
                 loading="lazy"
                 width="600"

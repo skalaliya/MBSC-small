@@ -19,31 +19,31 @@ export interface PageSEO {
 export const PAGE_SEO_META: Record<Page, PageSEO> = {
   [Page.HOME]: {
     title: {
-      en: "MBSC Australia | Mining, NDT, Geotechnical & Oil & Gas Engineering Services",
-      fr: "MBSC Australia | Services d'Ingénierie Minière, END, Géotechnique et Pétrole & Gaz"
+      en: "MBSC Australia | Engineering Consultancy, Technical Training & Digital Solutions",
+      fr: "MBSC Australia | Conseil en Ingénierie, Formation Technique et Solutions Numériques"
     },
     description: {
-      en: "Leading Australian engineering services provider specializing in mining support, NDT inspection, geotechnical investigations, oil & gas field services, concrete testing, and certified technical training across Australia.",
-      fr: "Fournisseur leader de services d'ingénierie australiens spécialisé dans le support minier, l'inspection END, les investigations géotechniques, les services pétroliers et gaziers, les essais de béton et la formation technique certifiée en Australie."
+      en: "World-class engineering consultancy delivering oil & gas services, technical training programs, digital solutions, and mining expertise. Serving clients across Australia, the Middle East, and Europe.",
+      fr: "Conseil en ingénierie de classe mondiale fournissant des services pétroliers et gaziers, des programmes de formation technique, des solutions numériques et une expertise minière. Au service des clients en Australie, au Moyen-Orient et en Europe."
     },
     keywords: {
-      en: "mining engineering services Australia, geotechnical services Australia, NDT inspection Australia, oil and gas field services, concrete testing, MBSC Australia, asset integrity inspection, engineering consultancy Melbourne",
-      fr: "services d'ingénierie minière Australie, services géotechniques Australie, inspection END Australie, services pétroliers et gaziers, essais béton, MBSC Australia, inspection intégrité actifs"
+      en: "engineering consultancy Australia, oil gas consulting, technical training programs, digital engineering solutions, mining services Australia, MBSC Australia, global engineering services",
+      fr: "conseil ingénierie Australie, conseil pétrole gaz, programmes formation technique, solutions ingénierie numérique, services miniers Australie, MBSC Australia"
     },
     canonical: "https://www.mbscaustralia.com.au/"
   },
   [Page.SERVICES]: {
     title: {
-      en: "Engineering Services | NDT, Geotechnical, Oil & Gas, Mining | MBSC Australia",
-      fr: "Services d'Ingénierie | END, Géotechnique, Pétrole & Gaz, Minier | MBSC Australia"
+      en: "Engineering Services | Oil & Gas, Training, Digital Solutions, Mining | MBSC Australia",
+      fr: "Services d'Ingénierie | Pétrole & Gaz, Formation, Solutions Numériques, Minier | MBSC Australia"
     },
     description: {
-      en: "Comprehensive engineering solutions: NDT concrete inspection, geotechnical investigations, oil & gas integrity services, mining compliance, engineering geophysics, and civil infrastructure testing across Australia.",
-      fr: "Solutions d'ingénierie complètes : inspection END du béton, investigations géotechniques, services d'intégrité pétrolière et gazière, conformité minière, géophysique d'ingénierie et essais d'infrastructure civile en Australie."
+      en: "Comprehensive engineering consultancy: oil & gas engineering, global technical training, integrated digital solutions, mining & geology services, and safety compliance. Worldwide deployment available.",
+      fr: "Conseil en ingénierie complet : ingénierie pétrolière et gazière, formation technique mondiale, solutions numériques intégrées, services miniers et géologiques, et conformité sécurité. Déploiement mondial disponible."
     },
     keywords: {
-      en: "NDT inspection precast concrete, geotechnical investigations, oil gas engineering services, mining services Australia, engineering geophysics survey, civil infrastructure testing, concrete NDT, asset integrity",
-      fr: "inspection END béton préfabriqué, investigations géotechniques, services ingénierie pétrolière gazière, services miniers Australie, études géophysiques ingénierie, essais infrastructure civile"
+      en: "oil gas engineering consultancy, technical training programs, digital engineering solutions, mining geology services, safety compliance consulting, workforce development, drilling engineering",
+      fr: "conseil ingénierie pétrolière gazière, programmes formation technique, solutions numériques ingénierie, services géologie minière, conseil conformité sécurité"
     },
     canonical: "https://www.mbscaustralia.com.au/services"
   },
@@ -64,31 +64,31 @@ export const PAGE_SEO_META: Record<Page, PageSEO> = {
   },
   [Page.TRAINING]: {
     title: {
-      en: "Engineering Training & Certification | NDT, Geotechnical Safety | MBSC Australia",
-      fr: "Formation et Certification en Ingénierie | END, Sécurité Géotechnique | MBSC Australia"
+      en: "Global Technical Training Programs | NDT Certification, Safety Leadership | MBSC Australia",
+      fr: "Programmes de Formation Technique Mondiale | Certification END, Leadership Sécurité | MBSC Australia"
     },
     description: {
-      en: "ISO 9712 certified NDT training, geotechnical safety leadership courses, advanced GPR interpretation, and corporate engineering standards training. Global deployment available for on-site technical education.",
-      fr: "Formation END certifiée ISO 9712, cours de leadership en sécurité géotechnique, interprétation GPR avancée et formation aux normes d'ingénierie d'entreprise. Déploiement mondial disponible pour l'éducation technique sur site."
+      en: "World-class technical training delivered globally. ISO 9712 NDT certification, safety leadership programs, engineering skills development, and custom corporate training. On-site deployment across Australia, Middle East, and Europe.",
+      fr: "Formation technique de classe mondiale dispensée à l'échelle internationale. Certification END ISO 9712, programmes de leadership en sécurité, développement des compétences en ingénierie et formation d'entreprise sur mesure. Déploiement sur site en Australie, au Moyen-Orient et en Europe."
     },
     keywords: {
-      en: "MBSC Australia training, NDT certification ISO 9712, geotechnical safety training, engineering training Australia, GPR interpretation course, corporate engineering standards, technical education",
-      fr: "formation MBSC Australia, certification END ISO 9712, formation sécurité géotechnique, formation ingénierie Australie, cours interprétation GPR, normes ingénierie entreprise"
+      en: "global technical training, NDT certification ISO 9712, safety leadership training, engineering workforce development, corporate training programs, international training deployment",
+      fr: "formation technique mondiale, certification END ISO 9712, formation leadership sécurité, développement effectifs ingénierie, programmes formation entreprise"
     },
     canonical: "https://www.mbscaustralia.com.au/training"
   },
   [Page.ABOUT]: {
     title: {
-      en: "About MBSC Australia | Engineering Consultancy & Testing Services Provider",
-      fr: "À Propos de MBSC Australia | Consultant en Ingénierie et Fournisseur de Services d'Essais"
+      en: "About MBSC Australia | Global Engineering Consultancy & Technical Training",
+      fr: "À Propos de MBSC Australia | Conseil en Ingénierie Mondial et Formation Technique"
     },
     description: {
-      en: "MBSC Australia is a leading engineering consultancy providing specialized testing, inspection, and technical services to construction, mining, and oil & gas industries. ISO 9001 certified with NATA accredited laboratories.",
-      fr: "MBSC Australia est un consultant en ingénierie de premier plan fournissant des services spécialisés d'essais, d'inspection et techniques aux industries de la construction, des mines et du pétrole et gaz. Certifié ISO 9001 avec laboratoires accrédités NATA."
+      en: "MBSC Australia is a specialist engineering consultancy serving oil & gas, mining, and infrastructure sectors. We deliver integrated engineering solutions, technical training, and digital innovation to clients across Australia, the Middle East, and Europe.",
+      fr: "MBSC Australia est un cabinet de conseil spécialisé en ingénierie au service des secteurs pétrolier et gazier, minier et des infrastructures. Nous fournissons des solutions d'ingénierie intégrées, de la formation technique et de l'innovation numérique aux clients en Australie, au Moyen-Orient et en Europe."
     },
     keywords: {
-      en: "MBSC engineering consultancy, Australian engineering services, ISO 9001 certified, NATA accredited, engineering testing services, technical consultancy Australia",
-      fr: "consultant ingénierie MBSC, services ingénierie australiens, certifié ISO 9001, accrédité NATA, services essais ingénierie, consultant technique Australie"
+      en: "MBSC engineering consultancy, global engineering services, oil gas consultancy, technical training provider, digital engineering solutions, ISO 9001 certified",
+      fr: "conseil ingénierie MBSC, services ingénierie mondiaux, conseil pétrole gaz, fournisseur formation technique, solutions ingénierie numérique"
     },
     canonical: "https://www.mbscaustralia.com.au/about"
   },
@@ -132,8 +132,8 @@ export const generateWebsiteSchema = (currentLang: string) => ({
   "alternateName": "MBSC Australia Pty Ltd",
   "url": "https://www.mbscaustralia.com.au",
   "description": currentLang === 'en' 
-    ? "Leading Australian engineering services provider specializing in mining support, NDT inspection, geotechnical investigations, oil & gas field services, and technical training."
-    : "Fournisseur leader de services d'ingénierie australiens spécialisé dans le support minier, l'inspection END, les investigations géotechniques, les services pétroliers et gaziers, et la formation technique.",
+    ? "World-class engineering consultancy delivering oil & gas services, technical training programs, digital solutions, and mining expertise. Serving clients across Australia, the Middle East, and Europe."
+    : "Conseil en ingénierie de classe mondiale fournissant des services pétroliers et gaziers, des programmes de formation technique, des solutions numériques et une expertise minière. Au service des clients en Australie, au Moyen-Orient et en Europe.",
   "inLanguage": [currentLang === 'en' ? "en-AU" : "fr-AU"],
   "potentialAction": {
     "@type": "SearchAction",
@@ -175,21 +175,28 @@ export const generateOrganizationSchema = (currentLang: string) => ({
     {
       "@type": "Country",
       "name": "Australia"
+    },
+    {
+      "@type": "Place",
+      "name": "Middle East"
+    },
+    {
+      "@type": "Place",
+      "name": "Europe"
     }
   ],
   "serviceType": [
-    "Mining Engineering Services",
-    "Non-Destructive Testing (NDT)",
-    "Geotechnical Investigations",
-    "Oil & Gas Engineering",
-    "Concrete Testing & Inspection",
-    "Engineering Geophysics",
-    "Technical Training & Certification",
-    "Asset Integrity Management"
+    "Oil & Gas Engineering Consultancy",
+    "Global Technical Training Programs",
+    "Integrated Engineering & Digital Solutions",
+    "Mining & Geology Technical Services",
+    "Safety, Compliance & Workforce Development",
+    "Well Integrity Management",
+    "NDT Certification Training"
   ],
   "description": currentLang === 'en'
-    ? "MBSC Australia provides specialized engineering and testing services for the construction, mining, and oil & gas industries. ISO 9001 certified with NATA accredited laboratories."
-    : "MBSC Australia fournit des services spécialisés d'ingénierie et d'essais pour les industries de la construction, des mines et du pétrole et gaz. Certifié ISO 9001 avec laboratoires accrédités NATA."
+    ? "MBSC Australia is a specialist engineering consultancy serving oil & gas, mining, and infrastructure sectors. We deliver integrated engineering solutions, technical training, and digital innovation to clients worldwide."
+    : "MBSC Australia est un cabinet de conseil spécialisé en ingénierie au service des secteurs pétrolier et gazier, minier et des infrastructures. Nous fournissons des solutions d'ingénierie intégrées, de la formation technique et de l'innovation numérique aux clients du monde entier."
 });
 
 export const generateServiceSchema = (serviceName: string, description: string) => ({

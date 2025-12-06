@@ -11,7 +11,9 @@ import {
   Users,
   Trophy,
   Timer,
-  Briefcase
+  Briefcase,
+  Cpu,
+  BookOpen
 } from 'lucide-react';
 import { NavigationItem, Page, ServiceItem, ProjectItem } from './types';
 
@@ -166,57 +168,48 @@ export const TRAINING_COURSES = [
 export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'oilandgas',
-    title: 'Oil & Gas Engineering Services',
-    shortDescription: 'High-end engineering support and integrity services for the upstream and midstream sectors.',
-    fullDescription: 'MBSC Australia provides specialised engineering and integrity solutions for drilling, reservoir, and production operations. This includes cementing QA/QC, well integrity diagnostics, structural assessment, corrosion evaluation, and production optimisation support.',
+    title: 'Oil & Gas Engineering Consultancy',
+    shortDescription: 'End-to-end engineering consultancy for upstream and midstream operations worldwide.',
+    fullDescription: 'MBSC Australia provides specialist engineering consultancy for the oil & gas sector. Our team of experienced drilling, reservoir, and production engineers deliver integrated solutions including cementing QA/QC, well integrity diagnostics, production optimisation, and asset integrity management. We support major operators across Australia, the Middle East, and Europe.',
     icon: Landmark,
     imageUrl: '/oilandgas.jpg',
-    features: ['Drilling Engineering', 'Reservoir Engineering', 'Production Engineering', 'Well Integrity Technology']
+    features: ['Drilling Engineering', 'Reservoir Engineering', 'Production Optimisation', 'Well Integrity Management']
   },
   {
-    id: 'geotech',
-    title: 'Geotechnical Investigations',
-    shortDescription: 'Comprehensive ground analysis for civil and mining infrastructure.',
-    fullDescription: 'MBSC Australia provides rigorous geotechnical site investigations to ensure foundational integrity. Our services include borehole drilling, soil sampling, laboratory testing, and detailed reporting compliant with AS 1726 standards.',
-    icon: Drill,
-    imageUrl: 'https://picsum.photos/seed/geotech/800/600',
-    features: ['Standard Penetration Testing (SPT)', 'Cone Penetration Testing (CPT)', 'Soil & Rock Logging', 'Laboratory Analysis']
+    id: 'training',
+    title: 'Global Technical Training Programs',
+    shortDescription: 'Industry-leading training programs delivered worldwide to upskill your technical workforce.',
+    fullDescription: 'We design and deliver comprehensive technical training programs for organisations seeking to develop their engineering capabilities. Our certified instructors provide NDT certification, safety leadership, and specialist technical courses both on-site and through virtual platforms. Programs are tailored to meet Australian Standards, ISO requirements, and regional compliance needs.',
+    icon: GraduationCap,
+    imageUrl: '/training.jpg',
+    features: ['NDT Certification (ISO 9712)', 'Safety Leadership Programs', 'Technical Skills Development', 'Custom Corporate Training']
   },
   {
-    id: 'concreteNdt',
-    title: 'Concrete NDT & Precast QC',
-    shortDescription: 'Non-destructive testing and rigorous quality control for concrete structures and precast manufacturing.',
-    fullDescription: 'Utilising advanced Ultrasonic Pulse Velocity (UPV) and Ground Penetrating Radar (GPR), we assess concrete integrity without structural damage. We detect voids, rebar corrosion, and delamination in critical infrastructure. We ensure precast elements meet stringent project specifications (AS 3850). From pre-pour inspections to post-cure strength testing, our QC protocols mitigate risk in large-scale construction.',
-    icon: Activity,
-    imageUrl: '/non-destructive-testing.jpg',
-    features: ['GPR Scanning', 'Ultrasonic Pulse Velocity', 'Rebound Hammer Testing', 'Cover Meter Surveys', 'Dimensional Tolerance Checks', 'Pre-pour Inspections', 'Curing Verification', 'Lifting Insert Testing']
-  },
-  {
-    id: 'geophysics',
-    title: 'Engineering Geophysics',
-    shortDescription: 'Subsurface mapping using state-of-the-art sensing technology.',
-    fullDescription: 'Our geophysical surveys provide non-invasive mapping of subsurface conditions. Essential for cavity detection, bedrock profiling, and utility mapping in complex industrial environments.',
-    icon: Scan,
-    imageUrl: 'https://picsum.photos/seed/physics/800/600',
-    features: ['Seismic Refraction', 'Electrical Resistivity Imaging', 'Electromagnetic Surveys', 'Vibration Monitoring']
+    id: 'digital',
+    title: 'Integrated Engineering & Digital Solutions',
+    shortDescription: 'Advanced digital platforms and AI-driven solutions for engineering data management.',
+    fullDescription: 'MBSC Australia delivers innovative digital solutions that transform how organisations manage engineering data and operations. Our integrated platforms combine real-time monitoring, predictive analytics, and AI-powered insights to enhance decision-making. We help clients digitise workflows, optimise asset performance, and leverage data for competitive advantage.',
+    icon: Cpu,
+    imageUrl: '/digital-solutions.jpg',
+    features: ['Engineering Data Platforms', 'AI & Predictive Analytics', 'Real-Time Monitoring Systems', 'Digital Transformation Consulting']
   },
   {
     id: 'mining',
-    title: 'Mining Services',
-    shortDescription: 'Specialised testing and inspection for the resources sector.',
-    fullDescription: 'Supporting the lifecycle of mine sites from exploration to rehabilitation. We offer tailings dam monitoring, shaft integrity testing, and heavy-machinery foundation analysis.',
+    title: 'Mining & Geology Technical Services',
+    shortDescription: 'Comprehensive geological and geotechnical services for the resources sector.',
+    fullDescription: 'Supporting the complete mining lifecycle from exploration through to rehabilitation. Our geologists and geotechnical engineers provide site investigations, geological modelling, tailings dam monitoring, and structural assessments. We deliver the technical expertise needed for safe, efficient, and compliant mining operations.',
     icon: Pickaxe,
     imageUrl: '/Mining-Services.jpg',
-    features: ['Tailings Dam Monitoring', 'Shaft Inspection', 'Haul Road Analysis', 'Compliance Audits']
+    features: ['Geotechnical Investigations', 'Geological Modelling', 'Tailings Dam Monitoring', 'Mine Site Assessments']
   },
   {
-    id: 'civil',
-    title: 'Civil Infrastructure',
-    shortDescription: 'End-to-end engineering support for public and private works.',
-    fullDescription: 'Partnering with government and private contractors to deliver safe, compliant infrastructure. Bridges, tunnels, roads, and marine structures benefit from our lifecycle testing services.',
-    icon: Landmark,
-    imageUrl: 'https://picsum.photos/seed/civil/800/600',
-    features: ['Bridge Deck Analysis', 'Pavement Testing', 'Tunnel Lining Inspection', 'Asset Management']
+    id: 'safety',
+    title: 'Safety, Compliance & Workforce Development',
+    shortDescription: 'Building safer workplaces through compliance excellence and workforce capability.',
+    fullDescription: 'MBSC Australia helps organisations achieve the highest standards of workplace safety and regulatory compliance. We provide safety audits, compliance consulting, and workforce development programs tailored to the oil & gas, mining, and construction sectors. Our approach combines technical expertise with practical implementation to create lasting safety cultures.',
+    icon: ShieldCheck,
+    imageUrl: '/safety-compliance.jpg',
+    features: ['Safety Audits & Reviews', 'Regulatory Compliance Consulting', 'Workforce Competency Programs', 'HSE Management Systems']
   }
 ];
 
