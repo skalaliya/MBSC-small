@@ -19,7 +19,9 @@ export type CertificateType =
   | "Technical Certification" 
   | "Professional Program" 
   | "Associate Program" 
-  | "Corporate Workshop";
+  | "Corporate Workshop"
+  | "ISO 9712 Certification"
+  | "Bespoke Training";
 
 export type TrainingEvent = {
   id: string;

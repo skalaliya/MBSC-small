@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
 import TrainingCalendar from './components/TrainingCalendar';
-import { SERVICES_DATA, EQUIPMENT_RENTAL, CONTACT_INFO, TRAINING_COURSES, PROJECTS_DATA, STATS_DATA } from './constants';
+import { SERVICES_DATA, EQUIPMENT_RENTAL, CONTACT_INFO, PROJECTS_DATA, STATS_DATA } from './constants';
 import { trainingCalendar2026 } from './trainingCalendarData';
 import { Page } from './types';
 import { PAGE_SEO_META } from './seo';
@@ -405,31 +405,6 @@ function App() {
             <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">{t('training.valueProps.hybrid.title')}</h3>
             <p className="text-slate-600 text-xs sm:text-sm">{t('training.valueProps.hybrid.description')}</p>
           </div>
-        </div>
-
-        {/* Course List */}
-        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 sm:mb-8">{t('training.coursesTitle')}</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {TRAINING_COURSES.map((course, idx) => {
-            const courseKeys = ['ndt', 'safety', 'gpr', 'corporate'];
-            const courseKey = courseKeys[idx];
-            return (
-              <div key={idx} className="bg-white rounded border border-slate-200 p-5 sm:p-6 hover:border-teal-500 transition-colors flex flex-col sm:flex-row gap-4 sm:gap-6 hover:shadow-md">
-                <div className="bg-slate-100 p-4 rounded flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 shrink-0 self-center sm:self-start">
-                  <course.icon className="h-7 w-7 sm:h-8 sm:w-8 text-slate-700" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">{t(`training.courses.${courseKey}.title`)}</h3>
-                  <p className="text-slate-600 text-xs sm:text-sm mb-3 sm:mb-4">{t(`training.courses.${courseKey}.description`)}</p>
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] sm:text-xs font-bold text-teal-700 uppercase tracking-wide">
-                     <span className="flex items-center"><CheckCircle className="w-3 h-3 mr-1" /> {t(`training.courses.${courseKey}.duration`)}</span>
-                     <span className="w-1 h-1 bg-slate-300 rounded-full hidden sm:block"></span>
-                     <span className="break-all">{t(`training.courses.${courseKey}.location`)}</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
         </div>
 
         {/* Training Calendar 2026 */}
