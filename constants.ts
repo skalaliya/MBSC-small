@@ -181,7 +181,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDescription: 'Industry-leading training programs delivered worldwide to upskill your technical workforce.',
     fullDescription: 'We design and deliver comprehensive technical training programs for organisations seeking to develop their engineering capabilities. Our certified instructors provide NDT certification, safety leadership, and specialist technical courses both on-site and through virtual platforms. Programs are tailored to meet Australian Standards, ISO requirements, and regional compliance needs.',
     icon: GraduationCap,
-    imageUrl: '/training.jpg',
+    imageUrl: '/Training-Programs.jpg',
     features: ['NDT Certification (ISO 9712)', 'Safety Leadership Programs', 'Technical Skills Development', 'Custom Corporate Training']
   },
   {
@@ -190,7 +190,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDescription: 'Advanced digital platforms and AI-driven solutions for engineering data management.',
     fullDescription: 'MBSC Australia delivers innovative digital solutions that transform how organisations manage engineering data and operations. Our integrated platforms combine real-time monitoring, predictive analytics, and AI-powered insights to enhance decision-making. We help clients digitise workflows, optimise asset performance, and leverage data for competitive advantage.',
     icon: Cpu,
-    imageUrl: '/digital-solutions.jpg',
+    imageUrl: '/Engineering-Digital-Solutions.jpg',
     features: ['Engineering Data Platforms', 'AI & Predictive Analytics', 'Real-Time Monitoring Systems', 'Digital Transformation Consulting']
   },
   {
@@ -208,7 +208,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDescription: 'Building safer workplaces through compliance excellence and workforce capability.',
     fullDescription: 'MBSC Australia helps organisations achieve the highest standards of workplace safety and regulatory compliance. We provide safety audits, compliance consulting, and workforce development programs tailored to the oil & gas, mining, and construction sectors. Our approach combines technical expertise with practical implementation to create lasting safety cultures.',
     icon: ShieldCheck,
-    imageUrl: '/safety-compliance.jpg',
+    imageUrl: '/Safety-Compliance-Workforce.jpg',
     features: ['Safety Audits & Reviews', 'Regulatory Compliance Consulting', 'Workforce Competency Programs', 'HSE Management Systems']
   }
 ];
