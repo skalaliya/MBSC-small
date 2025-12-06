@@ -54,12 +54,47 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Services */}
           <div>
             <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-widest mb-4 sm:mb-6">{t('footer.coreServices')}</h3>
-            <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base text-slate-400">
-              <li>{t('footer.services.oilgas')}</li>
-              <li>{t('footer.services.training')}</li>
-              <li>{t('footer.services.digital')}</li>
-              <li>{t('footer.services.mining')}</li>
-              <li>{t('footer.services.safety')}</li>
+            <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
+              <li>
+                <button 
+                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-oilandgas')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  className="text-slate-400 hover:text-teal-400 transition-colors text-left"
+                >
+                  {t('footer.services.oilgas')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-training')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  className="text-slate-400 hover:text-teal-400 transition-colors text-left"
+                >
+                  {t('footer.services.training')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-digital')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  className="text-slate-400 hover:text-teal-400 transition-colors text-left"
+                >
+                  {t('footer.services.digital')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-mining')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  className="text-slate-400 hover:text-teal-400 transition-colors text-left"
+                >
+                  {t('footer.services.mining')}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-safety')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  className="text-slate-400 hover:text-teal-400 transition-colors text-left"
+                >
+                  {t('footer.services.safety')}
+                </button>
+              </li>
             </ul>
           </div>
 

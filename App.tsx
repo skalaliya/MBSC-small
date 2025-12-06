@@ -326,7 +326,11 @@ function App() {
 
       <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 mt-8 sm:mt-10 lg:mt-12 grid gap-8 sm:gap-10 lg:gap-12">
         {SERVICES_DATA.map((service, index) => (
-          <div key={service.id} className={`bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 flex flex-col md:flex-row ${index % 2 === 1 ? 'md:flex-row-reverse' : ''} hover:shadow-lg transition-shadow duration-300`}>
+          <div 
+            key={service.id} 
+            id={`service-${service.id}`}
+            className={`bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 flex flex-col md:flex-row ${index % 2 === 1 ? 'md:flex-row-reverse' : ''} hover:shadow-lg transition-shadow duration-300 scroll-mt-24`}
+          >
             <div className="md:w-1/2 h-56 sm:h-64 md:h-auto relative overflow-hidden group">
                <img 
                 src={service.imageUrl} 
