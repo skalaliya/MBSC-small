@@ -1,5 +1,6 @@
-import React from 'react';
-import { Calendar, MapPin, Clock, Award, Monitor, Users, Building2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Calendar, MapPin, Clock, Award, Monitor, Users, Building2, Loader2, AlertCircle } from 'lucide-react';
 
 // =====================================================
 // TYPE DEFINITIONS
@@ -23,6 +24,7 @@ export type CertificateType =
   | "ISO 9712 Certification"
   | "Bespoke Training";
 
+// Internal event type used for rendering
 export type TrainingEvent = {
   id: string;
   month: string;
@@ -32,13 +34,50 @@ export type TrainingEvent = {
   certificateType: CertificateType;
   duration: string;
   delivery: DeliveryMethod;
-  location: Location;
+  location: string;
 };
+
+// JSON file event structure (multilingual)
+interface JsonEvent {
+  id: string;
+  title: { en: string; fr: string };
+  dates: string;
+  duration: string;
+  certificateType: string;
+  certificateLabel: { en: string; fr: string };
+  category: TrainingCategory;
+  delivery: DeliveryMethod;
+  location: { en: string; fr: string };
+}
+
+interface JsonMonth {
+  name: { en: string; fr: string };
+  events: JsonEvent[];
+}
+
+interface CalendarData {
+  year: number;
+  languages: string[];
+  months: JsonMonth[];
+}
 
 export interface TrainingCalendarProps {
   year?: number;
-  events: TrainingEvent[];
+  source: string;
 }
+
+// =====================================================
+// CERTIFICATE TYPE MAPPING
+// =====================================================
+
+const certificateLabelMap: Record<string, CertificateType> = {
+  technicalCertification: "Technical Certification",
+  professionalProgram: "Professional Program",
+  associateProgram: "Associate Program",
+  corporateWorkshop: "Corporate Workshop",
+  iso9712Certification: "ISO 9712 Certification",
+  bespokeTraining: "Bespoke Training",
+};
 
 // =====================================================
 // CATEGORY CONFIGURATION
@@ -127,7 +166,7 @@ const DeliveryBadge: React.FC<{ delivery: DeliveryMethod }> = ({ delivery }) => 
   );
 };
 
-const LocationBadge: React.FC<{ location: Location }> = ({ location }) => (
+const LocationBadge: React.FC<{ location: string }> = ({ location }) => (
   <span className="inline-flex items-center gap-1 text-[9px] text-slate-500 font-medium">
     <MapPin className="w-2.5 h-2.5" />
     {location}
@@ -241,15 +280,119 @@ const MonthCard: React.FC<{ month: string; events: TrainingEvent[] }> = ({ month
 );
 
 // =====================================================
+// LOADING COMPONENT
+// =====================================================
+
+const LoadingState: React.FC = () => (
+  <div className="py-16 flex flex-col items-center justify-center">
+    <Loader2 className="w-8 h-8 text-teal-600 animate-spin mb-4" />
+    <p className="text-slate-600 text-sm">Loading calendar…</p>
+  </div>
+);
+
+// =====================================================
+// ERROR COMPONENT
+// =====================================================
+
+const ErrorState: React.FC<{ message: string }> = ({ message }) => (
+  <div className="py-16 flex flex-col items-center justify-center">
+    <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md text-center">
+      <AlertCircle className="w-8 h-8 text-red-500 mx-auto mb-3" />
+      <h3 className="text-red-800 font-semibold mb-2">Unable to load calendar</h3>
+      <p className="text-red-600 text-sm">{message}</p>
+    </div>
+  </div>
+);
+
+// =====================================================
 // MAIN CALENDAR COMPONENT
 // =====================================================
 
 export const TrainingCalendar: React.FC<TrainingCalendarProps> = ({ 
   year = 2026, 
-  events 
+  source 
 }) => {
-  // Group events by month
-  const eventsByMonth = MONTHS.reduce((acc, month) => {
+  const { i18n } = useTranslation();
+  const [events, setEvents] = useState<TrainingEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [calendarYear, setCalendarYear] = useState(year);
+
+  // Get current language, normalize to 'en' or 'fr'
+  const lang = (i18n.language?.split('-')[0] === 'fr' ? 'fr' : 'en') as 'en' | 'fr';
+
+  useEffect(() => {
+    const loadCalendar = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(source);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch calendar: ${response.status}`);
+        }
+
+        const data: CalendarData = await response.json();
+        setCalendarYear(data.year);
+
+        // Convert JSON data to TrainingEvent[] with localized strings
+        const convertedEvents: TrainingEvent[] = [];
+
+        for (const month of data.months) {
+          const monthName = month.name[lang] || month.name.en;
+          
+          for (const evt of month.events) {
+            const certLabel = evt.certificateLabel[lang] || evt.certificateLabel.en || certificateLabelMap[evt.certificateType] || "Technical Certification";
+            convertedEvents.push({
+              id: evt.id,
+              month: monthName,
+              dateLabel: evt.dates,
+              name: evt.title[lang] || evt.title.en,
+              category: evt.category,
+              certificateType: certLabel as CertificateType,
+              duration: evt.duration,
+              delivery: evt.delivery,
+              location: evt.location[lang] || evt.location.en,
+            });
+          }
+        }
+
+        setEvents(convertedEvents);
+      } catch (err) {
+        console.error('Calendar load error:', err);
+        setError(err instanceof Error ? err.message : 'Unknown error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCalendar();
+  }, [source, lang]);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <section className="py-12 sm:py-16">
+        <LoadingState />
+      </section>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <section className="py-12 sm:py-16">
+        <ErrorState message={error} />
+      </section>
+    );
+  }
+
+  // Get localized month names for grouping
+  const localizedMonths = lang === 'fr' 
+    ? ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+    : MONTHS;
+
+  const eventsByMonth = localizedMonths.reduce((acc, month) => {
     acc[month] = events
       .filter((e) => e.month === month)
       .sort((a, b) => {
@@ -269,14 +412,16 @@ export const TrainingCalendar: React.FC<TrainingCalendarProps> = ({
       {/* Section Header */}
       <div className="text-center mb-8 sm:mb-12">
         <span className="text-amber-500 font-bold tracking-widest uppercase text-[10px] sm:text-xs mb-2 block">
-          Training Schedule
+          {lang === 'fr' ? 'Calendrier de formation' : 'Training Schedule'}
         </span>
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
-          MBSC Training Calendar {year}
+          {lang === 'fr' ? `Calendrier de formation MBSC ${calendarYear}` : `MBSC Training Calendar ${calendarYear}`}
         </h2>
         <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto">
-          {uniqueCourses} unique programs scheduled across {totalCourses} sessions. 
-          On-site, virtual, and hybrid delivery options available worldwide.
+          {lang === 'fr' 
+            ? `${uniqueCourses} programmes uniques programmés sur ${totalCourses} sessions. Options de formation sur site, virtuelle et hybride disponibles dans le monde entier.`
+            : `${uniqueCourses} unique programs scheduled across ${totalCourses} sessions. On-site, virtual, and hybrid delivery options available worldwide.`
+          }
         </p>
       </div>
 
@@ -285,11 +430,11 @@ export const TrainingCalendar: React.FC<TrainingCalendarProps> = ({
 
       {/* Calendar Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-        {MONTHS.map((month) => (
+        {localizedMonths.map((month) => (
           <MonthCard 
             key={month} 
             month={month} 
-            events={eventsByMonth[month]} 
+            events={eventsByMonth[month] || []} 
           />
         ))}
       </div>
@@ -297,7 +442,10 @@ export const TrainingCalendar: React.FC<TrainingCalendarProps> = ({
       {/* Footer Note */}
       <div className="mt-8 text-center">
         <p className="text-xs text-slate-500">
-          Dates and availability subject to change. Contact us for custom corporate training schedules.
+          {lang === 'fr'
+            ? 'Dates et disponibilités susceptibles de changer. Contactez-nous pour les programmes de formation d\'entreprise personnalisés.'
+            : 'Dates and availability subject to change. Contact us for custom corporate training schedules.'
+          }
         </p>
       </div>
     </section>

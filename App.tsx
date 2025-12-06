@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import Hero from './components/Hero';
 import TrainingCalendar from './components/TrainingCalendar';
 import { SERVICES_DATA, EQUIPMENT_RENTAL, CONTACT_INFO, PROJECTS_DATA, STATS_DATA } from './constants';
-import { trainingCalendar2026 } from './trainingCalendarData';
 import { Page } from './types';
 import { PAGE_SEO_META } from './seo';
 
@@ -409,9 +408,8 @@ function App() {
 
         {/* Training Calendar 2026 */}
         <TrainingCalendar
-          events={trainingCalendar2026}
-          title={t('training.calendar.title', '2026 Training Calendar')}
-          subtitle={t('training.calendar.subtitle', 'Plan your professional development with our scheduled programs across Australia and globally.')}
+          year={2026}
+          source="/calendars/2026.json"
         />
 
         {/* CTA */}
