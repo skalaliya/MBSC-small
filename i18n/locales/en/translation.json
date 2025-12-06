@@ -230,6 +230,19 @@
       "title": "Develop Your Team's Capabilities",
       "subtitle": "Contact our training department to discuss tailored corporate programs and international delivery schedules.",
       "button": "Request Training Information"
+    },
+    "calendar": {
+      "title": "2026 Training Calendar",
+      "subtitle": "Plan your professional development with our scheduled programs across Australia and globally.",
+      "legendTitle": "Course Categories",
+      "categories": {
+        "oilGas": "Oil & Gas",
+        "geoscience": "Geoscience",
+        "geology": "Geology",
+        "mining": "Mining",
+        "crossDiscipline": "Cross-Discipline",
+        "digitalAI": "Digital & AI"
+      }
     }
   },
   "about": {

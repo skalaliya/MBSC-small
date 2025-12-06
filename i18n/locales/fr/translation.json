@@ -230,6 +230,19 @@
       "title": "Développez les compétences de votre équipe",
       "subtitle": "Contactez notre département formation pour discuter des programmes d'entreprise personnalisés et des calendriers de déploiement international.",
       "button": "Demander des informations de formation"
+    },
+    "calendar": {
+      "title": "Calendrier de formation 2026",
+      "subtitle": "Planifiez votre développement professionnel avec nos programmes programmés en Australie et dans le monde.",
+      "legendTitle": "Catégories de cours",
+      "categories": {
+        "oilGas": "Pétrole et Gaz",
+        "geoscience": "Géoscience",
+        "geology": "Géologie",
+        "mining": "Exploitation minière",
+        "crossDiscipline": "Pluridisciplinaire",
+        "digitalAI": "Digital et IA"
+      }
     }
   },
   "about": {
