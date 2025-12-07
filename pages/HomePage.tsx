@@ -1,13 +1,17 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import Hero from '../components/Hero';
 import { SERVICES_DATA, PROJECTS_DATA, STATS_DATA } from '../constants';
+import { ROUTES } from '../routes';
+import { sortProjectsByCategory } from '../utils/projectSorting';
 
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  
+  // Sort projects by category: Oil & Gas first, Mining Infrastructure second, others last
+  const sortedProjects = useMemo(() => sortProjectsByCategory(PROJECTS_DATA), []);
 
   return (
     <>
@@ -57,18 +61,18 @@ const HomePage: React.FC = () => {
                 ))}
               </ul>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <button 
-                  onClick={() => navigate('/about')}
+                <Link 
+                  to={ROUTES.ABOUT.path}
                   className="text-teal-700 font-bold uppercase text-xs sm:text-sm tracking-wider flex items-center justify-center sm:justify-start hover:text-teal-800 group py-2"
                 >
                   {t('home.intro.aboutCta')} <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button 
-                  onClick={() => navigate('/training')}
+                </Link>
+                <Link 
+                  to={ROUTES.TRAINING.path}
                   className="text-teal-700 font-bold uppercase text-xs sm:text-sm tracking-wider flex items-center justify-center sm:justify-start hover:text-teal-800 group py-2"
                 >
                   {t('home.intro.trainingCta')} <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="relative">
@@ -101,23 +105,23 @@ const HomePage: React.FC = () => {
                     <h3 className="text-lg sm:text-xl font-bold text-slate-900">{t(`services.${service.id}.title`)}</h3>
                   </div>
                   <p className="text-slate-600 mb-5 sm:mb-6 text-sm sm:text-base leading-relaxed">{t(`services.${service.id}.short`)}</p>
-                  <button 
-                    onClick={() => navigate('/services')}
+                  <Link 
+                    to={ROUTES.SERVICES.path}
                     className="text-xs sm:text-sm font-semibold text-teal-700 flex items-center uppercase tracking-wide group-hover:text-teal-800"
                   >
                     {t('home.servicesPreview.learnMore')} <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
           <div className="mt-8 sm:mt-12 text-center">
-            <button 
-              onClick={() => navigate('/services')}
-              className="bg-slate-900 text-white px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl rounded"
+            <Link 
+              to={ROUTES.SERVICES.path}
+              className="inline-block bg-slate-900 text-white px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl rounded"
             >
               {t('home.servicesPreview.viewAllServices')}
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -130,34 +134,34 @@ const HomePage: React.FC = () => {
                 <span className="text-amber-500 font-bold tracking-widest uppercase text-[10px] sm:text-xs">{t('home.projectsTeaser.sectionBadge')}</span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mt-2">{t('home.projectsTeaser.sectionTitle')}</h2>
               </div>
-              <button 
-                onClick={() => navigate('/projects')}
+              <Link 
+                to={ROUTES.PROJECTS.path}
                 className="hidden md:flex items-center text-sm sm:text-base text-slate-600 hover:text-teal-700 font-medium transition-colors"
               >
                 {t('home.projectsTeaser.viewGallery')} <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
-              </button>
+              </Link>
            </div>
 
            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-              {PROJECTS_DATA.map((project) => (
-                <div key={project.id} className="group relative h-64 sm:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer" onClick={() => navigate('/projects')}>
+              {sortedProjects.map((project) => (
+                <Link key={project.id} to={ROUTES.PROJECTS.path} className="group relative h-64 sm:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer block">
                   <img src={project.imageUrl} alt={`${t(`projects.${project.id}.title`)} - ${t(`projects.${project.id}.category`)} - MBSC Australia`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" width="400" height="320" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                   <div className="absolute bottom-0 left-0 p-4 sm:p-6 text-white">
                     <p className="text-[10px] sm:text-xs font-bold text-amber-400 uppercase mb-1">{t(`projects.${project.id}.category`)}</p>
                     <h3 className="text-base sm:text-lg font-bold leading-tight">{t(`projects.${project.id}.title`)}</h3>
                   </div>
-                </div>
+                </Link>
               ))}
            </div>
 
            <div className="mt-6 sm:mt-8 text-center md:hidden">
-              <button 
-                onClick={() => navigate('/projects')}
+              <Link 
+                to={ROUTES.PROJECTS.path}
                 className="inline-flex items-center text-sm sm:text-base text-teal-700 font-bold py-2"
               >
                 {t('home.projectsTeaser.viewAllProjects')} <ArrowRight className="ml-2 h-4 w-4" />
-              </button>
+              </Link>
            </div>
         </div>
       </section>
@@ -170,9 +174,9 @@ const HomePage: React.FC = () => {
             <div className="relative z-10">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6 px-4">{t('home.projectsCta.title')}</h2>
               <p className="text-sm sm:text-base text-teal-100 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">{t('home.projectsCta.subtitle')}</p>
-              <button onClick={() => navigate('/contact')} className="bg-amber-500 hover:bg-amber-400 text-white px-6 sm:px-8 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors rounded shadow-lg transform hover:scale-105">
+              <Link to={ROUTES.CONTACT.path} className="inline-block bg-amber-500 hover:bg-amber-400 text-white px-6 sm:px-8 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors rounded shadow-lg transform hover:scale-105">
                 {t('home.projectsCta.cta')}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

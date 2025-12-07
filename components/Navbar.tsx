@@ -3,18 +3,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { NAV_ITEMS } from '../constants';
-import { Page } from '../types';
-
-// Map Page enum to routes
-const pageToRoute: Record<Page, string> = {
-  [Page.HOME]: '/',
-  [Page.SERVICES]: '/services',
-  [Page.PROJECTS]: '/projects',
-  [Page.TRAINING]: '/training',
-  [Page.RENTAL]: '/rental',
-  [Page.ABOUT]: '/about',
-  [Page.CONTACT]: '/contact'
-};
+import { ROUTES, getRoutePath } from '../routes';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +37,7 @@ const Navbar: React.FC = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-2">
             {NAV_ITEMS.map((item) => {
-              const route = pageToRoute[item.page];
+              const route = getRoutePath(item.page);
               const isActive = location.pathname === route;
               
               return (
@@ -97,7 +86,7 @@ const Navbar: React.FC = () => {
             </div>
 
             <Link 
-              to="/contact"
+              to={ROUTES.CONTACT.path}
               className="ml-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-2.5 text-sm font-bold uppercase tracking-wider hover:from-amber-400 hover:to-amber-500 transition-all duration-300 shadow-md hover:shadow-lg rounded-lg transform hover:-translate-y-0.5"
               aria-label={t('seo.ariaLabels.getQuoteButton')}
             >
@@ -152,7 +141,7 @@ const Navbar: React.FC = () => {
         <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-lg">
           <div className="px-3 py-4 space-y-2">
             {NAV_ITEMS.map((item) => {
-              const route = pageToRoute[item.page];
+              const route = getRoutePath(item.page);
               const isActive = location.pathname === route;
               
               return (
@@ -173,7 +162,7 @@ const Navbar: React.FC = () => {
             
             {/* Mobile Get Quote Button */}
             <Link 
-              to="/contact"
+              to={ROUTES.CONTACT.path}
               onClick={() => setIsOpen(false)}
               className="block w-full mt-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3.5 text-sm font-bold uppercase tracking-wider rounded-lg shadow-md active:scale-95 transition-all duration-200 text-center"
             >

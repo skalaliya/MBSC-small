@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronRight } from 'lucide-react';
+import { ROUTES } from '../routes';
 
 const Hero: React.FC = () => {
   const { t } = useTranslation();
@@ -36,7 +37,7 @@ const Hero: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
-              to="/services"
+              to={ROUTES.SERVICES.path}
               className="inline-flex items-center justify-center bg-teal-700 text-white px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-teal-600 transition-all duration-300 shadow-lg rounded"
             >
               {t('hero.ctaPrimary')}
@@ -44,7 +45,7 @@ const Hero: React.FC = () => {
             </Link>
             
             <Link
-              to="/training"
+              to={ROUTES.TRAINING.path}
               className="inline-flex items-center justify-center bg-amber-500 text-white px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-amber-400 transition-all duration-300 shadow-lg rounded"
             >
               {t('hero.ctaSecondary')}

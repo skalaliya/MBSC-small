@@ -1,11 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SERVICES_DATA } from '../constants';
 
 const ServicesPage: React.FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   return (
     <div className="bg-slate-50 min-h-screen pb-12 sm:pb-16 lg:pb-20">

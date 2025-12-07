@@ -3,18 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Phone, Mail, MapPin, Linkedin } from 'lucide-react';
 import { CONTACT_INFO, NAV_ITEMS } from '../constants';
-import { Page } from '../types';
-
-// Map Page enum to routes
-const pageToRoute: Record<Page, string> = {
-  [Page.HOME]: '/',
-  [Page.SERVICES]: '/services',
-  [Page.PROJECTS]: '/projects',
-  [Page.TRAINING]: '/training',
-  [Page.RENTAL]: '/rental',
-  [Page.ABOUT]: '/about',
-  [Page.CONTACT]: '/contact'
-};
+import { ROUTES, getRoutePath } from '../routes';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -50,7 +39,7 @@ const Footer: React.FC = () => {
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
                   <Link 
-                    to={pageToRoute[item.page]}
+                    to={getRoutePath(item.page)}
                     className="text-sm sm:text-base text-slate-400 hover:text-teal-400 transition-colors"
                   >
                     {t(`nav.${item.label.toLowerCase().replace(/ /g, '')}`)}
@@ -66,7 +55,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
               <li>
                 <button 
-                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-oilandgas')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate(ROUTES.SERVICES.path); setTimeout(() => document.getElementById('service-oilandgas')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.oilgas')}
@@ -74,7 +63,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-training')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate(ROUTES.SERVICES.path); setTimeout(() => document.getElementById('service-training')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.training')}
@@ -82,7 +71,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-digital')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate(ROUTES.SERVICES.path); setTimeout(() => document.getElementById('service-digital')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.digital')}
@@ -90,7 +79,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-mining')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate(ROUTES.SERVICES.path); setTimeout(() => document.getElementById('service-mining')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.mining')}
@@ -98,7 +87,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-safety')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate(ROUTES.SERVICES.path); setTimeout(() => document.getElementById('service-safety')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.safety')}

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle, Phone, Mail, MapPin, Loader2 } from 'lucide-react';
 import { SERVICES_DATA, CONTACT_INFO } from '../constants';
 
 const ContactPage: React.FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   
   // Contact Form State
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');

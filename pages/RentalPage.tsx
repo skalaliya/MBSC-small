@@ -1,12 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { PenTool } from 'lucide-react';
 import { EQUIPMENT_RENTAL } from '../constants';
+import { ROUTES } from '../routes';
 
 const RentalPage: React.FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -30,12 +30,12 @@ const RentalPage: React.FC = () => {
                   <span className="text-lg font-mono font-bold text-teal-700 ml-2">{item.price}</span>
                 </div>
                 <p className="text-sm text-slate-600 mb-4">{t(`rental.equipment.${equipmentKey}.desc`)}</p>
-                <button 
-                  onClick={() => navigate('/contact')} 
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-white px-4 py-2.5 text-sm font-bold uppercase tracking-wider rounded transition-colors"
+                <Link 
+                  to={ROUTES.CONTACT.path} 
+                  className="block w-full bg-teal-600 hover:bg-teal-700 text-white px-4 py-2.5 text-sm font-bold uppercase tracking-wider rounded transition-colors text-center"
                 >
                   {t('rental.enquireBtn')}
-                </button>
+                </Link>
               </div>
             );
           })}
@@ -62,7 +62,7 @@ const RentalPage: React.FC = () => {
                     <td className="px-6 py-4 text-sm text-slate-500">{t(`rental.equipment.${equipmentKey}.desc`)}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-900 text-right font-mono">{item.price}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button onClick={() => navigate('/contact')} className="text-teal-600 hover:text-teal-900 font-bold">{t('rental.enquireBtn')}</button>
+                      <Link to={ROUTES.CONTACT.path} className="text-teal-600 hover:text-teal-900 font-bold">{t('rental.enquireBtn')}</Link>
                     </td>
                   </tr>
                 );

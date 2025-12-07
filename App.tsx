@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import ProjectsPage from './pages/ProjectsPage';
@@ -10,26 +9,20 @@ import TrainingPage from './pages/TrainingPage';
 import RentalPage from './pages/RentalPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { PAGE_SEO_META } from './seo';
-import { Page } from './types';
+import { ROUTES, getPageFromPath } from './routes';
 
-// Component to handle SEO metadata and scroll behavior
+/**
+ * Component to handle SEO metadata and scroll behavior
+ * Automatically updates document title, meta tags, and Open Graph data based on current route
+ */
 function SEOManager() {
   const { i18n } = useTranslation();
   const location = useLocation();
 
-  // Map routes to Page enum for SEO
-  const routeToPage: Record<string, Page> = {
-    '/': Page.HOME,
-    '/services': Page.SERVICES,
-    '/projects': Page.PROJECTS,
-    '/training': Page.TRAINING,
-    '/rental': Page.RENTAL,
-    '/about': Page.ABOUT,
-    '/contact': Page.CONTACT
-  };
-
-  const currentPage = routeToPage[location.pathname] || Page.HOME;
+  // Get Page enum from current route path
+  const currentPage = getPageFromPath(location.pathname);
 
   // Scroll to top on route change
   useEffect(() => {
@@ -94,24 +87,19 @@ function SEOManager() {
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
-        <SEOManager />
-        <Navbar />
-        
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/training" element={<TrainingPage />} />
-            <Route path="/rental" element={<RentalPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-          </Routes>
-        </main>
-
-        <Footer />
-      </div>
+      <SEOManager />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path={ROUTES.HOME.path} element={<HomePage />} />
+          <Route path={ROUTES.SERVICES.path} element={<ServicesPage />} />
+          <Route path={ROUTES.PROJECTS.path} element={<ProjectsPage />} />
+          <Route path={ROUTES.TRAINING.path} element={<TrainingPage />} />
+          <Route path={ROUTES.RENTAL.path} element={<RentalPage />} />
+          <Route path={ROUTES.ABOUT.path} element={<AboutPage />} />
+          <Route path={ROUTES.CONTACT.path} element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

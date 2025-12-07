@@ -1,12 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Globe, BookOpen, Video } from 'lucide-react';
 import TrainingCalendar from '../components/TrainingCalendar';
+import { ROUTES } from '../routes';
 
 const TrainingPage: React.FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -55,9 +55,9 @@ const TrainingPage: React.FC = () => {
         <div className="mt-12 sm:mt-16 bg-slate-900 rounded-lg p-8 sm:p-10 md:p-12 text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 px-4">{t('training.cta.title')}</h2>
           <p className="text-sm sm:text-base text-slate-400 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">{t('training.cta.subtitle')}</p>
-          <button onClick={() => navigate('/contact')} className="bg-amber-500 text-white px-6 sm:px-8 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors rounded">
+          <Link to={ROUTES.CONTACT.path} className="inline-block bg-amber-500 text-white px-6 sm:px-8 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors rounded">
             {t('training.cta.button')}
-          </button>
+          </Link>
         </div>
       </div>
     </div>

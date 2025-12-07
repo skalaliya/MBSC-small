@@ -1,12 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MapPin } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
+import { ROUTES } from '../routes';
+import { sortProjectsByCategory } from '../utils/projectSorting';
 
 const ProjectsPage: React.FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  
+  // Sort projects by category: Oil & Gas first, Mining Infrastructure second, others last
+  const sortedProjects = useMemo(() => sortProjectsByCategory(PROJECTS_DATA), []);
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -22,7 +26,7 @@ const ProjectsPage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:gap-12">
-          {PROJECTS_DATA.map((project, index) => (
+          {sortedProjects.map((project, index) => (
             <div key={project.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col lg:flex-row">
               <div className="lg:w-2/5 relative overflow-hidden">
                 <img src={project.imageUrl} alt={`${t(`projects.${project.id}.title`)} - ${t(`projects.${project.id}.category`)} project in ${t(`projects.${project.id}.location`)} by MBSC Australia`} className="w-full h-full object-cover min-h-[250px] sm:min-h-[300px]" loading="lazy" width="800" height="600" />
@@ -55,9 +59,9 @@ const ProjectsPage: React.FC = () => {
           <div className="relative z-10">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6 px-4">{t('home.projectsCta.title')}</h2>
             <p className="text-sm sm:text-base text-teal-100 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">{t('home.projectsCta.subtitle')}</p>
-            <button onClick={() => navigate('/contact')} className="bg-amber-500 hover:bg-amber-400 text-white px-6 sm:px-8 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors rounded shadow-lg transform hover:scale-105">
+            <Link to={ROUTES.CONTACT.path} className="inline-block bg-amber-500 hover:bg-amber-400 text-white px-6 sm:px-8 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors rounded shadow-lg transform hover:scale-105">
               {t('home.projectsCta.cta')}
-            </button>
+            </Link>
           </div>
         </div>
       </div>
