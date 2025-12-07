@@ -119,7 +119,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: 'Western Suburbs Pipeline Upgrade',
     category: 'Oil & Gas',
     description: 'Critical pipeline enhancements improving supply reliability in the western corridor with integrity testing and monitoring.',
-    imageUrl: 'https://picsum.photos/seed/pipeline/800/600',
+    imageUrl: 'public/Western-Suburbs-Pipeline.jpg',
     location: 'Melbourne Western Suburbs, VIC',
     outcome: 'Delivered comprehensive pipeline integrity assessment ensuring safe, reliable energy supply to growing western communities.'
   },
