@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { NAV_ITEMS } from '../constants';
 import { Page } from '../types';
 
+// Map Page enum to routes
+const pageToRoute: Record<Page, string> = {
+  [Page.HOME]: '/',
+  [Page.SERVICES]: '/services',
+  [Page.PROJECTS]: '/projects',
+  [Page.TRAINING]: '/training',
+  [Page.RENTAL]: '/rental',
+  [Page.ABOUT]: '/about',
+  [Page.CONTACT]: '/contact'
+};
 
-interface NavbarProps {
-  currentPage: Page;
-  onNavigate: (page: Page) => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
+const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation();
-
-  const handleNav = (page: Page) => {
-    onNavigate(page);
-    setIsOpen(false);
-  };
+  const location = useLocation();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -31,36 +33,41 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
-          <div 
+          <Link 
+            to="/"
             className="flex-shrink-0 flex items-center cursor-pointer gap-3 py-2 group" 
-            onClick={() => handleNav(Page.HOME)}
           >
             <img 
               src="/logo.jpg"
               alt="MBSC Australia Logo"
               className="h-20 w-auto object-contain group-hover:opacity-80 transition-all duration-300 group-hover:scale-[1.02]"
             />
-          </div>
+          </Link>
 
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-2">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNav(item.page)}
-                className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 uppercase tracking-wide rounded-lg group
-                  ${currentPage === item.page 
-                    ? 'text-teal-800 bg-teal-50/80 shadow-sm' 
-                    : 'text-slate-600 hover:text-teal-700 hover:bg-slate-50/80'
-                  }`}
-              >
-                {t(`nav.${item.label}`)}
-                {currentPage === item.page && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-teal-600 rounded-full"></span>
-                )}
-              </button>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const route = pageToRoute[item.page];
+              const isActive = location.pathname === route;
+              
+              return (
+                <NavLink
+                  key={item.label}
+                  to={route}
+                  className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 uppercase tracking-wide rounded-lg group
+                    ${isActive 
+                      ? 'text-teal-800 bg-teal-50/80 shadow-sm' 
+                      : 'text-slate-600 hover:text-teal-700 hover:bg-slate-50/80'
+                    }`}
+                >
+                  {t(`nav.${item.label}`)}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-teal-600 rounded-full"></span>
+                  )}
+                </NavLink>
+              );
+            })}
             
             {/* Language Switcher - Pill Style */}
             <div className="flex items-center gap-3 ml-4 pl-6 border-l border-slate-200/60" aria-label={t('seo.ariaLabels.languageSwitcher')}>
@@ -89,13 +96,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               </div>
             </div>
 
-            <button 
-              onClick={() => handleNav(Page.CONTACT)}
+            <Link 
+              to="/contact"
               className="ml-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-2.5 text-sm font-bold uppercase tracking-wider hover:from-amber-400 hover:to-amber-500 transition-all duration-300 shadow-md hover:shadow-lg rounded-lg transform hover:-translate-y-0.5"
               aria-label={t('seo.ariaLabels.getQuoteButton')}
             >
               {t('nav.getQuote')}
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -144,27 +151,34 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       {isOpen && (
         <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-lg">
           <div className="px-3 py-4 space-y-2">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNav(item.page)}
-                className={`block w-full text-left px-4 py-3.5 text-base font-semibold uppercase tracking-wide rounded-lg transition-all duration-200 ${
-                  currentPage === item.page 
-                    ? 'bg-teal-50 text-teal-800 shadow-sm border-l-4 border-teal-600' 
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-teal-700 border-l-4 border-transparent'
-                }`}
-              >
-                {t(`nav.${item.label}`)}
-              </button>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const route = pageToRoute[item.page];
+              const isActive = location.pathname === route;
+              
+              return (
+                <NavLink
+                  key={item.label}
+                  to={route}
+                  onClick={() => setIsOpen(false)}
+                  className={`block w-full text-left px-4 py-3.5 text-base font-semibold uppercase tracking-wide rounded-lg transition-all duration-200 ${
+                    isActive 
+                      ? 'bg-teal-50 text-teal-800 shadow-sm border-l-4 border-teal-600' 
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-teal-700 border-l-4 border-transparent'
+                  }`}
+                >
+                  {t(`nav.${item.label}`)}
+                </NavLink>
+              );
+            })}
             
             {/* Mobile Get Quote Button */}
-            <button 
-              onClick={() => handleNav(Page.CONTACT)}
-              className="w-full mt-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3.5 text-sm font-bold uppercase tracking-wider rounded-lg shadow-md active:scale-95 transition-all duration-200"
+            <Link 
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className="block w-full mt-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3.5 text-sm font-bold uppercase tracking-wider rounded-lg shadow-md active:scale-95 transition-all duration-200 text-center"
             >
               {t('nav.getQuote')}
-            </button>
+            </Link>
           </div>
         </div>
       )}

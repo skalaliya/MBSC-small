@@ -1,13 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Page } from '../types';
 import { ChevronRight } from 'lucide-react';
 
-interface HeroProps {
-  onNavigate: (page: Page) => void;
-}
-
-const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
+const Hero: React.FC = () => {
   const { t } = useTranslation();
   return (
     <div className="relative bg-slate-900 min-h-[500px] sm:h-[600px] lg:h-[650px] flex items-center py-12 sm:py-0">
@@ -39,20 +35,20 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <button
-              onClick={() => onNavigate(Page.SERVICES)}
+            <Link
+              to="/services"
               className="inline-flex items-center justify-center bg-teal-700 text-white px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-teal-600 transition-all duration-300 shadow-lg rounded"
             >
               {t('hero.ctaPrimary')}
               <ChevronRight className="ml-2 h-4 w-4" />
-            </button>
+            </Link>
             
-            <button
-              onClick={() => onNavigate(Page.TRAINING)}
+            <Link
+              to="/training"
               className="inline-flex items-center justify-center bg-amber-500 text-white px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-amber-400 transition-all duration-300 shadow-lg rounded"
             >
               {t('hero.ctaSecondary')}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

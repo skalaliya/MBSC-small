@@ -1,15 +1,24 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Phone, Mail, MapPin, Linkedin } from 'lucide-react';
 import { CONTACT_INFO, NAV_ITEMS } from '../constants';
 import { Page } from '../types';
 
-interface FooterProps {
-  onNavigate: (page: Page) => void;
-}
+// Map Page enum to routes
+const pageToRoute: Record<Page, string> = {
+  [Page.HOME]: '/',
+  [Page.SERVICES]: '/services',
+  [Page.PROJECTS]: '/projects',
+  [Page.TRAINING]: '/training',
+  [Page.RENTAL]: '/rental',
+  [Page.ABOUT]: '/about',
+  [Page.CONTACT]: '/contact'
+};
 
-const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+const Footer: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <footer className="bg-slate-900 text-slate-300 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -40,12 +49,12 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2.5 sm:space-y-3">
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
-                  <button 
-                    onClick={() => onNavigate(item.page)}
-                    className="text-sm sm:text-base text-slate-400 hover:text-teal-400 transition-colors text-left"
+                  <Link 
+                    to={pageToRoute[item.page]}
+                    className="text-sm sm:text-base text-slate-400 hover:text-teal-400 transition-colors"
                   >
                     {t(`nav.${item.label.toLowerCase().replace(/ /g, '')}`)}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -57,7 +66,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
               <li>
                 <button 
-                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-oilandgas')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-oilandgas')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.oilgas')}
@@ -65,7 +74,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button 
-                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-training')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-training')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.training')}
@@ -73,7 +82,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button 
-                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-digital')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-digital')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.digital')}
@@ -81,7 +90,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button 
-                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-mining')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-mining')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.mining')}
@@ -89,7 +98,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button 
-                  onClick={() => { onNavigate(Page.SERVICES); setTimeout(() => document.getElementById('service-safety')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+                  onClick={() => { navigate('/services'); setTimeout(() => document.getElementById('service-safety')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                   className="text-slate-400 hover:text-teal-400 transition-colors text-left"
                 >
                   {t('footer.services.safety')}
