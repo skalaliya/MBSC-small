@@ -214,8 +214,8 @@ export const SERVICES_DATA: ServiceItem[] = [
 ];
 
 export const EQUIPMENT_RENTAL = [
-  { name: 'GPR Systems', desc: 'High-frequency GPR for concrete scanning.', price: '$450/day' },
-  { name: 'Ultrasonic Testers', desc: 'Pundit Lab+ for UPV measurement.', price: '$200/day' },
-  { name: 'Cover Meters', desc: 'Profometer 6 for rebar location.', price: '$150/day' },
-  { name: 'Vibration Monitors', desc: 'Tri-axial geophones for site compliance.', price: '$300/day' },
+  { name: 'GPR Systems', desc: 'High-frequency GPR for concrete scanning.', // price: '$450/day' },
+  { name: 'Ultrasonic Testers', desc: 'Pundit Lab+ for UPV measurement.', // price: '$200/day' },
+  { name: 'Cover Meters', desc: 'Profometer 6 for rebar location.', // price: '$150/day' },
+  { name: 'Vibration Monitors', desc: 'Tri-axial geophones for site compliance.', // price: '$300/day' },
 ];
