@@ -36,7 +36,7 @@ export const CONTACT_INFO = {
 
 export const STATS_DATA = [
   { labelKey: 'stats.projectsDelivered', value: '1,200+', icon: Briefcase },
-  { labelKey: 'stats.safetyHours', value: '500k+', icon: ShieldCheck },
+  { labelKey: 'stats.safetyHours', value: '50k+', icon: ShieldCheck },
   { labelKey: 'stats.metersDrilled', value: '5,000m', icon: Drill },
   { labelKey: 'stats.assetsProtected', value: '$4.5B', icon: Landmark },
 ];
