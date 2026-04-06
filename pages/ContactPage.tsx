@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle, Phone, Mail, MapPin, Loader2 } from 'lucide-react';
 import { SERVICES_DATA, CONTACT_INFO } from '../constants';
+import emailjs from '@emailjs/browser';
 
 const ContactPage: React.FC = () => {
   const { t } = useTranslation();
   
   // Contact Form State
+  const formRef = useRef<HTMLFormElement>(null);
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [formData, setFormData] = useState({
     firstName: '',
@@ -20,14 +22,31 @@ const ContactPage: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formRef.current) return;
+
     setFormStatus('submitting');
-    // Simulate network request
-    setTimeout(() => {
+    
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: `${formData.firstName} ${formData.lastName}`,
+          title: formData.service,
+          email: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
       setFormStatus('success');
       setFormData({ firstName: '', lastName: '', email: '', service: 'General Enquiry', message: '' });
-    }, 1500);
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setFormStatus('idle');
+      alert('Failed to send email. Please check your configuration or try again later.');
+    }
   };
 
   return (
@@ -63,7 +82,7 @@ const ContactPage: React.FC = () => {
                  </button>
               </div>
             ) : (
-              <form className="space-y-5 sm:space-y-6" onSubmit={handleFormSubmit} aria-label={t('seo.ariaLabels.contactForm')}>
+              <form ref={formRef} className="space-y-5 sm:space-y-6" onSubmit={handleFormSubmit} aria-label={t('seo.ariaLabels.contactForm')}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                   <div>
                     <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-2">{t('contact.form.firstName')}</label>

@@ -10,6 +10,7 @@
     "generate:calendar": "node scripts/generateCalendarYear.js"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "i18next": "^23.11.0",
     "i18next-browser-languagedetector": "^7.2.1",
     "lucide-react": "^0.554.0",
