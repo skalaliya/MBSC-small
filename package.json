@@ -1,28 +1,47 @@
 {
   "name": "mbsc-australia",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "generate:calendar": "node scripts/generateCalendarYear.js"
+    "dev": "astro dev",
+    "build": "astro build && node scripts/vercel-headers.mjs",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:content": "node scripts/check-content.mjs",
+    "calendar:year": "node scripts/generate-calendar-year.mjs"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "i18next": "^23.11.0",
-    "i18next-browser-languagedetector": "^7.2.1",
-    "lucide-react": "^0.554.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-i18next": "^14.1.0",
-    "react-router-dom": "^7.10.1"
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/vercel": "^11.0.11",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "astro": "^7.3.5",
+    "motion": "^13.4.3",
+    "nodemailer": "^10.0.10",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "@types/nodemailer": "^8.0.2",
+    "imagetracerjs": "^1.2.6",
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "sharp": "^0.35.4",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.1"
   }
 }

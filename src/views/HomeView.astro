@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { toLocale, useT } from '../i18n/utils';
+const t = useT(toLocale(Astro.currentLocale));
+---
+
+<Base title={t.meta.pages.home.title} description={t.meta.pages.home.description}>
+  <section class="container-site py-24">
+    <span class="datum-rule mb-4"></span>
+    <h1 class="text-4xl font-bold">{t.hero.title}</h1>
+    <p class="mt-4 max-w-2xl text-lg">{t.hero.lead}</p>
+  </section>
+</Base>
