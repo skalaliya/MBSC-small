@@ -1,0 +1,31 @@
+---
+type Tone = 'paper' | 'surface' | 'navy' | 'tint';
+interface Props {
+  tone?: Tone;
+  spacing?: 'sm' | 'md' | 'lg' | 'none';
+  id?: string;
+  class?: string;
+  innerClass?: string;
+  labelledby?: string;
+  grid?: boolean;
+  reveal?: boolean;
+}
+const { tone = 'surface', spacing = 'md', id, class: className, innerClass, labelledby, grid = false, reveal = true } = Astro.props;
+const tones: Record<Tone, string> = {
+  paper: 'bg-paper',
+  surface: 'bg-surface',
+  tint: 'bg-navy-50',
+  navy: 'bg-navy-950 text-navy-100',
+};
+const spacings = { none: '', sm: 'py-12 sm:py-16', md: 'py-16 sm:py-20 lg:py-24', lg: 'py-20 sm:py-24 lg:py-32' };
+---
+
+<section
+  id={id}
+  aria-labelledby={labelledby}
+  class:list={['relative', tones[tone], spacings[spacing], grid && (tone === 'navy' ? 'plan-grid' : 'plan-grid-light'), className]}
+>
+  <div class:list={['container-site relative', innerClass]} data-reveal={reveal ? '' : undefined}>
+    <slot />
+  </div>
+</section>

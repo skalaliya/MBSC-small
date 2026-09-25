@@ -1,0 +1,124 @@
+---
+/**
+ * Inline SVG icon. Lucide icons (ISC licence) are inlined at build time, so there is
+ * no icon font, no runtime JS and nothing for CSP to block.
+ */
+import arrowRight from 'lucide-static/icons/arrow-right.svg?raw';
+import chevronRight from 'lucide-static/icons/chevron-right.svg?raw';
+import chevronDown from 'lucide-static/icons/chevron-down.svg?raw';
+import phone from 'lucide-static/icons/phone.svg?raw';
+import mail from 'lucide-static/icons/mail.svg?raw';
+import clock from 'lucide-static/icons/clock.svg?raw';
+import mapPin from 'lucide-static/icons/map-pin.svg?raw';
+import menu from 'lucide-static/icons/menu.svg?raw';
+import x from 'lucide-static/icons/x.svg?raw';
+import check from 'lucide-static/icons/check.svg?raw';
+import globe from 'lucide-static/icons/globe.svg?raw';
+import calendarDays from 'lucide-static/icons/calendar-days.svg?raw';
+import users from 'lucide-static/icons/users.svg?raw';
+import award from 'lucide-static/icons/award.svg?raw';
+import shieldCheck from 'lucide-static/icons/shield-check.svg?raw';
+import pickaxe from 'lucide-static/icons/pickaxe.svg?raw';
+import graduationCap from 'lucide-static/icons/graduation-cap.svg?raw';
+import cpu from 'lucide-static/icons/cpu.svg?raw';
+import fuel from 'lucide-static/icons/fuel.svg?raw';
+import externalLink from 'lucide-static/icons/external-link.svg?raw';
+import arrowUpRight from 'lucide-static/icons/arrow-up-right.svg?raw';
+import building2 from 'lucide-static/icons/building-2.svg?raw';
+import hardHat from 'lucide-static/icons/hard-hat.svg?raw';
+import monitor from 'lucide-static/icons/monitor.svg?raw';
+import radar from 'lucide-static/icons/radar.svg?raw';
+import activity from 'lucide-static/icons/activity.svg?raw';
+import scanLine from 'lucide-static/icons/scan-line.svg?raw';
+import waves from 'lucide-static/icons/waves.svg?raw';
+import quote from 'lucide-static/icons/quote.svg?raw';
+import circleCheck from 'lucide-static/icons/circle-check.svg?raw';
+import fileCheck2 from 'lucide-static/icons/file-check-2.svg?raw';
+import layers from 'lucide-static/icons/layers.svg?raw';
+import search from 'lucide-static/icons/search.svg?raw';
+import clipboardCheck from 'lucide-static/icons/clipboard-check.svg?raw';
+import compass from 'lucide-static/icons/compass.svg?raw';
+import anchor from 'lucide-static/icons/anchor.svg?raw';
+import trainFront from 'lucide-static/icons/train-front.svg?raw';
+import map from 'lucide-static/icons/map.svg?raw';
+import send from 'lucide-static/icons/send.svg?raw';
+import circleAlert from 'lucide-static/icons/circle-alert.svg?raw';
+import info from 'lucide-static/icons/info.svg?raw';
+import slidersHorizontal from 'lucide-static/icons/sliders-horizontal.svg?raw';
+import linkedin from '../../assets/icons/linkedin.svg?raw';
+
+
+const ICONS = {
+  'arrow-right': arrowRight,
+  'chevron-right': chevronRight,
+  'chevron-down': chevronDown,
+  'phone': phone,
+  'mail': mail,
+  'clock': clock,
+  'map-pin': mapPin,
+  'menu': menu,
+  'x': x,
+  'check': check,
+  'globe': globe,
+  'calendar-days': calendarDays,
+  'users': users,
+  'award': award,
+  'shield-check': shieldCheck,
+  'pickaxe': pickaxe,
+  'graduation-cap': graduationCap,
+  'cpu': cpu,
+  'fuel': fuel,
+  'external-link': externalLink,
+  'arrow-up-right': arrowUpRight,
+  'building-2': building2,
+  'hard-hat': hardHat,
+  'monitor': monitor,
+  'radar': radar,
+  'activity': activity,
+  'scan-line': scanLine,
+  'waves': waves,
+  'quote': quote,
+  'circle-check': circleCheck,
+  'file-check-2': fileCheck2,
+  'layers': layers,
+  'search': search,
+  'clipboard-check': clipboardCheck,
+  'compass': compass,
+  'anchor': anchor,
+  'train-front': trainFront,
+  'map': map,
+  'send': send,
+  'circle-alert': circleAlert,
+  'info': info,
+  'sliders-horizontal': slidersHorizontal,
+  linkedin,
+} as const;
+
+export type IconName = keyof typeof ICONS;
+
+interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+  strokeWidth?: number;
+  /** Provide a label only when the icon is the sole content of a control. */
+  label?: string;
+}
+
+const { name, size = 20, class: className, strokeWidth = 1.75, label } = Astro.props;
+const raw = ICONS[name];
+// Note: build the opening tag by concatenation. Astro 7's compiler misreads an SVG
+// opening tag written inside nested template literals in frontmatter as markup.
+const classes = ['shrink-0', className].filter(Boolean).join(' ');
+const a11y = label
+  ? 'role="img" aria-label="' + label.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"'
+  : 'aria-hidden="true" focusable="false"';
+const attrs = ' width="' + size + '" height="' + size + '" class="' + classes + '" ' + a11y;
+const svg = raw
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/\s(width|height|class)="[^"]*"/g, '')
+  .replace(/stroke-width="[^"]*"/, 'stroke-width="' + strokeWidth + '"')
+  .replace(/^\s*<svg/, (m) => m + attrs);
+---
+
+<Fragment set:html={svg} />

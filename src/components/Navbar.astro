@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import roundel from '../assets/logo/mbsc-roundel.png';
+import Icon from './ui/Icon.astro';
+import Button from './ui/Button.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { NAV, isActive } from './nav';
+import { localizePath, stripLocale, toLocale, useT } from '../i18n/utils';
+import { site } from '../data/site';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const current = stripLocale(Astro.url.pathname);
+const L = (p: string) => localizePath(p, locale);
+---
+
+<header class="sticky top-0 z-50 border-b border-line/80 bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/80">
+  <div class="container-site flex h-18 items-center justify-between gap-6 lg:h-20">
+    <a href={L('/')} class="flex shrink-0 items-center gap-3" aria-label={t.a11y.homeLink}>
+      <Image src={roundel} alt="" width={56} height={56} densities={[1, 2]} loading="eager" class="size-12 lg:size-14" />
+      <span class="hidden leading-tight sm:block">
+        <span class="block font-display text-[0.95rem] font-extrabold tracking-[0.04em] text-navy-950">MBSC AUSTRALIA</span>
+        <span class="block text-[0.7rem] font-medium tracking-[0.08em] text-ink-500 uppercase">Energy · Mining · Infrastructure</span>
+      </span>
+    </a>
+
+    <nav aria-label={t.a11y.mainNav} class="hidden lg:block">
+      <ul class="flex items-center gap-1">
+        {
+          NAV.filter((n) => n.key !== 'contact').map((n) => {
+            const active = isActive(current, n.path);
+            return (
+              <li>
+                <a
+                  href={L(n.path)}
+                  aria-current={active ? 'page' : undefined}
+                  class:list={[
+                    'relative block rounded-sm px-3 py-2 text-[0.9375rem] font-medium transition-colors',
+                    active ? 'text-navy-950' : 'text-ink-700 hover:text-navy-950',
+                  ]}
+                >
+                  {t.nav[n.key]}
+                  {active && <span class="absolute inset-x-3 -bottom-[1.3rem] h-[3px] rounded-full bg-brand-gradient" aria-hidden="true" />}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href={site.phoneHref} class="hidden items-center gap-2 text-sm font-medium text-ink-700 hover:text-navy-950 xl:flex">
+        <Icon name="phone" size={16} />
+        <span class="tabular-nums">{site.phone}</span>
+      </a>
+      <LanguageSwitcher class="hidden sm:block" />
+      <Button href={L('/contact')} size="sm" class="hidden md:inline-flex" data-track="nav_cta">{t.nav.cta}</Button>
+      <button
+        type="button"
+        class="inline-flex size-10 items-center justify-center rounded-sm text-navy-950 ring-1 ring-line ring-inset hover:bg-paper lg:hidden"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        data-menu-open
+      >
+        <Icon name="menu" size={22} label={t.a11y.openMenu} />
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog
+  id="mobile-menu"
+  aria-label={t.a11y.mainNav}
+  class="m-0 ml-auto h-dvh max-h-none w-full max-w-sm bg-white p-0 text-ink-900 shadow-2xl backdrop:bg-navy-950/60 backdrop:backdrop-blur-sm open:flex open:flex-col"
+>
+  <div class="flex h-18 items-center justify-between border-b border-line px-5">
+    <LanguageSwitcher />
+    <button type="button" class="inline-flex size-10 items-center justify-center rounded-sm ring-1 ring-line ring-inset hover:bg-paper" data-menu-close>
+      <Icon name="x" size={22} label={t.a11y.closeMenu} />
+    </button>
+  </div>
+  <nav aria-label={t.a11y.mainNav} class="flex-1 overflow-y-auto px-5 py-4">
+    <ul class="divide-y divide-line">
+      {
+        [{ key: 'home' as const, path: '/' }, ...NAV].map((n) => {
+          const active = n.path === '/' ? current === '/' : isActive(current, n.path);
+          return (
+            <li>
+              <a
+                href={L(n.path)}
+                aria-current={active ? 'page' : undefined}
+                class:list={['flex items-center justify-between py-3.5 font-display text-lg font-semibold', active ? 'text-navy-700' : 'text-ink-900']}
+              >
+                {t.nav[n.key]}
+                <Icon name="chevron-right" size={18} class="text-ink-500" />
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+  <div class="space-y-3 border-t border-line p-5">
+    <Button href={L('/contact')} full size="lg">{t.nav.cta}</Button>
+    <Button href={site.phoneHref} variant="secondary" full size="lg" iconStart="phone">{site.phone}</Button>
+  </div>
+</dialog>
+
+<script>
+  import { initMobileMenu } from '../scripts/mobile-menu';
+  initMobileMenu();
+</script>

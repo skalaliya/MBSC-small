@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import ServiceDetailView from '../../../views/ServiceDetailView.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('services', (e) => e.data.locale === 'fr');
+  return entries.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+
+<ServiceDetailView entry={entry} />

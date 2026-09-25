@@ -1,0 +1,97 @@
+---
+import SessionRow from './SessionRow.astro';
+import Icon from './ui/Icon.astro';
+import Callout from './ui/Callout.astro';
+import { fmt, intlLocale, toLocale, useT } from '../i18n/utils';
+import { CATEGORIES, DELIVERY } from '../lib/content';
+import { LOCATIONS } from '../lib/calendar-model';
+import type { Calendar } from '../lib/queries';
+
+interface Props {
+  calendar: Calendar;
+}
+const { calendar } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const c = t.training.calendar;
+const monthName = (m: number) =>
+  new Intl.DateTimeFormat(intlLocale[locale], { month: 'long' }).format(new Date(calendar.year, m - 1, 1));
+const months = Array.from({ length: 12 }, (_, i) => i + 1).map((m) => ({
+  m,
+  sessions: calendar.sessions
+    .filter((s) => s.month === m)
+    .sort((a, b) => (a.start ?? '9999').localeCompare(b.start ?? '9999')),
+}));
+const used = {
+  category: CATEGORIES.filter((k) => calendar.sessions.some((s) => s.category === k)),
+  delivery: DELIVERY.filter((k) => calendar.sessions.some((s) => s.delivery === k)),
+  location: LOCATIONS.filter((k) => calendar.sessions.some((s) => s.location === k)),
+};
+const total = calendar.sessions.length;
+---
+
+<div data-calendar data-results={c.results} data-results-one={c.resultsOne}>
+  <form class="mb-8 rounded-lg bg-white p-5 ring-1 ring-line sm:p-6" data-calendar-filters aria-label={c.filters} hidden>
+    <div class="flex items-center gap-2 text-sm font-semibold text-ink-900">
+      <Icon name="sliders-horizontal" size={18} />
+      {c.filters}
+    </div>
+    <div class="mt-4 grid gap-4 sm:grid-cols-3">
+      {
+        (
+          [
+            ['category', c.category, used.category, (k: string) => c.categories[k as keyof typeof c.categories]],
+            ['delivery', c.delivery, used.delivery, (k: string) => c.deliveryModes[k as keyof typeof c.deliveryModes]],
+            ['location', c.location, used.location, (k: string) => c.locations[k as keyof typeof c.locations]],
+          ] as const
+        ).map(([name, label, options, text]) => (
+          <label class="block text-sm">
+            <span class="font-medium text-ink-700">{label}</span>
+            <select
+              name={name}
+              class="mt-1.5 block h-11 w-full rounded-sm border-0 bg-paper px-3 text-ink-900 ring-1 ring-line ring-inset focus:ring-2 focus:ring-navy-700"
+            >
+              <option value="">{c.any}</option>
+              {options.map((o) => <option value={o}>{text(o)}</option>)}
+            </select>
+          </label>
+        ))
+      }
+    </div>
+    <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
+      <p class="text-sm text-ink-500" aria-live="polite" data-calendar-count>{fmt(c.results, { count: total })}</p>
+      <button type="reset" class="text-sm font-semibold text-navy-700 underline-offset-4 hover:underline">{c.reset}</button>
+    </div>
+  </form>
+
+  <p class="mb-8 hidden rounded-lg bg-white p-6 text-center text-ink-500 ring-1 ring-line" data-calendar-empty role="status">{c.noMatches}</p>
+
+  <div class="space-y-10">
+    {
+      months.map(({ m, sessions }) => (
+        <section aria-labelledby={`month-${calendar.year}-${m}`} data-month>
+          <h3 id={`month-${calendar.year}-${m}`} class="flex items-baseline gap-3 border-b-2 border-navy-950 pb-2 font-display text-xl font-bold capitalize">
+            {monthName(m)}
+            <span class="text-sm font-medium text-ink-500 tabular-nums">{calendar.year}</span>
+          </h3>
+          {sessions.length === 0 ? (
+            <p class="py-5 text-ink-500">{c.noSessions}</p>
+          ) : (
+            <ul class="divide-y divide-line">
+              {sessions.map((s) => (
+                <SessionRow session={s} year={calendar.year} />
+              ))}
+            </ul>
+          )}
+        </section>
+      ))
+    }
+  </div>
+
+  <Callout tone="info" class="mt-10">{c.notice}</Callout>
+</div>
+
+<script>
+  import { initCalendar } from '../scripts/calendar';
+  initCalendar();
+</script>

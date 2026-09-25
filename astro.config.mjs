@@ -1,10 +1,13 @@
 // @ts-check
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 const SITE = process.env.SITE_URL ?? 'https://www.mbscaustralia.com.au';
+// The dev server injects CSS through inline <style> tags for hot reload, which a strict CSP
+// blocks. CSP is therefore applied to builds only; `npm run build` + preview tests it locally.
+const isDev = process.argv.includes('dev');
 
 export default defineConfig({
   site: SITE,
@@ -43,7 +46,9 @@ export default defineConfig({
     },
   ],
   security: {
-    csp: {
+    csp: isDev
+      ? false
+      : {
       algorithm: 'SHA-256',
       scriptDirective: { resources: ["'self'", 'https://va.vercel-scripts.com'] },
       styleDirective: { resources: ["'self'"] },
@@ -59,6 +64,18 @@ export default defineConfig({
         "frame-ancestors 'none'",
         'upgrade-insecure-requests',
       ],
+    },
+  },
+  env: {
+    schema: {
+      // Read at runtime on Vercel (never inlined into the build). Set these in Vercel project settings.
+      ZOHO_SMTP_HOST: envField.string({ context: 'server', access: 'secret', optional: true }),
+      ZOHO_SMTP_PORT: envField.number({ context: 'server', access: 'secret', optional: true }),
+      ZOHO_SMTP_USER: envField.string({ context: 'server', access: 'secret', optional: true }),
+      ZOHO_SMTP_PASS: envField.string({ context: 'server', access: 'secret', optional: true }),
+      CONTACT_TO_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
+      CONTACT_DRY_RUN: envField.boolean({ context: 'server', access: 'secret', optional: true }),
+      PUBLIC_SHOW_SAMPLE_TESTIMONIALS: envField.boolean({ context: 'client', access: 'public', optional: true }),
     },
   },
   markdown: { syntaxHighlight: false },

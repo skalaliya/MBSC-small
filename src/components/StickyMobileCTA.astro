@@ -1,0 +1,58 @@
+---
+import Icon from './ui/Icon.astro';
+import { localizePath, stripLocale, toLocale, useT } from '../i18n/utils';
+import { site } from '../data/site';
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const hide = stripLocale(Astro.url.pathname) === '/contact';
+---
+
+{
+  !hide && (
+    <div
+      data-sticky-cta
+      hidden
+      class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 p-3 shadow-[0_-8px_24px_-12px_rgb(10_21_51/0.25)] backdrop-blur-md lg:hidden"
+    >
+      <div class="mx-auto flex max-w-md gap-3">
+        <a
+          href={site.phoneHref}
+          class="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-sm font-semibold text-navy-900 ring-1 ring-line ring-inset"
+          data-track="sticky_call"
+        >
+          <Icon name="phone" size={18} />
+          {t.common.call}
+        </a>
+        <a
+          href={localizePath('/contact', locale)}
+          class="inline-flex h-11 flex-[2] items-center justify-center gap-2 rounded-sm bg-navy-700 font-semibold text-white"
+          data-track="sticky_enquire"
+        >
+          {t.nav.cta}
+        </a>
+      </div>
+    </div>
+  )
+}
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-sticky-cta]');
+  if (bar) {
+    let ticking = false;
+    const update = () => {
+      bar.hidden = window.scrollY < 600;
+      ticking = false;
+    };
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
+    update();
+  }
+</script>

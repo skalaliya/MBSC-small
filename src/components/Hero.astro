@@ -1,0 +1,56 @@
+---
+import { Picture } from 'astro:assets';
+import hero from '../assets/images/hero-offshore-platform.jpg';
+import Button from './ui/Button.astro';
+import { localizePath, toLocale, useT } from '../i18n/utils';
+import { site } from '../data/site';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+---
+
+<section class="relative isolate overflow-hidden bg-navy-950" aria-labelledby="hero-title">
+  <div class="absolute inset-0 -z-20">
+    <Picture
+      src={hero}
+      alt={t.hero.imageAlt}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280, 1920, 2400]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="h-full w-full object-cover object-[70%_center]"
+    />
+  </div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-r from-navy-950 via-navy-950/85 to-navy-950/25" aria-hidden="true"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-navy-950/80 via-transparent to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 -z-10 plan-grid opacity-60" aria-hidden="true"></div>
+
+  <div class="container-site flex min-h-[34rem] flex-col justify-center py-20 sm:min-h-[40rem] lg:min-h-[44rem]">
+    <div class="max-w-3xl">
+      <p class="mb-6 flex flex-col gap-3">
+        <span class="datum-rule" aria-hidden="true"></span>
+        <span class="text-xs font-semibold tracking-[0.14em] text-brand-lilac uppercase">{t.hero.eyebrow}</span>
+      </p>
+      <h1 id="hero-title" class="font-display text-[2.5rem] leading-[1.08] font-extrabold text-white sm:text-6xl lg:text-7xl">
+        {t.hero.title}
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-navy-100 sm:text-xl">{t.hero.lead}</p>
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <Button href={localizePath('/contact', locale)} variant="inverse" size="lg" iconEnd="arrow-right" data-track="hero_primary">
+          {t.hero.primary}
+        </Button>
+        <Button href={localizePath('/training', locale)} variant="outline-inverse" size="lg" iconStart="calendar-days">
+          {t.hero.secondary}
+        </Button>
+      </div>
+      {
+        site.iso9001 && (
+          <p class="mt-8 text-sm text-navy-200">
+            ISO 9001 · {site.iso9001.body} · {site.iso9001.number}
+          </p>
+        )
+      }
+    </div>
+  </div>
+</section>

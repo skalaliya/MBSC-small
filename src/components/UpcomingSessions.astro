@@ -1,0 +1,41 @@
+---
+import SessionRow from './SessionRow.astro';
+import { toLocale, useT } from '../i18n/utils';
+import { getCalendars, upcoming } from '../lib/queries';
+
+interface Props {
+  limit?: number;
+}
+const { limit = 3 } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+// Render a few extra rows: the browser hides any that have finished since the last build.
+const sessions = upcoming(await getCalendars(), new Date(), limit + 6);
+---
+
+{
+  sessions.length === 0 ? (
+    <p class="text-ink-500">{t.home.training.none}</p>
+  ) : (
+    <ul class="divide-y divide-line border-y border-line" data-upcoming data-limit={limit}>
+      {sessions.map((s, i) => (
+        <SessionRow session={s} year={s.year} compact hidden={i >= limit} />
+      ))}
+    </ul>
+  )
+}
+
+<script>
+  import { todayISO } from '../scripts/today';
+  document.querySelectorAll<HTMLElement>('[data-upcoming]').forEach((list) => {
+    const limit = Number(list.dataset.limit ?? 3);
+    const today = todayISO();
+    let shown = 0;
+    list.querySelectorAll<HTMLElement>('[data-session]').forEach((row) => {
+      const ended = (row.dataset.end ?? '') !== '' && row.dataset.end! < today;
+      const keep = !ended && shown < limit;
+      row.hidden = !keep;
+      if (keep) shown++;
+    });
+  });
+</script>

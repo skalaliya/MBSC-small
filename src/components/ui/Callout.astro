@@ -1,0 +1,26 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+interface Props {
+  tone?: 'info' | 'success' | 'warning' | 'danger' | 'brand';
+  title?: string;
+  class?: string;
+  role?: 'status' | 'alert' | 'note';
+}
+const { tone = 'info', title, class: className, role } = Astro.props;
+const tones: Record<string, { box: string; icon: IconName; iconClass: string }> = {
+  info: { box: 'border-navy-700 bg-navy-50', icon: 'info', iconClass: 'text-navy-700' },
+  success: { box: 'border-success bg-[#effaf2]', icon: 'circle-check', iconClass: 'text-success' },
+  warning: { box: 'border-warning bg-[#fff7ea]', icon: 'circle-alert', iconClass: 'text-warning' },
+  danger: { box: 'border-danger bg-[#fdf0f0]', icon: 'circle-alert', iconClass: 'text-danger' },
+  brand: { box: 'border-brand-magenta bg-[#fbeaf4]', icon: 'award', iconClass: 'text-brand-magenta' },
+};
+const t = tones[tone]!;
+---
+
+<div class:list={['flex gap-3 rounded-r-md border-l-4 p-4 text-sm leading-6 text-ink-700', t.box, className]} role={role}>
+  <Icon name={t.icon} size={20} class:list={['mt-0.5', t.iconClass]} />
+  <div>
+    {title && <p class="font-semibold text-ink-900">{title}</p>}
+    <slot />
+  </div>
+</div>

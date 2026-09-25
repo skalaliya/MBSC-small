@@ -1,0 +1,980 @@
+{
+  "year": 2026,
+  "sessions": [
+    {
+      "id": "reservoir-engineering-fundamentals-jan",
+      "course": "reservoir-engineering-fundamentals",
+      "title": {
+        "en": "Reservoir Engineering Fundamentals",
+        "fr": "Fondamentaux de l'ingénierie des réservoirs"
+      },
+      "start": "2026-01-13",
+      "end": "2026-01-17",
+      "month": 1,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "project-management-engineers-jan",
+      "course": "project-management-engineers",
+      "title": {
+        "en": "Project Management for Engineers",
+        "fr": "Gestion de projet pour ingénieurs"
+      },
+      "start": "2026-01-20",
+      "end": "2026-01-22",
+      "month": 1,
+      "category": "crossDiscipline",
+      "delivery": "hybrid",
+      "location": "global",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "geoscience-fundamentals-jan",
+      "course": "geoscience-fundamentals",
+      "title": {
+        "en": "Geoscience Fundamentals",
+        "fr": "Fondamentaux des géosciences"
+      },
+      "start": "2026-01-27",
+      "end": "2026-01-28",
+      "month": 1,
+      "category": "geoscience",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "core-logging-techniques-jan",
+      "course": "core-logging-techniques",
+      "title": {
+        "en": "Core Logging & Geological Logging Techniques",
+        "fr": "Techniques de diagraphie et de logging géologique"
+      },
+      "start": "2026-01-29",
+      "end": "2026-01-31",
+      "month": 1,
+      "category": "geology",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "custom-corporate-programs-jan",
+      "course": "custom-corporate-programs",
+      "title": {
+        "en": "Custom Corporate Programs",
+        "fr": "Programmes d'entreprise sur mesure"
+      },
+      "start": null,
+      "end": null,
+      "month": 1,
+      "category": "crossDiscipline",
+      "delivery": "hybrid",
+      "location": "global",
+      "certificate": "bespokeTraining"
+    },
+    {
+      "id": "drilling-engineering-well-design-feb",
+      "course": "drilling-engineering-well-design",
+      "title": {
+        "en": "Drilling Engineering & Well Design",
+        "fr": "Ingénierie de forage et conception de puits"
+      },
+      "start": "2026-02-03",
+      "end": "2026-02-07",
+      "month": 2,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "mine-planning-optimisation-feb",
+      "course": "mine-planning-optimisation",
+      "title": {
+        "en": "Mine Planning & Optimisation",
+        "fr": "Planification et optimisation minière"
+      },
+      "start": "2026-02-10",
+      "end": "2026-02-12",
+      "month": 2,
+      "category": "mining",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "risk-management-industrial-feb",
+      "course": "risk-management-industrial",
+      "title": {
+        "en": "Risk Management in Industrial Operations",
+        "fr": "Gestion des risques dans les opérations industrielles"
+      },
+      "start": "2026-02-17",
+      "end": "2026-02-18",
+      "month": 2,
+      "category": "crossDiscipline",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "corporateWorkshop"
+    },
+    {
+      "id": "safety-leadership-engineers-feb",
+      "course": "safety-leadership-engineers",
+      "title": {
+        "en": "Safety Leadership for Engineers",
+        "fr": "Leadership en sécurité pour ingénieurs"
+      },
+      "start": "2026-02-19",
+      "end": "2026-02-20",
+      "month": 2,
+      "category": "crossDiscipline",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "structural-geology-exploration-feb",
+      "course": "structural-geology-exploration",
+      "title": {
+        "en": "Structural Geology for Exploration & Mining",
+        "fr": "Géologie structurale pour l'exploration et l'exploitation minière"
+      },
+      "start": "2026-02-24",
+      "end": "2026-02-26",
+      "month": 2,
+      "category": "geoscience",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "production-technology-artificial-lift-mar",
+      "course": "production-technology-artificial-lift",
+      "title": {
+        "en": "Production Technology & Artificial Lift",
+        "fr": "Technologie de production et levage artificiel"
+      },
+      "start": "2026-03-02",
+      "end": "2026-03-06",
+      "month": 3,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "geophysics-subsurface-mar",
+      "course": "geophysics-subsurface",
+      "title": {
+        "en": "Geophysics for Subsurface Interpretation",
+        "fr": "Géophysique pour l'interprétation souterraine"
+      },
+      "start": "2026-03-09",
+      "end": "2026-03-11",
+      "month": 3,
+      "category": "geoscience",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "ventilation-engineering-mar",
+      "course": "ventilation-engineering",
+      "title": {
+        "en": "Ventilation Engineering Essentials",
+        "fr": "Essentiels de l'ingénierie de ventilation"
+      },
+      "start": "2026-03-16",
+      "end": "2026-03-18",
+      "month": 3,
+      "category": "mining",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "digital-oilfield-ai-mar",
+      "course": "digital-oilfield-ai",
+      "title": {
+        "en": "Digital Oilfield & AI Applications in Production",
+        "fr": "Champ pétrolier numérique et applications IA en production"
+      },
+      "start": "2026-03-23",
+      "end": "2026-03-24",
+      "month": 3,
+      "category": "digitalAI",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "ndt-certification-mar",
+      "course": "ndt-certification",
+      "title": {
+        "en": "NDT Certification (Level 1 & 2)",
+        "fr": "Certification CND (Niveau 1 et 2)"
+      },
+      "start": "2026-03-24",
+      "end": "2026-03-28",
+      "month": 3,
+      "category": "mining",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "iso9712Certification"
+    },
+    {
+      "id": "technical-report-writing-mar",
+      "course": "technical-report-writing",
+      "title": {
+        "en": "Technical Report Writing & Communication",
+        "fr": "Rédaction de rapports techniques et communication"
+      },
+      "start": "2026-03-30",
+      "end": "2026-03-31",
+      "month": 3,
+      "category": "crossDiscipline",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "associateProgram"
+    },
+    {
+      "id": "cementing-well-integrity-apr",
+      "course": "cementing-well-integrity",
+      "title": {
+        "en": "Cementing & Well Integrity",
+        "fr": "Cimentation et intégrité des puits"
+      },
+      "start": "2026-04-06",
+      "end": "2026-04-10",
+      "month": 4,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "petrophysics-reservoir-mining-apr",
+      "course": "petrophysics-reservoir-mining",
+      "title": {
+        "en": "Petrophysics for Reservoir & Mining Applications",
+        "fr": "Pétrophysique pour les applications réservoir et minières"
+      },
+      "start": "2026-04-13",
+      "end": "2026-04-15",
+      "month": 4,
+      "category": "geoscience",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "gpr-ndt-interpretation-apr",
+      "course": "gpr-ndt-interpretation",
+      "title": {
+        "en": "Advanced GPR & NDT Interpretation",
+        "fr": "Interprétation avancée GPR et CND"
+      },
+      "start": "2026-04-15",
+      "end": "2026-04-17",
+      "month": 4,
+      "category": "geoscience",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "geostatistics-resource-estimation-apr",
+      "course": "geostatistics-resource-estimation",
+      "title": {
+        "en": "Geostatistics & Resource Estimation",
+        "fr": "Géostatistiques et estimation des ressources"
+      },
+      "start": "2026-04-20",
+      "end": "2026-04-22",
+      "month": 4,
+      "category": "geology",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "blast-design-rock-fragmentation-apr",
+      "course": "blast-design-rock-fragmentation",
+      "title": {
+        "en": "Advanced Blast Design & Rock Fragmentation",
+        "fr": "Conception avancée de tirs et fragmentation des roches"
+      },
+      "start": "2026-04-27",
+      "end": "2026-04-29",
+      "month": 4,
+      "category": "mining",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "well-intervention-workover-may",
+      "course": "well-intervention-workover",
+      "title": {
+        "en": "Well Intervention & Workover Operations",
+        "fr": "Intervention sur puits et opérations de reconditionnement"
+      },
+      "start": "2026-05-04",
+      "end": "2026-05-08",
+      "month": 5,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "geological-field-mapping-may",
+      "course": "geological-field-mapping",
+      "title": {
+        "en": "Geological Field Mapping",
+        "fr": "Cartographie géologique de terrain"
+      },
+      "start": "2026-05-11",
+      "end": "2026-05-13",
+      "month": 5,
+      "category": "geoscience",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "safety-leadership-engineers-may",
+      "course": "safety-leadership-engineers",
+      "title": {
+        "en": "Safety Leadership for Engineers",
+        "fr": "Leadership en sécurité pour ingénieurs"
+      },
+      "start": "2026-05-14",
+      "end": "2026-05-15",
+      "month": 5,
+      "category": "crossDiscipline",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "mine-geology-grade-control-may",
+      "course": "mine-geology-grade-control",
+      "title": {
+        "en": "Mine Geology & Grade Control",
+        "fr": "Géologie minière et contrôle de teneur"
+      },
+      "start": "2026-05-18",
+      "end": "2026-05-20",
+      "month": 5,
+      "category": "geology",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "finance-cost-control-may",
+      "course": "finance-cost-control",
+      "title": {
+        "en": "Finance & Cost Control for Technical Teams",
+        "fr": "Finance et contrôle des coûts pour équipes techniques"
+      },
+      "start": "2026-05-25",
+      "end": "2026-05-26",
+      "month": 5,
+      "category": "crossDiscipline",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "corporateWorkshop"
+    },
+    {
+      "id": "geomechanics-ground-control-may",
+      "course": "geomechanics-ground-control",
+      "title": {
+        "en": "Geomechanics & Ground Control",
+        "fr": "Géomécanique et contrôle du terrain"
+      },
+      "start": "2026-05-27",
+      "end": "2026-05-29",
+      "month": 5,
+      "category": "mining",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "hse-leadership-energy-jun",
+      "course": "hse-leadership-energy",
+      "title": {
+        "en": "HSE Leadership for Energy Professionals",
+        "fr": "Leadership HSE pour professionnels de l'énergie"
+      },
+      "start": "2026-06-01",
+      "end": "2026-06-03",
+      "month": 6,
+      "category": "oilGas",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "geochemistry-exploration-jun",
+      "course": "geochemistry-exploration",
+      "title": {
+        "en": "Geochemistry for Exploration",
+        "fr": "Géochimie pour l'exploration"
+      },
+      "start": "2026-06-08",
+      "end": "2026-06-10",
+      "month": 6,
+      "category": "geoscience",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "ndt-certification-jun",
+      "course": "ndt-certification",
+      "title": {
+        "en": "NDT Certification (Level 1 & 2)",
+        "fr": "Certification CND (Niveau 1 et 2)"
+      },
+      "start": "2026-06-09",
+      "end": "2026-06-13",
+      "month": 6,
+      "category": "mining",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "iso9712Certification"
+    },
+    {
+      "id": "domaining-classification-jun",
+      "course": "domaining-classification",
+      "title": {
+        "en": "Domaining & Classification Techniques",
+        "fr": "Techniques de domainisation et classification"
+      },
+      "start": "2026-06-15",
+      "end": "2026-06-17",
+      "month": 6,
+      "category": "geology",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "safety-leadership-mining-jun",
+      "course": "safety-leadership-mining",
+      "title": {
+        "en": "Safety Leadership for Mining Engineers",
+        "fr": "Leadership en sécurité pour ingénieurs miniers"
+      },
+      "start": "2026-06-22",
+      "end": "2026-06-24",
+      "month": 6,
+      "category": "mining",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "ai-managers-decision-makers-jun",
+      "course": "ai-managers-decision-makers",
+      "title": {
+        "en": "AI for Managers & Decision Makers",
+        "fr": "IA pour managers et décideurs"
+      },
+      "start": "2026-06-29",
+      "end": "2026-06-30",
+      "month": 6,
+      "category": "digitalAI",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "corporateWorkshop"
+    },
+    {
+      "id": "reservoir-engineering-fundamentals-jul",
+      "course": "reservoir-engineering-fundamentals",
+      "title": {
+        "en": "Reservoir Engineering Fundamentals",
+        "fr": "Fondamentaux de l'ingénierie des réservoirs"
+      },
+      "start": "2026-07-06",
+      "end": "2026-07-10",
+      "month": 7,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "geomechanics-essentials-jul",
+      "course": "geomechanics-essentials",
+      "title": {
+        "en": "Geomechanics Essentials",
+        "fr": "Essentiels de géomécanique"
+      },
+      "start": "2026-07-13",
+      "end": "2026-07-15",
+      "month": 7,
+      "category": "geoscience",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "remote-sensing-geologists-jul",
+      "course": "remote-sensing-geologists",
+      "title": {
+        "en": "Applied Remote Sensing for Geologists",
+        "fr": "Télédétection appliquée pour géologues"
+      },
+      "start": "2026-07-20",
+      "end": "2026-07-22",
+      "month": 7,
+      "category": "geology",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "mine-to-mill-optimisation-jul",
+      "course": "mine-to-mill-optimisation",
+      "title": {
+        "en": "Mine-to-Mill Optimisation",
+        "fr": "Optimisation mine-usine"
+      },
+      "start": "2026-07-27",
+      "end": "2026-07-29",
+      "month": 7,
+      "category": "mining",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "custom-corporate-programs-jul",
+      "course": "custom-corporate-programs",
+      "title": {
+        "en": "Custom Corporate Programs",
+        "fr": "Programmes d'entreprise sur mesure"
+      },
+      "start": null,
+      "end": null,
+      "month": 7,
+      "category": "crossDiscipline",
+      "delivery": "onsite",
+      "location": "clientSite",
+      "certificate": "bespokeTraining"
+    },
+    {
+      "id": "drilling-engineering-well-design-aug",
+      "course": "drilling-engineering-well-design",
+      "title": {
+        "en": "Drilling Engineering & Well Design",
+        "fr": "Ingénierie de forage et conception de puits"
+      },
+      "start": "2026-08-03",
+      "end": "2026-08-07",
+      "month": 8,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "structural-geology-exploration-aug",
+      "course": "structural-geology-exploration",
+      "title": {
+        "en": "Structural Geology for Exploration & Mining",
+        "fr": "Géologie structurale pour l'exploration et l'exploitation minière"
+      },
+      "start": "2026-08-10",
+      "end": "2026-08-12",
+      "month": 8,
+      "category": "geoscience",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "safety-leadership-engineers-aug",
+      "course": "safety-leadership-engineers",
+      "title": {
+        "en": "Safety Leadership for Engineers",
+        "fr": "Leadership en sécurité pour ingénieurs"
+      },
+      "start": "2026-08-13",
+      "end": "2026-08-14",
+      "month": 8,
+      "category": "crossDiscipline",
+      "delivery": "onsite",
+      "location": "global",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "leadership-team-development-aug",
+      "course": "leadership-team-development",
+      "title": {
+        "en": "Leadership & Team Development",
+        "fr": "Leadership et développement d'équipe"
+      },
+      "start": "2026-08-17",
+      "end": "2026-08-19",
+      "month": 8,
+      "category": "crossDiscipline",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "mine-planning-optimisation-aug",
+      "course": "mine-planning-optimisation",
+      "title": {
+        "en": "Mine Planning & Optimisation",
+        "fr": "Planification et optimisation minière"
+      },
+      "start": "2026-08-24",
+      "end": "2026-08-26",
+      "month": 8,
+      "category": "mining",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "digital-oilfield-ai-aug",
+      "course": "digital-oilfield-ai",
+      "title": {
+        "en": "Digital Oilfield & AI Applications in Production",
+        "fr": "Champ pétrolier numérique et applications IA en production"
+      },
+      "start": "2026-08-31",
+      "end": "2026-08-31",
+      "month": 8,
+      "category": "digitalAI",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "production-technology-artificial-lift-sep",
+      "course": "production-technology-artificial-lift",
+      "title": {
+        "en": "Production Technology & Artificial Lift",
+        "fr": "Technologie de production et levage artificiel"
+      },
+      "start": "2026-09-07",
+      "end": "2026-09-11",
+      "month": 9,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "geophysics-subsurface-sep",
+      "course": "geophysics-subsurface",
+      "title": {
+        "en": "Geophysics for Subsurface Interpretation",
+        "fr": "Géophysique pour l'interprétation souterraine"
+      },
+      "start": "2026-09-14",
+      "end": "2026-09-16",
+      "month": 9,
+      "category": "geoscience",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "ndt-certification-sep",
+      "course": "ndt-certification",
+      "title": {
+        "en": "NDT Certification (Level 1 & 2)",
+        "fr": "Certification CND (Niveau 1 et 2)"
+      },
+      "start": "2026-09-15",
+      "end": "2026-09-19",
+      "month": 9,
+      "category": "mining",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "iso9712Certification"
+    },
+    {
+      "id": "geostatistics-resource-estimation-sep",
+      "course": "geostatistics-resource-estimation",
+      "title": {
+        "en": "Geostatistics & Resource Estimation",
+        "fr": "Géostatistiques et estimation des ressources"
+      },
+      "start": "2026-09-21",
+      "end": "2026-09-23",
+      "month": 9,
+      "category": "geology",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "industrial-law-regulatory-sep",
+      "course": "industrial-law-regulatory",
+      "title": {
+        "en": "Industrial Law & Regulatory Compliance",
+        "fr": "Droit industriel et conformité réglementaire"
+      },
+      "start": "2026-09-28",
+      "end": "2026-09-29",
+      "month": 9,
+      "category": "crossDiscipline",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "corporateWorkshop"
+    },
+    {
+      "id": "cementing-well-integrity-oct",
+      "course": "cementing-well-integrity",
+      "title": {
+        "en": "Cementing & Well Integrity",
+        "fr": "Cimentation et intégrité des puits"
+      },
+      "start": "2026-10-05",
+      "end": "2026-10-09",
+      "month": 10,
+      "category": "oilGas",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "gpr-ndt-interpretation-oct",
+      "course": "gpr-ndt-interpretation",
+      "title": {
+        "en": "Advanced GPR & NDT Interpretation",
+        "fr": "Interprétation avancée GPR et CND"
+      },
+      "start": "2026-10-07",
+      "end": "2026-10-09",
+      "month": 10,
+      "category": "geoscience",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "petrophysics-reservoir-mining-oct",
+      "course": "petrophysics-reservoir-mining",
+      "title": {
+        "en": "Petrophysics for Reservoir & Mining Applications",
+        "fr": "Pétrophysique pour les applications réservoir et minières"
+      },
+      "start": "2026-10-12",
+      "end": "2026-10-14",
+      "month": 10,
+      "category": "geoscience",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "core-logging-techniques-oct",
+      "course": "core-logging-techniques",
+      "title": {
+        "en": "Core Logging & Geological Logging Techniques",
+        "fr": "Techniques de diagraphie et de logging géologique"
+      },
+      "start": "2026-10-19",
+      "end": "2026-10-21",
+      "month": 10,
+      "category": "geology",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "ventilation-engineering-oct",
+      "course": "ventilation-engineering",
+      "title": {
+        "en": "Ventilation Engineering Essentials",
+        "fr": "Essentiels de l'ingénierie de ventilation"
+      },
+      "start": "2026-10-26",
+      "end": "2026-10-28",
+      "month": 10,
+      "category": "mining",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "well-intervention-workover-nov",
+      "course": "well-intervention-workover",
+      "title": {
+        "en": "Well Intervention & Workover Operations",
+        "fr": "Intervention sur puits et opérations de reconditionnement"
+      },
+      "start": "2026-11-02",
+      "end": "2026-11-04",
+      "month": 11,
+      "category": "oilGas",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "geological-field-mapping-nov",
+      "course": "geological-field-mapping",
+      "title": {
+        "en": "Geological Field Mapping",
+        "fr": "Cartographie géologique de terrain"
+      },
+      "start": "2026-11-09",
+      "end": "2026-11-11",
+      "month": 11,
+      "category": "geoscience",
+      "delivery": "onsite",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "ndt-certification-nov",
+      "course": "ndt-certification",
+      "title": {
+        "en": "NDT Certification (Level 1 & 2)",
+        "fr": "Certification CND (Niveau 1 et 2)"
+      },
+      "start": "2026-11-09",
+      "end": "2026-11-13",
+      "month": 11,
+      "category": "mining",
+      "delivery": "onsite",
+      "location": "global",
+      "certificate": "iso9712Certification"
+    },
+    {
+      "id": "mine-geology-grade-control-nov",
+      "course": "mine-geology-grade-control",
+      "title": {
+        "en": "Mine Geology & Grade Control",
+        "fr": "Géologie minière et contrôle de teneur"
+      },
+      "start": "2026-11-16",
+      "end": "2026-11-18",
+      "month": 11,
+      "category": "geology",
+      "delivery": "onsite",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "blast-design-rock-fragmentation-nov",
+      "course": "blast-design-rock-fragmentation",
+      "title": {
+        "en": "Advanced Blast Design & Rock Fragmentation",
+        "fr": "Conception avancée de tirs et fragmentation des roches"
+      },
+      "start": "2026-11-23",
+      "end": "2026-11-25",
+      "month": 11,
+      "category": "mining",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "safety-leadership-engineers-nov",
+      "course": "safety-leadership-engineers",
+      "title": {
+        "en": "Safety Leadership for Engineers",
+        "fr": "Leadership en sécurité pour ingénieurs"
+      },
+      "start": "2026-11-26",
+      "end": "2026-11-27",
+      "month": 11,
+      "category": "crossDiscipline",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "ai-managers-decision-makers-nov",
+      "course": "ai-managers-decision-makers",
+      "title": {
+        "en": "AI for Managers & Decision Makers",
+        "fr": "IA pour managers et décideurs"
+      },
+      "start": "2026-11-30",
+      "end": "2026-11-30",
+      "month": 11,
+      "category": "digitalAI",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "corporateWorkshop"
+    },
+    {
+      "id": "hse-leadership-energy-dec",
+      "course": "hse-leadership-energy",
+      "title": {
+        "en": "HSE Leadership for Energy Professionals",
+        "fr": "Leadership HSE pour professionnels de l'énergie"
+      },
+      "start": "2026-12-01",
+      "end": "2026-12-03",
+      "month": 12,
+      "category": "oilGas",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "geoscience-fundamentals-dec",
+      "course": "geoscience-fundamentals",
+      "title": {
+        "en": "Geoscience Fundamentals",
+        "fr": "Fondamentaux des géosciences"
+      },
+      "start": "2026-12-07",
+      "end": "2026-12-09",
+      "month": 12,
+      "category": "geoscience",
+      "delivery": "hybrid",
+      "location": "melbourne",
+      "certificate": "technicalCertification"
+    },
+    {
+      "id": "project-management-engineers-dec",
+      "course": "project-management-engineers",
+      "title": {
+        "en": "Project Management for Engineers",
+        "fr": "Gestion de projet pour ingénieurs"
+      },
+      "start": "2026-12-10",
+      "end": "2026-12-11",
+      "month": 12,
+      "category": "crossDiscipline",
+      "delivery": "virtual",
+      "location": "global",
+      "certificate": "professionalProgram"
+    },
+    {
+      "id": "geomechanics-ground-control-dec",
+      "course": "geomechanics-ground-control",
+      "title": {
+        "en": "Geomechanics & Ground Control",
+        "fr": "Géomécanique et contrôle du terrain"
+      },
+      "start": "2026-12-14",
+      "end": "2026-12-16",
+      "month": 12,
+      "category": "mining",
+      "delivery": "hybrid",
+      "location": "perth",
+      "certificate": "technicalCertification"
+    }
+  ]
+}

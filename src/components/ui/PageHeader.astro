@@ -1,0 +1,66 @@
+---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Breadcrumbs, { type Crumb } from './Breadcrumbs.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  crumbs?: Crumb[];
+  crumbLabel?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  meta?: { label: string; value: string }[];
+}
+const { eyebrow, title, lead, crumbs, crumbLabel = 'Breadcrumb', image, imageAlt = '', meta } = Astro.props;
+---
+
+<header class="relative isolate overflow-hidden bg-navy-950 text-navy-100">
+  {
+    image && (
+      <div class="absolute inset-0 -z-10">
+        <Picture
+          src={image}
+          alt={imageAlt}
+          formats={['avif', 'webp']}
+          widths={[640, 1024, 1600, 1920]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-full object-cover"
+        />
+        <div class="absolute inset-0 bg-linear-to-r from-navy-950 via-navy-950/85 to-navy-950/40" />
+      </div>
+    )
+  }
+  <div class="absolute inset-0 -z-10 plan-grid" aria-hidden="true"></div>
+  <div class="container-site py-14 sm:py-20 lg:py-24">
+    {crumbs && crumbs.length > 1 && <Breadcrumbs items={crumbs} label={crumbLabel} />}
+    <div class="max-w-3xl">
+      {
+        eyebrow && (
+          <p class="mb-4 flex flex-col gap-3">
+            <span class="datum-rule" aria-hidden="true" />
+            <span class="text-xs font-semibold tracking-[0.12em] text-brand-lilac uppercase">{eyebrow}</span>
+          </p>
+        )
+      }
+      <h1 class="font-display text-4xl font-bold text-white sm:text-5xl">{title}</h1>
+      {lead && <p class="mt-5 text-lg leading-8 text-navy-200 sm:text-xl">{lead}</p>}
+      {Astro.slots.has('actions') && <div class="mt-8 flex flex-wrap gap-3"><slot name="actions" /></div>}
+    </div>
+    {
+      meta && meta.length > 0 && (
+        <dl class="mt-10 grid max-w-4xl grid-cols-2 gap-x-8 gap-y-5 border-t border-white/10 pt-8 sm:grid-cols-4">
+          {meta.map((m) => (
+            <div>
+              <dt class="text-xs font-semibold tracking-[0.1em] text-navy-200 uppercase">{m.label}</dt>
+              <dd class="mt-1 font-medium text-white">{m.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+  </div>
+</header>

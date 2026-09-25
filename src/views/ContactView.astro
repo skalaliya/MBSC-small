@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Icon from '../components/ui/Icon.astro';
+import FAQ from '../components/ui/FAQ.astro';
+import ContactForm from '../components/ContactForm.astro';
+import header from '../assets/images/header-melbourne-skyline.jpg';
+import { localizePath, toLocale, useT } from '../i18n/utils';
+import { breadcrumbs, faqPage, organization } from '../lib/jsonld';
+import { site } from '../data/site';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const c = t.contact;
+const L = (p: string) => localizePath(p, locale);
+const crumbs = [
+  { label: t.nav.home, href: L('/') },
+  { label: t.nav.contact, href: L('/contact') },
+];
+const address = [site.address.street, [site.address.locality, site.address.region, site.address.postcode].filter(Boolean).join(' ')]
+  .filter(Boolean)
+  .join(', ');
+const mapQuery = encodeURIComponent(address ? `${site.legalName}, ${address}, Australia` : 'Melbourne VIC, Australia');
+const mapSrc = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+---
+
+<Base title={t.meta.pages.contact.title} description={t.meta.pages.contact.description} jsonLd={[breadcrumbs(crumbs), organization(), faqPage(t.faq.contact)]}>
+  <PageHeader eyebrow={c.eyebrow} title={c.title} lead={c.lead} crumbs={crumbs} crumbLabel={t.a11y.breadcrumb} image={header} imageAlt="" />
+
+  <Section tone="surface" labelledby="form-title" reveal={false}>
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <ContactForm />
+      </div>
+      <aside class="space-y-6 lg:col-span-5" aria-labelledby="office-title">
+        <div class="rounded-lg bg-navy-950 p-7 text-navy-100">
+          <h2 id="office-title" class="font-display text-xl font-bold text-white">{c.office.title}</h2>
+          <dl class="mt-6 space-y-5">
+            <div class="flex gap-4">
+              <Icon name="map-pin" size={20} class="mt-0.5 text-brand-lilac" />
+              <div>
+                <dt class="sr-only">{c.office.title}</dt>
+                <dd>{address || c.office.addressFallback}</dd>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <Icon name="phone" size={20} class="mt-0.5 text-brand-lilac" />
+              <div>
+                <dt class="text-xs font-semibold tracking-[0.1em] text-navy-200 uppercase">{c.office.phone}</dt>
+                <dd><a href={site.phoneHref} class="text-lg font-semibold text-white tabular-nums hover:underline">{site.phone}</a></dd>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <Icon name="mail" size={20} class="mt-0.5 text-brand-lilac" />
+              <div>
+                <dt class="text-xs font-semibold tracking-[0.1em] text-navy-200 uppercase">{c.office.email}</dt>
+                <dd><a href={`mailto:${site.email}`} class="font-semibold break-all text-white hover:underline">{site.email}</a></dd>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <Icon name="clock" size={20} class="mt-0.5 text-brand-lilac" />
+              <div>
+                <dt class="text-xs font-semibold tracking-[0.1em] text-navy-200 uppercase">{c.office.hours}</dt>
+                <dd>{t.common.hours}</dd>
+              </div>
+            </div>
+          </dl>
+        </div>
+
+        <div class="overflow-hidden rounded-lg ring-1 ring-line" data-map>
+          <div class="flex aspect-[4/3] flex-col items-center justify-center gap-4 bg-paper p-6 text-center plan-grid-light" data-map-placeholder>
+            <Icon name="map" size={32} class="text-navy-700" />
+            <p class="max-w-xs text-sm text-ink-500">{c.map.notice}</p>
+            <button type="button" class="inline-flex h-10 items-center gap-2 rounded-sm bg-white px-4 text-sm font-semibold text-navy-900 ring-1 ring-line ring-inset hover:bg-navy-50" data-map-load data-src={mapSrc} data-title={c.map.iframeTitle}>
+              <Icon name="map-pin" size={16} />
+              {c.map.load}
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </Section>
+
+  <Section tone="paper" labelledby="faq-title">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading id="faq-title" title={c.faqTitle} class="mb-0" />
+      </div>
+      <FAQ items={t.faq.contact} class="lg:col-span-8" />
+    </div>
+  </Section>
+</Base>
+
+<script>
+  // Load Google Maps only after the visitor asks for it (no third-party requests or cookies before then).
+  document.querySelector<HTMLButtonElement>('[data-map-load]')?.addEventListener('click', (e) => {
+    const btn = e.currentTarget as HTMLButtonElement;
+    const holder = btn.closest('[data-map]');
+    if (!holder || !btn.dataset.src) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = btn.dataset.src;
+    iframe.title = btn.dataset.title ?? 'Map';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.className = 'block aspect-[4/3] w-full border-0';
+    holder.replaceChildren(iframe);
+  });
+</script>

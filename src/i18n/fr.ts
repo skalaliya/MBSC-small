@@ -225,6 +225,7 @@ export const fr: UI = {
         digitalAI: 'Numérique et IA',
       },
       deliveryModes: { onsite: 'Sur site', virtual: 'À distance', hybrid: 'Hybride' },
+      locations: { melbourne: 'Melbourne', perth: 'Perth', global: 'International', clientSite: 'Site client' },
       certificates: {
         technicalCertification: 'Certification technique',
         professionalProgram: 'Programme professionnel',
@@ -252,28 +253,24 @@ export const fr: UI = {
         model: 'Système GPR haute fréquence',
         measures: 'Armatures, gaines et vides dans le béton',
         use: 'Détection avant carottage, découpe ou ancrage ; cartographie du sous-sol',
-        alt: 'Géoradar balayant une dalle en béton',
       },
       ultrasonic: {
         name: 'Appareil d’auscultation sonique',
         model: 'Proceq Pundit Lab+',
         measures: 'Vitesse de propagation des ultrasons dans le béton et d’autres matériaux',
         use: 'Homogénéité du béton, profondeur de fissures et estimation de résistance',
-        alt: 'Appareil d’auscultation sonique sur une surface en béton',
       },
       coverMeter: {
         name: 'Pachomètre',
         model: 'Proceq Profometer 6',
         measures: 'Position des armatures, enrobage et diamètre des barres',
         use: 'Diagnostics de durabilité et contrôles avant perçage',
-        alt: 'Pachomètre localisant les armatures dans un mur en béton',
       },
       vibration: {
         name: 'Moniteur de vibrations',
         model: 'Système de géophones triaxiaux',
         measures: 'Vitesse particulaire de crête sur trois axes',
         use: 'Conformité vibratoire des chantiers et tirs de mines',
-        alt: 'Géophone de surveillance des vibrations installé sur site',
       },
     },
     calibration: 'Tous les équipements sont étalonnés selon les spécifications du fabricant et livrés avec un certificat d’étalonnage en cours de validité.',
@@ -397,6 +394,7 @@ export const fr: UI = {
     lead: 'La page a peut-être été déplacée. Ces liens vous remettront sur la bonne voie.',
     home: 'Retour à l’accueil',
   },
+  credits: { intro: 'Photographies utilisées sous licence Unsplash. Merci aux photographes.', own: 'Les photos de projets de Moomba, du North West Shelf, du Metro Tunnel, du pipeline de la banlieue ouest et du laboratoire appartiennent à MBSC Australia.' },
   testimonials: { sample: 'Témoignage d’exemple pour la mise en page' },
   faq: {
     services: [

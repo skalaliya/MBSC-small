@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CTABand from '../components/ui/CTABand.astro';
+import header from '../assets/images/header-mine-aerial.jpg';
+import { localizePath, toLocale, useT } from '../i18n/utils';
+import { getProjects } from '../lib/queries';
+import { SECTORS } from '../lib/content';
+import { breadcrumbs } from '../lib/jsonld';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const L = (p: string) => localizePath(p, locale);
+const projects = await getProjects(locale);
+const present = SECTORS.filter((s) => projects.some((p) => p.data.sector === s));
+const crumbs = [
+  { label: t.nav.home, href: L('/') },
+  { label: t.nav.projects, href: L('/projects') },
+];
+---
+
+<Base title={t.meta.pages.projects.title} description={t.meta.pages.projects.description} jsonLd={[breadcrumbs(crumbs)]}>
+  <PageHeader eyebrow={t.projects.eyebrow} title={t.projects.title} lead={t.projects.lead} crumbs={crumbs} crumbLabel={t.a11y.breadcrumb} image={header} imageAlt="" />
+
+  <Section tone="paper" labelledby="projects-list" reveal={false}>
+    <h2 id="projects-list" class="sr-only">{t.projects.title}</h2>
+    <div class="projects">
+      <fieldset class="mb-8 flex flex-wrap items-center gap-2">
+        <legend class="mb-3 w-full text-sm font-medium text-ink-500">{t.projects.filterLabel}</legend>
+        {
+          (['all', ...present] as const).map((s) => (
+            <label class="cursor-pointer">
+              <input type="radio" name="sector" value={s} id={`f-${s}`} class="peer sr-only" checked={s === 'all'} />
+              <span class="inline-flex h-9 items-center rounded-full px-4 text-sm font-medium text-ink-700 ring-1 ring-line ring-inset transition-colors peer-checked:bg-navy-950 peer-checked:text-white peer-checked:ring-navy-950 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-violet hover:bg-white">
+                {s === 'all' ? t.projects.all : t.projects.sectors[s]}
+                <span class="ml-1.5 text-xs opacity-60 tabular-nums">
+                  {s === 'all' ? projects.length : projects.filter((p) => p.data.sector === s).length}
+                </span>
+              </span>
+            </label>
+          ))
+        }
+      </fieldset>
+      <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((p) => <li data-sector={p.data.sector}><ProjectCard project={p} /></li>)}
+      </ul>
+    </div>
+  </Section>
+
+  <CTABand title={t.projects.ctaTitle} lead={t.projects.ctaLead} primary={{ label: t.cta.primary, href: L('/contact') }} />
+</Base>
+
+<style>
+  /* Sector filter without JavaScript: the checked radio hides non-matching cards. */
+  .projects:has(#f-oilGas:checked) li[data-sector]:not([data-sector='oilGas']),
+  .projects:has(#f-mining:checked) li[data-sector]:not([data-sector='mining']),
+  .projects:has(#f-civil:checked) li[data-sector]:not([data-sector='civil']),
+  .projects:has(#f-marine:checked) li[data-sector]:not([data-sector='marine']) {
+    display: none;
+  }
+</style>

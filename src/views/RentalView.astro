@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import SpecTable from '../components/ui/SpecTable.astro';
+import Callout from '../components/ui/Callout.astro';
+import Icon, { type IconName } from '../components/ui/Icon.astro';
+import FAQ from '../components/ui/FAQ.astro';
+import Button from '../components/ui/Button.astro';
+import CTABand from '../components/ui/CTABand.astro';
+import header from '../assets/images/header-rebar-deck.jpg';
+import { localizePath, toLocale, useT } from '../i18n/utils';
+import { breadcrumbs, faqPage } from '../lib/jsonld';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const r = t.rental;
+const L = (p: string) => localizePath(p, locale);
+const items: { key: keyof typeof r.items; icon: IconName }[] = [
+  { key: 'gpr', icon: 'radar' },
+  { key: 'ultrasonic', icon: 'activity' },
+  { key: 'coverMeter', icon: 'scan-line' },
+  { key: 'vibration', icon: 'waves' },
+];
+const crumbs = [
+  { label: t.nav.home, href: L('/') },
+  { label: t.nav.rental, href: L('/rental') },
+];
+const quote = (name: string) => `${L('/contact')}?topic=rental&ref=${encodeURIComponent(name)}`;
+---
+
+<Base title={t.meta.pages.rental.title} description={t.meta.pages.rental.description} jsonLd={[breadcrumbs(crumbs), faqPage(t.faq.rental)]}>
+  <PageHeader eyebrow={r.eyebrow} title={r.title} lead={r.lead} crumbs={crumbs} crumbLabel={t.a11y.breadcrumb} image={header} imageAlt="" />
+
+  <Section tone="paper" labelledby="equipment-title">
+    <h2 id="equipment-title" class="sr-only">{r.title}</h2>
+    <ul class="grid gap-6 md:grid-cols-2">
+      {
+        items.map(({ key, icon }) => {
+          const it = r.items[key];
+          return (
+            <li class="flex flex-col rounded-lg bg-white ring-1 ring-line">
+              <div class="flex items-start gap-5 border-b border-line p-6 sm:p-7">
+                <span class="relative flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-md bg-navy-950 text-white">
+                  <span class="absolute inset-0 plan-grid" aria-hidden="true" />
+                  <Icon name={icon} size={26} class="relative" />
+                </span>
+                <div>
+                  <h3 class="font-display text-xl font-bold">{it.name}</h3>
+                  <p class="mt-1 text-sm text-ink-500">{it.model}</p>
+                </div>
+              </div>
+              <SpecTable
+                class="flex-1 px-6 sm:px-7"
+                rows={[
+                  { label: r.specs.measures, value: it.measures },
+                  { label: r.specs.use, value: it.use },
+                  { label: r.specs.supplied, value: r.supplied },
+                ]}
+              />
+              <div class="p-6 pt-4 sm:px-7">
+                <Button href={quote(it.name)} variant="primary" size="sm" iconEnd="arrow-right" data-track="rental_quote">
+                  {t.common.requestQuote}
+                </Button>
+              </div>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <Callout tone="success" class="mt-8">{r.calibration}</Callout>
+  </Section>
+
+  <Section tone="surface" labelledby="faq-title">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading id="faq-title" title={r.termsTitle} class="mb-0" />
+      </div>
+      <FAQ items={t.faq.rental} class="lg:col-span-8" />
+    </div>
+  </Section>
+
+  <CTABand title={r.ctaTitle} lead={r.ctaLead} primary={{ label: t.common.requestQuote, href: `${L('/contact')}?topic=rental` }} />
+</Base>

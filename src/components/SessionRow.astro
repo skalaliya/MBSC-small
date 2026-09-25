@@ -1,0 +1,68 @@
+---
+import Badge from './ui/Badge.astro';
+import Icon from './ui/Icon.astro';
+import { fmt, intlLocale, localizePath, toLocale, useT } from '../i18n/utils';
+import { CATEGORY_DOT } from '../lib/content';
+import { daysInclusive, formatRange } from '../lib/dates';
+import { sessionDates } from '../lib/queries';
+import type { Session } from '../lib/calendar-model';
+
+interface Props {
+  session: Session;
+  year: number;
+  showYear?: boolean;
+  compact?: boolean;
+  hidden?: boolean;
+}
+const { session: s, year, showYear = false, compact = false, hidden = false } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const c = t.training.calendar;
+const dates = sessionDates(s);
+const title = s.title[locale];
+const when = dates ? formatRange(dates.start, dates.end, intlLocale[locale], showYear) : c.onRequest;
+const length = dates ? daysInclusive(dates.start, dates.end) : null;
+const duration = length === null ? c.custom : length === 1 ? c.dayOne : fmt(c.days, { count: length });
+const ref = `${title} · ${dates ? formatRange(dates.start, dates.end, intlLocale[locale], true) : `${c.onRequest} (${year})`}`;
+const enquire = `${localizePath('/contact', locale)}?topic=training&ref=${encodeURIComponent(ref)}`;
+---
+
+<li
+  class="group/row grid grid-cols-1 gap-3 py-5 sm:grid-cols-[9.5rem_1fr_auto] sm:items-center sm:gap-6 data-[past]:opacity-55"
+  data-session
+  hidden={hidden}
+  data-end={s.end ?? ''}
+  data-category={s.category}
+  data-delivery={s.delivery}
+  data-location={s.location}
+>
+  <div class="flex items-baseline gap-2 sm:block">
+    {
+      dates ? (
+        <time datetime={s.start} class="font-display text-base font-bold text-ink-900 tabular-nums">{when}</time>
+      ) : (
+        <span class="font-display text-base font-bold text-ink-900">{when}</span>
+      )
+    }
+    <span class="text-sm text-ink-500 sm:mt-0.5 sm:block">{duration}</span>
+    <span class="hidden text-xs font-semibold tracking-wide text-ink-500 uppercase group-data-[past]/row:inline sm:group-data-[past]/row:block">{c.past}</span>
+  </div>
+  <div class="min-w-0">
+    <h3 class:list={['font-semibold text-ink-900', compact ? 'text-base' : 'text-lg']}>{title}</h3>
+    <div class="mt-2 flex flex-wrap gap-2">
+      <Badge tone="muted" dot={CATEGORY_DOT[s.category]}>{c.categories[s.category]}</Badge>
+      <Badge tone="muted">{c.deliveryModes[s.delivery]}</Badge>
+      <Badge tone="muted">{c.locations[s.location]}</Badge>
+      {!compact && <Badge tone="navy">{c.certificates[s.certificate]}</Badge>}
+    </div>
+  </div>
+  <a
+    href={enquire}
+    class="inline-flex h-9 items-center justify-center gap-1.5 self-start rounded-sm px-3.5 text-sm font-semibold text-navy-700 ring-1 ring-line ring-inset hover:bg-navy-50 hover:ring-navy-200 sm:self-center group-data-[past]/row:hidden"
+    aria-label={fmt(c.enquireLabel, { course: title })}
+    data-track="training_enquire"
+  >
+    {c.enquire}
+    <Icon name="arrow-right" size={15} />
+  </a>
+</li>

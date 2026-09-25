@@ -1,0 +1,38 @@
+---
+import { site } from '../data/site';
+import { fmt, intlLocale, toLocale, useT } from '../i18n/utils';
+import { parseISODate } from '../lib/dates';
+interface Props {
+  dark?: boolean;
+}
+const { dark = true } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const nf = (v: number, d: number) => new Intl.NumberFormat(intlLocale[locale], { minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
+const basis = new Intl.DateTimeFormat(intlLocale[locale], { month: 'long', year: 'numeric' }).format(parseISODate(site.stats.basisDate));
+---
+
+<div>
+  <dl class:list={['grid grid-cols-2 gap-px overflow-hidden rounded-lg lg:grid-cols-4', dark ? 'bg-white/10' : 'bg-line']}>
+    {
+      site.stats.items.map((s) => (
+        <div class:list={['px-5 py-8 sm:px-8', dark ? 'bg-navy-950' : 'bg-white']}>
+          <dt class:list={['text-sm leading-5', dark ? 'text-navy-200' : 'text-ink-500']}>{t.stats.labels[s.key]}</dt>
+          <dd
+            class:list={['mt-2 font-display text-4xl font-bold tabular-nums sm:text-5xl', dark ? 'text-white' : 'text-ink-900']}
+            data-count={s.value}
+            data-decimals={s.decimals}
+            data-prefix={s.prefix}
+            data-suffix={s.suffix}
+            data-locale={intlLocale[locale]}
+          >
+            {s.prefix}
+            {nf(s.value, s.decimals)}
+            {s.suffix}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+  <p class:list={['mt-4 text-xs', dark ? 'text-navy-200' : 'text-ink-500']}>{fmt(t.stats.footnote, { date: basis })}</p>
+</div>

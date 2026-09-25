@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import TrainingView from '../../views/TrainingView.astro';
+import { defaultYear } from '../../lib/queries';
+
+// The current (default) year lives at /training; other years get their own page.
+export async function getStaticPaths() {
+  const years = (await getCollection('calendars')).map((c) => c.data.year);
+  const primary = defaultYear(years);
+  return years.filter((y) => y !== primary).map((y) => ({ params: { year: String(y) } }));
+}
+const year = Number(Astro.params.year);
+---
+
+<TrainingView year={year} />

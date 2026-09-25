@@ -1,0 +1,45 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './ui/Icon.astro';
+import Badge from './ui/Badge.astro';
+import { localizePath, toLocale, useT } from '../i18n/utils';
+import type { Project } from '../lib/queries';
+
+interface Props {
+  project: Project;
+  headingLevel?: 'h2' | 'h3';
+}
+const { project, headingLevel: H = 'h3' } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const p = project.data;
+---
+
+<article class="group relative flex h-full flex-col overflow-hidden rounded-lg bg-white ring-1 ring-line transition-shadow duration-300 hover:shadow-lift" data-sector={p.sector}>
+  <div class="relative aspect-[3/2] overflow-hidden bg-navy-100">
+    <Picture
+      src={p.image}
+      alt=""
+      formats={['avif', 'webp']}
+      widths={[400, 640, 900]}
+      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+    />
+    <Badge tone="dark" class="absolute top-3 left-3 bg-navy-950/70 backdrop-blur-sm">{t.projects.sectors[p.sector]}</Badge>
+  </div>
+  <div class="flex flex-1 flex-col p-6">
+    <p class="flex items-center gap-1.5 text-sm text-ink-500">
+      <Icon name="map-pin" size={14} />
+      {p.location}
+    </p>
+    <H class="mt-2 font-display text-lg leading-snug font-bold text-ink-900">
+      <a href={localizePath(`/projects/${p.slug}`, locale)} class="after:absolute after:inset-0 focus-visible:outline-none">{p.title}</a>
+    </H>
+    <p class="mt-2 flex-1 text-[0.9375rem] leading-7 text-ink-500">{p.summary}</p>
+    <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-700 group-hover:text-navy-950" aria-hidden="true">
+      {t.common.readCaseStudy}
+      <Icon name="arrow-right" size={16} class="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
+    </span>
+  </div>
+  <span class="pointer-events-none absolute inset-0 rounded-lg ring-2 ring-transparent group-has-[a:focus-visible]:ring-brand-violet" aria-hidden="true"></span>
+</article>

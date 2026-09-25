@@ -1,0 +1,49 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  align?: 'start' | 'center';
+  as?: 'h1' | 'h2' | 'h3';
+  dark?: boolean;
+  id?: string;
+  class?: string;
+  size?: 'md' | 'lg';
+}
+const { eyebrow, title, lead, align = 'start', as: Tag = 'h2', dark = false, id, class: className, size = 'md' } = Astro.props;
+const hasAction = Astro.slots.has('action');
+---
+
+<div
+  class:list={[
+    'mb-10 sm:mb-12',
+    hasAction && 'flex flex-col gap-6 md:flex-row md:items-end md:justify-between',
+    align === 'center' && 'mx-auto max-w-3xl text-center',
+    className,
+  ]}
+>
+  <div class:list={[align === 'start' && 'max-w-3xl']}>
+    {
+      eyebrow && (
+        <p class:list={['mb-4 flex flex-col gap-3', align === 'center' && 'items-center']}>
+          <span class="datum-rule" aria-hidden="true" />
+          <span class:list={['text-xs font-semibold tracking-[0.12em] uppercase', dark ? 'text-brand-lilac' : 'text-brand-magenta']}>
+            {eyebrow}
+          </span>
+        </p>
+      )
+    }
+    <Tag
+      id={id}
+      class:list={[
+        'font-display font-bold',
+        size === 'lg' ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl',
+        dark ? 'text-white' : 'text-ink-900',
+      ]}
+    >
+      {title}
+    </Tag>
+    {lead && <p class:list={['mt-4 text-lg leading-8', dark ? 'text-navy-200' : 'text-ink-500']}>{lead}</p>}
+  </div>
+  {hasAction && <div class="shrink-0"><slot name="action" /></div>}
+</div>

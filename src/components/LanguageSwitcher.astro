@@ -1,0 +1,48 @@
+---
+import { alternatePath, htmlLang, toLocale, useT, type Locale } from '../i18n/utils';
+interface Props {
+  dark?: boolean;
+  class?: string;
+}
+const { dark = false, class: className } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const options: { code: Locale; short: string; long: string }[] = [
+  { code: 'en', short: t.lang.enShort, long: t.lang.en },
+  { code: 'fr', short: t.lang.frShort, long: t.lang.fr },
+];
+---
+
+<nav aria-label={t.a11y.languageSwitcher} class={className}>
+  <ul class:list={['flex items-center rounded-sm p-0.5 text-xs font-semibold', dark ? 'bg-white/10' : 'bg-paper ring-1 ring-line ring-inset']}>
+    {
+      options.map((o) => {
+        const current = o.code === locale;
+        return (
+          <li>
+            <a
+              href={alternatePath(Astro.url.pathname, o.code)}
+              hreflang={htmlLang[o.code]}
+              lang={htmlLang[o.code]}
+              aria-current={current ? 'true' : undefined}
+              aria-label={o.long}
+              data-lang-switch={o.code}
+              class:list={[
+                'block rounded-[3px] px-2.5 py-1.5 tracking-[0.06em] transition-colors',
+                current
+                  ? dark
+                    ? 'bg-white text-navy-950'
+                    : 'bg-navy-950 text-white'
+                  : dark
+                    ? 'text-navy-100 hover:text-white'
+                    : 'text-ink-500 hover:text-ink-900',
+              ]}
+            >
+              {o.short}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

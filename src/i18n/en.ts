@@ -241,6 +241,7 @@ export const en = {
         digitalAI: 'Digital & AI',
       },
       deliveryModes: { onsite: 'On site', virtual: 'Virtual', hybrid: 'Hybrid' },
+      locations: { melbourne: 'Melbourne', perth: 'Perth', global: 'Global', clientSite: 'Client site' },
       certificates: {
         technicalCertification: 'Technical certification',
         professionalProgram: 'Professional program',
@@ -268,28 +269,24 @@ export const en = {
         model: 'High-frequency GPR system',
         measures: 'Reinforcement, conduits and voids in concrete',
         use: 'Scanning before coring, cutting or anchoring; subsurface mapping',
-        alt: 'Ground penetrating radar unit scanning a concrete slab',
       },
       ultrasonic: {
         name: 'Ultrasonic pulse velocity tester',
         model: 'Proceq Pundit Lab+',
         measures: 'Pulse velocity through concrete and other materials',
         use: 'Concrete uniformity, crack depth and strength estimation',
-        alt: 'Ultrasonic pulse velocity tester on a concrete surface',
       },
       coverMeter: {
         name: 'Cover meter',
         model: 'Proceq Profometer 6',
         measures: 'Rebar location, cover depth and bar diameter',
         use: 'Durability assessments and pre-drilling checks',
-        alt: 'Cover meter locating reinforcement in a concrete wall',
       },
       vibration: {
         name: 'Vibration monitor',
         model: 'Tri-axial geophone system',
         measures: 'Peak particle velocity on three axes',
         use: 'Construction and blasting vibration compliance',
-        alt: 'Vibration monitoring geophone installed on site',
       },
     },
     calibration: 'All equipment is calibrated to the manufacturer’s specification and supplied with a current calibration certificate.',
@@ -413,6 +410,7 @@ export const en = {
     lead: 'The page may have moved. These links will get you back on track.',
     home: 'Go to the home page',
   },
+  credits: { intro: 'Photographs used under the Unsplash License. Thank you to the photographers.', own: 'Project photos of Moomba, the North West Shelf, the Metro Tunnel, the western suburbs pipeline and the laboratory belong to MBSC Australia.' },
   testimonials: { sample: 'Sample testimonial for layout preview' },
   faq: {
     services: [
