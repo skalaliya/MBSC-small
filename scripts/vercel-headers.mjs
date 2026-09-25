@@ -24,17 +24,13 @@ const securityHeaders = {
 
 const added = [
   { src: '/(.*)', headers: securityHeaders, continue: true },
-  // Links from the old site used ?lang=fr / ?lang=en on the home page.
+  // Links from the old site used ?lang=fr / ?lang=en on the home page. Only French needs a
+  // redirect: Vercel carries the query string over to the Location, so redirecting ?lang=en to /
+  // would loop forever. /?lang=en simply serves the English home page, whose canonical is /.
   {
     src: '^/$',
     has: [{ type: 'query', key: 'lang', value: 'fr' }],
     headers: { Location: '/fr' },
-    status: 308,
-  },
-  {
-    src: '^/$',
-    has: [{ type: 'query', key: 'lang', value: 'en' }],
-    headers: { Location: '/' },
     status: 308,
   },
 ];

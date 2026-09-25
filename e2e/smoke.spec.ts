@@ -59,7 +59,18 @@ test('unknown paths return the 404 page with status 404', async ({ page }) => {
 test('legacy ?lang=fr links redirect to /fr', async ({ request }) => {
   const res = await request.get('/?lang=fr', { maxRedirects: 0 });
   expect(res.status()).toBe(308);
-  expect(res.headers()['location']).toBe('/fr');
+  expect(res.headers()['location']).toMatch(/^\/fr(\?|$)/);
+  const followed = await request.get('/?lang=fr');
+  expect(followed.status()).toBe(200);
+  expect(new URL(followed.url()).pathname).toBe('/fr');
+});
+
+test('legacy ?lang=en links serve the English home page without a redirect loop', async ({
+  request,
+}) => {
+  const res = await request.get('/?lang=en', { maxRedirects: 0 });
+  expect(res.status()).toBe(200);
+  expect(await res.text()).toContain('rel="canonical" href="https://www.mbscaustralia.com.au/"');
 });
 
 test('language switcher links to the same page in the other language', async ({ page }) => {

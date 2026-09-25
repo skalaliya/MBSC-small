@@ -63,6 +63,9 @@ createServer(async (req, res) => {
     for (const [k, v] of Object.entries(route.headers ?? {}))
       headers[k.toLowerCase()] = v.replace(/\$(\d)/g, (_, i) => m?.[Number(i)] ?? '');
     if (route.status && !route.continue) {
+      // Like Vercel, keep the request's query string on a redirect whose target has none.
+      if (headers.location && !headers.location.includes('?') && url.search)
+        headers.location += url.search;
       res.writeHead(route.status, headers);
       return res.end();
     }
