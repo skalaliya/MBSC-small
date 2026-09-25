@@ -15,8 +15,8 @@ approach:
     'Condition monitoring during upgrade works',
     'Reporting to support operator sign-off',
   ]
-outcome: 'A comprehensive pipeline integrity assessment supported safe, reliable energy supply to growing western communities.'
-facts: []
+outcome: 'Integrity test results and condition monitoring data were reported to support the operator’s sign-off of the upgraded pipeline sections.'
+facts: [{ 'label': 'Scope', 'value': 'Integrity testing and condition monitoring' }]
 image: '../../../assets/images/project-western-pipeline.jpg'
 imageAlt: 'Above-ground pipeline running beside a rural road'
 featured: false

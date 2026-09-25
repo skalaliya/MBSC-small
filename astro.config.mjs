@@ -26,6 +26,7 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/api/') &&
         !/\/404\/?$/.test(page) &&
+        !/\/contact\/sent\/?$/.test(page) &&
         (arPublished || !/^https?:\/\/[^/]+\/ar(\/|$)/.test(page)),
     }),
   ],

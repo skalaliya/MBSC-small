@@ -15,8 +15,12 @@ approach:
     'Carried out phased array ultrasonic testing',
     'Ranked findings by severity for the operator’s integrity team',
   ]
-outcome: 'Critical fatigue cracking was identified early, allowing preventative maintenance and avoiding costly downtime.'
-facts: [{ 'label': 'Method', 'value': 'Phased array ultrasonics' }]
+outcome: 'Phased array ultrasonic results for the inspected welds were reported with indications ranked by severity, to inform the operator’s integrity and maintenance planning.'
+facts:
+  [
+    { 'label': 'Method', 'value': 'Phased array ultrasonics' },
+    { 'label': 'Deliverable', 'value': 'Severity-ranked inspection report' },
+  ]
 image: '../../../assets/images/project-north-west-shelf.jpg'
 imageAlt: 'Aerial view of an LNG processing site on the North West Shelf coast'
 featured: false

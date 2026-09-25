@@ -1,3 +1,5 @@
+import { plural } from './plural';
+
 export const en = {
   meta: {
     siteName: 'MBSC Australia',
@@ -7,7 +9,7 @@ export const en = {
       'Melbourne-based engineering consultancy for oil & gas, mining and infrastructure. Consultancy, inspection, technical training and digital solutions across Australia, the Middle East and Europe.',
     pages: {
       home: {
-        title: 'MBSC Australia | Engineering consultancy for oil & gas, mining and infrastructure',
+        title: 'MBSC Australia | Oil & Gas and Mining Engineering Consultancy',
         description:
           'Engineering consultancy, technical training and digital solutions for oil & gas, mining and infrastructure operators in Australia, the Middle East and Europe.',
       },
@@ -24,7 +26,7 @@ export const en = {
       training: {
         title: 'Training calendar {year} | MBSC Australia',
         description:
-          'Scheduled technical training in oil & gas, geoscience, mining and digital engineering. On-site, virtual and hybrid delivery.',
+          '{year} technical training dates in oil & gas, geoscience, mining and digital engineering. On-site, virtual and hybrid delivery.',
       },
       rental: {
         title: 'Equipment hire | MBSC Australia',
@@ -60,6 +62,7 @@ export const en = {
       },
     },
   },
+  brand: { tagline: 'Energy · Mining · Infrastructure' },
   a11y: {
     skipToContent: 'Skip to content',
     mainNav: 'Main navigation',
@@ -99,14 +102,14 @@ export const en = {
     requestQuote: 'Request a quote',
     call: 'Call',
     email: 'Email',
-    hours: 'Mon–Fri, 7:00 am – 5:00 pm AEST',
+    hours: 'Mon–Fri, 7:00 am – 5:00 pm Melbourne time',
     back: 'Back',
     location: 'Location',
     sector: 'Sector',
     year: 'Year',
     client: 'Client',
     services: 'Services',
-    confidentialClient: 'Confidential operator',
+    confidentialClient: 'Confidential client',
     regions: { au: 'Australia', me: 'Middle East', eu: 'Europe' },
     regionsLong: {
       au: 'Head office in Melbourne. Field teams deploy nationally, from the Cooper Basin to the Pilbara.',
@@ -126,16 +129,21 @@ export const en = {
     labels: {
       projects: 'Projects delivered',
       trainingHours: 'Training hours delivered',
-      metresDrilled: 'Metres drilled',
-      assets: 'Asset value supported',
     },
     footnote: 'Cumulative figures to {date}.',
+    // {n} is the formatted number.
+    format: { projects: '{n}+', trainingHours: '{n}+' },
   },
   home: {
-    trust: { title: 'Trusted by industry leaders', mining: 'Mining', oilGas: 'Energy' },
+    trust: {
+      title: 'Organisations we’ve worked with',
+      disclaimer: 'Logos are trademarks of their owners and do not imply endorsement.',
+      mining: 'Mining',
+      oilGas: 'Energy',
+    },
     services: {
       eyebrow: 'What we do',
-      title: 'Five disciplines, one accountable team',
+      title: 'Six disciplines, one accountable team',
       lead: 'From well integrity to workforce competency, each engagement is led by a senior engineer who stays with it to close-out.',
     },
     process: {
@@ -227,6 +235,7 @@ export const en = {
       approach: 'Our approach',
       outcome: 'Outcome',
       keyFacts: 'Key facts',
+      illustrative: 'Illustrative image',
       more: 'More {sector} projects',
     },
     empty: 'No projects in this sector yet.',
@@ -240,11 +249,11 @@ export const en = {
     valueProps: [
       {
         title: 'Delivered where you work',
-        body: 'Senior engineers and certified instructors deploy to your site, or run sessions from Melbourne and Perth.',
+        body: 'Senior engineers and experienced instructors deploy to your site, or run sessions from Melbourne and Perth.',
       },
       {
-        title: 'Recognised certification',
-        body: 'Courses map to Australian Standards and ISO 9712 where certification is required.',
+        title: 'Standards-mapped content',
+        body: 'Courses map to Australian Standards, and NDT courses prepare candidates for ISO 9712 certification by an accredited certification body.',
       },
       {
         title: 'Flexible formats',
@@ -267,12 +276,11 @@ export const en = {
       noMatches: 'No sessions match these filters.',
       noSessions: 'No sessions scheduled this month.',
       onRequest: 'Dates on request',
-      past: 'Completed',
+      past: 'Past session',
       showPast: 'Show {count} earlier months',
       showPastOne: 'Show 1 earlier month',
       hidePast: 'Hide earlier months',
-      days: '{count} days',
-      dayOne: '1 day',
+      days: plural({ one: '1 day', other: '{count} days' }),
       custom: 'Custom',
       enquire: 'Enquire',
       enquireLabel: 'Enquire about {course}',
@@ -286,26 +294,29 @@ export const en = {
         crossDiscipline: 'Cross-discipline',
         digitalAI: 'Digital & AI',
       },
-      deliveryModes: { onsite: 'On site', virtual: 'Virtual', hybrid: 'Hybrid' },
+      deliveryModes: { onsite: 'In person', virtual: 'Virtual', hybrid: 'Hybrid' },
       locations: {
         melbourne: 'Melbourne',
         perth: 'Perth',
-        global: 'Global',
-        clientSite: 'Client site',
+        global: 'Worldwide',
+        clientSite: 'At your site',
       },
       certificates: {
-        technicalCertification: 'Technical certification',
+        technicalCertification: 'Certificate of completion',
         professionalProgram: 'Professional program',
         bespokeTraining: 'Bespoke training',
         corporateWorkshop: 'Corporate workshop',
-        iso9712Certification: 'ISO 9712 certification',
+        iso9712Certification: 'Prepares for ISO 9712 certification',
         associateProgram: 'Associate program',
       },
     },
     catalogue: {
       title: 'Course catalogue',
       lead: 'Every program we run, grouped by discipline.',
-      sessions: '{count} scheduled sessions in {year}',
+      sessions: plural({
+        one: '1 scheduled session in {year}',
+        other: '{count} scheduled sessions in {year}',
+      }),
     },
     faqTitle: 'Training questions',
     ctaTitle: 'Build your team’s capability',
@@ -385,6 +396,7 @@ export const en = {
       ],
     },
     team: { eyebrow: 'People', title: 'Leadership team' },
+    clientsEyebrow: 'Clients',
     accreditations: {
       eyebrow: 'Assurance',
       title: 'Accreditations and memberships',
@@ -421,9 +433,9 @@ export const en = {
       topic: 'Topic',
       message: 'How can we help?',
       messageHint: 'A few lines on the site, asset or course, and your timing.',
-      regarding: 'Regarding',
+      regarding: 'Regarding:',
       consent:
-        'I agree to MBSC Australia using these details to respond to my enquiry, as described in the {privacy}.',
+        'I agree to MBSC Australia using these details to respond to my enquiry and keep a record of it, as described in the {privacy}.',
       privacyLink: 'privacy policy',
       honeypot: 'Leave this field empty',
       submit: 'Send enquiry',
@@ -471,9 +483,9 @@ export const en = {
         'Predictive maintenance, ML-assisted geology and grade control, computer-vision safety and VR training for mining and energy operators.',
     },
     eyebrow: 'AI & Digital',
-    title: 'AI and machine learning for mining',
-    lead: 'We turn the data your operation already produces into earlier warnings, better resource models, safer sites and crews trained before they set foot on the floor.',
-    primary: 'Talk to our data team',
+    title: 'AI & machine learning for mining',
+    lead: 'We turn the data your operation already produces into earlier warnings, better resource models, safer sites and crews trained before they set foot on site.',
+    primary: 'Talk to our specialists',
     secondary: 'See how it works',
     intro: {
       title: 'Engineering first, then algorithms',
@@ -489,7 +501,7 @@ export const en = {
       },
       {
         title: 'Engineer in the loop',
-        body: 'Every model output is reviewed by a qualified engineer or geologist before it drives a decision.',
+        body: 'Safety alerts go straight to supervisors; engineering and geological recommendations are reviewed by a qualified engineer or geologist before they are acted on.',
       },
       {
         title: 'Built on what you have',
@@ -498,7 +510,7 @@ export const en = {
     ],
     diagram: {
       eyebrow: 'Architecture',
-      title: 'How our AI platform fits your operation',
+      title: 'The data architecture we design for your operation',
       lead: 'A high-level view of the data flow we design for mining clients. Each deployment is tailored to the systems already on site.',
       loop: 'Engineer in the loop: reviewed outcomes retrain the models',
       stages: [
@@ -670,7 +682,7 @@ export const en = {
     lead: 'Practical notes from our engineers on AI, maintenance, geology and safety in mining and energy.',
     filterLabel: 'Filter by topic',
     all: 'All',
-    readingTime: '{min} min read',
+    readingTime: plural({ one: '1 min read', other: '{count} min read' }),
     meta: {
       published: 'Published',
       updated: 'Updated',
@@ -798,14 +810,20 @@ export const en = {
         {
           heading: 'Who we are',
           body: [
-            'MBSC Australia Pty Ltd ("we", "us") is bound by the Australian Privacy Principles in the Privacy Act 1988 (Cth). This policy explains how we handle personal information collected through this website.',
+            'MBSC Australia Pty Ltd ("we", "us") handles personal information in line with the Australian Privacy Principles in the Privacy Act 1988 (Cth). This policy explains how we handle personal information collected through this website.',
           ],
         },
         {
           heading: 'What we collect',
           body: [
-            'When you send an enquiry we collect your name, email address, and any company name, phone number and message you provide.',
-            'We use Vercel Web Analytics and Speed Insights to measure visits and page performance. These tools do not use cookies and do not identify individual visitors.',
+            'When you send an enquiry we collect your name and email address, and any company name, phone number, topic, reference and message you provide. You can also phone or email us instead, and you do not need to identify yourself to ask a general question.',
+            'Our hosting provider records technical information such as your IP address, browser type and the pages you request, to deliver and protect the site. Vercel Web Analytics and Speed Insights measure visits and page performance without cookies and without identifying individual visitors.',
+          ],
+        },
+        {
+          heading: 'Cookies',
+          body: [
+            'This website does not set cookies. The map on our contact page loads only if you choose to load it; Google may then set cookies under its own privacy policy.',
           ],
         },
         {
@@ -817,7 +835,7 @@ export const en = {
         {
           heading: 'Who we share it with',
           body: [
-            'Enquiries are delivered to our business email through Zoho Mail. The website is hosted by Vercel. These providers process data on our behalf and may store it outside Australia. We take reasonable steps to ensure they protect it.',
+            'Our website is hosted by Vercel Inc. Enquiries are sent by email through Zoho ZeptoMail and received in Zoho Mail (Zoho Corporation). These providers process data on our behalf, and your details are likely to be stored or processed in the United States. We take reasonable steps to ensure they protect it. We do not otherwise disclose your information unless the law requires it.',
           ],
         },
         {
@@ -829,7 +847,7 @@ export const en = {
         {
           heading: 'Access, correction and complaints',
           body: [
-            'You can ask to access or correct your personal information by emailing {email}. If you have a privacy complaint, contact us first. If you are not satisfied with our response you can contact the Office of the Australian Information Commissioner at oaic.gov.au.',
+            'You can ask to access or correct your personal information by emailing {email}. If you have a privacy complaint, contact us first and we aim to respond within 30 days. If you are not satisfied with our response you can contact the Office of the Australian Information Commissioner (OAIC) at oaic.gov.au or on 1300 363 992.',
           ],
         },
       ],
@@ -858,7 +876,7 @@ export const en = {
         {
           heading: 'Intellectual property',
           body: [
-            'Text, graphics and logos on this site belong to MBSC Australia Pty Ltd or are used with permission. Photographs credited to third parties remain the property of their owners.',
+            'Text and graphics on this site belong to MBSC Australia Pty Ltd. Third-party names and logos are trademarks of their respective owners. Photographs credited to third parties remain the property of their owners.',
           ],
         },
         {

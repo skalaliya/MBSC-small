@@ -15,8 +15,12 @@ approach:
     'Concrete strength assessment',
     'Reinforcement maps issued to the construction team',
   ]
-outcome: 'All reinforcement positions were mapped, so drilling for the widening works could proceed safely.'
-facts: [{ 'label': 'Method', 'value': 'GPR and strength testing' }]
+outcome: 'Reinforcement maps and concrete strength results were issued to the construction team to guide drilling locations for the widening works.'
+facts:
+  [
+    { 'label': 'Method', 'value': 'GPR and strength testing' },
+    { 'label': 'Deliverable', 'value': 'Reinforcement maps' },
+  ]
 image: '../../../assets/images/project-highway-bridge.jpg'
 imageAlt: 'Underside of a concrete highway bridge deck and pier'
 featured: false

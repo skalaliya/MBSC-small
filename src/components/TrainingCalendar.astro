@@ -14,10 +14,13 @@ const { calendar } = Astro.props;
 const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
 const c = t.training.calendar;
-const monthName = (m: number) =>
-  new Intl.DateTimeFormat(intlLocale[locale], { month: 'long' }).format(
+// Month headings start with a capital in every language ("Janvier 2026", not "janvier 2026").
+const monthName = (m: number) => {
+  const name = new Intl.DateTimeFormat(intlLocale[locale], { month: 'long' }).format(
     new Date(calendar.year, m - 1, 1),
   );
+  return name.charAt(0).toLocaleUpperCase(intlLocale[locale]) + name.slice(1);
+};
 const months = Array.from({ length: 12 }, (_, i) => i + 1).map((m) => ({
   m,
   sessions: calendar.sessions

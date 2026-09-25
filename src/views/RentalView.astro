@@ -61,7 +61,9 @@ const quote = (name: string) => `${L('/contact')}?topic=rental&ref=${encodeURICo
               </span>
               <div>
                 <h3 class="font-display text-xl font-bold">{it.name}</h3>
-                <p class="mt-1 text-sm text-ink-500">{it.model}</p>
+                <p class="mt-1 text-sm text-ink-500">
+                  <bdi>{it.model}</bdi>
+                </p>
               </div>
             </div>
             <SpecTable

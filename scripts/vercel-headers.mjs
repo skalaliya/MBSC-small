@@ -24,6 +24,11 @@ const securityHeaders = {
 
 const added = [
   { src: '/(.*)', headers: securityHeaders, continue: true },
+  // Crawlers often guess /sitemap.xml; ours is the Astro sitemap index.
+  { src: '^/sitemap\\.xml$', headers: { Location: '/sitemap-index.xml' }, status: 308 },
+  // /index.html and /about/index.html are duplicates of the clean URLs.
+  { src: '^/index\\.html$', headers: { Location: '/' }, status: 308 },
+  { src: '^/(.+)/index\\.html$', headers: { Location: '/$1' }, status: 308 },
   // Links from the old site used ?lang=fr / ?lang=en on the home page. Only French needs a
   // redirect: Vercel carries the query string over to the Location, so redirecting ?lang=en to /
   // would loop forever. /?lang=en simply serves the English home page, whose canonical is /.

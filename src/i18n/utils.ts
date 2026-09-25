@@ -2,6 +2,8 @@ import { en, type UI } from './en';
 import { fr } from './fr';
 import { ar } from './ar';
 import { site } from '../data/site';
+import type { Plural } from './plural';
+import { frenchTypography, mapStrings } from './typography';
 
 export const locales = ['en', 'fr', 'ar'] as const;
 export type Locale = (typeof locales)[number];
@@ -21,7 +23,7 @@ export const publishedLocales: readonly Locale[] = resolved.published;
 /** Locales with pages in this build (published ones plus any preview-only ones). */
 export const builtLocales: readonly Locale[] = resolved.built;
 
-const dictionaries: Record<Locale, UI> = { en, fr, ar };
+const dictionaries: Record<Locale, UI> = { en, fr: mapStrings(fr, frenchTypography), ar };
 
 export function toLocale(value: string | undefined | null): Locale {
   return value === 'fr' || value === 'ar' ? value : 'en';
@@ -34,6 +36,17 @@ export function useT(locale: Locale): UI {
 /** Replace {name} placeholders. Unknown placeholders are left untouched. */
 export function fmt(template: string, vars: Record<string, string | number>): string {
   return template.replace(/\{(\w+)\}/g, (m, k: string) => (k in vars ? String(vars[k]) : m));
+}
+
+/** Count-dependent text: picks the plural form for this language, then fills {count} and vars. */
+export function fmtCount(
+  forms: Plural,
+  count: number,
+  locale: Locale,
+  vars: Record<string, string | number> = {},
+): string {
+  const category = new Intl.PluralRules(intlLocale[locale]).select(count) as keyof Plural;
+  return fmt(forms[category] ?? forms.other, { count, ...vars });
 }
 
 /** Normalise a pathname: leading slash, no trailing slash (except root). */

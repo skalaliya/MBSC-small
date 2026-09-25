@@ -36,6 +36,12 @@ export interface SeoOutput {
 
 const OG_LOCALE: Record<Locale, string> = { en: 'en_AU', fr: 'fr_FR', ar: 'ar_AR' };
 
+const SUFFIX = ' | MBSC Australia';
+/** Search results cut titles at about 60 characters, so long page names drop the brand suffix. */
+export function fitTitle(title: string, max = 60): string {
+  return title.endsWith(SUFFIX) && [...title].length > max ? title.slice(0, -SUFFIX.length) : title;
+}
+
 export function buildSeo(input: SeoInput): SeoOutput {
   const site = typeof input.site === 'string' ? new URL(input.site) : input.site;
   const path = normalizePath(input.pathname);
@@ -52,7 +58,7 @@ export function buildSeo(input: SeoInput): SeoOutput {
           { hreflang: 'x-default', href: absolute(site, alternatePath(path, 'en')) },
         ];
   return {
-    title: input.title,
+    title: fitTitle(input.title),
     description: input.description,
     canonical: absolute(site, path),
     ogImage: new URL(input.ogImage ?? pageOgImage(path), site).href,

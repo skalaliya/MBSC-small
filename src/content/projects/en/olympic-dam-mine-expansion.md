@@ -8,18 +8,18 @@ location: 'Olympic Dam, SA'
 region: 'au'
 services: ['mining-geology']
 summary: 'Geotechnical investigations and structural testing for an underground mine expansion.'
-challenge: 'Expansion of underground workings at the Olympic Dam copper-uranium operation required dependable foundation and structural data to keep the expansion safe.'
+challenge: 'Planned expansion of underground workings at the Olympic Dam copper-uranium operation required data on ground conditions, the rock mass and existing infrastructure to inform the design.'
 approach:
   [
-    'Large-scale geotechnical investigations',
+    'Geotechnical investigations of ground conditions',
     'Structural testing of existing infrastructure',
-    'Foundation analysis to support expansion design',
+    'Rock mass characterisation to support expansion design',
   ]
-outcome: 'Critical foundation analysis supported safe mine expansion and was completed ahead of schedule with zero safety incidents.'
+outcome: 'Geotechnical data, rock mass characterisation and structural test results were reported to the design team as inputs to the expansion design.'
 facts:
   [
     { 'label': 'Commodity', 'value': 'Copper-uranium' },
-    { 'label': 'Safety', 'value': 'Zero incidents' },
+    { 'label': 'Scope', 'value': 'Geotechnical investigation and structural testing' },
   ]
 image: '../../../assets/images/project-underground-mine.jpg'
 imageAlt: 'Timber-supported underground mine drive lit by work lights'

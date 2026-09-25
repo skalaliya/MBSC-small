@@ -15,8 +15,12 @@ approach:
     'Contrôle par ultrasons multiéléments',
     'Classement des constats par gravité pour l’équipe intégrité de l’opérateur',
   ]
-outcome: 'Une fissuration par fatigue critique a été détectée tôt, permettant une maintenance préventive et évitant un arrêt coûteux.'
-facts: [{ 'label': 'Méthode', 'value': 'Ultrasons multiéléments' }]
+outcome: 'Les résultats du contrôle par ultrasons multiéléments des soudures inspectées ont été présentés avec les indications classées par gravité, afin d’éclairer la planification de l’intégrité et de la maintenance par l’opérateur.'
+facts:
+  [
+    { 'label': 'Méthode', 'value': 'Ultrasons multiéléments' },
+    { 'label': 'Livrable', 'value': 'Rapport d’inspection avec classement par gravité' },
+  ]
 image: '../../../assets/images/project-north-west-shelf.jpg'
 imageAlt: 'Vue aérienne d’un site de traitement de GNL sur la côte du North West Shelf'
 featured: false

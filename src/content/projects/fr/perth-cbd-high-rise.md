@@ -15,7 +15,7 @@ approach:
     'Surveillance vibratoire des bâtiments voisins',
     'Résultats présentés selon l’AS 2159',
   ]
-outcome: 'L’intégrité des pieux a été vérifiée selon l’AS 2159, sans aucun défaut.'
+outcome: 'Les résultats des essais d’intégrité des pieux ont été présentés selon l’AS 2159, et les résultats de la surveillance vibratoire des bâtiments voisins ont été transmis à l’équipe du projet.'
 facts: [{ 'label': 'Hauteur', 'value': '50 étages' }, { 'label': 'Norme', 'value': 'AS 2159' }]
 image: '../../../assets/images/project-perth-cbd.jpg'
 imageAlt: 'Vue aérienne du quartier d’affaires de Perth'

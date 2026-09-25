@@ -155,8 +155,11 @@ describe('buildMessage', () => {
 });
 
 describe('sameOrigin', () => {
-  it('allows missing Origin and matching hosts, rejects others', () => {
-    expect(sameOrigin(null, 'https://www.mbscaustralia.com.au/api/contact')).toBe(true);
+  it('requires Origin (or Referer) from this host and rejects everything else', () => {
+    const api = 'https://www.mbscaustralia.com.au/api/contact';
+    expect(sameOrigin(null, api)).toBe(false);
+    expect(sameOrigin(null, api, 'https://www.mbscaustralia.com.au/fr/contact')).toBe(true);
+    expect(sameOrigin(null, api, 'https://evil.example/contact')).toBe(false);
     expect(
       sameOrigin(
         'https://www.mbscaustralia.com.au',

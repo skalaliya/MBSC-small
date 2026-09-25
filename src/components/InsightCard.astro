@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import Icon from './ui/Icon.astro';
-import { fmt, localizePath, toLocale, useT } from '../i18n/utils';
+import { fmtCount, localizePath, toLocale, useT } from '../i18n/utils';
 import { formatInsightDate } from '../lib/insights';
 import { readingMinutes, type Insight } from '../lib/queries';
 
@@ -44,7 +44,7 @@ const a = insight.data;
       <span aria-hidden="true">·</span>
       <span class="inline-flex items-center gap-1">
         <Icon name="clock" size={14} />
-        {fmt(t.insights.readingTime, { min: readingMinutes(insight.body) })}
+        {fmtCount(t.insights.readingTime, readingMinutes(insight.body), locale)}
       </span>
     </p>
   </div>

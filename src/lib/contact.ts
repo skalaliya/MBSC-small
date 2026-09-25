@@ -46,10 +46,19 @@ export type ContactResult =
   | { status: 503; body: { ok: false; error: 'unavailable' } };
 
 /** True when the Origin header (if any) matches the host the request was sent to. */
-export function sameOrigin(origin: string | null, requestUrl: string): boolean {
-  if (!origin) return true; // Some browsers omit Origin on same-origin form posts.
+/**
+ * Browsers send Origin on every POST (forms included); Referer is a fallback for the rare
+ * privacy tool that strips Origin. A request with neither comes from a script, not our form.
+ */
+export function sameOrigin(
+  origin: string | null,
+  requestUrl: string,
+  referer: string | null = null,
+): boolean {
+  const source = origin ?? referer;
+  if (!source) return false;
   try {
-    return new URL(origin).host === new URL(requestUrl).host;
+    return new URL(source).host === new URL(requestUrl).host;
   } catch {
     return false;
   }

@@ -13,12 +13,10 @@ const L = (p: string) => localizePath(p, locale);
 const services = await getServices(locale);
 const nav = visibleNav((await getInsights(locale)).length > 0);
 const year = new Date().getFullYear();
-const address = [
-  site.address.street,
-  `${site.address.locality} ${site.address.region} ${site.address.postcode ?? ''}`.trim(),
-]
-  .filter(Boolean)
-  .join(', ');
+// Until a street address is supplied, show the city in the page's language.
+const address = site.address.street
+  ? `${site.address.street}, ${site.address.locality} ${site.address.region} ${site.address.postcode ?? ''}`.trim()
+  : t.contact.office.addressFallback;
 ---
 
 <footer class="bg-navy-950 pb-24 text-navy-200 lg:pb-0" aria-labelledby="footer-heading">

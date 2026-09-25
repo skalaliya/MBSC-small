@@ -14,7 +14,7 @@
     "organisation": {
       "en": "Offshore gas operator, WA",
       "fr": "Opérateur gazier en mer, Australie-Occidentale",
-      "ar": "مشغّل حقول غاز بحرية، أستراليا الغربية"
+      "ar": "مشغّل حقول غاز بحرية، غرب أستراليا"
     },
     "approved": false
   },
@@ -23,13 +23,13 @@
     "quote": {
       "en": "The course was taught by people who actually do the work. Our supervisors came back with practical tools they used the following week.",
       "fr": "La formation était assurée par des professionnels de terrain. Nos superviseurs sont revenus avec des outils concrets utilisés dès la semaine suivante.",
-      "ar": "قدّم الدورة مختصون يمارسون هذا العمل فعلياً، وعاد مشرفونا بأدوات عملية استخدموها في الأسبوع التالي."
+      "ar": "قدّم الدورة مختصون يمارسون هذا العمل فعليًا، وعاد مشرفونا بأدوات عملية استخدموها في الأسبوع التالي."
     },
     "role": { "en": "Training Coordinator", "fr": "Coordinatrice formation", "ar": "منسق التدريب" },
     "organisation": {
       "en": "Mining contractor, SA",
       "fr": "Entreprise minière, Australie-Méridionale",
-      "ar": "مقاول تعدين، أستراليا الجنوبية"
+      "ar": "مقاول تعدين، جنوب أستراليا"
     },
     "approved": false
   },
@@ -38,13 +38,13 @@
     "quote": {
       "en": "Clear scope, clean data and no surprises. The geotechnical package arrived ahead of our design deadline.",
       "fr": "Un périmètre clair, des données fiables et aucune surprise. Le dossier géotechnique est arrivé avant notre échéance de conception.",
-      "ar": "نطاق عمل واضح، وبيانات موثوقة، ودون أي مفاجآت. وقد وصلتنا الحزمة الجيوتقنية قبل الموعد النهائي للتصميم."
+      "ar": "نطاق عمل واضح، وبيانات موثوقة، ولا مفاجآت. وقد وصلتنا الحزمة الجيوتقنية قبل الموعد النهائي للتصميم."
     },
     "role": { "en": "Project Engineer", "fr": "Ingénieur projet", "ar": "مهندس مشروع" },
     "organisation": {
       "en": "Rail infrastructure owner, WA",
       "fr": "Gestionnaire d’infrastructure ferroviaire, Australie-Occidentale",
-      "ar": "مالك بنية تحتية للسكك الحديدية، أستراليا الغربية"
+      "ar": "مالك بنية تحتية للسكك الحديدية، غرب أستراليا"
     },
     "approved": false
   }

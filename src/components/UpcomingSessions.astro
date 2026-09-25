@@ -22,6 +22,11 @@ const sessions = upcoming(await getCalendars(), new Date(), limit + 6);
     ))}
   </ul>
 )}
+{sessions.length > 0 && (
+  <p class="text-ink-500" hidden>
+    {t.home.training.none}
+  </p>
+)}
 
 <script>
   import { todayISO } from '../scripts/today';
@@ -35,5 +40,7 @@ const sessions = upcoming(await getCalendars(), new Date(), limit + 6);
       row.hidden = !keep;
       if (keep) shown++;
     });
+    // Every row may have finished since the last build: say so instead of showing nothing.
+    if (shown === 0) list.nextElementSibling?.removeAttribute('hidden');
   });
 </script>

@@ -15,8 +15,8 @@ approach:
     'Évaluation de la corrosion des armatures',
     'Registre des défauts priorisés pour planifier les travaux',
   ]
-outcome: 'Les défauts structurels critiques ont été identifiés et les travaux orientés, garantissant la sécurité des opérations portuaires.'
-facts: []
+outcome: 'Les résultats des essais du béton et les constats de corrosion ont été compilés dans un registre des défauts, classés par gravité, afin que les ingénieurs du maître d’ouvrage puissent planifier la remise en état.'
+facts: [{ 'label': 'Livrable', 'value': 'Registre des défauts priorisés' }]
 image: '../../../assets/images/project-port-wharf.jpg'
 imageAlt: 'Quai avec grues portuaires et navires à quai'
 featured: false

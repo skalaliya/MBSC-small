@@ -11,7 +11,7 @@ import CTABand from '../components/ui/CTABand.astro';
 import TrainingCalendar from '../components/TrainingCalendar.astro';
 import UpcomingSessions from '../components/UpcomingSessions.astro';
 import header from '../assets/images/header-training-classroom.jpg';
-import { fmt, localizePath, toLocale, useT } from '../i18n/utils';
+import { fmt, fmtCount, localizePath, toLocale, useT } from '../i18n/utils';
 import { CATEGORIES, CATEGORY_DOT } from '../lib/content';
 import { defaultYear, getCalendars, upcoming } from '../lib/queries';
 import { breadcrumbs, courses, faqPage } from '../lib/jsonld';
@@ -41,7 +41,7 @@ const catalogue = CATEGORIES.map((cat) => {
       count: 0,
       delivery: new Set<string>(),
     };
-    e.count++;
+    if (s.start) e.count++; // on-request programs have no scheduled dates to count
     e.delivery.add(c.deliveryModes[s.delivery]);
     byCourse.set(s.course, e);
   }
@@ -66,7 +66,7 @@ const valueIcons = ['map-pin', 'award', 'monitor'] as const;
 
 <Base
   title={fmt(t.meta.pages.training.title, { year })}
-  description={t.meta.pages.training.description}
+  description={fmt(t.meta.pages.training.description, { year })}
   jsonLd={[
     breadcrumbs(crumbs),
     faqPage(t.faq.training),
@@ -167,7 +167,9 @@ const valueIcons = ['map-pin', 'award', 'monitor'] as const;
                 <p class="font-medium text-ink-900">{course.title}</p>
                 <p class="mt-1 flex flex-wrap items-center gap-2 text-xs text-ink-500">
                   <span class="tabular-nums">
-                    {fmt(t.training.catalogue.sessions, { count: course.count, year })}
+                    {course.count === 0
+                      ? c.onRequest
+                      : fmtCount(t.training.catalogue.sessions, course.count, locale, { year })}
                   </span>
                   {[...course.delivery].map((d) => (
                     <Badge tone="muted">{d}</Badge>

@@ -36,7 +36,16 @@ for (const route of LOCALISED) {
     expect(res?.headers()['content-security-policy']).toContain("default-src 'self'");
     expect(res?.headers()['strict-transport-security']).toBeTruthy();
     await expect(page.locator('h1')).toHaveCount(1);
-    await expect(page).toHaveTitle(/MBSC Australia/);
+    // Long page names drop the " | MBSC Australia" suffix (search results cut at ~60 characters);
+    // the brand is always in og:site_name.
+    const title = await page.title();
+    expect(title.length).toBeGreaterThan(0);
+    if (!title.includes('MBSC Australia'))
+      expect(title.length + ' | MBSC Australia'.length).toBeGreaterThan(60);
+    await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute(
+      'content',
+      'MBSC Australia',
+    );
     const lang = await page.locator('html').getAttribute('lang');
     expect(lang).toBe(route.startsWith('/fr') ? 'fr' : 'en-AU');
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -206,7 +215,11 @@ test('trust band: duplicate logos are hidden from assistive tech and the marquee
   test.skip(isMobile, 'marquee only runs on wide screens');
   await page.goto('/');
   const band = page.locator('section.trust');
-  await expect(band.getByRole('heading', { name: 'Trusted by industry leaders' })).toBeVisible();
+  await expect(
+    band.getByRole('heading', { name: 'Organisations we’ve worked with' }),
+  ).toBeVisible();
+  // Third-party logos carry a trademark / no-endorsement notice.
+  await expect(band.getByText('do not imply endorsement')).toBeVisible();
   const lists = band.locator('.trust-list');
   await expect(lists).toHaveCount(2);
   await expect(lists.nth(1)).toHaveAttribute('aria-hidden', 'true');
@@ -284,4 +297,39 @@ test('insights: RSS feed lists articles with canonical links', async ({ request 
   const body = await res.text();
   expect(body).toContain('<item>');
   expect(body).toContain('/insights/ml-grade-control</link>');
+});
+
+test('duplicate and guessed URLs redirect to the canonical ones', async ({ request }) => {
+  for (const [from, to] of [
+    ['/sitemap.xml', '/sitemap-index.xml'],
+    ['/index.html', '/'],
+    ['/about/index.html', '/about'],
+    ['/fr/index.html', '/fr'],
+  ] as const) {
+    const res = await request.get(from, { maxRedirects: 0 });
+    expect(res.status(), from).toBe(308);
+    expect(res.headers()['location'], from).toBe(to);
+  }
+});
+
+test('the sitemap lists no noindex confirmation pages', async ({ request }) => {
+  const xml = await (await request.get('/sitemap-0.xml')).text();
+  expect(xml).toContain('/contact</loc>');
+  expect(xml).not.toContain('/contact/sent');
+});
+
+test('audit guards: honest labels and no stray claims', async ({ page }) => {
+  await page.goto('/');
+  const main = page.locator('main');
+  await expect(main).not.toContainText('Metres drilled');
+  await expect(main).not.toContainText('Asset value supported');
+  await expect(main).toContainText('Six disciplines');
+  await page.goto('/training');
+  await expect(page.locator('main')).not.toContainText('scheduled sessions in 2026 1');
+  await expect(page.locator('main')).not.toContainText(/\b1 scheduled sessions\b/);
+  await page.goto('/projects/offshore-platform-integrity');
+  await expect(page.locator('figcaption')).toHaveText('Illustrative image');
+  await page.goto('/contact');
+  // No map of "Melbourne" pretending to be the office until a street address is supplied.
+  await expect(page.locator('[data-map]')).toHaveCount(0);
 });

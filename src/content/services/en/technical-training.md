@@ -3,13 +3,13 @@ slug: 'technical-training'
 locale: 'en'
 order: 2
 title: 'Technical training programs'
-short: 'Scheduled and bespoke training that builds real field capability, from ISO 9712 certification to safety leadership.'
+short: 'Scheduled and bespoke training that builds real field capability, from ISO 9712 exam preparation to safety leadership.'
 icon: 'graduation-cap'
 image: '../../../assets/images/service-training.jpg'
 imageAlt: 'Engineering student operating equipment in a workshop'
 capabilities:
   [
-    'NDT certification to ISO 9712',
+    'NDT training towards ISO 9712 certification',
     'Oil & gas, geoscience and mining courses',
     'Safety leadership for engineers',
     'Digital and data skills for engineers',
@@ -34,13 +34,13 @@ deliverables:
   [
     'Course materials and practical exercises',
     'Assessment results per participant',
-    'Certificates of completion or certification',
+    'Certificates of completion',
     'Training records for your competency system',
   ]
 categories: ['oilGas', 'geoscience', 'geology', 'mining', 'crossDiscipline', 'digitalAI']
 topic: 'training'
 ---
 
-We design and deliver technical training for organisations that need to develop engineering capability. Certified instructors run NDT certification, safety leadership and specialist technical courses on site and through virtual classrooms.
+We design and deliver technical training for organisations that need to develop engineering capability. Experienced instructors run NDT training towards ISO 9712 certification, safety leadership and specialist technical courses on site and through virtual classrooms.
 
 Programs are mapped to Australian Standards, ISO requirements and regional compliance needs. See the training calendar for scheduled sessions, or ask us about a program for your team.

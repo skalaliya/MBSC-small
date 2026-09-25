@@ -15,11 +15,21 @@ import {
 } from './lib/content';
 import { LOCATIONS, validateCalendar, type CalendarFile } from './lib/calendar-model';
 import { isISODate } from './lib/dates';
+import { frenchTypography, mapStrings } from './i18n/typography';
+
+/** French typography for every text field of a French entry (images and ids are left alone). */
+const KEEP = new Set(['slug', 'locale', 'image', 'cover', 'icon', 'date', 'updated']);
+function frenchText<T extends { locale: string }>(data: T): T {
+  if (data.locale !== 'fr') return data;
+  return Object.fromEntries(
+    Object.entries(data).map(([k, v]) => [k, KEEP.has(k) ? v : mapStrings(v, frenchTypography)]),
+  ) as T;
+}
 
 const locale = z.enum(['en', 'fr', 'ar']);
 const localized = z.object({
   en: z.string().min(1),
-  fr: z.string().min(1),
+  fr: z.string().min(1).transform(frenchTypography),
   ar: z.string().min(1),
 });
 const iconName = z.string().min(1);
@@ -27,46 +37,50 @@ const iconName = z.string().min(1);
 const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services', generateId: pathId }),
   schema: ({ image }) =>
-    z.object({
-      slug: z.enum(SERVICE_SLUGS),
-      locale,
-      order: z.number().int(),
-      title: z.string().min(1),
-      short: z.string().min(1),
-      icon: iconName,
-      image: image(),
-      imageAlt: z.string().min(1),
-      capabilities: z.array(z.string().min(1)).min(3),
-      process: z.array(z.object({ title: z.string(), body: z.string() })).length(3),
-      deliverables: z.array(z.string().min(1)).min(2),
-      categories: z.array(z.enum(CATEGORIES)).default([]),
-      topic: z.enum(TOPICS),
-    }),
+    z
+      .object({
+        slug: z.enum(SERVICE_SLUGS),
+        locale,
+        order: z.number().int(),
+        title: z.string().min(1),
+        short: z.string().min(1),
+        icon: iconName,
+        image: image(),
+        imageAlt: z.string().min(1),
+        capabilities: z.array(z.string().min(1)).min(3),
+        process: z.array(z.object({ title: z.string(), body: z.string() })).length(3),
+        deliverables: z.array(z.string().min(1)).min(2),
+        categories: z.array(z.enum(CATEGORIES)).default([]),
+        topic: z.enum(TOPICS),
+      })
+      .transform(frenchText),
 });
 
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects', generateId: pathId }),
   schema: ({ image }) =>
-    z.object({
-      slug: z.string().regex(/^[a-z0-9-]+$/),
-      locale,
-      order: z.number().int(),
-      title: z.string().min(1),
-      sector: z.enum(SECTORS),
-      location: z.string().min(1),
-      region: z.enum(['au', 'me', 'eu']).default('au'),
-      year: z.string().optional(),
-      client: z.string().optional(),
-      services: z.array(z.enum(SERVICE_SLUGS)).default([]),
-      summary: z.string().min(1),
-      challenge: z.string().min(1),
-      approach: z.array(z.string().min(1)).min(2),
-      outcome: z.string().min(1),
-      facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
-      image: image(),
-      imageAlt: z.string().min(1),
-      featured: z.boolean().default(false),
-    }),
+    z
+      .object({
+        slug: z.string().regex(/^[a-z0-9-]+$/),
+        locale,
+        order: z.number().int(),
+        title: z.string().min(1),
+        sector: z.enum(SECTORS),
+        location: z.string().min(1),
+        region: z.enum(['au', 'me', 'eu']).default('au'),
+        year: z.string().optional(),
+        client: z.string().optional(),
+        services: z.array(z.enum(SERVICE_SLUGS)).default([]),
+        summary: z.string().min(1),
+        challenge: z.string().min(1),
+        approach: z.array(z.string().min(1)).min(2),
+        outcome: z.string().min(1),
+        facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+        image: image(),
+        imageAlt: z.string().min(1),
+        featured: z.boolean().default(false),
+      })
+      .transform(frenchText),
 });
 
 const session = z.object({
@@ -146,20 +160,22 @@ const team = defineCollection({
 const insights = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/insights', generateId: pathId }),
   schema: ({ image }) =>
-    z.object({
-      slug: z.string().regex(/^[a-z0-9-]+$/),
-      locale,
-      title: z.string().min(1).max(110),
-      description: z.string().min(50).max(200),
-      date: z.string().refine(isISODate, 'date must be YYYY-MM-DD'),
-      updated: z.string().refine(isISODate, 'updated must be YYYY-MM-DD').optional(),
-      authorRole: z.string().min(1),
-      tags: z.array(z.enum(INSIGHT_TAGS)).min(1),
-      cover: image(),
-      coverAlt: z.string().min(1),
-      /** Drafts show on previews only. Set false once the article has been reviewed. */
-      draft: z.boolean().default(true),
-    }),
+    z
+      .object({
+        slug: z.string().regex(/^[a-z0-9-]+$/),
+        locale,
+        title: z.string().min(1).max(110),
+        description: z.string().min(50).max(200),
+        date: z.string().refine(isISODate, 'date must be YYYY-MM-DD'),
+        updated: z.string().refine(isISODate, 'updated must be YYYY-MM-DD').optional(),
+        authorRole: z.string().min(1),
+        tags: z.array(z.enum(INSIGHT_TAGS)).min(1),
+        cover: image(),
+        coverAlt: z.string().min(1),
+        /** Drafts show on previews only. Set false once the article has been reviewed. */
+        draft: z.boolean().default(true),
+      })
+      .transform(frenchText),
 });
 
 export const collections = { services, projects, calendars, clients, testimonials, team, insights };

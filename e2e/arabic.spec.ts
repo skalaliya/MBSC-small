@@ -126,9 +126,9 @@ test.describe('Arabic', () => {
       'true',
     );
     await page.goto('/ar');
-    // Figures keep left-to-right order ("1,200+", not "+1,200").
+    // Figures are written the Arabic way ("أكثر من 1,200"), never with a stray leading "+".
     const figure = page.locator('dd[data-count]').first();
-    await expect(figure).toHaveAttribute('dir', 'ltr');
+    await expect(figure).toContainText('أكثر من');
   });
 
   for (const width of [1024, 1280, 1440]) {

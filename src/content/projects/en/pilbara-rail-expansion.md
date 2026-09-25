@@ -15,9 +15,12 @@ approach:
     'Collected and tested ground samples',
     'Delivered design parameters to the rail design team',
   ]
-outcome: 'The investigation was delivered three weeks ahead of schedule, enabling early track laying and savings for the client.'
+outcome: 'Ground investigation results and geotechnical design parameters for the 400 km alignment were delivered to the rail design team.'
 facts:
-  [{ 'label': 'Alignment', 'value': '400 km' }, { 'label': 'Schedule', 'value': '3 weeks early' }]
+  [
+    { 'label': 'Alignment', 'value': '400 km' },
+    { 'label': 'Deliverable', 'value': 'Geotechnical design parameters' },
+  ]
 image: '../../../assets/images/project-pilbara-rail.jpg'
 imageAlt: 'Rail line crossing flat red-earth country under a blue sky'
 featured: false

@@ -19,12 +19,14 @@ const crumbs = [
   { label: t.nav.home, href: L('/') },
   { label: t.nav.contact, href: L('/contact') },
 ];
-const address = [
-  site.address.street,
-  [site.address.locality, site.address.region, site.address.postcode].filter(Boolean).join(' '),
-]
-  .filter(Boolean)
-  .join(', ');
+// Only a real street address counts; until then the page shows the city in its own language
+// and the map stays hidden (a map of "Melbourne" would not show our office).
+const address = site.address.street
+  ? [
+      site.address.street,
+      [site.address.locality, site.address.region, site.address.postcode].filter(Boolean).join(' '),
+    ].join(', ')
+  : '';
 const mapQuery = encodeURIComponent(
   address ? `${site.legalName}, ${address}, Australia` : 'Melbourne VIC, Australia',
 );
@@ -102,25 +104,27 @@ const mapSrc = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
           </dl>
         </div>
 
-        <div class="overflow-hidden rounded-lg ring-1 ring-line" data-map>
-          <div
-            class="flex aspect-[4/3] flex-col items-center justify-center gap-4 bg-paper p-6 text-center plan-grid-light"
-            data-map-placeholder
-          >
-            <Icon name="map" size={32} class="text-navy-700" />
-            <p class="max-w-xs text-sm text-ink-500">{c.map.notice}</p>
-            <button
-              type="button"
-              class="inline-flex h-10 items-center gap-2 rounded-sm bg-white px-4 text-sm font-semibold text-navy-900 ring-1 ring-line ring-inset hover:bg-navy-50"
-              data-map-load
-              data-src={mapSrc}
-              data-title={c.map.iframeTitle}
+        {address && (
+          <div class="overflow-hidden rounded-lg ring-1 ring-line" data-map>
+            <div
+              class="flex aspect-[4/3] flex-col items-center justify-center gap-4 bg-paper p-6 text-center plan-grid-light"
+              data-map-placeholder
             >
-              <Icon name="map-pin" size={16} />
-              {c.map.load}
-            </button>
+              <Icon name="map" size={32} class="text-navy-700" />
+              <p class="max-w-xs text-sm text-ink-500">{c.map.notice}</p>
+              <button
+                type="button"
+                class="inline-flex h-10 items-center gap-2 rounded-sm bg-white px-4 text-sm font-semibold text-navy-900 ring-1 ring-line ring-inset hover:bg-navy-50"
+                data-map-load
+                data-src={mapSrc}
+                data-title={c.map.iframeTitle}
+              >
+                <Icon name="map-pin" size={16} />
+                {c.map.load}
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </aside>
     </div>
   </Section>

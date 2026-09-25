@@ -15,7 +15,7 @@ approach:
     'Vibration monitoring at neighbouring structures',
     'Results reported against AS 2159',
   ]
-outcome: 'Pile integrity was verified to AS 2159 with zero defects.'
+outcome: 'Pile integrity test results were reported against AS 2159, and vibration monitoring results at neighbouring structures were reported to the project team.'
 facts: [{ 'label': 'Height', 'value': '50 storeys' }, { 'label': 'Standard', 'value': 'AS 2159' }]
 image: '../../../assets/images/project-perth-cbd.jpg'
 imageAlt: 'Aerial view of the Perth central business district'

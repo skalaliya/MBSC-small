@@ -12,6 +12,8 @@ import { buildSeo, absolute } from '../src/lib/seo';
 import { en } from '../src/i18n/en';
 import { fr } from '../src/i18n/fr';
 import { ar } from '../src/i18n/ar';
+import { isPlural } from '../src/i18n/plural';
+import { fmtCount } from '../src/i18n/utils';
 
 const site = 'https://www.mbscaustralia.com.au';
 
@@ -59,8 +61,9 @@ describe('buildSeo', () => {
 });
 
 describe('dictionaries', () => {
+  // Plural forms ({ one, two, few, many, other }) vary by language, so they count as one leaf.
   const keys = (o: unknown, p = ''): string[] =>
-    o && typeof o === 'object' && !Array.isArray(o)
+    o && typeof o === 'object' && !Array.isArray(o) && !isPlural(o)
       ? Object.entries(o as Record<string, unknown>).flatMap(([k, v]) => keys(v, `${p}${k}.`))
       : [p.slice(0, -1)];
   it.each([
@@ -84,11 +87,13 @@ describe('dictionaries', () => {
     const flat = (o: unknown): string[] =>
       typeof o === 'string'
         ? [o]
-        : Array.isArray(o)
-          ? o.flatMap(flat)
-          : o && typeof o === 'object'
-            ? Object.values(o).flatMap(flat)
-            : [];
+        : isPlural(o)
+          ? [o.other]
+          : Array.isArray(o)
+            ? o.flatMap(flat)
+            : o && typeof o === 'object'
+              ? Object.values(o).flatMap(flat)
+              : [];
     const e = flat(en),
       f = flat(dict);
     expect(f.length).toBe(e.length);
@@ -97,6 +102,18 @@ describe('dictionaries', () => {
 });
 
 describe('Arabic', () => {
+  it('uses the dual and plural forms Arabic grammar needs', () => {
+    const days = ar.training.calendar.days;
+    expect(fmtCount(days, 1, 'ar')).toBe('يوم واحد');
+    expect(fmtCount(days, 2, 'ar')).toBe('يومان');
+    expect(fmtCount(days, 5, 'ar')).toBe('5 أيام');
+    expect(fmtCount(days, 12, 'ar')).toBe('12 يومًا');
+    expect(fmtCount(en.training.calendar.days, 1, 'en')).toBe('1 day');
+    expect(fmtCount(fr.training.catalogue.sessions, 2, 'fr', { year: 2027 })).toBe(
+      '2 sessions programmées en 2027',
+    );
+  });
+
   it('stays dark until published, but previews can build it', () => {
     expect(resolveLocales(false, false)).toEqual({ published: ['en', 'fr'], built: ['en', 'fr'] });
     expect(resolveLocales(false, true)).toEqual({

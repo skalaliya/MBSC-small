@@ -7,7 +7,7 @@ sector: 'civil'
 location: 'Melbourne, VIC'
 region: 'au'
 services: []
-summary: 'Advanced NDT and structural assessment for strengthening works on Melbourne’s landmark bridge.'
+summary: 'Non-destructive testing and structural assessment for strengthening works on Melbourne’s landmark bridge.'
 challenge: 'Strengthening works on one of Melbourne’s busiest crossings needed precise knowledge of the existing structure’s condition.'
 approach:
   [
@@ -15,8 +15,12 @@ approach:
     'Structural assessment of test results',
     'Targeted recommendations for strengthening works',
   ]
-outcome: 'The structural analysis enabled targeted strengthening that is expected to extend the bridge’s service life by 25 years.'
-facts: [{ 'label': 'Service life', 'value': '+25 years' }]
+outcome: 'Test results and a structural assessment were reported with recommendations to inform the design of the strengthening works.'
+facts:
+  [
+    { 'label': 'Method', 'value': 'Non-destructive testing' },
+    { 'label': 'Deliverable', 'value': 'Structural assessment report' },
+  ]
 image: '../../../assets/images/project-west-gate-bridge.jpg'
 imageAlt: 'West Gate Bridge spanning the Yarra with the Melbourne skyline behind'
 featured: true

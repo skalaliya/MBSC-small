@@ -1,4 +1,5 @@
 import type { UI } from './en';
+import { plural } from './plural';
 
 export const fr: UI = {
   meta: {
@@ -9,10 +10,9 @@ export const fr: UI = {
       'Cabinet de conseil en ingénierie basé à Melbourne pour le pétrole et le gaz, les mines et les infrastructures. Conseil, inspection, formation technique et solutions numériques en Australie, au Moyen-Orient et en Europe.',
     pages: {
       home: {
-        title:
-          'MBSC Australia | Conseil en ingénierie pour le pétrole et le gaz, les mines et les infrastructures',
+        title: 'MBSC Australia | Conseil en ingénierie pétrole, gaz et mines',
         description:
-          'Conseil en ingénierie, formation technique et solutions numériques pour les opérateurs du pétrole et du gaz, des mines et des infrastructures en Australie, au Moyen-Orient et en Europe.',
+          'Ingénierie, formation technique et solutions numériques pour le pétrole et le gaz, les mines et les infrastructures. Australie, Moyen-Orient et Europe.',
       },
       services: {
         title: 'Services | MBSC Australia',
@@ -27,12 +27,12 @@ export const fr: UI = {
       training: {
         title: 'Calendrier de formation {year} | MBSC Australia',
         description:
-          'Formations techniques programmées en pétrole et gaz, géosciences, mines et ingénierie numérique. En présentiel, à distance ou en format hybride.',
+          'Dates {year} des formations techniques en pétrole et gaz, géosciences, mines et ingénierie numérique. En présentiel, à distance ou en hybride.',
       },
       rental: {
         title: 'Location d’équipement | MBSC Australia',
         description:
-          'Équipements d’essais non destructifs et de surveillance étalonnés à louer : GPR, auscultation sonique, pachomètres et moniteurs de vibrations.',
+          'Équipements d’essais non destructifs et de surveillance étalonnés à louer : GPR, auscultation sonique, pachomètres et enregistreurs de vibrations.',
       },
       about: {
         title: 'À propos | MBSC Australia',
@@ -64,6 +64,7 @@ export const fr: UI = {
       },
     },
   },
+  brand: { tagline: 'Énergie · Mines · Infrastructures' },
   a11y: {
     skipToContent: 'Aller au contenu',
     mainNav: 'Navigation principale',
@@ -103,14 +104,14 @@ export const fr: UI = {
     requestQuote: 'Demander un devis',
     call: 'Appeler',
     email: 'E-mail',
-    hours: 'Lun–ven, 7 h – 17 h (heure de l’Est australien)',
+    hours: 'Lun–ven, 7 h – 17 h (heure de Melbourne)',
     back: 'Retour',
     location: 'Lieu',
     sector: 'Secteur',
     year: 'Année',
     client: 'Client',
     services: 'Services',
-    confidentialClient: 'Opérateur confidentiel',
+    confidentialClient: 'Client confidentiel',
     regions: { au: 'Australie', me: 'Moyen-Orient', eu: 'Europe' },
     regionsLong: {
       au: 'Siège à Melbourne. Nos équipes interviennent dans tout le pays, du bassin de Cooper au Pilbara.',
@@ -130,16 +131,21 @@ export const fr: UI = {
     labels: {
       projects: 'Projets livrés',
       trainingHours: 'Heures de formation dispensées',
-      metresDrilled: 'Mètres forés',
-      assets: 'Valeur d’actifs accompagnés',
     },
-    footnote: 'Chiffres cumulés au {date}.',
+    footnote: 'Chiffres cumulés à fin {date}.',
+    format: { projects: '{n}+', trainingHours: '{n}+' },
   },
   home: {
-    trust: { title: 'Ils nous font confiance', mining: 'Mines', oilGas: 'Énergie' },
+    trust: {
+      title: 'Organisations avec lesquelles nous avons travaillé',
+      disclaimer:
+        'Les logos sont des marques de leurs propriétaires et n’impliquent aucune approbation.',
+      mining: 'Mines',
+      oilGas: 'Énergie',
+    },
     services: {
       eyebrow: 'Nos activités',
-      title: 'Cinq disciplines, une seule équipe responsable',
+      title: 'Six disciplines, une seule équipe responsable',
       lead: 'De l’intégrité des puits aux compétences des équipes, chaque mission est pilotée par un ingénieur senior jusqu’à sa clôture.',
     },
     process: {
@@ -160,7 +166,11 @@ export const fr: UI = {
         },
       ],
     },
-    projects: { eyebrow: 'Références', title: 'Études de cas choisies', all: 'Tous les projets' },
+    projects: {
+      eyebrow: 'Références',
+      title: 'Sélection d’études de cas',
+      all: 'Tous les projets',
+    },
     training: {
       eyebrow: 'Formations à venir',
       title: 'Prochaines sessions programmées',
@@ -227,6 +237,7 @@ export const fr: UI = {
       approach: 'Notre approche',
       outcome: 'Résultat',
       keyFacts: 'Informations clés',
+      illustrative: 'Image d’illustration',
       more: 'Autres projets : {sector}',
     },
     empty: 'Aucun projet dans ce secteur pour le moment.',
@@ -241,11 +252,11 @@ export const fr: UI = {
     valueProps: [
       {
         title: 'Au plus près de vos sites',
-        body: 'Ingénieurs seniors et formateurs certifiés se déplacent sur vos sites, ou animent les sessions depuis Melbourne et Perth.',
+        body: 'Ingénieurs seniors et formateurs expérimentés se déplacent sur vos sites, ou animent les sessions depuis Melbourne et Perth.',
       },
       {
-        title: 'Certification reconnue',
-        body: 'Les cours s’appuient sur les normes australiennes et sur l’ISO 9712 lorsque la certification est requise.',
+        title: 'Contenus alignés sur les normes',
+        body: 'Les cours s’appuient sur les normes australiennes, et les formations END préparent les candidats à la certification ISO 9712 délivrée par un organisme de certification accrédité.',
       },
       {
         title: 'Formats flexibles',
@@ -261,19 +272,18 @@ export const fr: UI = {
       category: 'Catégorie',
       delivery: 'Format',
       location: 'Lieu',
-      any: 'Tous',
+      any: 'Tout afficher',
       reset: 'Réinitialiser',
       results: '{count} sessions affichées',
       resultsOne: '1 session affichée',
       noMatches: 'Aucune session ne correspond à ces filtres.',
       noSessions: 'Aucune session programmée ce mois-ci.',
       onRequest: 'Dates sur demande',
-      past: 'Terminée',
+      past: 'Session passée',
       showPast: 'Afficher les {count} mois précédents',
       showPastOne: 'Afficher le mois précédent',
       hidePast: 'Masquer les mois précédents',
-      days: '{count} jours',
-      dayOne: '1 jour',
+      days: plural({ one: '1 jour', other: '{count} jours' }),
       custom: 'Sur mesure',
       enquire: 'Se renseigner',
       enquireLabel: 'Se renseigner sur {course}',
@@ -287,26 +297,29 @@ export const fr: UI = {
         crossDiscipline: 'Pluridisciplinaire',
         digitalAI: 'Numérique et IA',
       },
-      deliveryModes: { onsite: 'Sur site', virtual: 'À distance', hybrid: 'Hybride' },
+      deliveryModes: { onsite: 'En présentiel', virtual: 'À distance', hybrid: 'Hybride' },
       locations: {
         melbourne: 'Melbourne',
         perth: 'Perth',
-        global: 'International',
-        clientSite: 'Site client',
+        global: 'Monde entier',
+        clientSite: 'Sur votre site',
       },
       certificates: {
-        technicalCertification: 'Certification technique',
+        technicalCertification: 'Attestation de formation',
         professionalProgram: 'Programme professionnel',
         bespokeTraining: 'Formation sur mesure',
         corporateWorkshop: 'Atelier d’entreprise',
-        iso9712Certification: 'Certification ISO 9712',
+        iso9712Certification: 'Préparation à la certification ISO 9712',
         associateProgram: 'Programme associé',
       },
     },
     catalogue: {
       title: 'Catalogue des formations',
       lead: 'Tous nos programmes, classés par discipline.',
-      sessions: '{count} sessions programmées en {year}',
+      sessions: plural({
+        one: '1 session programmée en {year}',
+        other: '{count} sessions programmées en {year}',
+      }),
     },
     faqTitle: 'Questions sur la formation',
     ctaTitle: 'Développez les compétences de votre équipe',
@@ -316,9 +329,14 @@ export const fr: UI = {
   },
   rental: {
     eyebrow: 'Location d’équipement',
-    title: 'Équipements d’essai à louer',
+    title: 'Équipements d’essais à louer',
     lead: 'Équipements d’essais non destructifs et de surveillance étalonnés, en location courte ou longue durée, avec assistance technique.',
-    specs: { model: 'Modèle', measures: 'Mesures', use: 'Usage type', supplied: 'Fourni avec' },
+    specs: {
+      model: 'Modèle',
+      measures: 'Grandeurs mesurées',
+      use: 'Usage type',
+      supplied: 'Fourni avec',
+    },
     supplied: 'Certificat d’étalonnage, mallette de transport et assistance téléphonique',
     items: {
       gpr: {
@@ -340,7 +358,7 @@ export const fr: UI = {
         use: 'Diagnostics de durabilité et contrôles avant perçage',
       },
       vibration: {
-        name: 'Moniteur de vibrations',
+        name: 'Enregistreur de vibrations (sismographe de chantier)',
         model: 'Système de géophones triaxiaux',
         measures: 'Vitesse particulaire de crête sur trois axes',
         use: 'Conformité vibratoire des chantiers et tirs de mines',
@@ -360,21 +378,21 @@ export const fr: UI = {
     story: {
       title: 'Qui nous sommes',
       body: [
-        'MBSC Australia est un cabinet de conseil spécialisé en ingénierie au service des secteurs du pétrole et du gaz, des mines et des infrastructures. Nos ingénieurs seniors, géoscientifiques et spécialistes techniques travaillent aux côtés d’opérateurs, d’entrepreneurs et d’organismes publics.',
+        'MBSC Australia est un cabinet de conseil spécialisé en ingénierie au service des secteurs du pétrole et du gaz, des mines et des infrastructures. Nos ingénieurs seniors, géoscientifiques et spécialistes techniques travaillent aux côtés d’opérateurs, d’entreprises prestataires et d’organismes publics.',
         'Nous associons inspection et conseil sur le terrain, formation technique et outils numériques, pour que l’expérience acquise sur un projet profite au suivant.',
       ],
       imageAlt: 'Ingénieur MBSC réalisant des essais en laboratoire',
     },
     mission: {
       title: 'Notre mission',
-      body: 'Réaliser une ingénierie qui maintient les infrastructures et les opérations critiques sûres, efficaces et durables.',
+      body: 'Fournir une ingénierie qui assure la sécurité, l’efficacité et la durabilité des infrastructures et des opérations critiques.',
     },
     values: {
       title: 'Nos engagements',
       items: [
         {
           title: 'Rigueur technique',
-          body: 'Les méthodes sont documentées, le matériel étalonné et les résultats traçables à une norme.',
+          body: 'Les méthodes sont documentées, le matériel étalonné et les résultats raccordés à des étalons de référence.',
         },
         {
           title: 'La sécurité d’abord',
@@ -387,6 +405,7 @@ export const fr: UI = {
       ],
     },
     team: { eyebrow: 'Équipe', title: 'Direction' },
+    clientsEyebrow: 'Références clients',
     accreditations: {
       eyebrow: 'Assurance qualité',
       title: 'Accréditations et adhésions',
@@ -414,7 +433,7 @@ export const fr: UI = {
     form: {
       title: 'Envoyer une demande',
       required: 'Obligatoire',
-      optional: 'Facultatif',
+      optional: 'facultatif',
       firstName: 'Prénom',
       lastName: 'Nom',
       company: 'Entreprise',
@@ -423,9 +442,9 @@ export const fr: UI = {
       topic: 'Sujet',
       message: 'Comment pouvons-nous vous aider ?',
       messageHint: 'Quelques lignes sur le site, l’actif ou la formation, et vos délais.',
-      regarding: 'Concernant',
+      regarding: 'Concernant :',
       consent:
-        'J’accepte que MBSC Australia utilise ces informations pour répondre à ma demande, conformément à la {privacy}.',
+        'J’accepte que MBSC Australia utilise ces informations pour répondre à ma demande et en conserver une trace, conformément à la {privacy}.',
       privacyLink: 'politique de confidentialité',
       honeypot: 'Laissez ce champ vide',
       submit: 'Envoyer la demande',
@@ -445,13 +464,13 @@ export const fr: UI = {
         email: 'Saisissez une adresse e-mail valide.',
         phone: 'Saisissez un numéro de téléphone valide.',
         tooShort: 'Merci d’ajouter quelques détails (au moins {min} caractères).',
-        tooLong: 'Merci de rester sous {max} caractères.',
+        tooLong: 'Merci de ne pas dépasser {max} caractères.',
         consent: 'Merci de donner votre accord pour que nous puissions vous répondre.',
         summary: 'Merci de vérifier les champs signalés.',
         send: 'Votre demande n’a pas pu être envoyée. Réessayez ou écrivez-nous directement à {email}.',
         unavailable:
           'Les demandes en ligne sont temporairement indisponibles. Écrivez à {email} ou appelez le {phone}.',
-        tooFast: 'C’était rapide. Patientez un instant et réessayez.',
+        tooFast: 'Envoi trop rapide. Patientez quelques secondes et réessayez.',
       },
       success: {
         title: 'Demande reçue',
@@ -470,12 +489,12 @@ export const fr: UI = {
     meta: {
       title: 'IA et apprentissage automatique pour les mines | MBSC Australia',
       description:
-        'Maintenance prédictive, géologie et contrôle des teneurs assistés par ML, sécurité par vision artificielle et formation en réalité virtuelle pour les opérateurs miniers et énergétiques.',
+        'Maintenance prédictive, contrôle des teneurs assisté par ML, sécurité par vision artificielle et formation en réalité virtuelle pour les mines et l’énergie.',
     },
     eyebrow: 'IA et numérique',
     title: 'IA et apprentissage automatique pour les mines',
-    lead: 'Nous transformons les données que votre exploitation produit déjà en alertes plus précoces, en modèles de ressources plus fiables, en sites plus sûrs et en équipes formées avant même d’être sur le terrain.',
-    primary: 'Parler à notre équipe data',
+    lead: 'Nous transformons les données que votre exploitation produit déjà en alertes plus précoces, en modèles de ressources plus fiables, en sites plus sûrs et en équipes formées avant même de mettre le pied sur le site.',
+    primary: 'Parler à nos spécialistes',
     secondary: 'Voir le fonctionnement',
     intro: {
       title: 'L’ingénierie d’abord, les algorithmes ensuite',
@@ -491,7 +510,7 @@ export const fr: UI = {
       },
       {
         title: 'L’ingénieur dans la boucle',
-        body: 'Chaque résultat de modèle est vérifié par un ingénieur ou un géologue qualifié avant d’orienter une décision.',
+        body: 'Les alertes de sécurité sont transmises directement aux superviseurs ; les recommandations d’ingénierie et de géologie sont vérifiées par un ingénieur ou un géologue qualifié avant toute mise en œuvre.',
       },
       {
         title: 'Sur votre existant',
@@ -500,7 +519,7 @@ export const fr: UI = {
     ],
     diagram: {
       eyebrow: 'Architecture',
-      title: 'Comment notre plateforme d’IA s’intègre à votre exploitation',
+      title: 'L’architecture de données que nous concevons pour votre exploitation',
       lead: 'Vue d’ensemble du flux de données que nous concevons pour nos clients miniers. Chaque déploiement est adapté aux systèmes déjà en place.',
       loop: 'L’ingénieur dans la boucle : les résultats validés réentraînent les modèles',
       stages: [
@@ -514,7 +533,7 @@ export const fr: UI = {
           ],
         },
         {
-          title: 'Collecte en périphérie',
+          title: 'Edge et ingestion des données',
           items: [
             'Passerelles sur site',
             'Validation et nettoyage',
@@ -555,7 +574,7 @@ export const fr: UI = {
         {
           title: 'Maintenance prédictive',
           problem:
-            'Les pannes imprévues de camions, convoyeurs, concasseurs et pompes arrêtent la production et créent des risques.',
+            'Les pannes imprévues des camions de roulage, convoyeurs, concasseurs et pompes arrêtent la production et créent des risques pour la sécurité.',
           method:
             'Nous combinons vibrations, températures, analyses d’huile et données d’exploitation avec l’historique de maintenance pour entraîner des modèles qui estiment l’état de chaque actif et le délai probable avant défaillance.',
           delivers: [
@@ -596,7 +615,7 @@ export const fr: UI = {
           problem:
             'Les tâches à haut risque sont difficiles à pratiquer en sécurité, et la formation en salle reflète rarement les conditions du site.',
           method:
-            'Nous créons des scénarios de réalité virtuelle à partir de vos propres procédures et équipements pour que les équipes répètent les tâches critiques et les situations d’urgence avant de les réaliser.',
+            'Nous créons des scénarios de réalité virtuelle à partir de vos propres procédures et équipements pour que les équipes répètent les tâches critiques et les situations d’urgence avant de les réaliser en conditions réelles.',
           delivers: [
             'Scénarios VR propres à votre site',
             'Résultats d’évaluation par participant',
@@ -628,7 +647,7 @@ export const fr: UI = {
         },
       ],
     },
-    courses: 'Formations numérique et IA',
+    courses: 'Formations au numérique et à l’IA',
     faqTitle: 'Questions sur les projets d’IA',
     faq: [
       {
@@ -671,7 +690,7 @@ export const fr: UI = {
     facts: {
       regions: 'Régions desservies',
       languages: 'Langues',
-      disciplines: 'Lignes de services',
+      disciplines: 'Domaines d’activité',
     },
   },
   insights: {
@@ -680,7 +699,7 @@ export const fr: UI = {
     lead: 'Notes pratiques de nos ingénieurs sur l’IA, la maintenance, la géologie et la sécurité dans les mines et l’énergie.',
     filterLabel: 'Filtrer par thème',
     all: 'Tous',
-    readingTime: '{min} min de lecture',
+    readingTime: plural({ one: '1 min de lecture', other: '{count} min de lecture' }),
     meta: {
       published: 'Publié le',
       updated: 'Mis à jour le',
@@ -737,7 +756,7 @@ export const fr: UI = {
     services: [
       {
         q: 'Où pouvez-vous envoyer vos ingénieurs ?',
-        a: 'Partout en Australie, avec une activité régulière au Victoria, en Australie-Méridionale et en Australie-Occidentale. Nous accompagnons aussi des clients au Moyen-Orient et en Europe.',
+        a: 'Partout en Australie, avec une activité régulière dans l’État de Victoria, en Australie-Méridionale et en Australie-Occidentale. Nous accompagnons aussi des clients au Moyen-Orient et en Europe.',
       },
       {
         q: 'Sous quel délai pouvez-vous intervenir ?',
@@ -763,7 +782,7 @@ export const fr: UI = {
       },
       {
         q: 'Les sessions à distance sont-elles en direct ?',
-        a: 'Oui. Les sessions à distance et hybrides sont animées en direct par un formateur.',
+        a: 'Oui. Les sessions à distance et hybrides sont animées en direct par un formateur, sans contenu préenregistré.',
       },
       {
         q: 'Les cours sont-ils proposés en français ?',
@@ -787,7 +806,7 @@ export const fr: UI = {
     contact: [
       {
         q: 'Sous quel délai répondez-vous ?',
-        a: 'Sous un jour ouvré, du lundi au vendredi, heure de l’Est australien.',
+        a: 'Sous un jour ouvré, du lundi au vendredi, heure de Melbourne.',
       },
       {
         q: 'Signez-vous des accords de confidentialité ?',
@@ -808,38 +827,44 @@ export const fr: UI = {
         {
           heading: 'Qui nous sommes',
           body: [
-            'MBSC Australia Pty Ltd (« nous ») est soumise aux Australian Privacy Principles du Privacy Act 1988 (Cth). Cette politique explique comment nous traitons les informations personnelles recueillies via ce site.',
+            'MBSC Australia Pty Ltd (« nous ») traite les informations personnelles conformément aux Australian Privacy Principles du Privacy Act 1988 (Cth). Cette politique décrit la manière dont nous gérons les informations personnelles recueillies via ce site.',
           ],
         },
         {
           heading: 'Ce que nous collectons',
           body: [
-            'Lorsque vous envoyez une demande, nous collectons votre nom, votre adresse e-mail et, le cas échéant, le nom de votre entreprise, votre téléphone et votre message.',
-            'Nous utilisons Vercel Web Analytics et Speed Insights pour mesurer les visites et les performances. Ces outils n’utilisent pas de cookies et n’identifient pas les visiteurs.',
+            'Lorsque vous envoyez une demande, nous collectons votre nom et votre adresse e-mail et, le cas échéant, le nom de votre entreprise, votre téléphone, le sujet, la référence et votre message. Vous pouvez aussi nous appeler ou nous écrire, et vous n’avez pas à vous identifier pour poser une question générale.',
+            'Notre hébergeur enregistre des informations techniques, comme votre adresse IP, votre navigateur et les pages consultées, afin de fournir et de protéger le site. Vercel Web Analytics et Speed Insights mesurent les visites et les performances sans cookies et sans identifier les visiteurs.',
+          ],
+        },
+        {
+          heading: 'Cookies',
+          body: [
+            'Ce site ne dépose pas de cookies. Le plan de notre page Contact ne se charge que si vous choisissez de l’afficher ; Google peut alors déposer des cookies selon sa propre politique de confidentialité.',
           ],
         },
         {
           heading: 'Utilisation',
           body: [
-            'Nous utilisons vos informations uniquement pour répondre à votre demande, préparer un devis ou une proposition et conserver une trace de nos échanges. Nous ne vendons pas d’informations personnelles et ne les utilisons pas à d’autres fins commerciales.',
+            'Nous utilisons vos informations uniquement pour répondre à votre demande, préparer un devis ou une proposition et conserver une trace de nos échanges. Nous ne vendons pas d’informations personnelles et ne les utilisons pas à des fins de prospection sans rapport avec votre demande.',
           ],
         },
         {
           heading: 'Partage',
           body: [
-            'Les demandes sont transmises à notre messagerie professionnelle via Zoho Mail. Le site est hébergé par Vercel. Ces prestataires traitent les données pour notre compte et peuvent les stocker hors d’Australie. Nous prenons des mesures raisonnables pour qu’ils les protègent.',
+            'Notre site est hébergé par Vercel Inc. Les demandes sont envoyées par e-mail via Zoho ZeptoMail et reçues dans Zoho Mail (Zoho Corporation). Ces prestataires traitent les données pour notre compte, et vos informations sont susceptibles d’être stockées ou traitées aux États-Unis. Nous prenons des mesures raisonnables pour qu’ils les protègent. Nous ne communiquons pas vos informations à d’autres tiers, sauf obligation légale.',
           ],
         },
         {
           heading: 'Durée de conservation',
           body: [
-            'Nous conservons les demandes le temps nécessaire pour y répondre et respecter nos obligations légales et de gestion, puis nous les supprimons.',
+            'Nous conservons les demandes le temps nécessaire pour y répondre et respecter nos obligations légales et professionnelles de conservation des documents, puis nous les supprimons.',
           ],
         },
         {
           heading: 'Accès, rectification et réclamations',
           body: [
-            'Vous pouvez demander l’accès à vos informations ou leur rectification en écrivant à {email}. Pour toute réclamation, contactez-nous d’abord. Si notre réponse ne vous satisfait pas, vous pouvez saisir l’Office of the Australian Information Commissioner sur oaic.gov.au.',
+            'Vous pouvez demander l’accès à vos informations ou leur rectification en écrivant à {email}. Pour toute réclamation relative à la protection de vos informations personnelles, contactez-nous d’abord : nous nous efforçons de répondre sous 30 jours. Si notre réponse ne vous satisfait pas, vous pouvez saisir l’Office of the Australian Information Commissioner (OAIC), l’autorité australienne de protection des données, sur oaic.gov.au ou au 1300 363 992.',
           ],
         },
       ],
@@ -856,7 +881,7 @@ export const fr: UI = {
         {
           heading: 'Information générale',
           body: [
-            'Le contenu de ce site est une information générale sur nos services. Il ne constitue pas un avis d’ingénierie adapté à une situation particulière.',
+            'Le contenu de ce site est une information générale sur nos services. Il ne constitue pas un avis d’ingénierie adapté à une situation particulière. Obtenez toujours un avis propre à votre projet avant d’agir sur la base de ce contenu.',
           ],
         },
         {
@@ -868,7 +893,7 @@ export const fr: UI = {
         {
           heading: 'Propriété intellectuelle',
           body: [
-            'Les textes, graphismes et logos de ce site appartiennent à MBSC Australia Pty Ltd ou sont utilisés avec autorisation. Les photographies créditées à des tiers restent la propriété de leurs auteurs.',
+            'Les textes et graphismes de ce site appartiennent à MBSC Australia Pty Ltd. Les noms et logos de tiers sont des marques de leurs propriétaires respectifs. Les photographies créditées à des tiers restent la propriété de leurs auteurs.',
           ],
         },
         {

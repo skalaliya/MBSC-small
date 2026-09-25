@@ -25,7 +25,7 @@ VR does not replace field training or supervision. It works best:
 - **For rare events**, such as emergencies, that crews may never practise on site.
 - **For refreshers**, where experienced workers need to rehearse a changed procedure quickly.
 
-Australia's model Work Health and Safety laws require businesses to provide the information, training, instruction and supervision needed to protect workers. VR is one way to make that training more realistic and more measurable.
+Australia's model Work Health and Safety laws, and the equivalent duties in Victoria's Occupational Health and Safety Act 2004, require businesses to provide the information, training, instruction and supervision needed to protect workers. VR is one way to make that training more realistic and more measurable.
 
 ## What a good program looks like
 
@@ -38,4 +38,4 @@ Australia's model Work Health and Safety laws require businesses to provide the 
 
 Start with one high-risk task that is hard to practise and has a clear procedure. Build the scenario with the people who do the work, run it with a small group, and compare their field performance with those trained the usual way. Expand only once the scenario has proved its value.
 
-_Source: Safe Work Australia, model Work Health and Safety laws (safeworkaustralia.gov.au)._
+_Sources: Safe Work Australia, model Work Health and Safety laws (safeworkaustralia.gov.au); WorkSafe Victoria, Occupational Health and Safety Act 2004 (worksafe.vic.gov.au)._

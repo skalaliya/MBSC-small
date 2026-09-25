@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request }) => {
   const isForm = (request.headers.get('content-type') ?? '').includes(
     'application/x-www-form-urlencoded',
   );
-  if (!sameOrigin(request.headers.get('origin'), request.url))
+  if (!sameOrigin(request.headers.get('origin'), request.url, request.headers.get('referer')))
     return json(403, { ok: false, error: 'origin' });
 
   const length = Number(request.headers.get('content-length') ?? 0);

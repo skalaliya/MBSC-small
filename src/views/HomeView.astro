@@ -203,6 +203,10 @@ const latest = (await getInsights(locale)).slice(0, 3);
     title={t.home.cta.title}
     lead={t.home.cta.lead}
     primary={{ label: t.home.cta.primary, href: L('/contact') }}
-    secondary={{ label: fmt(t.home.cta.secondary, { phone: site.phone }), href: site.phoneHref }}
+    secondary={{
+      // Isolate the number so it keeps its order inside right-to-left text.
+      label: fmt(t.home.cta.secondary, { phone: `\u2066${site.phone}\u2069` }),
+      href: site.phoneHref,
+    }}
   />
 </Base>

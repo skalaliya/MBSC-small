@@ -50,15 +50,21 @@ const meta = [
 
   <div class="bg-navy-950">
     <div class="container-site">
-      <Picture
-        src={p.image}
-        alt={p.imageAlt}
-        formats={['avif', 'webp']}
-        widths={[640, 1024, 1440, 1920]}
-        sizes="(min-width: 1280px) 1216px, 100vw"
-        loading="eager"
-        class="aspect-[16/9] w-full translate-y-12 rounded-lg object-cover shadow-2xl ring-1 ring-white/10 sm:aspect-[21/9]"
-      />
+      <figure class="relative translate-y-12">
+        <Picture
+          src={p.image}
+          alt={p.imageAlt}
+          formats={['avif', 'webp']}
+          widths={[640, 1024, 1440, 1920]}
+          sizes="(min-width: 1280px) 1216px, 100vw"
+          loading="eager"
+          class="aspect-[16/9] w-full rounded-lg object-cover shadow-2xl ring-1 ring-white/10 sm:aspect-[21/9]"
+        />
+        {/* Case-study photos are licensed stock (see /credits), not photos of the project. */}
+        <figcaption class="absolute end-3 bottom-3 rounded-sm bg-navy-950/75 px-2 py-1 text-xs text-white">
+          {t.projects.detail.illustrative}
+        </figcaption>
+      </figure>
     </div>
   </div>
 

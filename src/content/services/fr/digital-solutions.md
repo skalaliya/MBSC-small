@@ -26,7 +26,7 @@ process:
       'body': 'Configurer plateformes, intégrations et tableaux de bord autour de ces décisions.',
     },
     {
-      'title': 'Ancrer',
+      'title': 'Transférer',
       'body': 'Former votre équipe et livrer des systèmes qui fonctionnent sans nous.',
     },
   ]
@@ -35,7 +35,7 @@ deliverables:
     'Architecture de données et conception des intégrations',
     'Tableaux de bord et alertes configurés',
     'Modèles analytiques documentés',
-    'Formation de passation pour votre équipe',
+    'Formation de prise en main pour votre équipe',
   ]
 categories: ['digitalAI']
 topic: 'digital'

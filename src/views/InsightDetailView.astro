@@ -10,7 +10,7 @@ import Prose from '../components/ui/Prose.astro';
 import Icon from '../components/ui/Icon.astro';
 import InsightCard from '../components/InsightCard.astro';
 import CTABand from '../components/ui/CTABand.astro';
-import { fmt, localizePath, toLocale, useT } from '../i18n/utils';
+import { fmt, fmtCount, localizePath, toLocale, useT } from '../i18n/utils';
 import { getInsights, readingMinutes, type Insight } from '../lib/queries';
 import { formatInsightDate, relatedInsights, tocEntries } from '../lib/insights';
 import { isPublic } from '../lib/publish';
@@ -46,7 +46,7 @@ const meta = [
     : []),
   {
     label: t.insights.meta.reading,
-    value: fmt(t.insights.readingTime, { min: readingMinutes(entry.body) }),
+    value: fmtCount(t.insights.readingTime, readingMinutes(entry.body), locale),
   },
   { label: t.insights.meta.author, value: a.authorRole },
 ];

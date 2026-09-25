@@ -6,7 +6,7 @@
       "course": "reservoir-engineering-fundamentals",
       "title": {
         "en": "Reservoir Engineering Fundamentals",
-        "fr": "Fondamentaux de l'ingénierie des réservoirs",
+        "fr": "Fondamentaux de l’ingénierie de réservoir",
         "ar": "أساسيات هندسة المكامن"
       },
       "start": "2026-01-13",
@@ -54,7 +54,7 @@
       "course": "core-logging-techniques",
       "title": {
         "en": "Core Logging & Geological Logging Techniques",
-        "fr": "Techniques de diagraphie et de logging géologique",
+        "fr": "Techniques de description de carottes et de levé géologique",
         "ar": "تقنيات وصف العينات اللبية والتسجيل الجيولوجي"
       },
       "start": "2026-01-29",
@@ -70,7 +70,7 @@
       "course": "custom-corporate-programs",
       "title": {
         "en": "Custom Corporate Programs",
-        "fr": "Programmes d'entreprise sur mesure",
+        "fr": "Programmes d’entreprise sur mesure",
         "ar": "برامج مؤسسية مصممة حسب الطلب"
       },
       "start": null,
@@ -150,7 +150,7 @@
       "course": "structural-geology-exploration",
       "title": {
         "en": "Structural Geology for Exploration & Mining",
-        "fr": "Géologie structurale pour l'exploration et l'exploitation minière",
+        "fr": "Géologie structurale pour l’exploration et l’exploitation minière",
         "ar": "الجيولوجيا التركيبية للاستكشاف والتعدين"
       },
       "start": "2026-02-24",
@@ -166,7 +166,7 @@
       "course": "production-technology-artificial-lift",
       "title": {
         "en": "Production Technology & Artificial Lift",
-        "fr": "Technologie de production et levage artificiel",
+        "fr": "Technologie de production et activation des puits",
         "ar": "تقنيات الإنتاج والرفع الاصطناعي"
       },
       "start": "2026-03-02",
@@ -182,7 +182,7 @@
       "course": "geophysics-subsurface",
       "title": {
         "en": "Geophysics for Subsurface Interpretation",
-        "fr": "Géophysique pour l'interprétation souterraine",
+        "fr": "Géophysique pour l’interprétation du sous-sol",
         "ar": "الجيوفيزياء لتفسير باطن الأرض"
       },
       "start": "2026-03-09",
@@ -198,7 +198,7 @@
       "course": "ventilation-engineering",
       "title": {
         "en": "Ventilation Engineering Essentials",
-        "fr": "Essentiels de l'ingénierie de ventilation",
+        "fr": "Fondamentaux de l’ingénierie de ventilation",
         "ar": "أساسيات هندسة التهوية"
       },
       "start": "2026-03-16",
@@ -229,9 +229,9 @@
       "id": "ndt-certification-mar",
       "course": "ndt-certification",
       "title": {
-        "en": "NDT Certification (Level 1 & 2)",
-        "fr": "Certification CND (Niveau 1 et 2)",
-        "ar": "شهادة الفحص غير الإتلافي NDT (المستويان 1 و2)"
+        "en": "NDT Training towards ISO 9712 (Level 1 & 2)",
+        "fr": "Formation END préparant à la certification ISO 9712 (niveaux 1 et 2)",
+        "ar": "التدريب على الاختبارات غير الإتلافية تمهيدًا لشهادة ISO 9712 (المستويان الأول والثاني)"
       },
       "start": "2026-03-24",
       "end": "2026-03-28",
@@ -263,7 +263,7 @@
       "title": {
         "en": "Cementing & Well Integrity",
         "fr": "Cimentation et intégrité des puits",
-        "ar": "تسميت الآبار وسلامتها"
+        "ar": "تسميت الآبار وسلامة الآبار"
       },
       "start": "2026-04-06",
       "end": "2026-04-10",
@@ -278,7 +278,7 @@
       "course": "petrophysics-reservoir-mining",
       "title": {
         "en": "Petrophysics for Reservoir & Mining Applications",
-        "fr": "Pétrophysique pour les applications réservoir et minières",
+        "fr": "Pétrophysique appliquée aux réservoirs et aux mines",
         "ar": "البتروفيزياء لتطبيقات المكامن والتعدين"
       },
       "start": "2026-04-13",
@@ -294,8 +294,8 @@
       "course": "gpr-ndt-interpretation",
       "title": {
         "en": "Advanced GPR & NDT Interpretation",
-        "fr": "Interprétation avancée GPR et CND",
-        "ar": "التفسير المتقدم لبيانات GPR والفحص غير الإتلافي (NDT)"
+        "fr": "Interprétation avancée GPR et END",
+        "ar": "التفسير المتقدم لبيانات GPR والاختبارات غير الإتلافية (NDT)"
       },
       "start": "2026-04-15",
       "end": "2026-04-17",
@@ -310,7 +310,7 @@
       "course": "geostatistics-resource-estimation",
       "title": {
         "en": "Geostatistics & Resource Estimation",
-        "fr": "Géostatistiques et estimation des ressources",
+        "fr": "Géostatistique et estimation des ressources",
         "ar": "الإحصاء الجيولوجي وتقدير الموارد"
       },
       "start": "2026-04-20",
@@ -390,7 +390,7 @@
       "course": "mine-geology-grade-control",
       "title": {
         "en": "Mine Geology & Grade Control",
-        "fr": "Géologie minière et contrôle de teneur",
+        "fr": "Géologie minière et contrôle des teneurs",
         "ar": "جيولوجيا المناجم وضبط رتبة الخام"
       },
       "start": "2026-05-18",
@@ -422,7 +422,7 @@
       "course": "geomechanics-ground-control",
       "title": {
         "en": "Geomechanics & Ground Control",
-        "fr": "Géomécanique et contrôle du terrain",
+        "fr": "Géomécanique et maîtrise des terrains",
         "ar": "الجيوميكانيكا والتحكم في استقرار الأرض"
       },
       "start": "2026-05-27",
@@ -438,7 +438,7 @@
       "course": "hse-leadership-energy",
       "title": {
         "en": "HSE Leadership for Energy Professionals",
-        "fr": "Leadership HSE pour professionnels de l'énergie",
+        "fr": "Leadership HSE pour les professionnels de l’énergie",
         "ar": "القيادة في الصحة والسلامة والبيئة (HSE) للعاملين في قطاع الطاقة"
       },
       "start": "2026-06-01",
@@ -454,7 +454,7 @@
       "course": "geochemistry-exploration",
       "title": {
         "en": "Geochemistry for Exploration",
-        "fr": "Géochimie pour l'exploration",
+        "fr": "Géochimie pour l’exploration",
         "ar": "الجيوكيمياء في أعمال الاستكشاف"
       },
       "start": "2026-06-08",
@@ -469,9 +469,9 @@
       "id": "ndt-certification-jun",
       "course": "ndt-certification",
       "title": {
-        "en": "NDT Certification (Level 1 & 2)",
-        "fr": "Certification CND (Niveau 1 et 2)",
-        "ar": "شهادة الفحص غير الإتلافي NDT (المستويان 1 و2)"
+        "en": "NDT Training towards ISO 9712 (Level 1 & 2)",
+        "fr": "Formation END préparant à la certification ISO 9712 (niveaux 1 et 2)",
+        "ar": "التدريب على الاختبارات غير الإتلافية تمهيدًا لشهادة ISO 9712 (المستويان الأول والثاني)"
       },
       "start": "2026-06-09",
       "end": "2026-06-13",
@@ -486,7 +486,7 @@
       "course": "domaining-classification",
       "title": {
         "en": "Domaining & Classification Techniques",
-        "fr": "Techniques de domainisation et classification",
+        "fr": "Techniques de domaining et de classification",
         "ar": "تقنيات تحديد النطاقات الجيولوجية والتصنيف"
       },
       "start": "2026-06-15",
@@ -518,7 +518,7 @@
       "course": "ai-managers-decision-makers",
       "title": {
         "en": "AI for Managers & Decision Makers",
-        "fr": "IA pour managers et décideurs",
+        "fr": "L’IA pour les managers et les décideurs",
         "ar": "الذكاء الاصطناعي للمديرين وصنّاع القرار"
       },
       "start": "2026-06-29",
@@ -534,7 +534,7 @@
       "course": "reservoir-engineering-fundamentals",
       "title": {
         "en": "Reservoir Engineering Fundamentals",
-        "fr": "Fondamentaux de l'ingénierie des réservoirs",
+        "fr": "Fondamentaux de l’ingénierie de réservoir",
         "ar": "أساسيات هندسة المكامن"
       },
       "start": "2026-07-06",
@@ -550,7 +550,7 @@
       "course": "geomechanics-essentials",
       "title": {
         "en": "Geomechanics Essentials",
-        "fr": "Essentiels de géomécanique",
+        "fr": "Fondamentaux de la géomécanique",
         "ar": "أساسيات الجيوميكانيكا"
       },
       "start": "2026-07-13",
@@ -583,7 +583,7 @@
       "title": {
         "en": "Mine-to-Mill Optimisation",
         "fr": "Optimisation mine-usine",
-        "ar": "تحسين العمليات من المنجم إلى المطحنة"
+        "ar": "تحسين العمليات من المنجم إلى مصنع المعالجة"
       },
       "start": "2026-07-27",
       "end": "2026-07-29",
@@ -598,7 +598,7 @@
       "course": "custom-corporate-programs",
       "title": {
         "en": "Custom Corporate Programs",
-        "fr": "Programmes d'entreprise sur mesure",
+        "fr": "Programmes d’entreprise sur mesure",
         "ar": "برامج مؤسسية مصممة حسب الطلب"
       },
       "start": null,
@@ -630,7 +630,7 @@
       "course": "structural-geology-exploration",
       "title": {
         "en": "Structural Geology for Exploration & Mining",
-        "fr": "Géologie structurale pour l'exploration et l'exploitation minière",
+        "fr": "Géologie structurale pour l’exploration et l’exploitation minière",
         "ar": "الجيولوجيا التركيبية للاستكشاف والتعدين"
       },
       "start": "2026-08-10",
@@ -662,7 +662,7 @@
       "course": "leadership-team-development",
       "title": {
         "en": "Leadership & Team Development",
-        "fr": "Leadership et développement d'équipe",
+        "fr": "Leadership et développement d’équipe",
         "ar": "القيادة وتطوير الفرق"
       },
       "start": "2026-08-17",
@@ -710,7 +710,7 @@
       "course": "production-technology-artificial-lift",
       "title": {
         "en": "Production Technology & Artificial Lift",
-        "fr": "Technologie de production et levage artificiel",
+        "fr": "Technologie de production et activation des puits",
         "ar": "تقنيات الإنتاج والرفع الاصطناعي"
       },
       "start": "2026-09-07",
@@ -726,7 +726,7 @@
       "course": "geophysics-subsurface",
       "title": {
         "en": "Geophysics for Subsurface Interpretation",
-        "fr": "Géophysique pour l'interprétation souterraine",
+        "fr": "Géophysique pour l’interprétation du sous-sol",
         "ar": "الجيوفيزياء لتفسير باطن الأرض"
       },
       "start": "2026-09-14",
@@ -741,9 +741,9 @@
       "id": "ndt-certification-sep",
       "course": "ndt-certification",
       "title": {
-        "en": "NDT Certification (Level 1 & 2)",
-        "fr": "Certification CND (Niveau 1 et 2)",
-        "ar": "شهادة الفحص غير الإتلافي NDT (المستويان 1 و2)"
+        "en": "NDT Training towards ISO 9712 (Level 1 & 2)",
+        "fr": "Formation END préparant à la certification ISO 9712 (niveaux 1 et 2)",
+        "ar": "التدريب على الاختبارات غير الإتلافية تمهيدًا لشهادة ISO 9712 (المستويان الأول والثاني)"
       },
       "start": "2026-09-15",
       "end": "2026-09-19",
@@ -758,7 +758,7 @@
       "course": "geostatistics-resource-estimation",
       "title": {
         "en": "Geostatistics & Resource Estimation",
-        "fr": "Géostatistiques et estimation des ressources",
+        "fr": "Géostatistique et estimation des ressources",
         "ar": "الإحصاء الجيولوجي وتقدير الموارد"
       },
       "start": "2026-09-21",
@@ -774,8 +774,8 @@
       "course": "industrial-law-regulatory",
       "title": {
         "en": "Industrial Law & Regulatory Compliance",
-        "fr": "Droit industriel et conformité réglementaire",
-        "ar": "القانون الصناعي والامتثال التنظيمي"
+        "fr": "Droit du travail et conformité réglementaire",
+        "ar": "قانون العمل والعلاقات الصناعية والامتثال التنظيمي"
       },
       "start": "2026-09-28",
       "end": "2026-09-29",
@@ -791,7 +791,7 @@
       "title": {
         "en": "Cementing & Well Integrity",
         "fr": "Cimentation et intégrité des puits",
-        "ar": "تسميت الآبار وسلامتها"
+        "ar": "تسميت الآبار وسلامة الآبار"
       },
       "start": "2026-10-05",
       "end": "2026-10-09",
@@ -806,8 +806,8 @@
       "course": "gpr-ndt-interpretation",
       "title": {
         "en": "Advanced GPR & NDT Interpretation",
-        "fr": "Interprétation avancée GPR et CND",
-        "ar": "التفسير المتقدم لبيانات GPR والفحص غير الإتلافي (NDT)"
+        "fr": "Interprétation avancée GPR et END",
+        "ar": "التفسير المتقدم لبيانات GPR والاختبارات غير الإتلافية (NDT)"
       },
       "start": "2026-10-07",
       "end": "2026-10-09",
@@ -822,7 +822,7 @@
       "course": "petrophysics-reservoir-mining",
       "title": {
         "en": "Petrophysics for Reservoir & Mining Applications",
-        "fr": "Pétrophysique pour les applications réservoir et minières",
+        "fr": "Pétrophysique appliquée aux réservoirs et aux mines",
         "ar": "البتروفيزياء لتطبيقات المكامن والتعدين"
       },
       "start": "2026-10-12",
@@ -838,7 +838,7 @@
       "course": "core-logging-techniques",
       "title": {
         "en": "Core Logging & Geological Logging Techniques",
-        "fr": "Techniques de diagraphie et de logging géologique",
+        "fr": "Techniques de description de carottes et de levé géologique",
         "ar": "تقنيات وصف العينات اللبية والتسجيل الجيولوجي"
       },
       "start": "2026-10-19",
@@ -854,7 +854,7 @@
       "course": "ventilation-engineering",
       "title": {
         "en": "Ventilation Engineering Essentials",
-        "fr": "Essentiels de l'ingénierie de ventilation",
+        "fr": "Fondamentaux de l’ingénierie de ventilation",
         "ar": "أساسيات هندسة التهوية"
       },
       "start": "2026-10-26",
@@ -901,9 +901,9 @@
       "id": "ndt-certification-nov",
       "course": "ndt-certification",
       "title": {
-        "en": "NDT Certification (Level 1 & 2)",
-        "fr": "Certification CND (Niveau 1 et 2)",
-        "ar": "شهادة الفحص غير الإتلافي NDT (المستويان 1 و2)"
+        "en": "NDT Training towards ISO 9712 (Level 1 & 2)",
+        "fr": "Formation END préparant à la certification ISO 9712 (niveaux 1 et 2)",
+        "ar": "التدريب على الاختبارات غير الإتلافية تمهيدًا لشهادة ISO 9712 (المستويان الأول والثاني)"
       },
       "start": "2026-11-09",
       "end": "2026-11-13",
@@ -918,7 +918,7 @@
       "course": "mine-geology-grade-control",
       "title": {
         "en": "Mine Geology & Grade Control",
-        "fr": "Géologie minière et contrôle de teneur",
+        "fr": "Géologie minière et contrôle des teneurs",
         "ar": "جيولوجيا المناجم وضبط رتبة الخام"
       },
       "start": "2026-11-16",
@@ -966,7 +966,7 @@
       "course": "ai-managers-decision-makers",
       "title": {
         "en": "AI for Managers & Decision Makers",
-        "fr": "IA pour managers et décideurs",
+        "fr": "L’IA pour les managers et les décideurs",
         "ar": "الذكاء الاصطناعي للمديرين وصنّاع القرار"
       },
       "start": "2026-11-30",
@@ -982,7 +982,7 @@
       "course": "hse-leadership-energy",
       "title": {
         "en": "HSE Leadership for Energy Professionals",
-        "fr": "Leadership HSE pour professionnels de l'énergie",
+        "fr": "Leadership HSE pour les professionnels de l’énergie",
         "ar": "القيادة في الصحة والسلامة والبيئة (HSE) للعاملين في قطاع الطاقة"
       },
       "start": "2026-12-01",
@@ -1030,7 +1030,7 @@
       "course": "geomechanics-ground-control",
       "title": {
         "en": "Geomechanics & Ground Control",
-        "fr": "Géomécanique et contrôle du terrain",
+        "fr": "Géomécanique et maîtrise des terrains",
         "ar": "الجيوميكانيكا والتحكم في استقرار الأرض"
       },
       "start": "2026-12-14",

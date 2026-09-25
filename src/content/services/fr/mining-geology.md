@@ -18,7 +18,7 @@ capabilities:
 process:
   [
     {
-      'title': 'Investiguer',
+      'title': 'Reconnaître',
       'body': 'Planifier et mener les reconnaissances, essais et collectes de données sur site.',
     },
     {

@@ -18,15 +18,15 @@ process:
   [
     {
       'title': 'Évaluer',
-      'body': 'Analyse de vos données, de vos systèmes et de la décision que le modèle doit améliorer.',
+      'body': 'Analyser vos données, vos systèmes et la décision que le modèle doit améliorer.',
     },
     {
       'title': 'Piloter',
-      'body': 'Démonstration de la valeur sur une famille d’actifs, une zone ou une procédure, selon des critères convenus.',
+      'body': 'Démontrer la valeur sur une famille d’actifs, une zone ou une procédure, selon des critères convenus.',
     },
     {
       'title': 'Déployer',
-      'body': 'Extension de ce qui fonctionne et livraison de modèles que votre équipe peut exploiter et auditer.',
+      'body': 'Étendre ce qui fonctionne et livrer des modèles que votre équipe peut exploiter et auditer.',
     },
   ]
 deliverables:

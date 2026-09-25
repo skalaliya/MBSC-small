@@ -1,7 +1,7 @@
 ---
 import Badge from './ui/Badge.astro';
 import Icon from './ui/Icon.astro';
-import { fmt, intlLocale, localizePath, toLocale, useT } from '../i18n/utils';
+import { fmt, fmtCount, intlLocale, localizePath, toLocale, useT } from '../i18n/utils';
 import { CATEGORY_DOT } from '../lib/content';
 import { daysInclusive, formatRange } from '../lib/dates';
 import { sessionDates } from '../lib/queries';
@@ -20,12 +20,14 @@ const t = useT(locale);
 const c = t.training.calendar;
 const dates = sessionDates(s);
 const title = s.title[locale];
+// Show the year whenever a date is not in the current year, so lists that span New Year are clear.
+const withYear =
+  showYear || (dates !== null && dates.end.getFullYear() !== new Date().getFullYear());
 const when = dates
-  ? formatRange(dates.start, dates.end, intlLocale[locale], showYear)
+  ? formatRange(dates.start, dates.end, intlLocale[locale], withYear)
   : c.onRequest;
 const length = dates ? daysInclusive(dates.start, dates.end) : null;
-const duration =
-  length === null ? c.custom : length === 1 ? c.dayOne : fmt(c.days, { count: length });
+const duration = length === null ? c.custom : fmtCount(c.days, length, locale);
 const ref = `${title} · ${dates ? formatRange(dates.start, dates.end, intlLocale[locale], true) : `${c.onRequest} (${year})`}`;
 const enquire = `${localizePath('/contact', locale)}?topic=training&ref=${encodeURIComponent(ref)}`;
 ---

@@ -15,8 +15,8 @@ approach:
     'Corrosion assessment of reinforcement',
     'Prioritised defect register for remediation planning',
   ]
-outcome: 'Critical structural defects were identified and remediation guided, keeping port operations and cargo handling safe.'
-facts: []
+outcome: 'Concrete test results and corrosion findings were compiled into a defect register, with defects ranked by severity for the owner’s engineers to plan remediation.'
+facts: [{ 'label': 'Deliverable', 'value': 'Prioritised defect register' }]
 image: '../../../assets/images/project-port-wharf.jpg'
 imageAlt: 'Wharf with cargo cranes and berthed vessels'
 featured: false

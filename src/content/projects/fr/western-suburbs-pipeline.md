@@ -15,8 +15,8 @@ approach:
     'Surveillance de l’état pendant les travaux',
     'Rapports à l’appui de la validation par l’opérateur',
   ]
-outcome: 'Une évaluation complète de l’intégrité du pipeline a soutenu un approvisionnement énergétique sûr et fiable pour les quartiers ouest en expansion.'
-facts: []
+outcome: 'Les résultats des essais d’intégrité et les données de surveillance de l’état ont été transmis à l’appui de la validation, par l’opérateur, des tronçons de pipeline modernisés.'
+facts: [{ 'label': 'Périmètre', 'value': 'Essais d’intégrité et surveillance de l’état' }]
 image: '../../../assets/images/project-western-pipeline.jpg'
 imageAlt: 'Pipeline aérien longeant une route rurale'
 featured: false

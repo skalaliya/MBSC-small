@@ -100,11 +100,7 @@ const valueIcons = ['file-check-2', 'shield-check', 'users'] as const;
   </Section>
 
   <Section tone="surface" labelledby="clients-title">
-    <SectionHeading
-      id="clients-title"
-      eyebrow={a.accreditations.eyebrow}
-      title={t.home.trust.title}
-    />
+    <SectionHeading id="clients-title" eyebrow={a.clientsEyebrow} title={t.home.trust.title} />
     <TrustStrip variant="grouped" />
   </Section>
 

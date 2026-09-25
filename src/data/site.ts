@@ -37,10 +37,9 @@ export const site = {
   stats: {
     basisDate: '2026-09-01',
     items: [
-      { key: 'projects', value: 1200, suffix: '+', prefix: '', decimals: 0 },
-      { key: 'trainingHours', value: 50, suffix: 'k+', prefix: '', decimals: 0 },
-      { key: 'metresDrilled', value: 5000, suffix: ' m', prefix: '', decimals: 0 },
-      { key: 'assets', value: 4.5, suffix: 'B', prefix: '$', decimals: 1 },
+      // Units and signs are per language: see stats.format in src/i18n/*.ts.
+      { key: 'projects', value: 1200, decimals: 0 },
+      { key: 'trainingHours', value: 50000, decimals: 0 },
     ],
   },
 } as const;
