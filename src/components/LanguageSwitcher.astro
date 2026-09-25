@@ -1,5 +1,5 @@
 ---
-import { alternatePath, htmlLang, toLocale, useT, type Locale } from '../i18n/utils';
+import { alternatePath, builtLocales, htmlLang, toLocale, useT, type Locale } from '../i18n/utils';
 interface Props {
   dark?: boolean;
   class?: string;
@@ -7,10 +7,13 @@ interface Props {
 const { dark = false, class: className } = Astro.props;
 const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
-const options: { code: Locale; short: string; long: string }[] = [
+// Only languages with pages in this build: Arabic appears once published (or on previews).
+const all: { code: Locale; short: string; long: string }[] = [
   { code: 'en', short: t.lang.enShort, long: t.lang.en },
   { code: 'fr', short: t.lang.frShort, long: t.lang.fr },
+  { code: 'ar', short: t.lang.arShort, long: t.lang.ar },
 ];
+const options = all.filter((o) => builtLocales.includes(o.code));
 ---
 
 <nav aria-label={t.a11y.languageSwitcher} class={className}>

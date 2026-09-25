@@ -57,7 +57,7 @@ const crumbs = [
             />
             <span class="inline-flex h-9 items-center rounded-full px-4 text-sm font-medium text-ink-700 ring-1 ring-line ring-inset transition-colors peer-checked:bg-navy-950 peer-checked:text-white peer-checked:ring-navy-950 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-violet hover:ring-navy-200">
               {s === 'all' ? t.projects.all : t.projects.sectors[s]}
-              <span class="ml-1.5 text-xs opacity-60 tabular-nums">
+              <span class="ms-1.5 text-xs opacity-60 tabular-nums">
                 {s === 'all' ? projects.length : projects.filter((p) => p.data.sector === s).length}
               </span>
             </span>

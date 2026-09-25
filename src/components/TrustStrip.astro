@@ -142,7 +142,17 @@ const groups = (['mining', 'oilGas'] as const)
       transform: translateX(-50%);
     }
   }
+  /* In right-to-left pages the track is anchored to the right edge, so it scrolls the other way;
+     simply reversing the left-to-right animation would slide it out of view. */
+  @keyframes trust-scroll-rtl {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(50%);
+    }
+  }
   :global([dir='rtl']) .trust-track {
-    animation-direction: reverse;
+    animation-name: trust-scroll-rtl;
   }
 </style>

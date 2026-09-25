@@ -163,3 +163,17 @@
 [data-month][data-collapsed] {
   display: none;
 }
+
+/*
+ * Arabic. Unlayered on purpose, so these beat Tailwind's theme and utility layers.
+ * IBM Plex Sans Arabic (also covers Latin) replaces Inter and Manrope on Arabic pages.
+ */
+html:lang(ar) {
+  --font-sans: var(--font-arabic), Tahoma, ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-arabic), Tahoma, ui-sans-serif, system-ui, sans-serif;
+}
+/* Letter-spacing pulls Arabic letters apart and breaks their joins. */
+html:lang(ar) [class*='tracking-'],
+[lang='ar'][class*='tracking-'] {
+  letter-spacing: 0;
+}

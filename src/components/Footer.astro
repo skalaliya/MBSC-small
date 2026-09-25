@@ -99,13 +99,13 @@ const address = [
         <li class="flex gap-3">
           <Icon name="phone" size={18} class="mt-1 text-brand-lilac" />
           <a href={site.phoneHref} class="tabular-nums hover:text-white">
-            {site.phone}
+            <bdi dir="ltr">{site.phone}</bdi>
           </a>
         </li>
         <li class="flex gap-3">
           <Icon name="mail" size={18} class="mt-1 text-brand-lilac" />
           <a href={`mailto:${site.email}`} class="break-all hover:text-white">
-            {site.email}
+            <bdi dir="ltr">{site.email}</bdi>
           </a>
         </li>
         <li class="flex gap-3">
@@ -120,7 +120,7 @@ const address = [
     <div class="container-site flex flex-col gap-4 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
       <p>
         © {year} {site.legalName}. {t.footer.rights}
-        {site.abn && <span class="ml-1">{fmt(t.footer.abn, { abn: site.abn })}</span>}
+        {site.abn && <span class="ms-1">{fmt(t.footer.abn, { abn: site.abn })}</span>}
       </p>
       <ul class="flex flex-wrap gap-x-6 gap-y-2">
         <li>

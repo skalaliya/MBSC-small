@@ -60,7 +60,7 @@ describe('shiftCalendar', () => {
         {
           id: 'x-dec',
           course: 'x',
-          title: { en: 'X', fr: 'X' },
+          title: { en: 'X', fr: 'X', ar: 'X' },
           start: '2026-12-28',
           end: '2026-12-30',
           month: 12,

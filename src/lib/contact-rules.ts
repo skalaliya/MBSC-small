@@ -30,7 +30,7 @@ export interface ContactInput {
   ref: string;
   message: string;
   consent: boolean;
-  locale: 'en' | 'fr';
+  locale: 'en' | 'fr' | 'ar';
   page: string;
   /** Honeypot: must be empty. */
   website: string;
@@ -67,7 +67,7 @@ export function normalize(raw: Record<string, unknown>): ContactInput {
     ref: str(raw.ref, LIMITS.ref),
     message: text(raw.message, LIMITS.messageMax),
     consent: raw.consent === true || raw.consent === 'on' || raw.consent === 'true',
-    locale: raw.locale === 'fr' ? 'fr' : 'en',
+    locale: raw.locale === 'fr' || raw.locale === 'ar' ? raw.locale : 'en',
     page: str(raw.page, LIMITS.page),
     website: str(raw.website, 200),
     startedAt: Number.isFinite(started) && started > 0 ? started : null,

@@ -1,13 +1,13 @@
 ---
-slug: "ml-grade-control"
-locale: "en"
-title: "From drill hole to block model: machine learning for grade control"
-description: "How machine learning can support domaining and grade estimation alongside conventional geostatistics, and why geologists stay accountable."
-date: "2026-09-15"
-authorRole: "Senior Resource Geologist"
-tags: ["ai", "geology"]
-cover: "../../../assets/images/ai-geology-pit.jpg"
-coverAlt: "Aerial view of a terraced open-pit mine"
+slug: 'ml-grade-control'
+locale: 'en'
+title: 'From drill hole to block model: machine learning for grade control'
+description: 'How machine learning can support domaining and grade estimation alongside conventional geostatistics, and why geologists stay accountable.'
+date: '2026-09-15'
+authorRole: 'Senior Resource Geologist'
+tags: ['ai', 'geology']
+cover: '../../../assets/images/ai-geology-pit.jpg'
+coverAlt: 'Aerial view of a terraced open-pit mine'
 draft: false
 ---
 
@@ -39,4 +39,4 @@ In Australia, public reporting of Mineral Resources and Ore Reserves follows the
 
 The goal is not a more complex model. It is a model the geology team trusts more, because they can see why it says what it says.
 
-*Sources: Australasian Code for Reporting of Exploration Results, Mineral Resources and Ore Reserves (JORC Code), 2012 edition (jorc.org).*
+_Sources: Australasian Code for Reporting of Exploration Results, Mineral Resources and Ore Reserves (JORC Code), 2012 edition (jorc.org)._

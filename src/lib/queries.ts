@@ -39,6 +39,9 @@ export async function getInsights(locale: Locale): Promise<Insight[]> {
 
 /** Rough reading time from the Markdown body (220 words per minute, minimum 1). */
 export function readingMinutes(body: string | undefined): number {
-  const words = (body ?? '').replace(/[#>*_`\[\]()!-]/g, ' ').split(/\s+/).filter(Boolean).length;
+  const words = (body ?? '')
+    .replace(/[#>*_`\[\]()!-]/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean).length;
   return Math.max(1, Math.round(words / 220));
 }

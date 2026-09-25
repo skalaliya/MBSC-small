@@ -1,16 +1,30 @@
 import { en, type UI } from './en';
 import { fr } from './fr';
+import { ar } from './ar';
+import { site } from '../data/site';
 
-export const locales = ['en', 'fr'] as const;
+export const locales = ['en', 'fr', 'ar'] as const;
 export type Locale = (typeof locales)[number];
 
-/** Locales visible to the public (switcher, sitemap, hreflang). */
-export const publishedLocales: readonly Locale[] = locales;
+/**
+ * Which locales are public (switcher, sitemap, hreflang) and which are built at all.
+ * Arabic is built only once published, or on previews with PREVIEW_AR=true.
+ */
+export function resolveLocales(arPublished: boolean, arPreview: boolean) {
+  const published: Locale[] = arPublished ? ['en', 'fr', 'ar'] : ['en', 'fr'];
+  const built: Locale[] = arPublished || arPreview ? ['en', 'fr', 'ar'] : ['en', 'fr'];
+  return { published, built };
+}
+const resolved = resolveLocales(site.locales.ar.published, process.env.PREVIEW_AR === 'true');
+/** Locales visible to the public and to search engines. */
+export const publishedLocales: readonly Locale[] = resolved.published;
+/** Locales with pages in this build (published ones plus any preview-only ones). */
+export const builtLocales: readonly Locale[] = resolved.built;
 
-const dictionaries: Record<Locale, UI> = { en, fr };
+const dictionaries: Record<Locale, UI> = { en, fr, ar };
 
 export function toLocale(value: string | undefined | null): Locale {
-  return value === 'fr' ? 'fr' : 'en';
+  return value === 'fr' || value === 'ar' ? value : 'en';
 }
 
 export function useT(locale: Locale): UI {
@@ -29,10 +43,15 @@ export function normalizePath(pathname: string): string {
   return p === '' ? '/' : p;
 }
 
-/** Remove a leading /fr segment. Always returns a normalised path. */
+/** Remove a leading /fr or /ar segment. Always returns a normalised path. */
 export function stripLocale(pathname: string): string {
-  const stripped = normalizePath(pathname).replace(/^\/fr(?=\/|$)/, '');
+  const stripped = normalizePath(pathname).replace(/^\/(fr|ar)(?=\/|$)/, '');
   return stripped === '' ? '/' : stripped;
+}
+
+/** The locale a path belongs to, from its prefix. */
+export function pathLocale(pathname: string): Locale {
+  return toLocale(/^\/(fr|ar)(?=\/|$)/.exec(normalizePath(pathname))?.[1]);
 }
 
 /** Prefix a site-relative path for the given locale. Leaves hash/query intact. */
@@ -41,12 +60,18 @@ export function localizePath(path: string, locale: Locale): string {
     throw new Error(`localizePath expects an absolute path, got "${path}"`);
   const base = stripLocale(path);
   if (locale === 'en') return base;
-  return base === '/' ? '/fr' : `/fr${base}`;
+  return base === '/' ? `/${locale}` : `/${locale}${base}`;
 }
 
 export function alternatePath(pathname: string, target: Locale): string {
   return localizePath(stripLocale(pathname), target);
 }
 
-export const htmlLang: Record<Locale, string> = { en: 'en-AU', fr: 'fr' };
-export const intlLocale: Record<Locale, string> = { en: 'en-AU', fr: 'fr-FR' };
+export const htmlLang: Record<Locale, string> = { en: 'en-AU', fr: 'fr', ar: 'ar' };
+export const htmlDir: Record<Locale, 'ltr' | 'rtl'> = { en: 'ltr', fr: 'ltr', ar: 'rtl' };
+// Arabic uses Latin digits (nu-latn), matching Gulf business usage and our phone numbers and stats.
+export const intlLocale: Record<Locale, string> = {
+  en: 'en-AU',
+  fr: 'fr-FR',
+  ar: 'ar-u-nu-latn',
+};

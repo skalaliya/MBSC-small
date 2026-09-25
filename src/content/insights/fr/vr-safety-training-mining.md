@@ -1,13 +1,13 @@
 ---
-slug: "vr-safety-training-mining"
-locale: "fr"
-title: "Pourquoi la réalité virtuelle transforme la formation à la sécurité dans les mines"
-description: "Comment les scénarios de réalité virtuelle permettent de répéter en sécurité les tâches à haut risque, à quoi ressemble un bon programme et sa place à côté de la formation sur le terrain."
-date: "2026-09-08"
-authorRole: "Responsable de la formation technique"
-tags: ["training", "vr", "safety"]
-cover: "../../../assets/images/ai-vr-training.jpg"
-coverAlt: "Opérateur en gilet haute visibilité utilisant un casque de réalité virtuelle"
+slug: 'vr-safety-training-mining'
+locale: 'fr'
+title: 'Pourquoi la réalité virtuelle transforme la formation à la sécurité dans les mines'
+description: 'Comment les scénarios de réalité virtuelle permettent de répéter en sécurité les tâches à haut risque, à quoi ressemble un bon programme et sa place à côté de la formation sur le terrain.'
+date: '2026-09-08'
+authorRole: 'Responsable de la formation technique'
+tags: ['training', 'vr', 'safety']
+cover: '../../../assets/images/ai-vr-training.jpg'
+coverAlt: 'Opérateur en gilet haute visibilité utilisant un casque de réalité virtuelle'
 draft: false
 ---
 
@@ -38,4 +38,4 @@ Les lois types australiennes sur la santé et la sécurité au travail imposent 
 
 Choisissez une tâche à haut risque, difficile à pratiquer et dotée d’une procédure claire. Construisez le scénario avec ceux qui réalisent le travail, testez-le avec un petit groupe et comparez leurs performances sur le terrain avec celles d’une formation classique. N’élargissez qu’une fois la valeur du scénario démontrée.
 
-*Source : Safe Work Australia, lois types sur la santé et la sécurité au travail (safeworkaustralia.gov.au).*
+_Source : Safe Work Australia, lois types sur la santé et la sécurité au travail (safeworkaustralia.gov.au)._

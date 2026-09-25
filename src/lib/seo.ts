@@ -1,6 +1,12 @@
 import { existsSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
-import { alternatePath, htmlLang, normalizePath, type Locale } from '../i18n/utils';
+import {
+  alternatePath,
+  htmlLang,
+  normalizePath,
+  publishedLocales,
+  type Locale,
+} from '../i18n/utils';
 import { ogName } from './og';
 
 export interface SeoInput {
@@ -13,6 +19,8 @@ export interface SeoInput {
   noindex?: boolean;
   /** Set false for pages that exist in one language only. */
   hasAlternate?: boolean;
+  /** Public locales; defaults to this build's. Unpublished locales get no hreflang and noindex. */
+  published?: readonly Locale[];
 }
 
 export interface SeoOutput {
@@ -21,36 +29,38 @@ export interface SeoOutput {
   canonical: string;
   ogImage: string;
   ogLocale: string;
-  ogLocaleAlternate: string;
+  ogLocaleAlternate: string[];
   alternates: { hreflang: string; href: string }[];
   noindex: boolean;
 }
 
-const OG_LOCALE: Record<Locale, string> = { en: 'en_AU', fr: 'fr_FR' };
+const OG_LOCALE: Record<Locale, string> = { en: 'en_AU', fr: 'fr_FR', ar: 'ar_AR' };
 
 export function buildSeo(input: SeoInput): SeoOutput {
   const site = typeof input.site === 'string' ? new URL(input.site) : input.site;
   const path = normalizePath(input.pathname);
-  const enPath = alternatePath(path, 'en');
-  const frPath = alternatePath(path, 'fr');
+  const published = input.published ?? publishedLocales;
+  const isPublic = published.includes(input.locale);
   const alternates =
-    input.hasAlternate === false
+    input.hasAlternate === false || !isPublic
       ? []
       : [
-          { hreflang: htmlLang.en, href: absolute(site, enPath) },
-          { hreflang: htmlLang.fr, href: absolute(site, frPath) },
-          { hreflang: 'x-default', href: absolute(site, enPath) },
+          ...published.map((l) => ({
+            hreflang: htmlLang[l],
+            href: absolute(site, alternatePath(path, l)),
+          })),
+          { hreflang: 'x-default', href: absolute(site, alternatePath(path, 'en')) },
         ];
-  const other: Locale = input.locale === 'en' ? 'fr' : 'en';
   return {
     title: input.title,
     description: input.description,
     canonical: absolute(site, path),
     ogImage: new URL(input.ogImage ?? pageOgImage(path), site).href,
     ogLocale: OG_LOCALE[input.locale],
-    ogLocaleAlternate: OG_LOCALE[other],
+    ogLocaleAlternate: published.filter((l) => l !== input.locale).map((l) => OG_LOCALE[l]),
     alternates,
-    noindex: input.noindex ?? false,
+    // A language that is not yet public (Arabic on previews) must never be indexed.
+    noindex: (input.noindex ?? false) || !isPublic,
   };
 }
 

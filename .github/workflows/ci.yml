@@ -39,3 +39,25 @@ jobs:
           name: playwright-report
           path: test-results
           retention-days: 7
+
+  arabic:
+    # Arabic ships dark (site.locales.ar.published is false), so production never builds it.
+    # This job builds it anyway and runs the full e2e suite, so it cannot rot before review.
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Australia/Melbourne
+      PREVIEW_AR: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env:
+          CI: 'true'

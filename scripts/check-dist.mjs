@@ -2,7 +2,9 @@
 // - an executable inline <script> whose hash is not in that page's CSP header (it would be blocked)
 // - inline style="" attributes (blocked by the CSP)
 // - references to hosts we removed (placeholders, hotlinked textures, Tailwind CDN, Google Fonts)
-// - pages without exactly one <h1>, a <title>, a canonical link or an html lang
+// - pages without exactly one <h1>, a <title>, a canonical link or an html lang/dir
+// - physical left/right utilities, which do not mirror for right-to-left languages
+// - an Arabic build missing a page that exists in English
 import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { join, relative } from 'node:path';
@@ -33,7 +35,23 @@ async function* walk(dir) {
   }
 }
 
+// Physical (left/right) utilities break right-to-left layouts; use start/end (ms-, ps-, start-,
+// text-start, border-s, rounded-s…) instead. rtl:/ltr: variants are deliberate and allowed.
+const PHYSICAL =
+  /^-?(m[lr]|p[lr]|left|right|border-[lr]|rounded-[lr]|rounded-(tl|tr|bl|br)|scroll-[mp][lr]|text-left|text-right|float-left|float-right|clear-left|clear-right)(-|$)/;
+function physicalClasses(html) {
+  const found = new Set();
+  for (const m of html.matchAll(/\sclass="([^"]*)"/g))
+    for (const token of m[1].split(/\s+/)) {
+      const parts = token.split(':');
+      if (parts.slice(0, -1).some((v) => v === 'rtl' || v === 'ltr')) continue;
+      if (PHYSICAL.test(parts.at(-1))) found.add(token);
+    }
+  return [...found];
+}
+
 const problems = [];
+const routes = new Set();
 let pages = 0;
 for await (const file of walk(staticDir)) {
   pages++;
@@ -45,6 +63,7 @@ for await (const file of walk(staticDir)) {
       .replace(/\.html$/, '');
   const route = rel === '/' ? '/' : rel.replace(/\/$/, '');
   const add = (msg) => problems.push(`${route}: ${msg}`);
+  routes.add(route);
 
   const csp = cspFor(route);
   const isNotFound = route === '/404';
@@ -63,7 +82,11 @@ for await (const file of walk(staticDir)) {
   if (!/<title>[^<]+<\/title>/.test(html)) add('missing <title>');
   if (!isNotFound && !/<link rel="canonical" href="https:\/\/[^"]+"/.test(html))
     add('missing canonical');
-  if (!/<html lang="(en-AU|fr)"/.test(html)) add('missing html lang');
+  const lang = /<html lang="(en-AU|fr|ar)" dir="(ltr|rtl)"/.exec(html);
+  if (!lang) add('missing html lang or dir');
+  else if ((lang[1] === 'ar') !== (lang[2] === 'rtl')) add(`lang ${lang[1]} with dir ${lang[2]}`);
+  const physical = physicalClasses(html);
+  if (physical.length) add(`physical left/right classes (use start/end): ${physical.join(' ')}`);
   // A preloaded image must be one the page actually uses, or it is downloaded twice.
   for (const m of html.matchAll(/<link rel="preload" as="image"[^>]*imagesrcset="([^"]+)"/g)) {
     const used = [...html.matchAll(/srcset="([^"]+)"/g)].map((x) => x[1]).join(' ');
@@ -80,6 +103,15 @@ for await (const file of walk(staticDir)) {
     }
   }
 }
+
+// When Arabic is built (published or preview), every English page must exist in Arabic too.
+if ([...routes].some((r) => r === '/ar' || r.startsWith('/ar/')))
+  for (const r of routes) {
+    if (r === '/404' || r === '/fr' || r.startsWith('/fr/') || r === '/ar' || r.startsWith('/ar/'))
+      continue;
+    const ar = r === '/' ? '/ar' : `/ar${r}`;
+    if (!routes.has(ar)) problems.push(`${r}: no Arabic page at ${ar}`);
+  }
 
 if (problems.length) {
   console.error(

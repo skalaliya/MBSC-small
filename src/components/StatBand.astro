@@ -32,8 +32,11 @@ const basis = new Intl.DateTimeFormat(intlLocale[locale], {
           {t.stats.labels[s.key]}
         </dt>
         <dd
+          dir="ltr"
           class:list={[
-            'mt-2 font-display text-4xl font-bold tabular-nums sm:text-5xl',
+            // Figures read left to right in every language ("1,200+", "5,000 m"); in Arabic
+            // they stay aligned with the right-to-left label above.
+            'mt-2 font-display text-4xl font-bold tabular-nums sm:text-5xl rtl:text-end',
             dark ? 'text-white' : 'text-ink-900',
           ]}
           data-count={s.value}

@@ -28,7 +28,7 @@ const p = project.data;
       sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
       class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
     />
-    <Badge tone="dark" class="absolute top-3 left-3 bg-navy-950/70 backdrop-blur-sm">
+    <Badge tone="dark" class="absolute top-3 start-3 bg-navy-950/70 backdrop-blur-sm">
       {t.projects.sectors[p.sector]}
     </Badge>
   </div>
@@ -54,7 +54,7 @@ const p = project.data;
       <Icon
         name="arrow-right"
         size={16}
-        class="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+        class="transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 motion-reduce:transition-none"
       />
     </span>
   </div>

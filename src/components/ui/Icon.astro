@@ -148,7 +148,11 @@ const { name, size = 20, class: className, strokeWidth = 1.75, label } = Astro.p
 const raw = ICONS[name];
 // Note: build the opening tag by concatenation. Astro 7's compiler misreads an SVG
 // opening tag written inside nested template literals in frontmatter as markup.
-const classes = ['shrink-0', className].filter(Boolean).join(' ');
+// Icons that point along the reading direction mirror in right-to-left languages.
+const DIRECTIONAL = new Set<IconName>(['arrow-right', 'chevron-right', 'arrow-up-right', 'send']);
+const classes = ['shrink-0', DIRECTIONAL.has(name) && 'rtl:-scale-x-100', className]
+  .filter(Boolean)
+  .join(' ');
 const a11y = label
   ? 'role="img" aria-label="' + label.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"'
   : 'aria-hidden="true" focusable="false"';

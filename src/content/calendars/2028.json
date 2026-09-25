@@ -6,7 +6,8 @@
       "course": "reservoir-engineering-fundamentals",
       "title": {
         "en": "Reservoir Engineering Fundamentals",
-        "fr": "Fondamentaux de l'ingénierie des réservoirs"
+        "fr": "Fondamentaux de l'ingénierie des réservoirs",
+        "ar": "أساسيات هندسة المكامن"
       },
       "start": "2028-01-10",
       "end": "2028-01-14",
@@ -21,7 +22,8 @@
       "course": "project-management-engineers",
       "title": {
         "en": "Project Management for Engineers",
-        "fr": "Gestion de projet pour ingénieurs"
+        "fr": "Gestion de projet pour ingénieurs",
+        "ar": "إدارة المشاريع للمهندسين"
       },
       "start": "2028-01-17",
       "end": "2028-01-19",
@@ -36,7 +38,8 @@
       "course": "geoscience-fundamentals",
       "title": {
         "en": "Geoscience Fundamentals",
-        "fr": "Fondamentaux des géosciences"
+        "fr": "Fondamentaux des géosciences",
+        "ar": "أساسيات علوم الأرض"
       },
       "start": "2028-01-24",
       "end": "2028-01-25",
@@ -51,7 +54,8 @@
       "course": "core-logging-techniques",
       "title": {
         "en": "Core Logging & Geological Logging Techniques",
-        "fr": "Techniques de diagraphie et de logging géologique"
+        "fr": "Techniques de diagraphie et de logging géologique",
+        "ar": "تقنيات وصف العينات اللبية والتسجيل الجيولوجي"
       },
       "start": "2028-01-26",
       "end": "2028-01-28",
@@ -66,7 +70,8 @@
       "course": "drilling-engineering-well-design",
       "title": {
         "en": "Drilling Engineering & Well Design",
-        "fr": "Ingénierie de forage et conception de puits"
+        "fr": "Ingénierie de forage et conception de puits",
+        "ar": "هندسة الحفر وتصميم الآبار"
       },
       "start": "2028-01-31",
       "end": "2028-02-04",
@@ -81,7 +86,8 @@
       "course": "custom-corporate-programs",
       "title": {
         "en": "Custom Corporate Programs",
-        "fr": "Programmes d'entreprise sur mesure"
+        "fr": "Programmes d'entreprise sur mesure",
+        "ar": "برامج مؤسسية مصممة حسب الطلب"
       },
       "start": null,
       "end": null,
@@ -96,7 +102,8 @@
       "course": "mine-planning-optimisation",
       "title": {
         "en": "Mine Planning & Optimisation",
-        "fr": "Planification et optimisation minière"
+        "fr": "Planification et optimisation minière",
+        "ar": "تخطيط المناجم وتحسينها"
       },
       "start": "2028-02-07",
       "end": "2028-02-09",
@@ -111,7 +118,8 @@
       "course": "risk-management-industrial",
       "title": {
         "en": "Risk Management in Industrial Operations",
-        "fr": "Gestion des risques dans les opérations industrielles"
+        "fr": "Gestion des risques dans les opérations industrielles",
+        "ar": "إدارة المخاطر في العمليات الصناعية"
       },
       "start": "2028-02-14",
       "end": "2028-02-15",
@@ -126,7 +134,8 @@
       "course": "safety-leadership-engineers",
       "title": {
         "en": "Safety Leadership for Engineers",
-        "fr": "Leadership en sécurité pour ingénieurs"
+        "fr": "Leadership en sécurité pour ingénieurs",
+        "ar": "القيادة في مجال السلامة للمهندسين"
       },
       "start": "2028-02-16",
       "end": "2028-02-17",
@@ -141,7 +150,8 @@
       "course": "structural-geology-exploration",
       "title": {
         "en": "Structural Geology for Exploration & Mining",
-        "fr": "Géologie structurale pour l'exploration et l'exploitation minière"
+        "fr": "Géologie structurale pour l'exploration et l'exploitation minière",
+        "ar": "الجيولوجيا التركيبية للاستكشاف والتعدين"
       },
       "start": "2028-02-21",
       "end": "2028-02-23",
@@ -156,7 +166,8 @@
       "course": "production-technology-artificial-lift",
       "title": {
         "en": "Production Technology & Artificial Lift",
-        "fr": "Technologie de production et levage artificiel"
+        "fr": "Technologie de production et levage artificiel",
+        "ar": "تقنيات الإنتاج والرفع الاصطناعي"
       },
       "start": "2028-02-28",
       "end": "2028-03-03",
@@ -171,7 +182,8 @@
       "course": "geophysics-subsurface",
       "title": {
         "en": "Geophysics for Subsurface Interpretation",
-        "fr": "Géophysique pour l'interprétation souterraine"
+        "fr": "Géophysique pour l'interprétation souterraine",
+        "ar": "الجيوفيزياء لتفسير باطن الأرض"
       },
       "start": "2028-03-06",
       "end": "2028-03-08",
@@ -186,7 +198,8 @@
       "course": "ventilation-engineering",
       "title": {
         "en": "Ventilation Engineering Essentials",
-        "fr": "Essentiels de l'ingénierie de ventilation"
+        "fr": "Essentiels de l'ingénierie de ventilation",
+        "ar": "أساسيات هندسة التهوية"
       },
       "start": "2028-03-13",
       "end": "2028-03-15",
@@ -201,7 +214,8 @@
       "course": "digital-oilfield-ai",
       "title": {
         "en": "Digital Oilfield & AI Applications in Production",
-        "fr": "Champ pétrolier numérique et applications IA en production"
+        "fr": "Champ pétrolier numérique et applications IA en production",
+        "ar": "الحقل النفطي الرقمي وتطبيقات الذكاء الاصطناعي في الإنتاج"
       },
       "start": "2028-03-20",
       "end": "2028-03-21",
@@ -216,7 +230,8 @@
       "course": "ndt-certification",
       "title": {
         "en": "NDT Certification (Level 1 & 2)",
-        "fr": "Certification CND (Niveau 1 et 2)"
+        "fr": "Certification CND (Niveau 1 et 2)",
+        "ar": "شهادة الفحص غير الإتلافي NDT (المستويان 1 و2)"
       },
       "start": "2028-03-20",
       "end": "2028-03-24",
@@ -231,7 +246,8 @@
       "course": "technical-report-writing",
       "title": {
         "en": "Technical Report Writing & Communication",
-        "fr": "Rédaction de rapports techniques et communication"
+        "fr": "Rédaction de rapports techniques et communication",
+        "ar": "كتابة التقارير الفنية والتواصل"
       },
       "start": "2028-03-27",
       "end": "2028-03-28",
@@ -246,7 +262,8 @@
       "course": "cementing-well-integrity",
       "title": {
         "en": "Cementing & Well Integrity",
-        "fr": "Cimentation et intégrité des puits"
+        "fr": "Cimentation et intégrité des puits",
+        "ar": "تسميت الآبار وسلامتها"
       },
       "start": "2028-04-03",
       "end": "2028-04-07",
@@ -261,7 +278,8 @@
       "course": "petrophysics-reservoir-mining",
       "title": {
         "en": "Petrophysics for Reservoir & Mining Applications",
-        "fr": "Pétrophysique pour les applications réservoir et minières"
+        "fr": "Pétrophysique pour les applications réservoir et minières",
+        "ar": "البتروفيزياء لتطبيقات المكامن والتعدين"
       },
       "start": "2028-04-10",
       "end": "2028-04-12",
@@ -276,7 +294,8 @@
       "course": "gpr-ndt-interpretation",
       "title": {
         "en": "Advanced GPR & NDT Interpretation",
-        "fr": "Interprétation avancée GPR et CND"
+        "fr": "Interprétation avancée GPR et CND",
+        "ar": "التفسير المتقدم لبيانات GPR والفحص غير الإتلافي (NDT)"
       },
       "start": "2028-04-12",
       "end": "2028-04-14",
@@ -291,7 +310,8 @@
       "course": "geostatistics-resource-estimation",
       "title": {
         "en": "Geostatistics & Resource Estimation",
-        "fr": "Géostatistiques et estimation des ressources"
+        "fr": "Géostatistiques et estimation des ressources",
+        "ar": "الإحصاء الجيولوجي وتقدير الموارد"
       },
       "start": "2028-04-17",
       "end": "2028-04-19",
@@ -306,7 +326,8 @@
       "course": "blast-design-rock-fragmentation",
       "title": {
         "en": "Advanced Blast Design & Rock Fragmentation",
-        "fr": "Conception avancée de tirs et fragmentation des roches"
+        "fr": "Conception avancée de tirs et fragmentation des roches",
+        "ar": "التصميم المتقدم للتفجير وتفتيت الصخور"
       },
       "start": "2028-04-24",
       "end": "2028-04-26",
@@ -321,7 +342,8 @@
       "course": "well-intervention-workover",
       "title": {
         "en": "Well Intervention & Workover Operations",
-        "fr": "Intervention sur puits et opérations de reconditionnement"
+        "fr": "Intervention sur puits et opérations de reconditionnement",
+        "ar": "عمليات التدخل في الآبار وإعادة تأهيلها"
       },
       "start": "2028-05-01",
       "end": "2028-05-05",
@@ -336,7 +358,8 @@
       "course": "geological-field-mapping",
       "title": {
         "en": "Geological Field Mapping",
-        "fr": "Cartographie géologique de terrain"
+        "fr": "Cartographie géologique de terrain",
+        "ar": "رسم الخرائط الجيولوجية الميدانية"
       },
       "start": "2028-05-08",
       "end": "2028-05-10",
@@ -351,7 +374,8 @@
       "course": "safety-leadership-engineers",
       "title": {
         "en": "Safety Leadership for Engineers",
-        "fr": "Leadership en sécurité pour ingénieurs"
+        "fr": "Leadership en sécurité pour ingénieurs",
+        "ar": "القيادة في مجال السلامة للمهندسين"
       },
       "start": "2028-05-11",
       "end": "2028-05-12",
@@ -366,7 +390,8 @@
       "course": "mine-geology-grade-control",
       "title": {
         "en": "Mine Geology & Grade Control",
-        "fr": "Géologie minière et contrôle de teneur"
+        "fr": "Géologie minière et contrôle de teneur",
+        "ar": "جيولوجيا المناجم وضبط رتبة الخام"
       },
       "start": "2028-05-15",
       "end": "2028-05-17",
@@ -381,7 +406,8 @@
       "course": "finance-cost-control",
       "title": {
         "en": "Finance & Cost Control for Technical Teams",
-        "fr": "Finance et contrôle des coûts pour équipes techniques"
+        "fr": "Finance et contrôle des coûts pour équipes techniques",
+        "ar": "الشؤون المالية وضبط التكاليف للفرق الفنية"
       },
       "start": "2028-05-22",
       "end": "2028-05-23",
@@ -396,7 +422,8 @@
       "course": "geomechanics-ground-control",
       "title": {
         "en": "Geomechanics & Ground Control",
-        "fr": "Géomécanique et contrôle du terrain"
+        "fr": "Géomécanique et contrôle du terrain",
+        "ar": "الجيوميكانيكا والتحكم في استقرار الأرض"
       },
       "start": "2028-05-24",
       "end": "2028-05-26",
@@ -411,7 +438,8 @@
       "course": "hse-leadership-energy",
       "title": {
         "en": "HSE Leadership for Energy Professionals",
-        "fr": "Leadership HSE pour professionnels de l'énergie"
+        "fr": "Leadership HSE pour professionnels de l'énergie",
+        "ar": "القيادة في الصحة والسلامة والبيئة (HSE) للعاملين في قطاع الطاقة"
       },
       "start": "2028-05-30",
       "end": "2028-06-01",
@@ -426,7 +454,8 @@
       "course": "geochemistry-exploration",
       "title": {
         "en": "Geochemistry for Exploration",
-        "fr": "Géochimie pour l'exploration"
+        "fr": "Géochimie pour l'exploration",
+        "ar": "الجيوكيمياء في أعمال الاستكشاف"
       },
       "start": "2028-06-05",
       "end": "2028-06-07",
@@ -441,7 +470,8 @@
       "course": "ndt-certification",
       "title": {
         "en": "NDT Certification (Level 1 & 2)",
-        "fr": "Certification CND (Niveau 1 et 2)"
+        "fr": "Certification CND (Niveau 1 et 2)",
+        "ar": "شهادة الفحص غير الإتلافي NDT (المستويان 1 و2)"
       },
       "start": "2028-06-05",
       "end": "2028-06-09",
@@ -456,7 +486,8 @@
       "course": "domaining-classification",
       "title": {
         "en": "Domaining & Classification Techniques",
-        "fr": "Techniques de domainisation et classification"
+        "fr": "Techniques de domainisation et classification",
+        "ar": "تقنيات تحديد النطاقات الجيولوجية والتصنيف"
       },
       "start": "2028-06-12",
       "end": "2028-06-14",
@@ -471,7 +502,8 @@
       "course": "safety-leadership-mining",
       "title": {
         "en": "Safety Leadership for Mining Engineers",
-        "fr": "Leadership en sécurité pour ingénieurs miniers"
+        "fr": "Leadership en sécurité pour ingénieurs miniers",
+        "ar": "القيادة في مجال السلامة لمهندسي التعدين"
       },
       "start": "2028-06-19",
       "end": "2028-06-21",
@@ -486,7 +518,8 @@
       "course": "ai-managers-decision-makers",
       "title": {
         "en": "AI for Managers & Decision Makers",
-        "fr": "IA pour managers et décideurs"
+        "fr": "IA pour managers et décideurs",
+        "ar": "الذكاء الاصطناعي للمديرين وصنّاع القرار"
       },
       "start": "2028-06-26",
       "end": "2028-06-27",
@@ -501,7 +534,8 @@
       "course": "reservoir-engineering-fundamentals",
       "title": {
         "en": "Reservoir Engineering Fundamentals",
-        "fr": "Fondamentaux de l'ingénierie des réservoirs"
+        "fr": "Fondamentaux de l'ingénierie des réservoirs",
+        "ar": "أساسيات هندسة المكامن"
       },
       "start": "2028-07-03",
       "end": "2028-07-07",
@@ -516,7 +550,8 @@
       "course": "geomechanics-essentials",
       "title": {
         "en": "Geomechanics Essentials",
-        "fr": "Essentiels de géomécanique"
+        "fr": "Essentiels de géomécanique",
+        "ar": "أساسيات الجيوميكانيكا"
       },
       "start": "2028-07-10",
       "end": "2028-07-12",
@@ -531,7 +566,8 @@
       "course": "remote-sensing-geologists",
       "title": {
         "en": "Applied Remote Sensing for Geologists",
-        "fr": "Télédétection appliquée pour géologues"
+        "fr": "Télédétection appliquée pour géologues",
+        "ar": "الاستشعار عن بُعد التطبيقي للجيولوجيين"
       },
       "start": "2028-07-17",
       "end": "2028-07-19",
@@ -546,7 +582,8 @@
       "course": "mine-to-mill-optimisation",
       "title": {
         "en": "Mine-to-Mill Optimisation",
-        "fr": "Optimisation mine-usine"
+        "fr": "Optimisation mine-usine",
+        "ar": "تحسين العمليات من المنجم إلى المطحنة"
       },
       "start": "2028-07-24",
       "end": "2028-07-26",
@@ -561,7 +598,8 @@
       "course": "drilling-engineering-well-design",
       "title": {
         "en": "Drilling Engineering & Well Design",
-        "fr": "Ingénierie de forage et conception de puits"
+        "fr": "Ingénierie de forage et conception de puits",
+        "ar": "هندسة الحفر وتصميم الآبار"
       },
       "start": "2028-07-31",
       "end": "2028-08-04",
@@ -576,7 +614,8 @@
       "course": "custom-corporate-programs",
       "title": {
         "en": "Custom Corporate Programs",
-        "fr": "Programmes d'entreprise sur mesure"
+        "fr": "Programmes d'entreprise sur mesure",
+        "ar": "برامج مؤسسية مصممة حسب الطلب"
       },
       "start": null,
       "end": null,
@@ -591,7 +630,8 @@
       "course": "structural-geology-exploration",
       "title": {
         "en": "Structural Geology for Exploration & Mining",
-        "fr": "Géologie structurale pour l'exploration et l'exploitation minière"
+        "fr": "Géologie structurale pour l'exploration et l'exploitation minière",
+        "ar": "الجيولوجيا التركيبية للاستكشاف والتعدين"
       },
       "start": "2028-08-07",
       "end": "2028-08-09",
@@ -606,7 +646,8 @@
       "course": "safety-leadership-engineers",
       "title": {
         "en": "Safety Leadership for Engineers",
-        "fr": "Leadership en sécurité pour ingénieurs"
+        "fr": "Leadership en sécurité pour ingénieurs",
+        "ar": "القيادة في مجال السلامة للمهندسين"
       },
       "start": "2028-08-10",
       "end": "2028-08-11",
@@ -621,7 +662,8 @@
       "course": "leadership-team-development",
       "title": {
         "en": "Leadership & Team Development",
-        "fr": "Leadership et développement d'équipe"
+        "fr": "Leadership et développement d'équipe",
+        "ar": "القيادة وتطوير الفرق"
       },
       "start": "2028-08-14",
       "end": "2028-08-16",
@@ -636,7 +678,8 @@
       "course": "mine-planning-optimisation",
       "title": {
         "en": "Mine Planning & Optimisation",
-        "fr": "Planification et optimisation minière"
+        "fr": "Planification et optimisation minière",
+        "ar": "تخطيط المناجم وتحسينها"
       },
       "start": "2028-08-21",
       "end": "2028-08-23",
@@ -651,7 +694,8 @@
       "course": "digital-oilfield-ai",
       "title": {
         "en": "Digital Oilfield & AI Applications in Production",
-        "fr": "Champ pétrolier numérique et applications IA en production"
+        "fr": "Champ pétrolier numérique et applications IA en production",
+        "ar": "الحقل النفطي الرقمي وتطبيقات الذكاء الاصطناعي في الإنتاج"
       },
       "start": "2028-08-28",
       "end": "2028-08-28",
@@ -666,7 +710,8 @@
       "course": "production-technology-artificial-lift",
       "title": {
         "en": "Production Technology & Artificial Lift",
-        "fr": "Technologie de production et levage artificiel"
+        "fr": "Technologie de production et levage artificiel",
+        "ar": "تقنيات الإنتاج والرفع الاصطناعي"
       },
       "start": "2028-09-04",
       "end": "2028-09-08",
@@ -681,7 +726,8 @@
       "course": "geophysics-subsurface",
       "title": {
         "en": "Geophysics for Subsurface Interpretation",
-        "fr": "Géophysique pour l'interprétation souterraine"
+        "fr": "Géophysique pour l'interprétation souterraine",
+        "ar": "الجيوفيزياء لتفسير باطن الأرض"
       },
       "start": "2028-09-11",
       "end": "2028-09-13",
@@ -696,7 +742,8 @@
       "course": "ndt-certification",
       "title": {
         "en": "NDT Certification (Level 1 & 2)",
-        "fr": "Certification CND (Niveau 1 et 2)"
+        "fr": "Certification CND (Niveau 1 et 2)",
+        "ar": "شهادة الفحص غير الإتلافي NDT (المستويان 1 و2)"
       },
       "start": "2028-09-11",
       "end": "2028-09-15",
@@ -711,7 +758,8 @@
       "course": "geostatistics-resource-estimation",
       "title": {
         "en": "Geostatistics & Resource Estimation",
-        "fr": "Géostatistiques et estimation des ressources"
+        "fr": "Géostatistiques et estimation des ressources",
+        "ar": "الإحصاء الجيولوجي وتقدير الموارد"
       },
       "start": "2028-09-18",
       "end": "2028-09-20",
@@ -726,7 +774,8 @@
       "course": "industrial-law-regulatory",
       "title": {
         "en": "Industrial Law & Regulatory Compliance",
-        "fr": "Droit industriel et conformité réglementaire"
+        "fr": "Droit industriel et conformité réglementaire",
+        "ar": "القانون الصناعي والامتثال التنظيمي"
       },
       "start": "2028-09-25",
       "end": "2028-09-26",
@@ -741,7 +790,8 @@
       "course": "cementing-well-integrity",
       "title": {
         "en": "Cementing & Well Integrity",
-        "fr": "Cimentation et intégrité des puits"
+        "fr": "Cimentation et intégrité des puits",
+        "ar": "تسميت الآبار وسلامتها"
       },
       "start": "2028-10-02",
       "end": "2028-10-06",
@@ -756,7 +806,8 @@
       "course": "gpr-ndt-interpretation",
       "title": {
         "en": "Advanced GPR & NDT Interpretation",
-        "fr": "Interprétation avancée GPR et CND"
+        "fr": "Interprétation avancée GPR et CND",
+        "ar": "التفسير المتقدم لبيانات GPR والفحص غير الإتلافي (NDT)"
       },
       "start": "2028-10-04",
       "end": "2028-10-06",
@@ -771,7 +822,8 @@
       "course": "petrophysics-reservoir-mining",
       "title": {
         "en": "Petrophysics for Reservoir & Mining Applications",
-        "fr": "Pétrophysique pour les applications réservoir et minières"
+        "fr": "Pétrophysique pour les applications réservoir et minières",
+        "ar": "البتروفيزياء لتطبيقات المكامن والتعدين"
       },
       "start": "2028-10-09",
       "end": "2028-10-11",
@@ -786,7 +838,8 @@
       "course": "core-logging-techniques",
       "title": {
         "en": "Core Logging & Geological Logging Techniques",
-        "fr": "Techniques de diagraphie et de logging géologique"
+        "fr": "Techniques de diagraphie et de logging géologique",
+        "ar": "تقنيات وصف العينات اللبية والتسجيل الجيولوجي"
       },
       "start": "2028-10-16",
       "end": "2028-10-18",
@@ -801,7 +854,8 @@
       "course": "ventilation-engineering",
       "title": {
         "en": "Ventilation Engineering Essentials",
-        "fr": "Essentiels de l'ingénierie de ventilation"
+        "fr": "Essentiels de l'ingénierie de ventilation",
+        "ar": "أساسيات هندسة التهوية"
       },
       "start": "2028-10-23",
       "end": "2028-10-25",
@@ -816,7 +870,8 @@
       "course": "well-intervention-workover",
       "title": {
         "en": "Well Intervention & Workover Operations",
-        "fr": "Intervention sur puits et opérations de reconditionnement"
+        "fr": "Intervention sur puits et opérations de reconditionnement",
+        "ar": "عمليات التدخل في الآبار وإعادة تأهيلها"
       },
       "start": "2028-10-30",
       "end": "2028-11-01",
@@ -831,7 +886,8 @@
       "course": "geological-field-mapping",
       "title": {
         "en": "Geological Field Mapping",
-        "fr": "Cartographie géologique de terrain"
+        "fr": "Cartographie géologique de terrain",
+        "ar": "رسم الخرائط الجيولوجية الميدانية"
       },
       "start": "2028-11-06",
       "end": "2028-11-08",
@@ -846,7 +902,8 @@
       "course": "ndt-certification",
       "title": {
         "en": "NDT Certification (Level 1 & 2)",
-        "fr": "Certification CND (Niveau 1 et 2)"
+        "fr": "Certification CND (Niveau 1 et 2)",
+        "ar": "شهادة الفحص غير الإتلافي NDT (المستويان 1 و2)"
       },
       "start": "2028-11-06",
       "end": "2028-11-10",
@@ -861,7 +918,8 @@
       "course": "mine-geology-grade-control",
       "title": {
         "en": "Mine Geology & Grade Control",
-        "fr": "Géologie minière et contrôle de teneur"
+        "fr": "Géologie minière et contrôle de teneur",
+        "ar": "جيولوجيا المناجم وضبط رتبة الخام"
       },
       "start": "2028-11-13",
       "end": "2028-11-15",
@@ -876,7 +934,8 @@
       "course": "blast-design-rock-fragmentation",
       "title": {
         "en": "Advanced Blast Design & Rock Fragmentation",
-        "fr": "Conception avancée de tirs et fragmentation des roches"
+        "fr": "Conception avancée de tirs et fragmentation des roches",
+        "ar": "التصميم المتقدم للتفجير وتفتيت الصخور"
       },
       "start": "2028-11-20",
       "end": "2028-11-22",
@@ -891,7 +950,8 @@
       "course": "safety-leadership-engineers",
       "title": {
         "en": "Safety Leadership for Engineers",
-        "fr": "Leadership en sécurité pour ingénieurs"
+        "fr": "Leadership en sécurité pour ingénieurs",
+        "ar": "القيادة في مجال السلامة للمهندسين"
       },
       "start": "2028-11-23",
       "end": "2028-11-24",
@@ -906,7 +966,8 @@
       "course": "ai-managers-decision-makers",
       "title": {
         "en": "AI for Managers & Decision Makers",
-        "fr": "IA pour managers et décideurs"
+        "fr": "IA pour managers et décideurs",
+        "ar": "الذكاء الاصطناعي للمديرين وصنّاع القرار"
       },
       "start": "2028-11-27",
       "end": "2028-11-27",
@@ -921,7 +982,8 @@
       "course": "hse-leadership-energy",
       "title": {
         "en": "HSE Leadership for Energy Professionals",
-        "fr": "Leadership HSE pour professionnels de l'énergie"
+        "fr": "Leadership HSE pour professionnels de l'énergie",
+        "ar": "القيادة في الصحة والسلامة والبيئة (HSE) للعاملين في قطاع الطاقة"
       },
       "start": "2028-11-29",
       "end": "2028-12-01",
@@ -936,7 +998,8 @@
       "course": "geoscience-fundamentals",
       "title": {
         "en": "Geoscience Fundamentals",
-        "fr": "Fondamentaux des géosciences"
+        "fr": "Fondamentaux des géosciences",
+        "ar": "أساسيات علوم الأرض"
       },
       "start": "2028-12-04",
       "end": "2028-12-06",
@@ -951,7 +1014,8 @@
       "course": "project-management-engineers",
       "title": {
         "en": "Project Management for Engineers",
-        "fr": "Gestion de projet pour ingénieurs"
+        "fr": "Gestion de projet pour ingénieurs",
+        "ar": "إدارة المشاريع للمهندسين"
       },
       "start": "2028-12-07",
       "end": "2028-12-08",
@@ -966,7 +1030,8 @@
       "course": "geomechanics-ground-control",
       "title": {
         "en": "Geomechanics & Ground Control",
-        "fr": "Géomécanique et contrôle du terrain"
+        "fr": "Géomécanique et contrôle du terrain",
+        "ar": "الجيوميكانيكا والتحكم في استقرار الأرض"
       },
       "start": "2028-12-11",
       "end": "2028-12-13",

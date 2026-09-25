@@ -8,7 +8,7 @@ export type LocationKey = (typeof LOCATIONS)[number];
 export interface Session {
   id: string;
   course: string;
-  title: { en: string; fr: string };
+  title: { en: string; fr: string; ar: string };
   /** YYYY-MM-DD, or null for "dates on request" sessions. */
   start: string | null;
   end: string | null;

@@ -83,7 +83,14 @@ export const en = {
     cta: 'Talk to an engineer',
     home: 'Home',
   },
-  lang: { en: 'English', fr: 'Français', enShort: 'EN', frShort: 'FR' },
+  lang: {
+    en: 'English',
+    fr: 'Français',
+    ar: 'العربية',
+    enShort: 'EN',
+    frShort: 'FR',
+    arShort: 'عربي',
+  },
   common: {
     learnMore: 'Learn more',
     viewAll: 'View all',

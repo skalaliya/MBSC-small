@@ -1,0 +1,102 @@
+---
+/**
+ * Every Arabic page, from one route. Arabic ships dark: getStaticPaths returns nothing unless
+ * Arabic is published (site.locales.ar) or this is a preview built with PREVIEW_AR=true.
+ * check-dist fails the build if an English page has no Arabic counterpart here.
+ */
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import HomeView from '../../views/HomeView.astro';
+import AboutView from '../../views/AboutView.astro';
+import ContactView from '../../views/ContactView.astro';
+import ContactSentView from '../../views/ContactSentView.astro';
+import CreditsView from '../../views/CreditsView.astro';
+import LegalView from '../../views/LegalView.astro';
+import RentalView from '../../views/RentalView.astro';
+import ServicesView from '../../views/ServicesView.astro';
+import ServiceDetailView from '../../views/ServiceDetailView.astro';
+import AiMiningView from '../../views/AiMiningView.astro';
+import ProjectsView from '../../views/ProjectsView.astro';
+import ProjectDetailView from '../../views/ProjectDetailView.astro';
+import TrainingView from '../../views/TrainingView.astro';
+import InsightsView from '../../views/InsightsView.astro';
+import InsightDetailView from '../../views/InsightDetailView.astro';
+import { builtLocales } from '../../i18n/utils';
+import { defaultYear, getInsights } from '../../lib/queries';
+
+type Page =
+  | {
+      view:
+        | 'home'
+        | 'about'
+        | 'contact'
+        | 'contactSent'
+        | 'credits'
+        | 'privacy'
+        | 'terms'
+        | 'rental'
+        | 'services'
+        | 'aiMining'
+        | 'projects'
+        | 'insights';
+    }
+  | { view: 'service'; entry: CollectionEntry<'services'> }
+  | { view: 'project'; entry: CollectionEntry<'projects'> }
+  | { view: 'training'; year?: number }
+  | { view: 'insight'; entry: CollectionEntry<'insights'> };
+
+export async function getStaticPaths() {
+  if (!builtLocales.includes('ar')) return [];
+  // getStaticPaths runs in isolation, so everything it needs lives inside it.
+  const FLAGSHIP = 'ai-mining';
+  const page = (path: string | undefined, props: Page) => ({ params: { path }, props });
+  const services = await getCollection(
+    'services',
+    (e) => e.data.locale === 'ar' && e.data.slug !== FLAGSHIP,
+  );
+  const projects = await getCollection('projects', (e) => e.data.locale === 'ar');
+  const years = (await getCollection('calendars')).map((c) => c.data.year);
+  const primary = defaultYear(years);
+  const insights = await getInsights('ar');
+  return [
+    page(undefined, { view: 'home' }),
+    page('about', { view: 'about' }),
+    page('contact', { view: 'contact' }),
+    page('contact/sent', { view: 'contactSent' }),
+    page('credits', { view: 'credits' }),
+    page('privacy', { view: 'privacy' }),
+    page('terms', { view: 'terms' }),
+    page('rental', { view: 'rental' }),
+    page('services', { view: 'services' }),
+    page(`services/${FLAGSHIP}`, { view: 'aiMining' }),
+    ...services.map((entry) => page(`services/${entry.data.slug}`, { view: 'service', entry })),
+    page('projects', { view: 'projects' }),
+    ...projects.map((entry) => page(`projects/${entry.data.slug}`, { view: 'project', entry })),
+    page('training', { view: 'training' }),
+    ...years
+      .filter((y) => y !== primary)
+      .map((year) => page(`training/${year}`, { view: 'training', year })),
+    ...(insights.length > 0 ? [page('insights', { view: 'insights' })] : []),
+    ...insights.map((entry) => page(`insights/${entry.data.slug}`, { view: 'insight', entry })),
+  ];
+}
+
+const p = Astro.props as Page;
+---
+
+{p.view === 'home' && <HomeView />}
+{p.view === 'about' && <AboutView />}
+{p.view === 'contact' && <ContactView />}
+{p.view === 'contactSent' && <ContactSentView />}
+{p.view === 'credits' && <CreditsView />}
+{p.view === 'privacy' && <LegalView kind="privacy" />}
+{p.view === 'terms' && <LegalView kind="terms" />}
+{p.view === 'rental' && <RentalView />}
+{p.view === 'services' && <ServicesView />}
+{p.view === 'aiMining' && <AiMiningView />}
+{p.view === 'service' && <ServiceDetailView entry={p.entry} />}
+{p.view === 'projects' && <ProjectsView />}
+{p.view === 'project' && <ProjectDetailView entry={p.entry} />}
+{p.view === 'training' && <TrainingView year={p.year} />}
+{p.view === 'insights' && <InsightsView />}
+{p.view === 'insight' && <InsightDetailView entry={p.entry} />}

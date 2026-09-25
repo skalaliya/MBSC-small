@@ -1,13 +1,13 @@
 ---
-slug: "vr-safety-training-mining"
-locale: "en"
-title: "Why VR is changing safety training in mining"
-description: "How virtual-reality scenarios let crews rehearse high-risk tasks safely, what a good VR program looks like, and where it fits alongside field training."
-date: "2026-09-08"
-authorRole: "Head of Technical Training"
-tags: ["training", "vr", "safety"]
-cover: "../../../assets/images/ai-vr-training.jpg"
-coverAlt: "Worker in a high-visibility jacket using a virtual-reality headset"
+slug: 'vr-safety-training-mining'
+locale: 'en'
+title: 'Why VR is changing safety training in mining'
+description: 'How virtual-reality scenarios let crews rehearse high-risk tasks safely, what a good VR program looks like, and where it fits alongside field training.'
+date: '2026-09-08'
+authorRole: 'Head of Technical Training'
+tags: ['training', 'vr', 'safety']
+cover: '../../../assets/images/ai-vr-training.jpg'
+coverAlt: 'Worker in a high-visibility jacket using a virtual-reality headset'
 draft: false
 ---
 
@@ -38,4 +38,4 @@ Australia's model Work Health and Safety laws require businesses to provide the 
 
 Start with one high-risk task that is hard to practise and has a clear procedure. Build the scenario with the people who do the work, run it with a small group, and compare their field performance with those trained the usual way. Expand only once the scenario has proved its value.
 
-*Source: Safe Work Australia, model Work Health and Safety laws (safeworkaustralia.gov.au).*
+_Source: Safe Work Australia, model Work Health and Safety laws (safeworkaustralia.gov.au)._

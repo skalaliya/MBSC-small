@@ -1,13 +1,13 @@
 ---
-slug: "predictive-maintenance-mine-sites"
-locale: "en"
-title: "How machine learning predicts equipment failure on mine sites"
-description: "What predictive maintenance really involves on a mine site: the data it needs, how models are built and validated, and how to start small."
-date: "2026-09-22"
-authorRole: "Principal Reliability Engineer"
-tags: ["ai", "maintenance"]
-cover: "../../../assets/images/ai-fleet.jpg"
-coverAlt: "Loader working on a mine haul road seen from above"
+slug: 'predictive-maintenance-mine-sites'
+locale: 'en'
+title: 'How machine learning predicts equipment failure on mine sites'
+description: 'What predictive maintenance really involves on a mine site: the data it needs, how models are built and validated, and how to start small.'
+date: '2026-09-22'
+authorRole: 'Principal Reliability Engineer'
+tags: ['ai', 'maintenance']
+cover: '../../../assets/images/ai-fleet.jpg'
+coverAlt: 'Loader working on a mine haul road seen from above'
 draft: false
 ---
 
@@ -15,7 +15,7 @@ Unplanned failures of haul trucks, conveyors, crushers and pumps are among the m
 
 ## Start with the failure, not the algorithm
 
-Every useful model answers a specific question: *which of these assets is most likely to fail in the next few weeks, and why?* Before any modelling we work with maintenance planners to list the failure modes that matter most, the warning signs technicians already look for, and the decisions a better warning would change. That list decides which data is worth collecting.
+Every useful model answers a specific question: _which of these assets is most likely to fail in the next few weeks, and why?_ Before any modelling we work with maintenance planners to list the failure modes that matter most, the warning signs technicians already look for, and the decisions a better warning would change. That list decides which data is worth collecting.
 
 ## The data that matters
 
@@ -42,4 +42,4 @@ Alerts are only useful if they reach the people who plan work. We route them int
 
 A good pilot covers one asset class with enough history, such as a fleet of pumps or a set of conveyor drives. Success criteria are agreed up front, for example how many past failures the model would have caught and how many false alerts planners will accept. Only when the pilot meets them is it worth scaling.
 
-*Sources: ISO 17359, Condition monitoring and diagnostics of machines: General guidelines (iso.org).*
+_Sources: ISO 17359, Condition monitoring and diagnostics of machines: General guidelines (iso.org)._

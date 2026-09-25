@@ -1,8 +1,17 @@
 import { describe, expect, it } from 'vitest';
-import { alternatePath, localizePath, normalizePath, stripLocale, fmt } from '../src/i18n/utils';
+import {
+  alternatePath,
+  localizePath,
+  normalizePath,
+  pathLocale,
+  resolveLocales,
+  stripLocale,
+  fmt,
+} from '../src/i18n/utils';
 import { buildSeo, absolute } from '../src/lib/seo';
 import { en } from '../src/i18n/en';
 import { fr } from '../src/i18n/fr';
+import { ar } from '../src/i18n/ar';
 
 const site = 'https://www.mbscaustralia.com.au';
 
@@ -54,17 +63,23 @@ describe('dictionaries', () => {
     o && typeof o === 'object' && !Array.isArray(o)
       ? Object.entries(o as Record<string, unknown>).flatMap(([k, v]) => keys(v, `${p}${k}.`))
       : [p.slice(0, -1)];
-  it('French has exactly the English keys with the same array lengths', () => {
-    expect(keys(fr).sort()).toEqual(keys(en).sort());
+  it.each([
+    ['French', fr],
+    ['Arabic', ar],
+  ])('%s has exactly the English keys with the same array lengths', (_, dict) => {
+    expect(keys(dict).sort()).toEqual(keys(en).sort());
     const arrays = (o: unknown, p = ''): [string, number][] =>
       Array.isArray(o)
         ? [[p, o.length]]
         : o && typeof o === 'object'
           ? Object.entries(o as Record<string, unknown>).flatMap(([k, v]) => arrays(v, `${p}${k}.`))
           : [];
-    expect(arrays(fr)).toEqual(arrays(en));
+    expect(arrays(dict)).toEqual(arrays(en));
   });
-  it('placeholders match between languages', () => {
+  it.each([
+    ['French', fr],
+    ['Arabic', ar],
+  ])('%s placeholders match English', (_, dict) => {
     const ph = (s: string) => (s.match(/\{\w+\}/g) ?? []).sort().join(',');
     const flat = (o: unknown): string[] =>
       typeof o === 'string'
@@ -75,9 +90,73 @@ describe('dictionaries', () => {
             ? Object.values(o).flatMap(flat)
             : [];
     const e = flat(en),
-      f = flat(fr);
+      f = flat(dict);
     expect(f.length).toBe(e.length);
     e.forEach((s, i) => expect(ph(f[i]!)).toBe(ph(s)));
+  });
+});
+
+describe('Arabic', () => {
+  it('stays dark until published, but previews can build it', () => {
+    expect(resolveLocales(false, false)).toEqual({ published: ['en', 'fr'], built: ['en', 'fr'] });
+    expect(resolveLocales(false, true)).toEqual({
+      published: ['en', 'fr'],
+      built: ['en', 'fr', 'ar'],
+    });
+    expect(resolveLocales(true, false).published).toEqual(['en', 'fr', 'ar']);
+  });
+  it('localises /ar paths', () => {
+    expect(localizePath('/', 'ar')).toBe('/ar');
+    expect(localizePath('/fr/about', 'ar')).toBe('/ar/about');
+    expect(stripLocale('/ar/services/x')).toBe('/services/x');
+    expect(stripLocale('/arabic')).toBe('/arabic');
+    expect(pathLocale('/ar/training')).toBe('ar');
+    expect(alternatePath('/ar/projects/x', 'fr')).toBe('/fr/projects/x');
+  });
+  it('an unpublished Arabic page is noindex with no hreflang, and English does not point to it', () => {
+    const arPage = buildSeo({
+      site,
+      pathname: '/ar/about',
+      locale: 'ar',
+      title: 't',
+      description: 'd',
+    });
+    expect(arPage.noindex).toBe(true);
+    expect(arPage.alternates).toEqual([]);
+    const enPage = buildSeo({
+      site,
+      pathname: '/about',
+      locale: 'en',
+      title: 't',
+      description: 'd',
+    });
+    expect(enPage.alternates.map((a) => a.hreflang)).toEqual(['en-AU', 'fr', 'x-default']);
+    expect(enPage.ogLocaleAlternate).toEqual(['fr_FR']);
+  });
+  it('a published Arabic page joins the hreflang set', () => {
+    const published = ['en', 'fr', 'ar'] as const;
+    const s = buildSeo({
+      site,
+      pathname: '/ar/about',
+      locale: 'ar',
+      title: 't',
+      description: 'd',
+      published,
+    });
+    expect(s.noindex).toBe(false);
+    expect(s.alternates).toContainEqual({ hreflang: 'ar', href: `${site}/ar/about` });
+    expect(s.alternates).toHaveLength(4);
+    expect(s.ogLocale).toBe('ar_AR');
+  });
+  it('uses Latin digits in Arabic dates', () => {
+    const d = new Intl.DateTimeFormat('ar-u-nu-latn', { dateStyle: 'long' }).format(
+      new Date(2026, 0, 13),
+    );
+    expect(d).toMatch(/13/);
+    expect(d).not.toMatch(/[\u0660-\u0669]/);
+  });
+  it('has no Arabic-Indic digits in the dictionary', () => {
+    expect(JSON.stringify(ar)).not.toMatch(/[\u0660-\u0669]/);
   });
 });
 

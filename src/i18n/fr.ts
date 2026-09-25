@@ -87,7 +87,14 @@ export const fr: UI = {
     cta: 'Parler à un ingénieur',
     home: 'Accueil',
   },
-  lang: { en: 'English', fr: 'Français', enShort: 'EN', frShort: 'FR' },
+  lang: {
+    en: 'English',
+    fr: 'Français',
+    ar: 'العربية',
+    enShort: 'EN',
+    frShort: 'FR',
+    arShort: 'عربي',
+  },
   common: {
     learnMore: 'En savoir plus',
     viewAll: 'Tout voir',

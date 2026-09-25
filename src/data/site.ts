@@ -25,6 +25,12 @@ export const site = {
    * Not a secret. Leave null if you verify with a DNS TXT record in Cloudflare instead.
    */
   googleSiteVerification: null as string | null,
+  /**
+   * Arabic ships dark: the /ar pages are not built, linked, listed in the sitemap or given
+   * hreflang until a native speaker has reviewed them and this is set to true.
+   * Previews can still build them with PREVIEW_AR=true (never indexed).
+   */
+  locales: { ar: { published: false as boolean } },
   /** Only shown once a certificate number is supplied. */
   iso9001: null as null | { number: string; body: string; expires: string },
   regions: ['au', 'me', 'eu'] as const,

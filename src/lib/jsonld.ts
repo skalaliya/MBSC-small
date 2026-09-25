@@ -1,6 +1,6 @@
 import { site } from '../data/site';
 import { absolute } from './seo';
-import { htmlLang, type Locale } from '../i18n/utils';
+import { htmlLang, publishedLocales, type Locale } from '../i18n/utils';
 import type { DatedSession } from './queries';
 
 type Json = Record<string, unknown>;
@@ -50,9 +50,10 @@ export function website(locale: Locale): Json {
     '@id': `${site.url}/#website`,
     url: site.url,
     name: site.name,
-    inLanguage: [htmlLang.en, htmlLang.fr],
+    inLanguage: publishedLocales.map((l) => htmlLang[l]),
     publisher: { '@id': ORG_ID },
     ...(locale === 'fr' ? { alternateName: 'MBSC Australia (français)' } : {}),
+    ...(locale === 'ar' ? { alternateName: 'MBSC Australia (العربية)' } : {}),
   };
 }
 

@@ -75,7 +75,9 @@ const nav = visibleNav((await getInsights(locale)).length > 0);
         class="hidden items-center gap-2 text-sm font-medium whitespace-nowrap text-ink-700 hover:text-navy-950 2xl:flex"
       >
         <Icon name="phone" size={16} />
-        <span class="tabular-nums">{site.phone}</span>
+        <span class="tabular-nums">
+          <bdi dir="ltr">{site.phone}</bdi>
+        </span>
       </a>
       <LanguageSwitcher class="hidden sm:block" />
       <Button
@@ -103,7 +105,7 @@ const nav = visibleNav((await getInsights(locale)).length > 0);
 <dialog
   id="mobile-menu"
   aria-label={t.a11y.mainNav}
-  class="m-0 ml-auto h-dvh max-h-none w-full max-w-sm bg-white p-0 text-ink-900 shadow-2xl backdrop:bg-navy-950/60 backdrop:backdrop-blur-sm open:flex open:flex-col"
+  class="m-0 ms-auto h-dvh max-h-none w-full max-w-sm bg-white p-0 text-ink-900 shadow-2xl backdrop:bg-navy-950/60 backdrop:backdrop-blur-sm open:flex open:flex-col"
 >
   <div class="flex h-18 items-center justify-between border-b border-line px-5">
     <LanguageSwitcher />
@@ -142,7 +144,7 @@ const nav = visibleNav((await getInsights(locale)).length > 0);
       {t.nav.cta}
     </Button>
     <Button href={site.phoneHref} variant="secondary" full size="lg" iconStart="phone">
-      {site.phone}
+      <bdi dir="ltr">{site.phone}</bdi>
     </Button>
   </div>
 </dialog>

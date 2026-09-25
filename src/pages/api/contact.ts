@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { getSecret } from 'astro:env/server';
 import { handleContact, sameOrigin, type ContactEnv } from '../../lib/contact';
 import { sendViaSmtp } from '../../lib/mailer';
+import { localizePath } from '../../i18n/utils';
 
 export const prerender = false;
 
@@ -56,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   // No-JS fallback: redirect to a confirmation page, or back to the form with an error code.
   if (isForm) {
-    const base = result.input?.locale === 'fr' ? '/fr/contact' : '/contact';
+    const base = localizePath('/contact', result.input?.locale ?? 'en');
     const location =
       result.status === 200
         ? `${base}/sent`

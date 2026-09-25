@@ -1,13 +1,13 @@
 ---
-slug: "ml-grade-control"
-locale: "fr"
-title: "Du sondage au modèle de blocs : l’apprentissage automatique au service du contrôle des teneurs"
-description: "Comment l’apprentissage automatique peut soutenir le domaining et l’estimation des teneurs aux côtés de la géostatistique, et pourquoi le géologue reste responsable."
-date: "2026-09-15"
-authorRole: "Géologue principal des ressources"
-tags: ["ai", "geology"]
-cover: "../../../assets/images/ai-geology-pit.jpg"
-coverAlt: "Vue aérienne d’une mine à ciel ouvert en gradins"
+slug: 'ml-grade-control'
+locale: 'fr'
+title: 'Du sondage au modèle de blocs : l’apprentissage automatique au service du contrôle des teneurs'
+description: 'Comment l’apprentissage automatique peut soutenir le domaining et l’estimation des teneurs aux côtés de la géostatistique, et pourquoi le géologue reste responsable.'
+date: '2026-09-15'
+authorRole: 'Géologue principal des ressources'
+tags: ['ai', 'geology']
+cover: '../../../assets/images/ai-geology-pit.jpg'
+coverAlt: 'Vue aérienne d’une mine à ciel ouvert en gradins'
 draft: false
 ---
 
@@ -39,4 +39,4 @@ En Australie, la publication des ressources minérales et des réserves suit le 
 
 L’objectif n’est pas un modèle plus complexe, mais un modèle auquel l’équipe géologique fait davantage confiance, parce qu’elle comprend ce qu’il dit et pourquoi.
 
-*Source : Code australasien de déclaration des résultats d’exploration, des ressources minérales et des réserves (Code JORC), édition 2012 (jorc.org).*
+_Source : Code australasien de déclaration des résultats d’exploration, des ressources minérales et des réserves (Code JORC), édition 2012 (jorc.org)._

@@ -2,7 +2,7 @@
   {
     "id": "placeholder-principal",
     "name": "Principal Engineer (name to be supplied)",
-    "role": { "en": "Principal Engineer", "fr": "Ingénieur principal" },
+    "role": { "en": "Principal Engineer", "fr": "Ingénieur principal", "ar": "مهندس رئيسي" },
     "placeholder": true,
     "order": 1
   }

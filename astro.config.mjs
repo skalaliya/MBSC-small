@@ -3,11 +3,14 @@ import { defineConfig, envField, fontProviders } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { site as company } from './src/data/site.ts';
 
 const SITE = process.env.SITE_URL ?? 'https://www.mbscaustralia.com.au';
 // The dev server injects CSS through inline <style> tags for hot reload, which a strict CSP
 // blocks. CSP is therefore applied to builds only; `npm run build` + preview tests it locally.
 const isDev = process.argv.includes('dev');
+// Arabic is listed in the sitemap only once published (see site.locales.ar in src/data/site.ts).
+const arPublished = company.locales.ar.published;
 
 export default defineConfig({
   site: SITE,
@@ -16,13 +19,19 @@ export default defineConfig({
   adapter: vercel({ staticHeaders: true, imageService: false, maxDuration: 15 }),
   integrations: [
     sitemap({
-      i18n: { defaultLocale: 'en', locales: { en: 'en-AU', fr: 'fr' } },
-      filter: (page) => !page.includes('/api/') && !/\/404\/?$/.test(page),
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en-AU', fr: 'fr', ...(arPublished ? { ar: 'ar' } : {}) },
+      },
+      filter: (page) =>
+        !page.includes('/api/') &&
+        !/\/404\/?$/.test(page) &&
+        (arPublished || !/^https?:\/\/[^/]+\/ar(\/|$)/.test(page)),
     }),
   ],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'fr'],
+    locales: ['en', 'fr', 'ar'],
     routing: { prefixDefaultLocale: false },
   },
   fonts: [
@@ -45,6 +54,16 @@ export default defineConfig({
       subsets: ['latin'],
       styles: ['normal'],
       fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: 'IBM Plex Sans Arabic',
+      cssVariable: '--font-arabic',
+      // Only rendered on Arabic pages (Base.astro), so English and French pages never load it.
+      weights: [400, 600, 700],
+      subsets: ['arabic', 'latin'],
+      styles: ['normal'],
+      fallbacks: ['Tahoma', 'ui-sans-serif', 'system-ui', 'sans-serif'],
     },
   ],
   security: {

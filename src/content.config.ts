@@ -16,8 +16,12 @@ import {
 import { LOCATIONS, validateCalendar, type CalendarFile } from './lib/calendar-model';
 import { isISODate } from './lib/dates';
 
-const locale = z.enum(['en', 'fr']);
-const localized = z.object({ en: z.string().min(1), fr: z.string().min(1) });
+const locale = z.enum(['en', 'fr', 'ar']);
+const localized = z.object({
+  en: z.string().min(1),
+  fr: z.string().min(1),
+  ar: z.string().min(1),
+});
 const iconName = z.string().min(1);
 
 const services = defineCollection({

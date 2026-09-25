@@ -1,13 +1,13 @@
 ---
-slug: "predictive-maintenance-mine-sites"
-locale: "fr"
-title: "Comment l’apprentissage automatique anticipe les pannes sur les sites miniers"
-description: "Ce qu’implique vraiment la maintenance prédictive sur un site minier : les données nécessaires, la construction et la validation des modèles, et un démarrage progressif."
-date: "2026-09-22"
-authorRole: "Ingénieur fiabilité principal"
-tags: ["ai", "maintenance"]
-cover: "../../../assets/images/ai-fleet.jpg"
-coverAlt: "Chargeuse sur une piste minière vue du ciel"
+slug: 'predictive-maintenance-mine-sites'
+locale: 'fr'
+title: 'Comment l’apprentissage automatique anticipe les pannes sur les sites miniers'
+description: 'Ce qu’implique vraiment la maintenance prédictive sur un site minier : les données nécessaires, la construction et la validation des modèles, et un démarrage progressif.'
+date: '2026-09-22'
+authorRole: 'Ingénieur fiabilité principal'
+tags: ['ai', 'maintenance']
+cover: '../../../assets/images/ai-fleet.jpg'
+coverAlt: 'Chargeuse sur une piste minière vue du ciel'
 draft: false
 ---
 
@@ -15,7 +15,7 @@ Les pannes imprévues de camions, convoyeurs, concasseurs et pompes figurent par
 
 ## Partir de la panne, pas de l’algorithme
 
-Tout modèle utile répond à une question précise : *quel actif risque le plus de tomber en panne dans les prochaines semaines, et pourquoi ?* Avant toute modélisation, nous listons avec les planificateurs de maintenance les modes de défaillance prioritaires, les signes d’alerte que les techniciens surveillent déjà et les décisions qu’un meilleur avertissement changerait. Cette liste détermine les données à collecter.
+Tout modèle utile répond à une question précise : _quel actif risque le plus de tomber en panne dans les prochaines semaines, et pourquoi ?_ Avant toute modélisation, nous listons avec les planificateurs de maintenance les modes de défaillance prioritaires, les signes d’alerte que les techniciens surveillent déjà et les décisions qu’un meilleur avertissement changerait. Cette liste détermine les données à collecter.
 
 ## Les données qui comptent
 
@@ -42,4 +42,4 @@ Une alerte n’est utile que si elle parvient à ceux qui planifient le travail.
 
 Un bon pilote porte sur une famille d’actifs disposant d’un historique suffisant, par exemple un parc de pompes ou un ensemble d’entraînements de convoyeurs. Les critères de réussite sont fixés à l’avance, comme le nombre de pannes passées que le modèle aurait détectées et le nombre de fausses alertes acceptable. On n’élargit qu’une fois ces critères atteints.
 
-*Source : ISO 17359, Surveillance et diagnostic d’état des machines : lignes directrices générales (iso.org).*
+_Source : ISO 17359, Surveillance et diagnostic d’état des machines : lignes directrices générales (iso.org)._
