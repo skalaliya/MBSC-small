@@ -1,0 +1,12 @@
+---
+import InsightDetailView from '../../views/InsightDetailView.astro';
+import { getInsights } from '../../lib/queries';
+
+export async function getStaticPaths() {
+  const entries = await getInsights('en');
+  return entries.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+
+<InsightDetailView entry={entry} />

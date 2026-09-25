@@ -4,15 +4,17 @@ import roundel from '../assets/logo/mbsc-roundel.png';
 import Icon from './ui/Icon.astro';
 import Button from './ui/Button.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
-import { NAV, activeKey } from './nav';
+import { activeKey, visibleNav } from './nav';
 import { localizePath, stripLocale, toLocale, useT } from '../i18n/utils';
 import { site } from '../data/site';
+import { getInsights } from '../lib/queries';
 
 const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
 const current = stripLocale(Astro.url.pathname);
 const L = (p: string) => localizePath(p, locale);
 const active = activeKey(current);
+const nav = visibleNav((await getInsights(locale)).length > 0);
 ---
 
 <header class="sticky top-0 z-50 border-b border-line/80 bg-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-white/80">
@@ -39,29 +41,31 @@ const active = activeKey(current);
 
     <nav aria-label={t.a11y.mainNav} class="hidden lg:block" data-main-nav>
       <ul class="flex items-center gap-1">
-        {NAV.filter((n) => n.key !== 'contact').map((n) => {
-          const isCurrent = n.key === active;
-          return (
-            <li>
-              <a
-                href={L(n.path)}
-                aria-current={isCurrent ? 'page' : undefined}
-                class:list={[
-                  'relative block rounded-sm px-2.5 py-2 text-sm font-medium whitespace-nowrap transition-colors xl:px-3 xl:text-[0.9375rem]',
-                  isCurrent ? 'text-navy-950' : 'text-ink-700 hover:text-navy-950',
-                ]}
-              >
-                {t.nav[n.key]}
-                {isCurrent && (
-                  <span
-                    class="absolute inset-x-3 -bottom-[1.3rem] h-[3px] rounded-full bg-brand-gradient"
-                    aria-hidden="true"
-                  />
-                )}
-              </a>
-            </li>
-          );
-        })}
+        {nav
+          .filter((n) => n.key !== 'contact')
+          .map((n) => {
+            const isCurrent = n.key === active;
+            return (
+              <li>
+                <a
+                  href={L(n.path)}
+                  aria-current={isCurrent ? 'page' : undefined}
+                  class:list={[
+                    'relative block rounded-sm px-2.5 py-2 text-sm font-medium whitespace-nowrap transition-colors xl:px-3 xl:text-[0.9375rem]',
+                    isCurrent ? 'text-navy-950' : 'text-ink-700 hover:text-navy-950',
+                  ]}
+                >
+                  {t.nav[n.key]}
+                  {isCurrent && (
+                    <span
+                      class="absolute inset-x-3 -bottom-[1.3rem] h-[3px] rounded-full bg-brand-gradient"
+                      aria-hidden="true"
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })}
       </ul>
     </nav>
 
@@ -113,7 +117,7 @@ const active = activeKey(current);
   </div>
   <nav aria-label={t.a11y.mainNav} class="flex-1 overflow-y-auto px-5 py-4">
     <ul class="divide-y divide-line">
-      {[{ key: 'home' as const, path: '/' }, ...NAV].map((n) => {
+      {[{ key: 'home' as const, path: '/' }, ...nav].map((n) => {
         const isCurrent = n.path === '/' ? current === '/' : n.key === active;
         return (
           <li>

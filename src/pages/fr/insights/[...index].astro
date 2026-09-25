@@ -1,0 +1,11 @@
+---
+import InsightsView from '../../../views/InsightsView.astro';
+import { getInsights } from '../../../lib/queries';
+
+// The listing exists only once at least one article is public, so production never shows an empty page.
+export async function getStaticPaths() {
+  return (await getInsights('fr')).length > 0 ? [{ params: { index: undefined } }] : [];
+}
+---
+
+<InsightsView />

@@ -4,8 +4,17 @@ import { z } from 'astro/zod';
 
 /** Entry ids are the file path without extension, e.g. "fr/mining-geology", so locales never collide. */
 const pathId = ({ entry }: { entry: string }) => entry.replace(/\.md$/, '');
-import { CATEGORIES, CERTIFICATES, DELIVERY, SECTORS, SERVICE_SLUGS, TOPICS } from './lib/content';
+import {
+  CATEGORIES,
+  CERTIFICATES,
+  DELIVERY,
+  INSIGHT_TAGS,
+  SECTORS,
+  SERVICE_SLUGS,
+  TOPICS,
+} from './lib/content';
 import { LOCATIONS, validateCalendar, type CalendarFile } from './lib/calendar-model';
+import { isISODate } from './lib/dates';
 
 const locale = z.enum(['en', 'fr']);
 const localized = z.object({ en: z.string().min(1), fr: z.string().min(1) });
@@ -130,4 +139,23 @@ const team = defineCollection({
     }),
 });
 
-export const collections = { services, projects, calendars, clients, testimonials, team };
+const insights = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/insights', generateId: pathId }),
+  schema: ({ image }) =>
+    z.object({
+      slug: z.string().regex(/^[a-z0-9-]+$/),
+      locale,
+      title: z.string().min(1).max(110),
+      description: z.string().min(50).max(200),
+      date: z.string().refine(isISODate, 'date must be YYYY-MM-DD'),
+      updated: z.string().refine(isISODate, 'updated must be YYYY-MM-DD').optional(),
+      authorRole: z.string().min(1),
+      tags: z.array(z.enum(INSIGHT_TAGS)).min(1),
+      cover: image(),
+      coverAlt: z.string().min(1),
+      /** Drafts show on previews only. Set false once the article has been reviewed. */
+      draft: z.boolean().default(true),
+    }),
+});
+
+export const collections = { services, projects, calendars, clients, testimonials, team, insights };

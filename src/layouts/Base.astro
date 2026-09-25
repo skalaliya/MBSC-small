@@ -16,12 +16,21 @@ interface Props {
   ogImage?: string;
   noindex?: boolean;
   hasAlternate?: boolean;
+  ogType?: 'website' | 'article';
   jsonLd?: Record<string, unknown>[];
 }
 
 const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
-const { title, description, ogImage, noindex, hasAlternate, jsonLd = [] } = Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  noindex,
+  hasAlternate,
+  ogType = 'website',
+  jsonLd = [],
+} = Astro.props;
 const seo = buildSeo({
   site: Astro.site ?? 'https://www.mbscaustralia.com.au',
   pathname: Astro.url.pathname,
@@ -58,7 +67,7 @@ const onVercel = import.meta.env.PROD && process.env.VERCEL === '1';
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={t.meta.siteName} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />

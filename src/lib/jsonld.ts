@@ -126,3 +126,31 @@ export function courses(
     };
   });
 }
+
+export function article(opts: {
+  headline: string;
+  description: string;
+  url: string;
+  image: string;
+  datePublished: string;
+  dateModified?: string;
+  locale: Locale;
+  keywords: string[];
+}): Json {
+  const url = absolute(site.url, opts.url);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: opts.headline,
+    description: opts.description,
+    url,
+    mainEntityOfPage: url,
+    image: absolute(site.url, opts.image),
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    inLanguage: htmlLang[opts.locale],
+    keywords: opts.keywords.join(', '),
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+  };
+}

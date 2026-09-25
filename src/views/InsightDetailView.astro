@@ -1,0 +1,167 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Callout from '../components/ui/Callout.astro';
+import Prose from '../components/ui/Prose.astro';
+import Icon from '../components/ui/Icon.astro';
+import InsightCard from '../components/InsightCard.astro';
+import CTABand from '../components/ui/CTABand.astro';
+import { fmt, localizePath, toLocale, useT } from '../i18n/utils';
+import { getInsights, readingMinutes, type Insight } from '../lib/queries';
+import { formatInsightDate, relatedInsights, tocEntries } from '../lib/insights';
+import { isPublic } from '../lib/publish';
+import { article, breadcrumbs } from '../lib/jsonld';
+
+interface Props {
+  entry: Insight;
+}
+const { entry } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const L = (p: string) => localizePath(p, locale);
+const a = entry.data;
+const { Content, headings } = await render(entry);
+const toc = tocEntries(headings);
+const related = relatedInsights(entry, await getInsights(locale));
+// hreflang only when the other language version exists and is public too.
+const translations = await getCollection(
+  'insights',
+  (e) => e.data.slug === a.slug && e.data.locale !== locale && isPublic(e),
+);
+const cover = await getImage({ src: a.cover, format: 'jpg', width: 1200 });
+const path = L(`/insights/${a.slug}`);
+const crumbs = [
+  { label: t.nav.home, href: L('/') },
+  { label: t.nav.insights, href: L('/insights') },
+  { label: a.title, href: path },
+];
+const meta = [
+  { label: t.insights.meta.published, value: formatInsightDate(a.date, locale) },
+  ...(a.updated
+    ? [{ label: t.insights.meta.updated, value: formatInsightDate(a.updated, locale) }]
+    : []),
+  {
+    label: t.insights.meta.reading,
+    value: fmt(t.insights.readingTime, { min: readingMinutes(entry.body) }),
+  },
+  { label: t.insights.meta.author, value: a.authorRole },
+];
+---
+
+<Base
+  title={`${a.title} | MBSC Australia`}
+  description={a.description}
+  ogType="article"
+  noindex={a.draft}
+  hasAlternate={translations.length > 0}
+  jsonLd={[
+    breadcrumbs(crumbs),
+    article({
+      headline: a.title,
+      description: a.description,
+      url: path,
+      image: cover.src,
+      datePublished: a.date,
+      dateModified: a.updated,
+      locale,
+      keywords: a.tags.map((tag) => t.insights.tags[tag]),
+    }),
+  ]}
+>
+  <meta slot="head" property="article:published_time" content={a.date} />
+  {a.updated && <meta slot="head" property="article:modified_time" content={a.updated} />}
+  <PageHeader
+    eyebrow={a.tags.map((tag) => t.insights.tags[tag]).join(' · ')}
+    title={a.title}
+    lead={a.description}
+    crumbs={crumbs}
+    crumbLabel={t.a11y.breadcrumb}
+    meta={meta}
+  />
+
+  <div class="bg-navy-950">
+    <div class="container-site">
+      <Picture
+        src={a.cover}
+        alt={a.coverAlt}
+        formats={['avif', 'webp']}
+        widths={[640, 1024, 1440, 1920]}
+        sizes="(min-width: 1280px) 1216px, 100vw"
+        loading="eager"
+        class="aspect-[16/9] w-full translate-y-12 rounded-lg object-cover shadow-2xl ring-1 ring-white/10 sm:aspect-[21/9]"
+      />
+    </div>
+  </div>
+
+  <Section tone="surface" innerClass="pt-12" reveal={false}>
+    {a.draft && (
+      <Callout tone="brand" class="mb-10">
+        <p class="font-medium text-ink-900">{t.insights.draft}</p>
+      </Callout>
+    )}
+    <div class="grid gap-12 lg:grid-cols-12">
+      {toc.length > 0 && (
+        <aside class="lg:order-last lg:col-span-4">
+          <nav
+            aria-labelledby="toc-title"
+            class="rounded-lg bg-paper p-6 ring-1 ring-line lg:sticky lg:top-28"
+          >
+            <h2
+              id="toc-title"
+              class="flex items-center gap-2 font-display text-sm font-bold tracking-[0.1em] text-ink-900 uppercase"
+            >
+              <Icon name="list-tree" size={16} />
+              {t.insights.toc}
+            </h2>
+            <ol class="mt-4 space-y-2.5 text-[0.9375rem]">
+              {toc.map((h) => (
+                <li>
+                  <a href={`#${h.slug}`} class="text-ink-700 hover:text-navy-950 hover:underline">
+                    {h.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+      )}
+      <article
+        class:list={['min-w-0', toc.length > 0 ? 'lg:col-span-8' : 'lg:col-span-8 lg:col-start-3']}
+      >
+        <Prose class="insight-body">
+          <Content />
+        </Prose>
+      </article>
+    </div>
+  </Section>
+
+  {related.length > 0 && (
+    <Section tone="paper" labelledby="related-title">
+      <SectionHeading id="related-title" title={t.insights.related} />
+      <ul class="grid gap-6 md:grid-cols-3">
+        {related.map((r) => (
+          <li>
+            <InsightCard insight={r} />
+          </li>
+        ))}
+      </ul>
+    </Section>
+  )}
+
+  <CTABand
+    title={t.insights.ctaTitle}
+    lead={t.insights.ctaLead}
+    primary={{ label: t.cta.primary, href: L('/contact') }}
+  />
+</Base>
+
+<style>
+  /* Keep headings clear of the sticky navbar when jumped to from the table of contents. */
+  .insight-body :global(h2) {
+    scroll-margin-top: 7rem;
+  }
+</style>

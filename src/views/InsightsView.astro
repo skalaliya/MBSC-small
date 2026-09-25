@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import InsightCard from '../components/InsightCard.astro';
+import CTABand from '../components/ui/CTABand.astro';
+import Icon from '../components/ui/Icon.astro';
+import header from '../assets/images/ai-hero-neural.jpg';
+import { localizePath, toLocale, useT } from '../i18n/utils';
+import { getInsights } from '../lib/queries';
+import { INSIGHT_TAGS } from '../lib/content';
+import { breadcrumbs } from '../lib/jsonld';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const L = (p: string) => localizePath(p, locale);
+const insights = await getInsights(locale);
+const present = INSIGHT_TAGS.filter((tag) => insights.some((i) => i.data.tags.includes(tag)));
+const crumbs = [
+  { label: t.nav.home, href: L('/') },
+  { label: t.nav.insights, href: L('/insights') },
+];
+---
+
+<Base
+  title={t.meta.pages.insights.title}
+  description={t.meta.pages.insights.description}
+  jsonLd={[breadcrumbs(crumbs)]}
+>
+  {locale === 'en' && (
+    <link
+      slot="head"
+      rel="alternate"
+      type="application/rss+xml"
+      title="MBSC Australia Insights"
+      href="/insights/rss.xml"
+    />
+  )}
+  <PageHeader
+    eyebrow={t.insights.eyebrow}
+    title={t.insights.title}
+    lead={t.insights.lead}
+    crumbs={crumbs}
+    crumbLabel={t.a11y.breadcrumb}
+    image={header}
+    imageAlt=""
+  />
+
+  <Section tone="paper" labelledby="insights-list" reveal={false}>
+    <h2 id="insights-list" class="sr-only">
+      {t.insights.title}
+    </h2>
+    {insights.length === 0 ? (
+      <p class="text-lg text-ink-500">{t.insights.empty}</p>
+    ) : (
+      <div class="insights">
+        {present.length > 1 && (
+          <fieldset class="mb-8 flex flex-wrap items-center gap-2">
+            <legend class="mb-3 w-full text-sm font-medium text-ink-500">
+              {t.insights.filterLabel}
+            </legend>
+            {(['all', ...present] as const).map((tag) => (
+              <label class="cursor-pointer">
+                <input
+                  type="radio"
+                  name="tag"
+                  value={tag}
+                  id={`t-${tag}`}
+                  class="peer sr-only"
+                  checked={tag === 'all'}
+                />
+                <span class="inline-flex h-9 items-center rounded-full px-4 text-sm font-medium text-ink-700 ring-1 ring-line ring-inset transition-colors peer-checked:bg-navy-950 peer-checked:text-white peer-checked:ring-navy-950 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-violet hover:ring-navy-200">
+                  {tag === 'all' ? t.insights.all : t.insights.tags[tag]}
+                  <span class="ms-1.5 text-xs opacity-60 tabular-nums">
+                    {tag === 'all'
+                      ? insights.length
+                      : insights.filter((i) => i.data.tags.includes(tag)).length}
+                  </span>
+                </span>
+              </label>
+            ))}
+          </fieldset>
+        )}
+        <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {insights.map((i) => (
+            <li data-tags={i.data.tags.join(' ')}>
+              <InsightCard insight={i} headingLevel="h3" />
+            </li>
+          ))}
+        </ul>
+        {locale === 'en' && (
+          <p class="mt-10">
+            <a
+              href="/insights/rss.xml"
+              class="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-700 hover:text-navy-950"
+            >
+              <Icon name="rss" size={16} />
+              {t.insights.rss}
+            </a>
+          </p>
+        )}
+      </div>
+    )}
+  </Section>
+
+  <CTABand
+    title={t.insights.ctaTitle}
+    lead={t.insights.ctaLead}
+    primary={{ label: t.cta.primary, href: L('/contact') }}
+  />
+</Base>
+
+<style>
+  /* Topic filter without JavaScript: the checked radio hides articles without that tag. */
+  .insights:has(#t-ai:checked) li[data-tags]:not([data-tags~='ai']),
+  .insights:has(#t-maintenance:checked) li[data-tags]:not([data-tags~='maintenance']),
+  .insights:has(#t-geology:checked) li[data-tags]:not([data-tags~='geology']),
+  .insights:has(#t-safety:checked) li[data-tags]:not([data-tags~='safety']),
+  .insights:has(#t-training:checked) li[data-tags]:not([data-tags~='training']),
+  .insights:has(#t-vr:checked) li[data-tags]:not([data-tags~='vr']) {
+    display: none;
+  }
+</style>

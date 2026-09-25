@@ -16,11 +16,11 @@
     "test:e2e": "playwright test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check:content": "node scripts/check-content.mjs",
     "calendar:year": "node scripts/generate-calendar-year.mjs",
     "og": "npm run build && node scripts/make-og.mjs && npm run build"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@astrojs/vercel": "^11.0.11",
     "@tailwindcss/vite": "^4.3.3",
