@@ -37,7 +37,7 @@ const active = activeKey(current);
       </span>
     </a>
 
-    <nav aria-label={t.a11y.mainNav} class="hidden lg:block">
+    <nav aria-label={t.a11y.mainNav} class="hidden lg:block" data-main-nav>
       <ul class="flex items-center gap-1">
         {NAV.filter((n) => n.key !== 'contact').map((n) => {
           const isCurrent = n.key === active;

@@ -135,6 +135,8 @@ const featured = (await getProjects(locale)).filter((p) => p.data.featured).slic
     </ul>
   </Section>
 
+  <GlobalPresence />
+
   <Section tone="surface" labelledby="training-title">
     <div class="grid gap-12 lg:grid-cols-12">
       <div class="lg:col-span-4">
@@ -156,7 +158,6 @@ const featured = (await getProjects(locale)).filter((p) => p.data.featured).slic
   </Section>
 
   <Testimonials />
-  <GlobalPresence />
   <CTABand
     title={t.home.cta.title}
     lead={t.home.cta.lead}

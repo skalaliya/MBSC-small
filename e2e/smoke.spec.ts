@@ -213,3 +213,27 @@ test('only one nav item is active on the AI page', async ({ page, isMobile }) =>
   await expect(current).toHaveCount(1);
   await expect(current).toHaveText(/AI & Digital/);
 });
+
+for (const width of [1024, 1280, 1440]) {
+  for (const route of ['/', '/fr']) {
+    test(`navbar fits on one row at ${width}px on ${route}`, async ({ page, isMobile }) => {
+      test.skip(isMobile, 'desktop widths only');
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(route);
+      const links = page.locator('header [data-main-nav] > ul > li');
+      const tops = await links.evaluateAll((els) =>
+        els.map((e) => Math.round(e.getBoundingClientRect().top)),
+      );
+      expect(new Set(tops).size, `nav items wrapped: ${tops.join(',')}`).toBe(1);
+      const headerHeight = await page
+        .locator('header')
+        .first()
+        .evaluate((e) => e.getBoundingClientRect().height);
+      expect(headerHeight).toBeLessThanOrEqual(81);
+      const labelLines = await links.evaluateAll((els) =>
+        els.map((e) => Math.round(e.getBoundingClientRect().height)),
+      );
+      expect(Math.max(...labelLines), 'a nav label wrapped onto two lines').toBeLessThan(48);
+    });
+  }
+}

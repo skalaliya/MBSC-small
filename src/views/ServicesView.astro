@@ -61,6 +61,31 @@ const whyIcons = ['users', 'file-check-2', 'graduation-cap'] as const;
     </ul>
   </Section>
 
+  <Section tone="paper" spacing="none" innerClass="pb-16 sm:pb-20 lg:pb-24" reveal={false}>
+    <a
+      href={L('/rental')}
+      class="group flex flex-col gap-4 rounded-lg bg-navy-950 p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:p-8"
+    >
+      <span class="flex items-center gap-4">
+        <span class="flex size-12 shrink-0 items-center justify-center rounded-md bg-white/10">
+          <Icon name="radar" size={22} />
+        </span>
+        <span>
+          <span class="block font-display text-xl font-bold">{t.rental.title}</span>
+          <span class="mt-1 block text-navy-200">{t.rental.lead}</span>
+        </span>
+      </span>
+      <span class="inline-flex shrink-0 items-center gap-2 font-semibold">
+        {t.common.learnMore}
+        <Icon
+          name="arrow-right"
+          size={18}
+          class="transition-transform group-hover:translate-x-0.5"
+        />
+      </span>
+    </a>
+  </Section>
+
   <Section tone="surface" labelledby="why-title">
     <SectionHeading id="why-title" title={t.services.whyTitle} />
     <ul class="grid gap-8 md:grid-cols-3">
