@@ -45,13 +45,14 @@ See `docs/CONTENT-GUIDE.md` for how to edit each of these safely.
 
 Set in Vercel > Project > Settings > Environment Variables. See `.env.example`.
 
-| Variable                           | Purpose                                                                            |
-| ---------------------------------- | ---------------------------------------------------------------------------------- |
-| `ZOHO_SMTP_HOST`, `ZOHO_SMTP_PORT` | Zoho SMTP server (`smtppro.zoho.com`, 465)                                         |
-| `ZOHO_SMTP_USER`, `ZOHO_SMTP_PASS` | Mailbox login. Use an app-specific password. The From address is always this user. |
-| `CONTACT_TO_EMAIL`                 | Where enquiries are delivered                                                      |
-| `CONTACT_DRY_RUN`                  | `true` logs enquiries instead of sending (local dev)                               |
-| `PUBLIC_SHOW_SAMPLE_TESTIMONIALS`  | `true` shows unapproved sample quotes (never in production)                        |
+| Variable                           | Purpose                                                                                   |
+| ---------------------------------- | ----------------------------------------------------------------------------------------- |
+| `ZOHO_SMTP_HOST`, `ZOHO_SMTP_PORT` | Zoho SMTP server (`smtppro.zoho.com`, 465)                                                |
+| `ZOHO_SMTP_USER`, `ZOHO_SMTP_PASS` | Mailbox login. Use an app-specific password. The From address is always this user.        |
+| `CONTACT_TO_EMAIL`                 | Where enquiries are delivered                                                             |
+| `CONTACT_FROM_EMAIL`               | Sender address. Optional with Zoho Mail; required with ZeptoMail (username `emailapikey`) |
+| `CONTACT_DRY_RUN`                  | `true` logs enquiries instead of sending (local dev)                                      |
+| `PUBLIC_SHOW_SAMPLE_TESTIMONIALS`  | `true` shows unapproved sample quotes (never in production)                               |
 
 ## Deployment
 

@@ -73,6 +73,7 @@ export default defineConfig({
       ZOHO_SMTP_PORT: envField.number({ context: 'server', access: 'secret', optional: true }),
       ZOHO_SMTP_USER: envField.string({ context: 'server', access: 'secret', optional: true }),
       ZOHO_SMTP_PASS: envField.string({ context: 'server', access: 'secret', optional: true }),
+      CONTACT_FROM_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
       CONTACT_TO_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
       CONTACT_DRY_RUN: envField.boolean({ context: 'server', access: 'secret', optional: true }),
       PUBLIC_SHOW_SAMPLE_TESTIMONIALS: envField.boolean({

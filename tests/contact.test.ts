@@ -119,6 +119,15 @@ describe('handleContact', () => {
     });
     expect((await handleContact(valid, failing)).status).toBe(502);
   });
+  it('uses CONTACT_FROM_EMAIL when the SMTP username is not an address (ZeptoMail)', async () => {
+    const send = sendMock();
+    const zepto = { ...env, smtpUser: 'emailapikey', from: 'noreply@mbscaustralia.com.au' };
+    expect((await handleContact(valid, deps({ env: zepto, send }))).status).toBe(200);
+    expect(send.mock.calls[0]![0]!.from).toContain('noreply@mbscaustralia.com.au');
+    expect(
+      (await handleContact(valid, deps({ env: { ...env, smtpUser: 'emailapikey' } }))).status,
+    ).toBe(503);
+  });
   it('dry run succeeds without sending', async () => {
     const send = sendMock();
     expect((await handleContact(valid, deps({ env: { dryRun: true }, send }))).status).toBe(200);
@@ -130,14 +139,14 @@ describe('buildMessage', () => {
   it('escapes HTML in the visitor’s text', () => {
     const msg = buildMessage(
       normalize({ ...valid, message: '<script>alert(1)</script> and more text here' }),
-      { smtpUser: 'u', to: 't' },
+      { from: 'web@mbsc.test', to: 't' },
     );
     expect(msg.html).not.toContain('<script>');
     expect(msg.html).toContain('&lt;script&gt;');
   });
   it('keeps header fields on one line', () => {
     const msg = buildMessage(normalize({ ...valid, firstName: 'Sam\nBcc: x@y' }), {
-      smtpUser: 'u',
+      from: 'web@mbsc.test',
       to: 't',
     });
     expect(msg.subject).not.toMatch(/[\r\n]/);

@@ -19,6 +19,7 @@ function readEnv(): ContactEnv {
     smtpPort: Number.isFinite(port) && port > 0 ? port : 465,
     smtpUser: getSecret('ZOHO_SMTP_USER') || undefined,
     smtpPass: getSecret('ZOHO_SMTP_PASS') || undefined,
+    from: getSecret('CONTACT_FROM_EMAIL') || undefined,
     to: getSecret('CONTACT_TO_EMAIL') || undefined,
     dryRun: String(getSecret('CONTACT_DRY_RUN')) === 'true',
   };

@@ -12,6 +12,8 @@ export interface ContactEnv {
   smtpPort?: number;
   smtpUser?: string;
   smtpPass?: string;
+  /** From address. Defaults to smtpUser (Zoho Mail). Required for ZeptoMail, whose username is "emailapikey". */
+  from?: string;
   to?: string;
   dryRun?: boolean;
 }
@@ -60,10 +62,7 @@ const esc = (s: string) =>
   );
 const oneLine = (s: string) => s.replace(/[\r\n]+/g, ' ').trim();
 
-export function buildMessage(
-  input: ContactInput,
-  env: Required<Pick<ContactEnv, 'smtpUser' | 'to'>>,
-): MailMessage {
+export function buildMessage(input: ContactInput, env: { from: string; to: string }): MailMessage {
   const name = oneLine(`${input.firstName} ${input.lastName}`);
   const rows: [string, string][] = [
     ['Name', name],
@@ -84,7 +83,7 @@ export function buildMessage(
       '',
     )}</table><p style="font-family:Arial,sans-serif;font-size:14px;white-space:pre-wrap">${esc(input.message)}</p>`;
   return {
-    from: `MBSC website <${env.smtpUser}>`,
+    from: `MBSC website <${env.from}>`,
     to: env.to,
     replyTo: `${oneLine(name).replace(/[<>"]/g, '')} <${input.email}>`,
     subject: oneLine(
@@ -118,8 +117,13 @@ export async function handleContact(
     deps.log?.('contact: SMTP environment variables missing');
     return { status: 503, body: { ok: false, error: 'unavailable' }, input };
   }
+  const from = env.from || env.smtpUser;
+  if (!env.dryRun && !from?.includes('@')) {
+    deps.log?.('contact: no valid From address (set CONTACT_FROM_EMAIL)');
+    return { status: 503, body: { ok: false, error: 'unavailable' }, input };
+  }
   const message = buildMessage(input, {
-    smtpUser: env.smtpUser ?? 'dry-run@localhost',
+    from: from ?? 'dry-run@localhost',
     to: env.to ?? 'dry-run@localhost',
   });
   if (env.dryRun) {
