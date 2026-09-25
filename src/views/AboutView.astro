@@ -8,6 +8,7 @@ import SectionHeading from '../components/ui/SectionHeading.astro';
 import Icon from '../components/ui/Icon.astro';
 import StatBand from '../components/StatBand.astro';
 import RegionsBand from '../components/RegionsBand.astro';
+import TrustStrip from '../components/TrustStrip.astro';
 import CTABand from '../components/ui/CTABand.astro';
 import lab from '../assets/images/about-lab.jpg';
 import engineers from '../assets/images/about-engineers.jpg';
@@ -96,6 +97,15 @@ const valueIcons = ['file-check-2', 'shield-check', 'users'] as const;
         </li>
       ))}
     </ul>
+  </Section>
+
+  <Section tone="surface" labelledby="clients-title">
+    <SectionHeading
+      id="clients-title"
+      eyebrow={a.accreditations.eyebrow}
+      title={t.home.trust.title}
+    />
+    <TrustStrip variant="grouped" />
   </Section>
 
   {team.length > 0 && (

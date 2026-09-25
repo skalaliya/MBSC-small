@@ -82,14 +82,24 @@ const calendars = defineCollection({
 const clients = defineCollection({
   loader: file('./src/content/clients.json'),
   schema: ({ image }) =>
-    z.object({
-      id: z.string(),
-      name: z.string(),
-      logo: image(),
-      /** Only confirmed clients are shown on the site. */
-      confirmed: z.boolean(),
-      evidence: z.string().optional(),
-    }),
+    z
+      .object({
+        id: z.string(),
+        name: z.string(),
+        logo: image(),
+        sector: z.enum(['mining', 'oilGas']),
+        /** Display order, lowest first. */
+        order: z.number().int(),
+        /** Only confirmed clients are shown on the site. */
+        confirmed: z.boolean(),
+        /** Who confirmed MBSC may show this logo, and when. Required once confirmed. */
+        evidence: z.string().optional(),
+        /** Where the logo file came from, for future updates. */
+        source: z.url(),
+      })
+      .refine((c) => !c.confirmed || !!c.evidence, {
+        message: 'confirmed clients need an evidence note',
+      }),
 });
 
 const testimonials = defineCollection({

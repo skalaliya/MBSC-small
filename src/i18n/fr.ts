@@ -122,7 +122,7 @@ export const fr: UI = {
     footnote: 'Chiffres cumulés au {date}.',
   },
   home: {
-    trust: { title: 'Expérience auprès d’opérateurs tels que' },
+    trust: { title: 'Ils nous font confiance', mining: 'Mines', oilGas: 'Énergie' },
     services: {
       eyebrow: 'Nos activités',
       title: 'Cinq disciplines, une seule équipe responsable',

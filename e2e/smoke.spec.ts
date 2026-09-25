@@ -180,3 +180,25 @@ for (const route of [
     ).toEqual([]);
   });
 }
+
+test('trust band: duplicate logos are hidden from assistive tech and the marquee respects reduced motion', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(isMobile, 'marquee only runs on wide screens');
+  await page.goto('/');
+  const band = page.locator('section.trust');
+  await expect(band.getByRole('heading', { name: 'Trusted by industry leaders' })).toBeVisible();
+  const lists = band.locator('.trust-list');
+  await expect(lists).toHaveCount(2);
+  await expect(lists.nth(1)).toHaveAttribute('aria-hidden', 'true');
+  expect(await band.getByRole('img').count()).toBe(11); // only the first copy is exposed
+  expect(
+    await band.locator('.trust-track').evaluate((el) => getComputedStyle(el).animationName),
+  ).toBe('trust-scroll');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  expect(
+    await band.locator('.trust-track').evaluate((el) => getComputedStyle(el).animationName),
+  ).toBe('none');
+  await expect(lists.nth(1)).toBeHidden();
+});

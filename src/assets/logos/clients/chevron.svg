@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <svg
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
@@ -37,9 +36,9 @@
 
   </defs>
 
-  <!-- translate(-292.6063,-309.3024) -->
-  <!-- translate( 252.8164, 269.4948) -->
-  <!--            -39.7899, -39.8076  -->
+  
+  
+  
   <g transform="translate(-39.7899,-39.8076)">
     <g transform="scale(1.043997,1.043997)">
 

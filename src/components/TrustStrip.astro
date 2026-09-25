@@ -3,30 +3,146 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { toLocale, useT } from '../i18n/utils';
 
-/** Minimum number of confirmed clients before the strip is shown; one logo alone looks thin. */
+interface Props {
+  /** "band": full-width marquee under the hero. "grouped": static Mining / Energy grid (About page). */
+  variant?: 'band' | 'grouped';
+}
+const { variant = 'band' } = Astro.props;
+/** Minimum confirmed clients before anything is shown; a lone logo looks thin. */
 const MIN_LOGOS = 3;
 const t = useT(toLocale(Astro.currentLocale));
-const clients = (await getCollection('clients')).filter((c) => c.data.confirmed);
+const clients = (await getCollection('clients'))
+  .filter((c) => c.data.confirmed)
+  .sort((a, b) => a.data.order - b.data.order);
+// Square-ish marks (Chevron, South32, Woodside) need more height than wide wordmarks to look balanced.
+const sizeClass = (w: number, h: number) => (w / h < 1.7 ? 'h-11 sm:h-12' : 'h-6 sm:h-7');
+const groups = (['mining', 'oilGas'] as const)
+  .map((sector) => ({ sector, items: clients.filter((c) => c.data.sector === sector) }))
+  .filter((g) => g.items.length > 0);
 ---
 
-{clients.length >= MIN_LOGOS && (
-  <section class="border-b border-line bg-white py-10" aria-label={t.home.trust.title}>
-    <div class="container-site flex flex-col items-center gap-6 lg:flex-row lg:gap-12">
-      <p class="shrink-0 text-center text-sm font-medium text-ink-500 lg:max-w-44 lg:text-left">
+{clients.length >= MIN_LOGOS && variant === 'band' && (
+  <section
+    class="trust relative overflow-hidden border-y border-white/10 bg-navy-950 py-10"
+    aria-labelledby="trust-title"
+  >
+    <div class="container-site">
+      <h2
+        id="trust-title"
+        class="mb-8 text-center text-xs font-semibold tracking-[0.14em] text-navy-200 uppercase"
+      >
         {t.home.trust.title}
-      </p>
-      <ul class="grid w-full grid-cols-2 items-center gap-x-10 gap-y-6 sm:grid-cols-3 lg:flex lg:justify-between">
-        {clients.map((c) => (
-          <li class="flex justify-center">
-            <Image
-              src={c.data.logo}
-              alt={c.data.name}
-              height={36}
-              class="h-8 w-auto opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0 sm:h-9"
-            />
-          </li>
+      </h2>
+    </div>
+    <div class="trust-viewport">
+      <div class="trust-track">
+        {[0, 1].map((copy) => (
+          <ul
+            class="trust-list"
+            aria-hidden={copy === 1 ? 'true' : undefined}
+            inert={copy === 1 ? true : undefined}
+            data-copy={copy}
+          >
+            {clients.map((c) => (
+              <li class="flex shrink-0 items-center justify-center">
+                <Image
+                  src={c.data.logo}
+                  alt={copy === 0 ? c.data.name : ''}
+                  height={96}
+                  class:list={[
+                    'w-auto max-w-36 object-contain opacity-75 brightness-0 invert transition-opacity duration-300 hover:opacity-100',
+                    sizeClass(c.data.logo.width, c.data.logo.height),
+                  ]}
+                  loading="lazy"
+                />
+              </li>
+            ))}
+          </ul>
         ))}
-      </ul>
+      </div>
     </div>
   </section>
 )}
+
+{clients.length >= MIN_LOGOS && variant === 'grouped' && (
+  <div class="space-y-10">
+    {groups.map((g) => (
+      <div>
+        <h3 class="mb-5 text-xs font-semibold tracking-[0.14em] text-ink-500 uppercase">
+          {t.home.trust[g.sector]}
+        </h3>
+        <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {g.items.map((c) => (
+            <li class="flex h-28 items-center justify-center rounded-lg bg-white p-6 ring-1 ring-line">
+              <Image
+                src={c.data.logo}
+                alt={c.data.name}
+                height={96}
+                class:list={[
+                  'w-auto max-w-40 object-contain',
+                  sizeClass(c.data.logo.width, c.data.logo.height),
+                ]}
+                loading="lazy"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+)}
+
+<style>
+  /* Mobile and reduced motion: a wrapped, centred grid. Only the first copy is shown. */
+  .trust-track {
+    display: flex;
+  }
+  .trust-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem 2.75rem;
+    padding-inline: 1.25rem;
+    width: 100%;
+  }
+  .trust-list[data-copy='1'] {
+    display: none;
+  }
+
+  /* Wide screens with motion allowed: an endless marquee. The track holds two identical
+     lists and slides by exactly one list width (-50%), so the loop is seamless. */
+  @media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+    .trust-viewport {
+      mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    }
+    .trust-track {
+      width: max-content;
+      animation: trust-scroll 45s linear infinite;
+    }
+    .trust-list {
+      flex-wrap: nowrap;
+      width: auto;
+      gap: 4.5rem;
+      padding-inline: 2.25rem;
+    }
+    .trust-list[data-copy='1'] {
+      display: flex;
+    }
+    .trust:hover .trust-track,
+    .trust:focus-within .trust-track {
+      animation-play-state: paused;
+    }
+  }
+  @keyframes trust-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  :global([dir='rtl']) .trust-track {
+    animation-direction: reverse;
+  }
+</style>

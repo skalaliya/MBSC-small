@@ -118,7 +118,7 @@ export const en = {
     footnote: 'Cumulative figures to {date}.',
   },
   home: {
-    trust: { title: 'Experience with operators including' },
+    trust: { title: 'Trusted by industry leaders', mining: 'Mining', oilGas: 'Energy' },
     services: {
       eyebrow: 'What we do',
       title: 'Five disciplines, one accountable team',

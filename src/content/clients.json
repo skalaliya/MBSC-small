@@ -1,36 +1,112 @@
 [
   {
-    "id": "santos",
-    "name": "Santos",
-    "logo": "./../assets/logos/clients/santos.svg",
+    "id": "bhp",
+    "name": "BHP",
+    "sector": "mining",
+    "logo": "./../assets/logos/clients/bhp.svg",
     "confirmed": true,
-    "evidence": "Named client on the Moomba cementing QA project (existing site content)."
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:BHP_2017_logo.svg",
+    "order": 1
   },
-  { "id": "bhp", "name": "BHP", "logo": "./../assets/logos/clients/bhp.svg", "confirmed": false },
   {
     "id": "rio-tinto",
     "name": "Rio Tinto",
+    "sector": "mining",
     "logo": "./../assets/logos/clients/rio-tinto.svg",
-    "confirmed": false,
-    "evidence": "Wikimedia file is a legacy wordmark; replace with the current logo before confirming."
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Rio_Tinto_(corporation)_Logo.svg",
+    "order": 2
   },
   {
     "id": "fortescue",
     "name": "Fortescue",
+    "sector": "mining",
     "logo": "./../assets/logos/clients/fortescue.svg",
-    "confirmed": false,
-    "evidence": "Wikimedia file is the older FMG logo; replace with the current logo before confirming."
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Fortescue_logo.svg",
+    "order": 3
   },
   {
-    "id": "newmont",
-    "name": "Newmont",
-    "logo": "./../assets/logos/clients/newmont.svg",
-    "confirmed": false
+    "id": "woodside",
+    "name": "Woodside Energy",
+    "sector": "oilGas",
+    "logo": "./../assets/logos/clients/woodside.svg",
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Woodside_Energy_Logo_2025.svg",
+    "order": 4
+  },
+  {
+    "id": "santos",
+    "name": "Santos",
+    "sector": "oilGas",
+    "logo": "./../assets/logos/clients/santos.svg",
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Santos_limited_corporate_logo.svg",
+    "order": 5
   },
   {
     "id": "chevron",
     "name": "Chevron Australia",
+    "sector": "oilGas",
     "logo": "./../assets/logos/clients/chevron.svg",
-    "confirmed": false
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Chevron_Logo.svg",
+    "order": 6
+  },
+  {
+    "id": "south32",
+    "name": "South32",
+    "sector": "mining",
+    "logo": "./../assets/logos/clients/south32.svg",
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:South32_logo.svg",
+    "order": 7
+  },
+  {
+    "id": "newmont",
+    "name": "Newmont",
+    "sector": "mining",
+    "logo": "./../assets/logos/clients/newmont.svg",
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Newmont_Corporation_-_Logo.svg",
+    "order": 8
+  },
+  {
+    "id": "northern-star",
+    "name": "Northern Star Resources",
+    "sector": "mining",
+    "logo": "./../assets/logos/clients/northern-star.png",
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Northern_Star_Resources_logo.png",
+    "order": 9
+  },
+  {
+    "id": "evolution-mining",
+    "name": "Evolution Mining",
+    "sector": "mining",
+    "logo": "./../assets/logos/clients/evolution-mining.png",
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Evolution_Mining_logo.png",
+    "order": 10
+  },
+  {
+    "id": "beach-energy",
+    "name": "Beach Energy",
+    "sector": "oilGas",
+    "logo": "./../assets/logos/clients/beach-energy.png",
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 25 Sep 2026",
+    "source": "https://en.wikipedia.org/wiki/File:Beach_Energy_logo.png",
+    "order": 11
   }
 ]
