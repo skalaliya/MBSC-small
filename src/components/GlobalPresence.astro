@@ -1,0 +1,200 @@
+---
+import { Image } from 'astro:assets';
+import dots from '../assets/world/world-dots.svg';
+import world from '../data/world-markers.json';
+import Section from './ui/Section.astro';
+import SectionHeading from './ui/SectionHeading.astro';
+import Icon from './ui/Icon.astro';
+import { publishedLocales, toLocale, useT } from '../i18n/utils';
+import { site } from '../data/site';
+import { getServices } from '../lib/queries';
+import './world-markers.css';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const p = t.presence;
+type Place = keyof typeof p.places;
+const places: Place[] = ['melbourne', 'perth', 'middle-east', 'europe'];
+const hq = world.markers.melbourne as [number, number];
+// Gentle arcs from head office to each region, lifted towards the top of the map.
+const arcs = places
+  .filter((id) => id !== 'melbourne')
+  .map((id) => {
+    const [x, y] = world.markers[id] as [number, number];
+    const cx = (hq[0] + x) / 2;
+    const cy = Math.min(hq[1], y) - Math.abs(hq[0] - x) * 0.28;
+    return `M${hq[0]} ${hq[1]} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x} ${y}`;
+  });
+const facts = [
+  { value: site.regions.length, label: p.facts.regions },
+  { value: publishedLocales.length, label: p.facts.languages },
+  { value: (await getServices(locale)).length, label: p.facts.disciplines },
+];
+---
+
+<Section tone="navy" grid labelledby="presence-title" spacing="lg">
+  <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+    <SectionHeading
+      id="presence-title"
+      eyebrow={p.eyebrow}
+      title={p.title}
+      lead={p.lead}
+      dark
+      class="mb-0 lg:col-span-7"
+    />
+    <dl class="grid grid-cols-3 gap-px overflow-hidden rounded-lg bg-white/10 lg:col-span-5">
+      {facts.map((f) => (
+        <div class="bg-navy-950 p-5">
+          <dt class="text-xs leading-4 text-navy-200">{f.label}</dt>
+          <dd class="mt-1 font-display text-3xl font-bold text-white tabular-nums">{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+
+  <!-- Geography never mirrors, even in right-to-left languages. -->
+  <div class="world relative -mx-5 mt-12 sm:mx-0" dir="ltr">
+    <Image src={dots} alt="" class="absolute inset-0 h-full w-full" loading="lazy" />
+    <svg
+      class="arcs absolute inset-0 h-full w-full"
+      viewBox={`0 0 ${world.width} ${world.height}`}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <linearGradient id="arc-gradient" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#914ff7"></stop>
+          <stop offset="1" stop-color="#f5565a"></stop>
+        </linearGradient>
+      </defs>
+      {arcs.map((d) => (
+        <path d={d} class="arc" />
+      ))}
+    </svg>
+    <ul>
+      {places.map((id) => (
+        <li class:list={['marker', `marker-${id}`, id === 'melbourne' && 'is-hq']}>
+          <span class="pin" aria-hidden="true" />
+          <span class="label" lang={locale}>
+            {id === 'melbourne' && <Icon name="building-2" size={14} />}
+            {p.places[id]}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <ol class="mt-12 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-3">
+    {site.regions.map((r) => (
+      <li class="bg-navy-950 p-7">
+        <h3 class="font-display text-xl font-bold text-white">{t.common.regions[r]}</h3>
+        <p class="mt-2 leading-7 text-navy-200">{t.common.regionsLong[r]}</p>
+      </li>
+    ))}
+  </ol>
+</Section>
+
+<style>
+  .marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  .pin {
+    position: relative;
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: #f5565a;
+    box-shadow: 0 0 0 3px rgb(245 86 90 / 0.25);
+  }
+  .is-hq .pin {
+    width: 1rem;
+    height: 1rem;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgb(145 79 247 / 0.45);
+  }
+  .pin::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  .label {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 0.5rem);
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+    border-radius: 9999px;
+    background: rgb(10 21 51 / 0.85);
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.15);
+  }
+  /* Keep labels near the right edge (Australia) from overflowing the map. */
+  .marker-melbourne .label,
+  .marker-perth .label {
+    left: auto;
+    right: calc(100% + 0.5rem);
+  }
+  .marker-perth .label {
+    top: auto;
+    bottom: 100%;
+    transform: translateY(-0.25rem);
+  }
+  .arc {
+    fill: none;
+    stroke: url(#arc-gradient);
+    stroke-width: 1.5;
+    stroke-dasharray: 6 8;
+    opacity: 0.8;
+    animation: dash 3s linear infinite;
+  }
+  @keyframes ping {
+    75%,
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -28;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pin::after,
+    .arc {
+      animation: none;
+    }
+    .pin::after {
+      display: none;
+    }
+  }
+  /* Small screens: markers only, plus the HQ label; the region cards below carry the detail. */
+  @media (max-width: 40rem) {
+    .marker:not(.is-hq) .label {
+      display: none;
+    }
+    .label {
+      font-size: 0.6875rem;
+      padding: 0.15rem 0.5rem;
+    }
+    .pin {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+    .is-hq .pin {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+</style>

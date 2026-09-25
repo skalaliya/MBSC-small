@@ -645,6 +645,22 @@ export const fr: UI = {
       cta: 'Découvrir nos capacités en IA',
     },
   },
+  presence: {
+    eyebrow: 'Zones d’intervention',
+    title: 'Une ingénierie déployée sur trois régions',
+    lead: 'Depuis notre siège de Melbourne et notre base de formation de Perth, nous envoyons ingénieurs et formateurs auprès d’opérateurs en Australie, au Moyen-Orient et en Europe.',
+    places: {
+      melbourne: 'Siège de Melbourne',
+      perth: 'Perth',
+      'middle-east': 'Moyen-Orient',
+      europe: 'Europe',
+    },
+    facts: {
+      regions: 'Régions desservies',
+      languages: 'Langues',
+      disciplines: 'Lignes de services',
+    },
+  },
   footer: {
     tagline:
       'Conseil en ingénierie, formation technique et solutions numériques pour le pétrole et le gaz, les mines et les infrastructures.',

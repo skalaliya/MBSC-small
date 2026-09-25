@@ -4,6 +4,9 @@ import { fr } from './fr';
 export const locales = ['en', 'fr'] as const;
 export type Locale = (typeof locales)[number];
 
+/** Locales visible to the public (switcher, sitemap, hreflang). */
+export const publishedLocales: readonly Locale[] = locales;
+
 const dictionaries: Record<Locale, UI> = { en, fr };
 
 export function toLocale(value: string | undefined | null): Locale {

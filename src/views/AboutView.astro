@@ -7,7 +7,7 @@ import Section from '../components/ui/Section.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import Icon from '../components/ui/Icon.astro';
 import StatBand from '../components/StatBand.astro';
-import RegionsBand from '../components/RegionsBand.astro';
+import GlobalPresence from '../components/GlobalPresence.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import CTABand from '../components/ui/CTABand.astro';
 import lab from '../assets/images/about-lab.jpg';
@@ -158,7 +158,7 @@ const valueIcons = ['file-check-2', 'shield-check', 'users'] as const;
     </Section>
   )}
 
-  <RegionsBand eyebrow={a.regions.eyebrow} title={a.regions.title} />
+  <GlobalPresence />
   <CTABand
     title={t.cta.title}
     lead={t.cta.lead}

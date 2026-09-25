@@ -639,6 +639,18 @@ export const en = {
       cta: 'Explore our AI capabilities',
     },
   },
+  presence: {
+    eyebrow: 'Where we work',
+    title: 'Engineering delivered across three regions',
+    lead: 'From our Melbourne head office and Perth training base, we deploy engineers and trainers to operators in Australia, the Middle East and Europe.',
+    places: {
+      melbourne: 'Melbourne HQ',
+      perth: 'Perth',
+      'middle-east': 'Middle East',
+      europe: 'Europe',
+    },
+    facts: { regions: 'Regions served', languages: 'Languages', disciplines: 'Service lines' },
+  },
   footer: {
     tagline:
       'Engineering consultancy, technical training and digital solutions for oil & gas, mining and infrastructure.',

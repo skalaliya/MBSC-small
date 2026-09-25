@@ -7,7 +7,7 @@ import ServiceCard from '../components/ServiceCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import UpcomingSessions from '../components/UpcomingSessions.astro';
 import Testimonials from '../components/Testimonials.astro';
-import RegionsBand from '../components/RegionsBand.astro';
+import GlobalPresence from '../components/GlobalPresence.astro';
 import AiArchitectureDiagram from '../components/AiArchitectureDiagram.astro';
 import Section from '../components/ui/Section.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
@@ -156,7 +156,7 @@ const featured = (await getProjects(locale)).filter((p) => p.data.featured).slic
   </Section>
 
   <Testimonials />
-  <RegionsBand eyebrow={t.home.regions.eyebrow} title={t.home.regions.title} />
+  <GlobalPresence />
   <CTABand
     title={t.home.cta.title}
     lead={t.home.cta.lead}
