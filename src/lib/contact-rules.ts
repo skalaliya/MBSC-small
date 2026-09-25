@@ -16,7 +16,8 @@ export const LIMITS = {
   minFillMs: 3000,
 } as const;
 
-export type Field = 'firstName' | 'lastName' | 'company' | 'email' | 'phone' | 'topic' | 'message' | 'consent';
+export type Field =
+  'firstName' | 'lastName' | 'company' | 'email' | 'phone' | 'topic' | 'message' | 'consent';
 export type ErrorCode = 'required' | 'email' | 'phone' | 'tooShort' | 'tooLong' | 'consent';
 
 export interface ContactInput {
@@ -39,10 +40,18 @@ export interface ContactInput {
 
 const EMAIL = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[A-Za-z]{2,}$/;
 const PHONE = /^[+()\d\s.-]{6,25}$/;
-const str = (v: unknown, max: number) => (typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, max) : '');
+const str = (v: unknown, max: number) =>
+  typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, max) : '';
 // Messages keep their line breaks but lose other control characters.
 const text = (v: unknown, max: number) =>
-  typeof v === 'string' ? v.replace(/\r\n?/g, '\n').replace(/[^\S\n]+/g, ' ').replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, '').trim().slice(0, max + 1) : '';
+  typeof v === 'string'
+    ? v
+        .replace(/\r\n?/g, '\n')
+        .replace(/[^\S\n]+/g, ' ')
+        .replace(/[\u0000-\u0009\u000B-\u001F\u007F]/g, '')
+        .trim()
+        .slice(0, max + 1)
+    : '';
 
 /** Coerce untrusted input (JSON or form fields) into a typed object. Never throws. */
 export function normalize(raw: Record<string, unknown>): ContactInput {

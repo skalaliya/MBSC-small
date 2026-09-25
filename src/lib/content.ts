@@ -1,4 +1,5 @@
-export const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
+export const byOrder = <T extends { data: { order: number } }>(a: T, b: T) =>
+  a.data.order - b.data.order;
 
 export const SERVICE_SLUGS = [
   'oil-gas-engineering',
@@ -15,10 +16,25 @@ export type Sector = (typeof SECTORS)[number];
 /** Display order when listing projects: oil & gas, then mining, then the rest. */
 export const SECTOR_ORDER: Record<Sector, number> = { oilGas: 0, mining: 1, civil: 2, marine: 3 };
 
-export const TOPICS = ['general', 'oilGas', 'training', 'digital', 'mining', 'safety', 'rental'] as const;
+export const TOPICS = [
+  'general',
+  'oilGas',
+  'training',
+  'digital',
+  'mining',
+  'safety',
+  'rental',
+] as const;
 export type Topic = (typeof TOPICS)[number];
 
-export const CATEGORIES = ['oilGas', 'geoscience', 'geology', 'mining', 'crossDiscipline', 'digitalAI'] as const;
+export const CATEGORIES = [
+  'oilGas',
+  'geoscience',
+  'geology',
+  'mining',
+  'crossDiscipline',
+  'digitalAI',
+] as const;
 export type Category = (typeof CATEGORIES)[number];
 
 export const CATEGORY_DOT: Record<Category, string> = {

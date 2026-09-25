@@ -1,4 +1,11 @@
-import { LIMITS, normalize, validate, type ContactInput, type ErrorCode, type Field } from './contact-rules';
+import {
+  LIMITS,
+  normalize,
+  validate,
+  type ContactInput,
+  type ErrorCode,
+  type Field,
+} from './contact-rules';
 
 export interface ContactEnv {
   smtpHost?: string;
@@ -27,7 +34,10 @@ export interface ContactDeps {
 
 export type ContactResult =
   | { status: 200; body: { ok: true } }
-  | { status: 400; body: { ok: false; error: 'validation'; fields: Partial<Record<Field, ErrorCode>> } }
+  | {
+      status: 400;
+      body: { ok: false; error: 'validation'; fields: Partial<Record<Field, ErrorCode>> };
+    }
   | { status: 400; body: { ok: false; error: 'tooFast' | 'invalid' } }
   | { status: 403; body: { ok: false; error: 'origin' } }
   | { status: 502; body: { ok: false; error: 'send' } }
@@ -43,10 +53,17 @@ export function sameOrigin(origin: string | null, requestUrl: string): boolean {
   }
 }
 
-const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+const esc = (s: string) =>
+  s.replace(
+    /[&<>"']/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!,
+  );
 const oneLine = (s: string) => s.replace(/[\r\n]+/g, ' ').trim();
 
-export function buildMessage(input: ContactInput, env: Required<Pick<ContactEnv, 'smtpUser' | 'to'>>): MailMessage {
+export function buildMessage(
+  input: ContactInput,
+  env: Required<Pick<ContactEnv, 'smtpUser' | 'to'>>,
+): MailMessage {
   const name = oneLine(`${input.firstName} ${input.lastName}`);
   const rows: [string, string][] = [
     ['Name', name],
@@ -60,19 +77,28 @@ export function buildMessage(input: ContactInput, env: Required<Pick<ContactEnv,
   ];
   const text = `${rows.map(([k, v]) => `${k}: ${v}`).join('\n')}\n\n${input.message}\n`;
   const html = `<table cellpadding="6" style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px">${rows
-    .map(([k, v]) => `<tr><td style="color:#5b6472">${k}</td><td><strong>${esc(v)}</strong></td></tr>`)
-    .join('')}</table><p style="font-family:Arial,sans-serif;font-size:14px;white-space:pre-wrap">${esc(input.message)}</p>`;
+    .map(
+      ([k, v]) => `<tr><td style="color:#5b6472">${k}</td><td><strong>${esc(v)}</strong></td></tr>`,
+    )
+    .join(
+      '',
+    )}</table><p style="font-family:Arial,sans-serif;font-size:14px;white-space:pre-wrap">${esc(input.message)}</p>`;
   return {
     from: `MBSC website <${env.smtpUser}>`,
     to: env.to,
     replyTo: `${oneLine(name).replace(/[<>"]/g, '')} <${input.email}>`,
-    subject: oneLine(`Website enquiry (${input.topic}): ${name}${input.company ? `, ${input.company}` : ''}`).slice(0, 180),
+    subject: oneLine(
+      `Website enquiry (${input.topic}): ${name}${input.company ? `, ${input.company}` : ''}`,
+    ).slice(0, 180),
     text,
     html,
   };
 }
 
-export async function handleContact(raw: Record<string, unknown>, deps: ContactDeps): Promise<ContactResult & { input?: ContactInput }> {
+export async function handleContact(
+  raw: Record<string, unknown>,
+  deps: ContactDeps,
+): Promise<ContactResult & { input?: ContactInput }> {
   const input = normalize(raw);
 
   // Honeypot filled: pretend success so bots learn nothing, but send nothing.
@@ -84,14 +110,18 @@ export async function handleContact(raw: Record<string, unknown>, deps: ContactD
     return { status: 400, body: { ok: false, error: 'tooFast' }, input };
   }
   const fields = validate(input);
-  if (Object.keys(fields).length) return { status: 400, body: { ok: false, error: 'validation', fields }, input };
+  if (Object.keys(fields).length)
+    return { status: 400, body: { ok: false, error: 'validation', fields }, input };
 
   const { env } = deps;
   if (!env.dryRun && (!env.smtpUser || !env.smtpPass || !env.to || !env.smtpHost)) {
     deps.log?.('contact: SMTP environment variables missing');
     return { status: 503, body: { ok: false, error: 'unavailable' }, input };
   }
-  const message = buildMessage(input, { smtpUser: env.smtpUser ?? 'dry-run@localhost', to: env.to ?? 'dry-run@localhost' });
+  const message = buildMessage(input, {
+    smtpUser: env.smtpUser ?? 'dry-run@localhost',
+    to: env.to ?? 'dry-run@localhost',
+  });
   if (env.dryRun) {
     deps.log?.('contact: dry run, email not sent', { subject: message.subject });
     return { status: 200, body: { ok: true }, input };

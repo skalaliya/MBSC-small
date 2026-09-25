@@ -7,12 +7,10 @@ const { rows, class: className } = Astro.props;
 ---
 
 <dl class:list={['divide-y divide-line text-sm', className]}>
-  {
-    rows.map((r) => (
-      <div class="grid grid-cols-[8rem_1fr] gap-4 py-2.5">
-        <dt class="font-medium text-ink-500">{r.label}</dt>
-        <dd class="text-ink-900">{r.value}</dd>
-      </div>
-    ))
-  }
+  {rows.map((r) => (
+    <div class="grid grid-cols-[8rem_1fr] gap-4 py-2.5">
+      <dt class="font-medium text-ink-500">{r.label}</dt>
+      <dd class="text-ink-900">{r.value}</dd>
+    </div>
+  ))}
 </dl>

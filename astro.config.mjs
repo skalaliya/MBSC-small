@@ -49,22 +49,22 @@ export default defineConfig({
     csp: isDev
       ? false
       : {
-      algorithm: 'SHA-256',
-      scriptDirective: { resources: ["'self'", 'https://va.vercel-scripts.com'] },
-      styleDirective: { resources: ["'self'"] },
-      directives: [
-        "default-src 'self'",
-        "img-src 'self' data:",
-        "font-src 'self'",
-        "connect-src 'self' https://va.vercel-scripts.com",
-        'frame-src https://www.google.com',
-        "object-src 'none'",
-        "base-uri 'self'",
-        "form-action 'self'",
-        "frame-ancestors 'none'",
-        'upgrade-insecure-requests',
-      ],
-    },
+          algorithm: 'SHA-256',
+          scriptDirective: { resources: ["'self'", 'https://va.vercel-scripts.com'] },
+          styleDirective: { resources: ["'self'"] },
+          directives: [
+            "default-src 'self'",
+            "img-src 'self' data:",
+            "font-src 'self'",
+            "connect-src 'self' https://va.vercel-scripts.com",
+            'frame-src https://www.google.com',
+            "object-src 'none'",
+            "base-uri 'self'",
+            "form-action 'self'",
+            "frame-ancestors 'none'",
+            'upgrade-insecure-requests',
+          ],
+        },
   },
   env: {
     schema: {
@@ -75,7 +75,11 @@ export default defineConfig({
       ZOHO_SMTP_PASS: envField.string({ context: 'server', access: 'secret', optional: true }),
       CONTACT_TO_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
       CONTACT_DRY_RUN: envField.boolean({ context: 'server', access: 'secret', optional: true }),
-      PUBLIC_SHOW_SAMPLE_TESTIMONIALS: envField.boolean({ context: 'client', access: 'public', optional: true }),
+      PUBLIC_SHOW_SAMPLE_TESTIMONIALS: envField.boolean({
+        context: 'client',
+        access: 'public',
+        optional: true,
+      }),
     },
   },
   markdown: { syntaxHighlight: false },

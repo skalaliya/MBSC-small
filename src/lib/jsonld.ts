@@ -60,7 +60,12 @@ export function breadcrumbs(items: { label: string; href: string }[]): Json {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: items.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: absolute(site.url, c.href) })),
+    itemListElement: items.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.label,
+      item: absolute(site.url, c.href),
+    })),
   };
 }
 
@@ -68,7 +73,11 @@ export function faqPage(items: readonly { q: string; a: string }[]): Json {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })),
+    mainEntity: items.map((i) => ({
+      '@type': 'Question',
+      name: i.q,
+      acceptedAnswer: { '@type': 'Answer', text: i.a },
+    })),
   };
 }
 
@@ -110,7 +119,9 @@ export function courses(
         courseMode: MODE[s.delivery],
         startDate: s.start,
         endDate: s.end,
-        ...(s.delivery !== 'virtual' ? { location: { '@type': 'Place', name: locationName(s.location) } } : {}),
+        ...(s.delivery !== 'virtual'
+          ? { location: { '@type': 'Place', name: locationName(s.location) } }
+          : {}),
       })),
     };
   });

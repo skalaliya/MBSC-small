@@ -33,22 +33,29 @@ export function validateCalendar(cal: CalendarFile): string[] {
     const where = `${cal.year}/${s.id}`;
     if (ids.has(s.id)) errors.push(`${where}: duplicate id`);
     ids.add(s.id);
-    if (!(CATEGORIES as readonly string[]).includes(s.category)) errors.push(`${where}: unknown category ${s.category}`);
-    if (!(DELIVERY as readonly string[]).includes(s.delivery)) errors.push(`${where}: unknown delivery ${s.delivery}`);
-    if (!(LOCATIONS as readonly string[]).includes(s.location)) errors.push(`${where}: unknown location ${s.location}`);
-    if (!(CERTIFICATES as readonly string[]).includes(s.certificate)) errors.push(`${where}: unknown certificate ${s.certificate}`);
+    if (!(CATEGORIES as readonly string[]).includes(s.category))
+      errors.push(`${where}: unknown category ${s.category}`);
+    if (!(DELIVERY as readonly string[]).includes(s.delivery))
+      errors.push(`${where}: unknown delivery ${s.delivery}`);
+    if (!(LOCATIONS as readonly string[]).includes(s.location))
+      errors.push(`${where}: unknown location ${s.location}`);
+    if (!(CERTIFICATES as readonly string[]).includes(s.certificate))
+      errors.push(`${where}: unknown certificate ${s.certificate}`);
     if (!s.title?.en || !s.title?.fr) errors.push(`${where}: missing title translation`);
     if (s.month < 1 || s.month > 12) errors.push(`${where}: month out of range`);
-    if ((s.start === null) !== (s.end === null)) errors.push(`${where}: start and end must both be set or both be null`);
+    if ((s.start === null) !== (s.end === null))
+      errors.push(`${where}: start and end must both be set or both be null`);
     if (s.start && s.end) {
       if (!isISODate(s.start) || !isISODate(s.end)) {
         errors.push(`${where}: invalid ISO date`);
         continue;
       }
-      const a = parseISODate(s.start), b = parseISODate(s.end);
+      const a = parseISODate(s.start),
+        b = parseISODate(s.end);
       if (a > b) errors.push(`${where}: start after end`);
       if (a.getFullYear() !== cal.year) errors.push(`${where}: start is not in ${cal.year}`);
-      if (a.getMonth() + 1 !== s.month) errors.push(`${where}: month ${s.month} does not match start ${s.start}`);
+      if (a.getMonth() + 1 !== s.month)
+        errors.push(`${where}: month ${s.month} does not match start ${s.start}`);
     }
   }
   return errors;

@@ -1,7 +1,17 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "dev", "runtimeExecutable": "npx", "runtimeArgs": ["astro", "dev", "--port", "4321"], "port": 4321 },
-    { "name": "static", "runtimeExecutable": "python3", "runtimeArgs": ["-m", "http.server", "4400", "--directory", ".vercel/output/static"], "port": 4400 }
+    {
+      "name": "dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["astro", "dev", "--port", "4321"],
+      "port": 4321
+    },
+    {
+      "name": "static",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve-output.mjs"],
+      "port": 4400
+    }
   ]
 }

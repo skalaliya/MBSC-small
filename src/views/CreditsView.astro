@@ -10,21 +10,29 @@ const own = t.credits.own;
 ---
 
 <Base title={`${t.footer.credits} | MBSC Australia`} description={intro}>
-  <PageHeader title={t.footer.credits} lead={intro} crumbs={[{ label: t.nav.home, href: localizePath('/', locale) }, { label: t.footer.credits }]} crumbLabel={t.a11y.breadcrumb} />
+  <PageHeader
+    title={t.footer.credits}
+    lead={intro}
+    crumbs={[{ label: t.nav.home, href: localizePath('/', locale) }, { label: t.footer.credits }]}
+    crumbLabel={t.a11y.breadcrumb}
+  />
   <div class="bg-white py-16">
     <div class="container-site max-w-3xl">
       <p class="mb-8 text-ink-700">{own}</p>
       <ul class="divide-y divide-line border-y border-line">
-        {
-          credits.map((c) => (
-            <li class="flex flex-wrap justify-between gap-2 py-3 text-sm">
-              <span class="text-ink-500">{c.file}</span>
-              <a href={c.url} class="font-medium text-navy-700 hover:underline" rel="noopener" target="_blank">
-                {c.photographer} · {c.source}
-              </a>
-            </li>
-          ))
-        }
+        {credits.map((c) => (
+          <li class="flex flex-wrap justify-between gap-2 py-3 text-sm">
+            <span class="text-ink-500">{c.file}</span>
+            <a
+              href={c.url}
+              class="font-medium text-navy-700 hover:underline"
+              rel="noopener"
+              target="_blank"
+            >
+              {c.photographer} · {c.source}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </div>

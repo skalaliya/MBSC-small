@@ -15,7 +15,13 @@ const tones = {
 };
 ---
 
-<span class:list={['inline-flex items-center gap-1.5 rounded-sm px-2 py-1 text-xs font-medium leading-none', tones[tone], className]}>
+<span
+  class:list={[
+    'inline-flex items-center gap-1.5 rounded-sm px-2 py-1 text-xs font-medium leading-none',
+    tones[tone],
+    className,
+  ]}
+>
   {dot && <span class:list={['size-2 rounded-full', dot]} aria-hidden="true" />}
   <slot />
 </span>

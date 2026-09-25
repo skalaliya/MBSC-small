@@ -37,9 +37,21 @@ for (const p of PHOTOS) {
   });
   if (!res.ok) throw new Error(`Download failed for ${p.id}: HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  await sharp(buf).rotate().resize({ width: p.w, withoutEnlargement: true }).jpeg({ quality: 82, mozjpeg: true }).toFile(out);
+  await sharp(buf)
+    .rotate()
+    .resize({ width: p.w, withoutEnlargement: true })
+    .jpeg({ quality: 82, mozjpeg: true })
+    .toFile(out);
   console.log('saved', p.file);
 }
-const credits = PHOTOS.map((p) => ({ file: `${p.file}.jpg`, photographer: p.by, url: `https://unsplash.com/photos/${p.id}`, source: 'Unsplash' }));
-await writeFile(fileURLToPath(new URL('../src/data/credits.json', import.meta.url)), JSON.stringify(credits, null, 2) + '\n');
+const credits = PHOTOS.map((p) => ({
+  file: `${p.file}.jpg`,
+  photographer: p.by,
+  url: `https://unsplash.com/photos/${p.id}`,
+  source: 'Unsplash',
+}));
+await writeFile(
+  fileURLToPath(new URL('../src/data/credits.json', import.meta.url)),
+  JSON.stringify(credits, null, 2) + '\n',
+);
 console.log(`credits: ${credits.length}`);

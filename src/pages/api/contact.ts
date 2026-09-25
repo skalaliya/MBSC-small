@@ -25,8 +25,11 @@ function readEnv(): ContactEnv {
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const isForm = (request.headers.get('content-type') ?? '').includes('application/x-www-form-urlencoded');
-  if (!sameOrigin(request.headers.get('origin'), request.url)) return json(403, { ok: false, error: 'origin' });
+  const isForm = (request.headers.get('content-type') ?? '').includes(
+    'application/x-www-form-urlencoded',
+  );
+  if (!sameOrigin(request.headers.get('origin'), request.url))
+    return json(403, { ok: false, error: 'origin' });
 
   const length = Number(request.headers.get('content-length') ?? 0);
   if (length > MAX_BYTES) return json(413, { ok: false, error: 'invalid' });
@@ -35,7 +38,9 @@ export const POST: APIRoute = async ({ request }) => {
 
   let body: Record<string, unknown>;
   try {
-    body = isForm ? Object.fromEntries(new URLSearchParams(raw)) : (JSON.parse(raw) as Record<string, unknown>);
+    body = isForm
+      ? Object.fromEntries(new URLSearchParams(raw))
+      : (JSON.parse(raw) as Record<string, unknown>);
     if (!body || typeof body !== 'object' || Array.isArray(body)) throw new Error('not an object');
   } catch {
     return json(400, { ok: false, error: 'invalid' });
@@ -51,10 +56,14 @@ export const POST: APIRoute = async ({ request }) => {
   // No-JS fallback: redirect to a confirmation page, or back to the form with an error code.
   if (isForm) {
     const base = result.input?.locale === 'fr' ? '/fr/contact' : '/contact';
-    const location = result.status === 200 ? `${base}/sent` : `${base}?error=${'error' in result.body ? result.body.error : 'invalid'}#enquiry`;
+    const location =
+      result.status === 200
+        ? `${base}/sent`
+        : `${base}?error=${'error' in result.body ? result.body.error : 'invalid'}#enquiry`;
     return new Response(null, { status: 303, headers: { location, 'cache-control': 'no-store' } });
   }
   return json(result.status, result.body);
 };
 
-export const ALL: APIRoute = async () => new Response(null, { status: 405, headers: { allow: 'POST' } });
+export const ALL: APIRoute = async () =>
+  new Response(null, { status: 405, headers: { allow: 'POST' } });

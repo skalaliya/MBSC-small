@@ -17,7 +17,9 @@ export function initContactForm(): void {
   const success = root.querySelector<HTMLElement>('[data-contact-success]')!;
   const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
   const submitLabel = submit.innerHTML;
-  const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+  const field = (name: string) =>
+    form.elements.namedItem(name) as
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
 
   const setHidden = (name: string, value: string) => {
     const el = field(name);
@@ -66,13 +68,18 @@ export function initContactForm(): void {
     }
   }
 
-  const read = () => normalize(Object.fromEntries([...new FormData(form)].map(([k, v]) => [k, String(v)])));
+  const read = () =>
+    normalize(Object.fromEntries([...new FormData(form)].map(([k, v]) => [k, String(v)])));
 
   // Validate a field when the user leaves it, and clear its error as they fix it.
   const touched = new Set<string>();
   form.addEventListener('focusout', (e) => {
     const target = e.target as HTMLInputElement;
     if (!target.name) return;
+    // Skip when focus moves to the submit button (or nowhere, as Safari does on button clicks):
+    // showing or hiding a hint here would reflow the form under the pointer and lose the click.
+    const next = (e as FocusEvent).relatedTarget;
+    if (next === null || next === submit) return;
     touched.add(target.name);
     const errors = validate(read());
     showFieldError(target.name as Field, errors[target.name as Field]);
@@ -105,7 +112,11 @@ export function initContactForm(): void {
         headers: { 'content-type': 'application/json', accept: 'application/json' },
         body: JSON.stringify(data),
       });
-      const body = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; fields?: Record<string, string> };
+      const body = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+        fields?: Record<string, string>;
+      };
       if (res.ok && body.ok) {
         form.hidden = true;
         success.classList.remove('hidden');
@@ -113,7 +124,8 @@ export function initContactForm(): void {
         window.va?.('event', { name: 'contact_submitted', data: { topic: data.topic } });
         return;
       }
-      if (body.fields) Object.entries(body.fields).forEach(([k, v]) => showFieldError(k as Field, v));
+      if (body.fields)
+        Object.entries(body.fields).forEach(([k, v]) => showFieldError(k as Field, v));
       showAlert(messages[body.error ?? 'send'] ?? messages.send ?? '');
     } catch {
       showAlert(messages.send ?? '');
@@ -135,6 +147,9 @@ export function initContactForm(): void {
 
 declare global {
   interface Window {
-    va?: (event: 'event', payload: { name: string; data?: Record<string, string | number> }) => void;
+    va?: (
+      event: 'event',
+      payload: { name: string; data?: Record<string, string | number> },
+    ) => void;
   }
 }

@@ -21,6 +21,37 @@ export function initCalendar(): void {
     if (end && end < today) row.setAttribute('data-past', '');
   }
 
+  // Collapse months where every dated session has finished (current year only in practice).
+  const pastMonths = months.filter((m) => {
+    const dated = [...m.querySelectorAll<HTMLElement>('[data-session]')].filter(
+      (r) => r.dataset.end,
+    );
+    return dated.length > 0 && dated.every((r) => r.hasAttribute('data-past'));
+  });
+  const toggle = root.querySelector<HTMLButtonElement>('[data-past-toggle]');
+  let showPast = false;
+  const syncPast = () => {
+    pastMonths.forEach((m) => m.toggleAttribute('data-collapsed', !showPast));
+    if (!toggle) return;
+    const n = pastMonths.length;
+    toggle.textContent = showPast
+      ? (root.dataset.hidePast ?? '')
+      : (n === 1 ? (root.dataset.showPastOne ?? '') : (root.dataset.showPast ?? '')).replace(
+          '{count}',
+          String(n),
+        );
+    toggle.setAttribute('aria-expanded', String(showPast));
+  };
+  if (pastMonths.length && toggle) {
+    toggle.classList.remove('hidden');
+    toggle.classList.add('inline-flex');
+    toggle.addEventListener('click', () => {
+      showPast = !showPast;
+      syncPast();
+    });
+    syncPast();
+  }
+
   if (!form) return;
   form.hidden = false;
   const template = root.dataset.results ?? '{count}';
@@ -49,7 +80,8 @@ export function initCalendar(): void {
       const hasRows = month.querySelector('[data-session]') !== null;
       month.hidden = filtering && hasRows ? visible === 0 : filtering && !hasRows;
     }
-    if (count) count.textContent = (shown === 1 ? templateOne : template).replace('{count}', String(shown));
+    if (count)
+      count.textContent = (shown === 1 ? templateOne : template).replace('{count}', String(shown));
     if (empty) empty.classList.toggle('hidden', shown !== 0);
   };
 

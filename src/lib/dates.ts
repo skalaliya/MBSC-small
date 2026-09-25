@@ -67,7 +67,11 @@ export function isWeekend(date: Date): boolean {
  * Uses Intl so French renders "13–17 janvier 2026".
  */
 export function formatRange(start: Date, end: Date, locale: string, withYear = false): string {
-  const opts: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', ...(withYear ? { year: 'numeric' } : {}) };
+  const opts: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'long',
+    ...(withYear ? { year: 'numeric' } : {}),
+  };
   const fmt = new Intl.DateTimeFormat(locale, opts);
   if (start.getTime() === end.getTime()) return fmt.format(start);
   return fmt.formatRange(start, end);

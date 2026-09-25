@@ -24,6 +24,7 @@ const messages = {
   unavailable: fmt(f.errors.unavailable, { email: site.email, phone: site.phone }),
   tooFast: f.errors.tooFast,
   invalid: fmt(f.errors.send, { email: site.email }),
+  validation: f.errors.summary,
   origin: fmt(f.errors.send, { email: site.email }),
   sending: f.sending,
   submit: f.submit,
@@ -45,41 +46,115 @@ const hint = 'mt-1.5 text-sm text-danger';
     aria-labelledby="form-title"
   >
     <div>
-      <h2 id="form-title" class="font-display text-2xl font-bold">{f.title}</h2>
+      <h2 id="form-title" class="font-display text-2xl font-bold">
+        {f.title}
+      </h2>
       <p class="mt-1 text-sm text-ink-500">{t.contact.lead}</p>
     </div>
 
-    <div class="hidden rounded-md border-l-4 border-danger bg-[#fdf0f0] p-4 text-sm text-ink-900" role="alert" data-form-alert tabindex="-1"></div>
+    <div
+      class="hidden rounded-md border-l-4 border-danger bg-[#fdf0f0] p-4 text-sm text-ink-900"
+      role="alert"
+      data-form-alert
+      tabindex="-1"
+    ></div>
 
     <div class="grid gap-6 sm:grid-cols-2">
       <div>
-        <label for="firstName" class={label}>{f.firstName} <span class="text-danger" aria-hidden="true">*</span></label>
-        <input id="firstName" name="firstName" type="text" autocomplete="given-name" required maxlength={LIMITS.name} class={input} aria-describedby="firstName-error" />
+        <label for="firstName" class={label}>
+          {f.firstName}{' '}
+          <span class="text-danger" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input
+          id="firstName"
+          name="firstName"
+          type="text"
+          autocomplete="given-name"
+          required
+          maxlength={LIMITS.name}
+          class={input}
+          aria-describedby="firstName-error"
+        />
         <p id="firstName-error" class={hint} data-error-for="firstName" hidden></p>
       </div>
       <div>
-        <label for="lastName" class={label}>{f.lastName} <span class="text-danger" aria-hidden="true">*</span></label>
-        <input id="lastName" name="lastName" type="text" autocomplete="family-name" required maxlength={LIMITS.name} class={input} aria-describedby="lastName-error" />
+        <label for="lastName" class={label}>
+          {f.lastName}{' '}
+          <span class="text-danger" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input
+          id="lastName"
+          name="lastName"
+          type="text"
+          autocomplete="family-name"
+          required
+          maxlength={LIMITS.name}
+          class={input}
+          aria-describedby="lastName-error"
+        />
         <p id="lastName-error" class={hint} data-error-for="lastName" hidden></p>
       </div>
       <div>
-        <label for="email" class={label}>{f.email} <span class="text-danger" aria-hidden="true">*</span></label>
-        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength={LIMITS.email} class={input} aria-describedby="email-error" />
+        <label for="email" class={label}>
+          {f.email}{' '}
+          <span class="text-danger" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          inputmode="email"
+          required
+          maxlength={LIMITS.email}
+          class={input}
+          aria-describedby="email-error"
+        />
         <p id="email-error" class={hint} data-error-for="email" hidden></p>
       </div>
       <div>
-        <label for="phone" class={label}>{f.phone} <span class="font-normal text-ink-500">({f.optional})</span></label>
-        <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="25" class={input} aria-describedby="phone-error" />
+        <label for="phone" class={label}>
+          {f.phone} <span class="font-normal text-ink-500">({f.optional})</span>
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          inputmode="tel"
+          maxlength="25"
+          class={input}
+          aria-describedby="phone-error"
+        />
         <p id="phone-error" class={hint} data-error-for="phone" hidden></p>
       </div>
       <div>
-        <label for="company" class={label}>{f.company} <span class="font-normal text-ink-500">({f.optional})</span></label>
-        <input id="company" name="company" type="text" autocomplete="organization" maxlength={LIMITS.company} class={input} />
+        <label for="company" class={label}>
+          {f.company} <span class="font-normal text-ink-500">({f.optional})</span>
+        </label>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          autocomplete="organization"
+          maxlength={LIMITS.company}
+          class={input}
+        />
       </div>
       <div>
-        <label for="topic" class={label}>{f.topic}</label>
+        <label for="topic" class={label}>
+          {f.topic}
+        </label>
         <select id="topic" name="topic" class={input}>
-          {TOPICS.map((k) => <option value={k}>{f.topics[k]}</option>)}
+          {TOPICS.map((k) => (
+            <option value={k}>{f.topics[k]}</option>
+          ))}
         </select>
       </div>
     </div>
@@ -91,16 +166,43 @@ const hint = 'mt-1.5 text-sm text-danger';
     <input type="hidden" name="ref" value="" />
 
     <div>
-      <label for="message" class={label}>{f.message} <span class="text-danger" aria-hidden="true">*</span></label>
-      <textarea id="message" name="message" rows="6" required minlength={LIMITS.messageMin} maxlength={LIMITS.messageMax} class={input} aria-describedby="message-hint message-error"></textarea>
-      <p id="message-hint" class="mt-1.5 text-sm text-ink-500">{f.messageHint}</p>
+      <label for="message" class={label}>
+        {f.message}{' '}
+        <span class="text-danger" aria-hidden="true">
+          *
+        </span>
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows="6"
+        required
+        minlength={LIMITS.messageMin}
+        maxlength={LIMITS.messageMax}
+        class={input}
+        aria-describedby="message-hint message-error"
+      ></textarea>
+      <p id="message-hint" class="mt-1.5 text-sm text-ink-500">
+        {f.messageHint}
+      </p>
       <p id="message-error" class={hint} data-error-for="message" hidden></p>
     </div>
 
     <div>
       <label class="flex gap-3 text-sm leading-6 text-ink-700">
-        <input id="consent" name="consent" type="checkbox" required class="mt-1 size-4 shrink-0 rounded-sm accent-navy-700" aria-describedby="consent-error" />
-        <span>{consentBefore}<Fragment set:html={privacyLink} />{consentAfter}</span>
+        <input
+          id="consent"
+          name="consent"
+          type="checkbox"
+          required
+          class="mt-1 size-4 shrink-0 rounded-sm accent-navy-700"
+          aria-describedby="consent-error"
+        />
+        <span>
+          {consentBefore}
+          <Fragment set:html={privacyLink} />
+          {consentAfter}
+        </span>
       </label>
       <p id="consent-error" class={hint} data-error-for="consent" hidden></p>
     </div>
@@ -115,8 +217,12 @@ const hint = 'mt-1.5 text-sm text-danger';
     <input type="hidden" name="startedAt" value="" />
 
     <div class="flex flex-wrap items-center gap-4">
-      <Button type="submit" size="lg" iconEnd="send" data-submit>{f.submit}</Button>
-      <p class="text-sm text-ink-500"><span class="text-danger">*</span> {f.required}</p>
+      <Button type="submit" size="lg" iconEnd="send" data-submit>
+        {f.submit}
+      </Button>
+      <p class="text-sm text-ink-500">
+        <span class="text-danger">*</span> {f.required}
+      </p>
     </div>
   </form>
 
@@ -126,7 +232,13 @@ const hint = 'mt-1.5 text-sm text-danger';
     </span>
     <h2 class="mt-5 font-display text-2xl font-bold">{f.success.title}</h2>
     <p class="mx-auto mt-2 max-w-md leading-7 text-ink-700">{f.success.body}</p>
-    <button type="button" class="mt-6 text-sm font-semibold text-navy-700 underline-offset-4 hover:underline" data-contact-again>{f.success.again}</button>
+    <button
+      type="button"
+      class="mt-6 text-sm font-semibold text-navy-700 underline-offset-4 hover:underline"
+      data-contact-again
+    >
+      {f.success.again}
+    </button>
   </div>
 </div>
 

@@ -6,7 +6,10 @@
       "fr": "Les ingénieurs de MBSC étaient sur site à la date prévue, et leur rapport nous a indiqué précisément quelles soudures traiter en priorité. C’est ce que nous attendons d’un partenaire en intégrité."
     },
     "role": { "en": "Asset Integrity Manager", "fr": "Responsable de l’intégrité des actifs" },
-    "organisation": { "en": "Offshore gas operator, WA", "fr": "Opérateur gazier en mer, Australie-Occidentale" },
+    "organisation": {
+      "en": "Offshore gas operator, WA",
+      "fr": "Opérateur gazier en mer, Australie-Occidentale"
+    },
     "approved": false
   },
   {
@@ -16,7 +19,10 @@
       "fr": "La formation était assurée par des professionnels de terrain. Nos superviseurs sont revenus avec des outils concrets utilisés dès la semaine suivante."
     },
     "role": { "en": "Training Coordinator", "fr": "Coordinatrice formation" },
-    "organisation": { "en": "Mining contractor, SA", "fr": "Entreprise minière, Australie-Méridionale" },
+    "organisation": {
+      "en": "Mining contractor, SA",
+      "fr": "Entreprise minière, Australie-Méridionale"
+    },
     "approved": false
   },
   {
@@ -26,7 +32,10 @@
       "fr": "Un périmètre clair, des données fiables et aucune surprise. Le dossier géotechnique est arrivé avant notre échéance de conception."
     },
     "role": { "en": "Project Engineer", "fr": "Ingénieur projet" },
-    "organisation": { "en": "Rail infrastructure owner, WA", "fr": "Gestionnaire d’infrastructure ferroviaire, Australie-Occidentale" },
+    "organisation": {
+      "en": "Rail infrastructure owner, WA",
+      "fr": "Gestionnaire d’infrastructure ferroviaire, Australie-Occidentale"
+    },
     "approved": false
   }
 ]

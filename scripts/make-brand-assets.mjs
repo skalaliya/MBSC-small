@@ -12,11 +12,17 @@ const trimmed = await sharp(master).trim({ threshold: 1 }).png().toBuffer();
 const square = (size) =>
   sharp(trimmed).resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } });
 
-await square(512).png({ palette: true, quality: 90, compressionLevel: 9 }).toFile(p('../src/assets/logo/mbsc-roundel.png'));
+await square(512)
+  .png({ palette: true, quality: 90, compressionLevel: 9 })
+  .toFile(p('../src/assets/logo/mbsc-roundel.png'));
 await square(32).png().toFile(p('../public/favicon-32x32.png'));
 await square(16).png().toFile(p('../public/favicon-16x16.png'));
-await square(192).png({ palette: true, quality: 90 }).toFile(p('../public/android-chrome-192x192.png'));
-await square(512).png({ palette: true, quality: 90, compressionLevel: 9 }).toFile(p('../public/android-chrome-512x512.png'));
+await square(192)
+  .png({ palette: true, quality: 90 })
+  .toFile(p('../public/android-chrome-192x192.png'));
+await square(512)
+  .png({ palette: true, quality: 90, compressionLevel: 9 })
+  .toFile(p('../public/android-chrome-512x512.png'));
 const touch = await square(152).png().toBuffer();
 await sharp({ create: { width: 180, height: 180, channels: 4, background: '#ffffff' } })
   .composite([{ input: touch, left: 14, top: 14 }])
@@ -25,15 +31,24 @@ await sharp({ create: { width: 180, height: 180, channels: 4, background: '#ffff
 // favicon.ico: a 32px PNG-encoded ICO is supported by all current browsers.
 const ico32 = await square(32).png().toBuffer();
 const header = Buffer.alloc(22);
-header.writeUInt16LE(0, 0); header.writeUInt16LE(1, 2); header.writeUInt16LE(1, 4);
-header.writeUInt8(32, 6); header.writeUInt8(32, 7); header.writeUInt8(0, 8); header.writeUInt8(0, 9);
-header.writeUInt16LE(1, 10); header.writeUInt16LE(32, 12); header.writeUInt32LE(ico32.length, 14); header.writeUInt32LE(22, 18);
+header.writeUInt16LE(0, 0);
+header.writeUInt16LE(1, 2);
+header.writeUInt16LE(1, 4);
+header.writeUInt8(32, 6);
+header.writeUInt8(32, 7);
+header.writeUInt8(0, 8);
+header.writeUInt8(0, 9);
+header.writeUInt16LE(1, 10);
+header.writeUInt16LE(32, 12);
+header.writeUInt32LE(ico32.length, 14);
+header.writeUInt32LE(22, 18);
 const { writeFile } = await import('node:fs/promises');
 await writeFile(p('../public/favicon.ico'), Buffer.concat([header, ico32]));
 
 // Default social card.
 await mkdir(p('../public/og'), { recursive: true });
-const W = 1200, H = 630;
+const W = 1200,
+  H = 630;
 const bg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F5565A"/><stop offset=".5" stop-color="#C751AF"/><stop offset="1" stop-color="#914FF7"/></linearGradient>
@@ -50,5 +65,8 @@ const bg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" hei
   <text x="440" y="446" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="54" font-weight="700" fill="#FFFFFF">and infrastructure.</text>
 </svg>`);
 const badge = await square(280).png().toBuffer();
-await sharp(bg).composite([{ input: badge, left: 96, top: 150 }]).png({ compressionLevel: 9 }).toFile(p('../public/og/og-default.png'));
+await sharp(bg)
+  .composite([{ input: badge, left: 96, top: 150 }])
+  .png({ compressionLevel: 9 })
+  .toFile(p('../public/og/og-default.png'));
 console.log('brand assets written');

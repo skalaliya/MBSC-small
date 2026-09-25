@@ -36,12 +36,19 @@ const path = yearHref(year);
 const catalogue = CATEGORIES.map((cat) => {
   const byCourse = new Map<string, { title: string; count: number; delivery: Set<string> }>();
   for (const s of calendar.sessions.filter((x) => x.category === cat)) {
-    const e = byCourse.get(s.course) ?? { title: s.title[locale], count: 0, delivery: new Set<string>() };
+    const e = byCourse.get(s.course) ?? {
+      title: s.title[locale],
+      count: 0,
+      delivery: new Set<string>(),
+    };
     e.count++;
     e.delivery.add(c.deliveryModes[s.delivery]);
     byCourse.set(s.course, e);
   }
-  return { cat, courses: [...byCourse.values()].sort((a, b) => a.title.localeCompare(b.title, locale)) };
+  return {
+    cat,
+    courses: [...byCourse.values()].sort((a, b) => a.title.localeCompare(b.title, locale)),
+  };
 }).filter((g) => g.courses.length);
 
 const crumbs = [
@@ -49,97 +56,128 @@ const crumbs = [
   { label: t.nav.training, href: L('/training') },
   ...(year !== primaryYear ? [{ label: String(year), href: path }] : []),
 ];
-const dated = upcoming([calendar], new Date(year === primaryYear ? Date.now() : new Date(year, 0, 1).getTime()), 200);
+const dated = upcoming(
+  [calendar],
+  new Date(year === primaryYear ? Date.now() : new Date(year, 0, 1).getTime()),
+  200,
+);
 const valueIcons = ['map-pin', 'award', 'monitor'] as const;
 ---
 
 <Base
   title={fmt(t.meta.pages.training.title, { year })}
   description={t.meta.pages.training.description}
-  jsonLd={[breadcrumbs(crumbs), faqPage(t.faq.training), ...courses(dated, locale, path, (k) => c.locations[k])]}
+  jsonLd={[
+    breadcrumbs(crumbs),
+    faqPage(t.faq.training),
+    ...courses(dated, locale, path, (k) => c.locations[k]),
+  ]}
 >
-  <PageHeader eyebrow={t.training.eyebrow} title={t.training.title} lead={t.training.lead} crumbs={crumbs} crumbLabel={t.a11y.breadcrumb} image={header} imageAlt="">
-    <Button slot="actions" href="#calendar" variant="inverse" iconStart="calendar-days">{fmt(c.title, { year })}</Button>
-    <Button slot="actions" href={`${L('/contact')}?topic=training`} variant="outline-inverse">{t.training.ctaPrimary}</Button>
+  <PageHeader
+    eyebrow={t.training.eyebrow}
+    title={t.training.title}
+    lead={t.training.lead}
+    crumbs={crumbs}
+    crumbLabel={t.a11y.breadcrumb}
+    image={header}
+    imageAlt=""
+  >
+    <Button slot="actions" href="#calendar" variant="inverse" iconStart="calendar-days">
+      {fmt(c.title, { year })}
+    </Button>
+    <Button slot="actions" href={`${L('/contact')}?topic=training`} variant="outline-inverse">
+      {t.training.ctaPrimary}
+    </Button>
   </PageHeader>
 
   <Section tone="surface" labelledby="value-title" spacing="sm">
-    <h2 id="value-title" class="sr-only">{t.training.title}</h2>
+    <h2 id="value-title" class="sr-only">
+      {t.training.title}
+    </h2>
     <ul class="grid gap-8 md:grid-cols-3">
-      {
-        t.training.valueProps.map((v, i) => (
-          <li class="flex gap-4">
-            <span class="flex size-11 shrink-0 items-center justify-center rounded-md bg-navy-50 text-navy-700 ring-1 ring-navy-100">
-              <Icon name={valueIcons[i] ?? 'check'} size={20} />
-            </span>
-            <div>
-              <h3 class="font-display text-lg font-bold">{v.title}</h3>
-              <p class="mt-1.5 leading-7 text-ink-500">{v.body}</p>
-            </div>
-          </li>
-        ))
-      }
+      {t.training.valueProps.map((v, i) => (
+        <li class="flex gap-4">
+          <span class="flex size-11 shrink-0 items-center justify-center rounded-md bg-navy-50 text-navy-700 ring-1 ring-navy-100">
+            <Icon name={valueIcons[i] ?? 'check'} size={20} />
+          </span>
+          <div>
+            <h3 class="font-display text-lg font-bold">{v.title}</h3>
+            <p class="mt-1.5 leading-7 text-ink-500">{v.body}</p>
+          </div>
+        </li>
+      ))}
     </ul>
   </Section>
 
-  {
-    year === primaryYear && (
-      <Section tone="paper" labelledby="upcoming-title">
-        <SectionHeading id="upcoming-title" eyebrow={t.home.training.eyebrow} title={t.training.upcoming} />
-        <UpcomingSessions limit={5} />
-      </Section>
-    )
-  }
+  {year === primaryYear && (
+    <Section tone="paper" labelledby="upcoming-title">
+      <SectionHeading
+        id="upcoming-title"
+        eyebrow={t.home.training.eyebrow}
+        title={t.training.upcoming}
+      />
+      <UpcomingSessions limit={5} />
+    </Section>
+  )}
 
-  <Section tone={year === primaryYear ? 'surface' : 'paper'} labelledby="calendar-title" id="calendar" reveal={false}>
+  <Section
+    tone={year === primaryYear ? 'surface' : 'paper'}
+    labelledby="calendar-title"
+    id="calendar"
+    reveal={false}
+  >
     <SectionHeading id="calendar-title" title={fmt(c.title, { year })} lead={c.lead} />
     <nav aria-label={c.yearNav} class="mb-8">
       <ul class="inline-flex rounded-md bg-paper p-1 ring-1 ring-line">
-        {
-          years.map((y) => (
-            <li>
-              <a
-                href={`${yearHref(y)}#calendar`}
-                aria-current={y === year ? 'page' : undefined}
-                class:list={[
-                  'block rounded-sm px-4 py-2 text-sm font-semibold tabular-nums transition-colors',
-                  y === year ? 'bg-navy-950 text-white' : 'text-ink-700 hover:bg-white',
-                ]}
-              >
-                {y}
-              </a>
-            </li>
-          ))
-        }
+        {years.map((y) => (
+          <li>
+            <a
+              href={`${yearHref(y)}#calendar`}
+              aria-current={y === year ? 'page' : undefined}
+              class:list={[
+                'block rounded-sm px-4 py-2 text-sm font-semibold tabular-nums transition-colors',
+                y === year ? 'bg-navy-950 text-white' : 'text-ink-700 hover:bg-white',
+              ]}
+            >
+              {y}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
     <TrainingCalendar calendar={calendar} />
   </Section>
 
   <Section tone="paper" labelledby="catalogue-title">
-    <SectionHeading id="catalogue-title" title={t.training.catalogue.title} lead={t.training.catalogue.lead} />
+    <SectionHeading
+      id="catalogue-title"
+      title={t.training.catalogue.title}
+      lead={t.training.catalogue.lead}
+    />
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {
-        catalogue.map((g) => (
-          <section class="rounded-lg bg-white p-6 ring-1 ring-line" aria-labelledby={`cat-${g.cat}`}>
-            <h3 id={`cat-${g.cat}`} class="flex items-center gap-2 font-display text-lg font-bold">
-              <span class:list={['size-2.5 rounded-full', CATEGORY_DOT[g.cat]]} aria-hidden="true" />
-              {c.categories[g.cat]}
-            </h3>
-            <ul class="mt-4 space-y-3">
-              {g.courses.map((course) => (
-                <li class="border-t border-line pt-3">
-                  <p class="font-medium text-ink-900">{course.title}</p>
-                  <p class="mt-1 flex flex-wrap items-center gap-2 text-xs text-ink-500">
-                    <span class="tabular-nums">{fmt(t.training.catalogue.sessions, { count: course.count, year })}</span>
-                    {[...course.delivery].map((d) => <Badge tone="muted">{d}</Badge>)}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
+      {catalogue.map((g) => (
+        <section class="rounded-lg bg-white p-6 ring-1 ring-line" aria-labelledby={`cat-${g.cat}`}>
+          <h3 id={`cat-${g.cat}`} class="flex items-center gap-2 font-display text-lg font-bold">
+            <span class:list={['size-2.5 rounded-full', CATEGORY_DOT[g.cat]]} aria-hidden="true" />
+            {c.categories[g.cat]}
+          </h3>
+          <ul class="mt-4 space-y-3">
+            {g.courses.map((course) => (
+              <li class="border-t border-line pt-3">
+                <p class="font-medium text-ink-900">{course.title}</p>
+                <p class="mt-1 flex flex-wrap items-center gap-2 text-xs text-ink-500">
+                  <span class="tabular-nums">
+                    {fmt(t.training.catalogue.sessions, { count: course.count, year })}
+                  </span>
+                  {[...course.delivery].map((d) => (
+                    <Badge tone="muted">{d}</Badge>
+                  ))}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   </Section>
 
@@ -152,5 +190,9 @@ const valueIcons = ['map-pin', 'award', 'monitor'] as const;
     </div>
   </Section>
 
-  <CTABand title={t.training.ctaTitle} lead={t.training.ctaLead} primary={{ label: t.training.ctaPrimary, href: `${L('/contact')}?topic=training` }} />
+  <CTABand
+    title={t.training.ctaTitle}
+    lead={t.training.ctaLead}
+    primary={{ label: t.training.ctaPrimary, href: `${L('/contact')}?topic=training` }}
+  />
 </Base>

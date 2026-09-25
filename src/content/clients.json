@@ -7,8 +7,30 @@
     "evidence": "Named client on the Moomba cementing QA project (existing site content)."
   },
   { "id": "bhp", "name": "BHP", "logo": "./../assets/logos/clients/bhp.svg", "confirmed": false },
-  { "id": "rio-tinto", "name": "Rio Tinto", "logo": "./../assets/logos/clients/rio-tinto.svg", "confirmed": false, "evidence": "Wikimedia file is a legacy wordmark; replace with the current logo before confirming." },
-  { "id": "fortescue", "name": "Fortescue", "logo": "./../assets/logos/clients/fortescue.svg", "confirmed": false, "evidence": "Wikimedia file is the older FMG logo; replace with the current logo before confirming." },
-  { "id": "newmont", "name": "Newmont", "logo": "./../assets/logos/clients/newmont.svg", "confirmed": false },
-  { "id": "chevron", "name": "Chevron Australia", "logo": "./../assets/logos/clients/chevron.svg", "confirmed": false }
+  {
+    "id": "rio-tinto",
+    "name": "Rio Tinto",
+    "logo": "./../assets/logos/clients/rio-tinto.svg",
+    "confirmed": false,
+    "evidence": "Wikimedia file is a legacy wordmark; replace with the current logo before confirming."
+  },
+  {
+    "id": "fortescue",
+    "name": "Fortescue",
+    "logo": "./../assets/logos/clients/fortescue.svg",
+    "confirmed": false,
+    "evidence": "Wikimedia file is the older FMG logo; replace with the current logo before confirming."
+  },
+  {
+    "id": "newmont",
+    "name": "Newmont",
+    "logo": "./../assets/logos/clients/newmont.svg",
+    "confirmed": false
+  },
+  {
+    "id": "chevron",
+    "name": "Chevron Australia",
+    "logo": "./../assets/logos/clients/chevron.svg",
+    "confirmed": false
+  }
 ]

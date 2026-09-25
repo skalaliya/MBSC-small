@@ -1,7 +1,8 @@
 export const en = {
   meta: {
     siteName: 'MBSC Australia',
-    defaultTitle: 'MBSC Australia | Engineering consultancy, technical training and digital solutions',
+    defaultTitle:
+      'MBSC Australia | Engineering consultancy, technical training and digital solutions',
     defaultDescription:
       'Melbourne-based engineering consultancy for oil & gas, mining and infrastructure. Consultancy, inspection, technical training and digital solutions across Australia, the Middle East and Europe.',
     pages: {
@@ -40,9 +41,18 @@ export const en = {
         description:
           'Talk to an engineer about a project, a training program or equipment hire. We reply within one business day.',
       },
-      privacy: { title: 'Privacy policy | MBSC Australia', description: 'How MBSC Australia collects, uses and protects personal information.' },
-      terms: { title: 'Terms of use | MBSC Australia', description: 'Terms that apply to using the MBSC Australia website.' },
-      notFound: { title: 'Page not found | MBSC Australia', description: 'The page you were looking for could not be found.' },
+      privacy: {
+        title: 'Privacy policy | MBSC Australia',
+        description: 'How MBSC Australia collects, uses and protects personal information.',
+      },
+      terms: {
+        title: 'Terms of use | MBSC Australia',
+        description: 'Terms that apply to using the MBSC Australia website.',
+      },
+      notFound: {
+        title: 'Page not found | MBSC Australia',
+        description: 'The page you were looking for could not be found.',
+      },
     },
   },
   a11y: {
@@ -159,9 +169,18 @@ export const en = {
     capabilities: 'Capabilities',
     whyTitle: 'Why operators choose MBSC',
     why: [
-      { title: 'Senior-led', body: 'A senior engineer owns every engagement from scoping to close-out.' },
-      { title: 'Standards first', body: 'Work is planned against the Australian and international standards your auditors expect.' },
-      { title: 'Field and classroom', body: 'The same people who inspect assets train the teams who run them.' },
+      {
+        title: 'Senior-led',
+        body: 'A senior engineer owns every engagement from scoping to close-out.',
+      },
+      {
+        title: 'Standards first',
+        body: 'Work is planned against the Australian and international standards your auditors expect.',
+      },
+      {
+        title: 'Field and classroom',
+        body: 'The same people who inspect assets train the teams who run them.',
+      },
     ],
     detail: {
       overview: 'Overview',
@@ -205,9 +224,18 @@ export const en = {
     title: 'Training programs',
     lead: 'Scheduled and bespoke programs in oil & gas, geoscience, mining and digital engineering, delivered on site, online or both.',
     valueProps: [
-      { title: 'Delivered where you work', body: 'Senior engineers and certified instructors deploy to your site, or run sessions from Melbourne and Perth.' },
-      { title: 'Recognised certification', body: 'Courses map to Australian Standards and ISO 9712 where certification is required.' },
-      { title: 'Flexible formats', body: 'On-site workshops, virtual classrooms, hybrid programs or fully bespoke corporate courses.' },
+      {
+        title: 'Delivered where you work',
+        body: 'Senior engineers and certified instructors deploy to your site, or run sessions from Melbourne and Perth.',
+      },
+      {
+        title: 'Recognised certification',
+        body: 'Courses map to Australian Standards and ISO 9712 where certification is required.',
+      },
+      {
+        title: 'Flexible formats',
+        body: 'On-site workshops, virtual classrooms, hybrid programs or fully bespoke corporate courses.',
+      },
     ],
     upcoming: 'Next sessions',
     calendar: {
@@ -226,12 +254,16 @@ export const en = {
       noSessions: 'No sessions scheduled this month.',
       onRequest: 'Dates on request',
       past: 'Completed',
+      showPast: 'Show {count} earlier months',
+      showPastOne: 'Show 1 earlier month',
+      hidePast: 'Hide earlier months',
       days: '{count} days',
       dayOne: '1 day',
       custom: 'Custom',
       enquire: 'Enquire',
       enquireLabel: 'Enquire about {course}',
-      notice: 'Sessions may be rescheduled if minimum numbers are not met. We confirm every booking in writing.',
+      notice:
+        'Sessions may be rescheduled if minimum numbers are not met. We confirm every booking in writing.',
       categories: {
         oilGas: 'Oil & gas',
         geoscience: 'Geoscience',
@@ -241,7 +273,12 @@ export const en = {
         digitalAI: 'Digital & AI',
       },
       deliveryModes: { onsite: 'On site', virtual: 'Virtual', hybrid: 'Hybrid' },
-      locations: { melbourne: 'Melbourne', perth: 'Perth', global: 'Global', clientSite: 'Client site' },
+      locations: {
+        melbourne: 'Melbourne',
+        perth: 'Perth',
+        global: 'Global',
+        clientSite: 'Client site',
+      },
       certificates: {
         technicalCertification: 'Technical certification',
         professionalProgram: 'Professional program',
@@ -251,7 +288,11 @@ export const en = {
         associateProgram: 'Associate program',
       },
     },
-    catalogue: { title: 'Course catalogue', lead: 'Every program we run, grouped by discipline.', sessions: '{count} scheduled sessions in {year}' },
+    catalogue: {
+      title: 'Course catalogue',
+      lead: 'Every program we run, grouped by discipline.',
+      sessions: '{count} scheduled sessions in {year}',
+    },
     faqTitle: 'Training questions',
     ctaTitle: 'Build your team’s capability',
     ctaLead: 'Ask about group rates, on-site delivery and custom programs.',
@@ -289,10 +330,12 @@ export const en = {
         use: 'Construction and blasting vibration compliance',
       },
     },
-    calibration: 'All equipment is calibrated to the manufacturer’s specification and supplied with a current calibration certificate.',
+    calibration:
+      'All equipment is calibrated to the manufacturer’s specification and supplied with a current calibration certificate.',
     termsTitle: 'Hire questions',
     ctaTitle: 'Need equipment on site?',
-    ctaLead: 'Tell us the job, location and dates. We confirm availability and pricing in a written quote.',
+    ctaLead:
+      'Tell us the job, location and dates. We confirm availability and pricing in a written quote.',
   },
   about: {
     eyebrow: 'About us',
@@ -313,13 +356,26 @@ export const en = {
     values: {
       title: 'What we stand for',
       items: [
-        { title: 'Technical rigour', body: 'Methods are documented, equipment is calibrated and results are traceable to a standard.' },
-        { title: 'Safety first', body: 'No schedule pressure justifies an unsafe shortcut. Our people stop work when conditions change.' },
-        { title: 'Partnership', body: 'We stay with a problem until it is solved and explain our findings in plain language.' },
+        {
+          title: 'Technical rigour',
+          body: 'Methods are documented, equipment is calibrated and results are traceable to a standard.',
+        },
+        {
+          title: 'Safety first',
+          body: 'No schedule pressure justifies an unsafe shortcut. Our people stop work when conditions change.',
+        },
+        {
+          title: 'Partnership',
+          body: 'We stay with a problem until it is solved and explain our findings in plain language.',
+        },
       ],
     },
     team: { eyebrow: 'People', title: 'Leadership team' },
-    accreditations: { eyebrow: 'Assurance', title: 'Accreditations and memberships', onRequest: 'Certificates are available on request.' },
+    accreditations: {
+      eyebrow: 'Assurance',
+      title: 'Accreditations and memberships',
+      onRequest: 'Certificates are available on request.',
+    },
     regions: { eyebrow: 'Where we work', title: 'Regions we serve' },
   },
   contact: {
@@ -352,7 +408,8 @@ export const en = {
       message: 'How can we help?',
       messageHint: 'A few lines on the site, asset or course, and your timing.',
       regarding: 'Regarding',
-      consent: 'I agree to MBSC Australia using these details to respond to my enquiry, as described in the {privacy}.',
+      consent:
+        'I agree to MBSC Australia using these details to respond to my enquiry, as described in the {privacy}.',
       privacyLink: 'privacy policy',
       honeypot: 'Leave this field empty',
       submit: 'Send enquiry',
@@ -375,7 +432,8 @@ export const en = {
         consent: 'Please agree so we can reply to you.',
         summary: 'Please check the highlighted fields.',
         send: 'Your enquiry could not be sent. Please try again, or email us directly at {email}.',
-        unavailable: 'Online enquiries are temporarily unavailable. Please email {email} or call {phone}.',
+        unavailable:
+          'Online enquiries are temporarily unavailable. Please email {email} or call {phone}.',
         tooFast: 'That was quick. Please wait a moment and try again.',
       },
       success: {
@@ -392,7 +450,8 @@ export const en = {
     primary: 'Talk to an engineer',
   },
   footer: {
-    tagline: 'Engineering consultancy, technical training and digital solutions for oil & gas, mining and infrastructure.',
+    tagline:
+      'Engineering consultancy, technical training and digital solutions for oil & gas, mining and infrastructure.',
     services: 'Services',
     company: 'Company',
     contact: 'Contact',
@@ -410,30 +469,75 @@ export const en = {
     lead: 'The page may have moved. These links will get you back on track.',
     home: 'Go to the home page',
   },
-  credits: { intro: 'Photographs used under the Unsplash License. Thank you to the photographers.', own: 'Project photos of Moomba, the North West Shelf, the Metro Tunnel, the western suburbs pipeline and the laboratory belong to MBSC Australia.' },
+  credits: {
+    intro: 'Photographs used under the Unsplash License. Thank you to the photographers.',
+    own: 'Project photos of Moomba, the North West Shelf, the Metro Tunnel, the western suburbs pipeline and the laboratory belong to MBSC Australia.',
+  },
   testimonials: { sample: 'Sample testimonial for layout preview' },
   faq: {
     services: [
-      { q: 'Where can you deploy engineers?', a: 'Anywhere in Australia, with regular work in Victoria, South Australia and Western Australia. We also support clients in the Middle East and Europe.' },
-      { q: 'How quickly can you mobilise?', a: 'It depends on the scope and site access requirements. Tell us your dates when you enquire and we will confirm availability in writing.' },
-      { q: 'Which standards do you work to?', a: 'We work to the Australian Standards and international codes specified for your asset, and agree them with you before work starts.' },
-      { q: 'Can you work under our safety system?', a: 'Yes. Our teams complete client inductions and work under your permit-to-work and HSE requirements.' },
+      {
+        q: 'Where can you deploy engineers?',
+        a: 'Anywhere in Australia, with regular work in Victoria, South Australia and Western Australia. We also support clients in the Middle East and Europe.',
+      },
+      {
+        q: 'How quickly can you mobilise?',
+        a: 'It depends on the scope and site access requirements. Tell us your dates when you enquire and we will confirm availability in writing.',
+      },
+      {
+        q: 'Which standards do you work to?',
+        a: 'We work to the Australian Standards and international codes specified for your asset, and agree them with you before work starts.',
+      },
+      {
+        q: 'Can you work under our safety system?',
+        a: 'Yes. Our teams complete client inductions and work under your permit-to-work and HSE requirements.',
+      },
     ],
     training: [
-      { q: 'Can a course be run at our site?', a: 'Yes. Most programs can be delivered on site for a group. Contact us with your numbers and preferred dates.' },
-      { q: 'Do participants receive a certificate?', a: 'Each session lists its certificate type. ISO 9712 courses lead to certification subject to meeting the examination and experience requirements.' },
-      { q: 'Are virtual sessions live?', a: 'Yes. Virtual and hybrid sessions are instructor-led in real time, not pre-recorded.' },
-      { q: 'Are courses offered in French?', a: 'Selected programs can be delivered in French. Ask when you enquire.' },
+      {
+        q: 'Can a course be run at our site?',
+        a: 'Yes. Most programs can be delivered on site for a group. Contact us with your numbers and preferred dates.',
+      },
+      {
+        q: 'Do participants receive a certificate?',
+        a: 'Each session lists its certificate type. ISO 9712 courses lead to certification subject to meeting the examination and experience requirements.',
+      },
+      {
+        q: 'Are virtual sessions live?',
+        a: 'Yes. Virtual and hybrid sessions are instructor-led in real time, not pre-recorded.',
+      },
+      {
+        q: 'Are courses offered in French?',
+        a: 'Selected programs can be delivered in French. Ask when you enquire.',
+      },
     ],
     rental: [
-      { q: 'How much does hire cost?', a: 'Rates depend on the equipment, hire period and location. We confirm pricing in a written quote.' },
-      { q: 'Can you deliver to site?', a: 'Yes. Delivery and collection can be arranged and are included in your quote.' },
-      { q: 'Can an operator come with the equipment?', a: 'Yes. A technician can operate the equipment and report the results if you prefer.' },
+      {
+        q: 'How much does hire cost?',
+        a: 'Rates depend on the equipment, hire period and location. We confirm pricing in a written quote.',
+      },
+      {
+        q: 'Can you deliver to site?',
+        a: 'Yes. Delivery and collection can be arranged and are included in your quote.',
+      },
+      {
+        q: 'Can an operator come with the equipment?',
+        a: 'Yes. A technician can operate the equipment and report the results if you prefer.',
+      },
     ],
     contact: [
-      { q: 'How quickly will you reply?', a: 'Within one business day, Monday to Friday, Australian Eastern time.' },
-      { q: 'Will you sign an NDA?', a: 'Yes. We regularly work under confidentiality agreements and can sign yours before we discuss details.' },
-      { q: 'Can I request a quote without full drawings?', a: 'Yes. Send what you have and we will tell you what else is needed for a firm price.' },
+      {
+        q: 'How quickly will you reply?',
+        a: 'Within one business day, Monday to Friday, Australian Eastern time.',
+      },
+      {
+        q: 'Will you sign an NDA?',
+        a: 'Yes. We regularly work under confidentiality agreements and can sign yours before we discuss details.',
+      },
+      {
+        q: 'Can I request a quote without full drawings?',
+        a: 'Yes. Send what you have and we will tell you what else is needed for a firm price.',
+      },
     ],
   },
   legal: {
@@ -442,23 +546,82 @@ export const en = {
     privacy: {
       title: 'Privacy policy',
       sections: [
-        { heading: 'Who we are', body: ['MBSC Australia Pty Ltd ("we", "us") is bound by the Australian Privacy Principles in the Privacy Act 1988 (Cth). This policy explains how we handle personal information collected through this website.'] },
-        { heading: 'What we collect', body: ['When you send an enquiry we collect your name, email address, and any company name, phone number and message you provide.', 'We use Vercel Web Analytics and Speed Insights to measure visits and page performance. These tools do not use cookies and do not identify individual visitors.'] },
-        { heading: 'How we use it', body: ['We use your details only to respond to your enquiry, prepare a quote or proposal, and keep a record of our correspondence. We do not sell personal information or use it for unrelated marketing.'] },
-        { heading: 'Who we share it with', body: ['Enquiries are delivered to our business email through Zoho Mail. The website is hosted by Vercel. These providers process data on our behalf and may store it outside Australia. We take reasonable steps to ensure they protect it.'] },
-        { heading: 'How long we keep it', body: ['We keep enquiry records for as long as needed to respond and to meet our legal and business record-keeping obligations, then delete them.'] },
-        { heading: 'Access, correction and complaints', body: ['You can ask to access or correct your personal information by emailing {email}. If you have a privacy complaint, contact us first. If you are not satisfied with our response you can contact the Office of the Australian Information Commissioner at oaic.gov.au.'] },
+        {
+          heading: 'Who we are',
+          body: [
+            'MBSC Australia Pty Ltd ("we", "us") is bound by the Australian Privacy Principles in the Privacy Act 1988 (Cth). This policy explains how we handle personal information collected through this website.',
+          ],
+        },
+        {
+          heading: 'What we collect',
+          body: [
+            'When you send an enquiry we collect your name, email address, and any company name, phone number and message you provide.',
+            'We use Vercel Web Analytics and Speed Insights to measure visits and page performance. These tools do not use cookies and do not identify individual visitors.',
+          ],
+        },
+        {
+          heading: 'How we use it',
+          body: [
+            'We use your details only to respond to your enquiry, prepare a quote or proposal, and keep a record of our correspondence. We do not sell personal information or use it for unrelated marketing.',
+          ],
+        },
+        {
+          heading: 'Who we share it with',
+          body: [
+            'Enquiries are delivered to our business email through Zoho Mail. The website is hosted by Vercel. These providers process data on our behalf and may store it outside Australia. We take reasonable steps to ensure they protect it.',
+          ],
+        },
+        {
+          heading: 'How long we keep it',
+          body: [
+            'We keep enquiry records for as long as needed to respond and to meet our legal and business record-keeping obligations, then delete them.',
+          ],
+        },
+        {
+          heading: 'Access, correction and complaints',
+          body: [
+            'You can ask to access or correct your personal information by emailing {email}. If you have a privacy complaint, contact us first. If you are not satisfied with our response you can contact the Office of the Australian Information Commissioner at oaic.gov.au.',
+          ],
+        },
       ],
     },
     terms: {
       title: 'Terms of use',
       sections: [
-        { heading: 'Using this site', body: ['By using this website you agree to these terms. If you do not agree, please do not use the site.'] },
-        { heading: 'Information only', body: ['Content on this site is general information about our services. It is not engineering advice for a specific situation. Always obtain advice for your project before acting on it.'] },
-        { heading: 'Training schedule', body: ['Training dates are indicative and may change. A booking is confirmed only when we confirm it in writing.'] },
-        { heading: 'Intellectual property', body: ['Text, graphics and logos on this site belong to MBSC Australia Pty Ltd or are used with permission. Photographs credited to third parties remain the property of their owners.'] },
-        { heading: 'Liability', body: ['To the extent permitted by law, we are not liable for loss arising from use of this website. Nothing in these terms excludes rights you have under the Australian Consumer Law.'] },
-        { heading: 'Governing law', body: ['These terms are governed by the laws of Victoria, Australia.'] },
+        {
+          heading: 'Using this site',
+          body: [
+            'By using this website you agree to these terms. If you do not agree, please do not use the site.',
+          ],
+        },
+        {
+          heading: 'Information only',
+          body: [
+            'Content on this site is general information about our services. It is not engineering advice for a specific situation. Always obtain advice for your project before acting on it.',
+          ],
+        },
+        {
+          heading: 'Training schedule',
+          body: [
+            'Training dates are indicative and may change. A booking is confirmed only when we confirm it in writing.',
+          ],
+        },
+        {
+          heading: 'Intellectual property',
+          body: [
+            'Text, graphics and logos on this site belong to MBSC Australia Pty Ltd or are used with permission. Photographs credited to third parties remain the property of their owners.',
+          ],
+        },
+        {
+          heading: 'Liability',
+          body: [
+            'To the extent permitted by law, we are not liable for loss arising from use of this website. Nothing in these terms excludes rights you have under the Australian Consumer Law.',
+          ],
+        },
+        {
+          heading: 'Governing law',
+          body: ['These terms are governed by the laws of Victoria, Australia.'],
+        },
       ],
     },
   },

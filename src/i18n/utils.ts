@@ -34,7 +34,8 @@ export function stripLocale(pathname: string): string {
 
 /** Prefix a site-relative path for the given locale. Leaves hash/query intact. */
 export function localizePath(path: string, locale: Locale): string {
-  if (!path.startsWith('/')) throw new Error(`localizePath expects an absolute path, got "${path}"`);
+  if (!path.startsWith('/'))
+    throw new Error(`localizePath expects an absolute path, got "${path}"`);
   const base = stripLocale(path);
   if (locale === 'en') return base;
   return base === '/' ? '/fr' : `/fr${base}`;

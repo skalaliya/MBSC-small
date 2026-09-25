@@ -29,30 +29,48 @@ const whyIcons = ['users', 'file-check-2', 'graduation-cap'] as const;
   jsonLd={[
     breadcrumbs(crumbs),
     faqPage(t.faq.services),
-    ...services.map((s) => serviceLd({ name: s.data.title, description: s.data.short, url: L(`/services/${s.data.slug}`) })),
+    ...services.map((s) =>
+      serviceLd({
+        name: s.data.title,
+        description: s.data.short,
+        url: L(`/services/${s.data.slug}`),
+      }),
+    ),
   ]}
 >
-  <PageHeader eyebrow={t.services.eyebrow} title={t.services.title} lead={t.services.lead} crumbs={crumbs} crumbLabel={t.a11y.breadcrumb} image={header} imageAlt="" />
+  <PageHeader
+    eyebrow={t.services.eyebrow}
+    title={t.services.title}
+    lead={t.services.lead}
+    crumbs={crumbs}
+    crumbLabel={t.a11y.breadcrumb}
+    image={header}
+    imageAlt=""
+  />
 
   <Section tone="paper" labelledby="services-list">
-    <h2 id="services-list" class="sr-only">{t.services.title}</h2>
+    <h2 id="services-list" class="sr-only">
+      {t.services.title}
+    </h2>
     <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {services.map((s) => <li><ServiceCard service={s} headingLevel="h3" showCapabilities /></li>)}
+      {services.map((s) => (
+        <li>
+          <ServiceCard service={s} headingLevel="h3" showCapabilities />
+        </li>
+      ))}
     </ul>
   </Section>
 
   <Section tone="surface" labelledby="why-title">
     <SectionHeading id="why-title" title={t.services.whyTitle} />
     <ul class="grid gap-8 md:grid-cols-3">
-      {
-        t.services.why.map((w, i) => (
-          <li class="border-t-2 border-navy-950 pt-6">
-            <Icon name={whyIcons[i] ?? 'check'} size={24} class="text-brand-magenta" />
-            <h3 class="mt-4 font-display text-xl font-bold">{w.title}</h3>
-            <p class="mt-2 leading-7 text-ink-500">{w.body}</p>
-          </li>
-        ))
-      }
+      {t.services.why.map((w, i) => (
+        <li class="border-t-2 border-navy-950 pt-6">
+          <Icon name={whyIcons[i] ?? 'check'} size={24} class="text-brand-magenta" />
+          <h3 class="mt-4 font-display text-xl font-bold">{w.title}</h3>
+          <p class="mt-2 leading-7 text-ink-500">{w.body}</p>
+        </li>
+      ))}
     </ul>
   </Section>
 
@@ -65,5 +83,9 @@ const whyIcons = ['users', 'file-check-2', 'graduation-cap'] as const;
     </div>
   </Section>
 
-  <CTABand title={t.services.ctaTitle} lead={t.services.ctaLead} primary={{ label: t.cta.primary, href: L('/contact') }} />
+  <CTABand
+    title={t.services.ctaTitle}
+    lead={t.services.ctaLead}
+    primary={{ label: t.cta.primary, href: L('/contact') }}
+  />
 </Base>

@@ -1,24 +1,7 @@
-# Robots.txt for MBSC Australia
-# https://www.mbscaustralia.com.au
-
 User-agent: *
 Allow: /
-Disallow: /admin/
 Disallow: /api/
-Disallow: /*.json$
+Disallow: /contact/sent
+Disallow: /fr/contact/sent
 
-# Sitemap location
-Sitemap: https://www.mbscaustralia.com.au/sitemap.xml
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
-# Major search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
+Sitemap: https://www.mbscaustralia.com.au/sitemap-index.xml

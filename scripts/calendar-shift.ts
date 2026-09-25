@@ -1,4 +1,11 @@
-import { addDays, daysInclusive, fromIsoWeek, isoWeek, parseISODate, toISODate } from '../src/lib/dates.ts';
+import {
+  addDays,
+  daysInclusive,
+  fromIsoWeek,
+  isoWeek,
+  parseISODate,
+  toISODate,
+} from '../src/lib/dates.ts';
 import type { CalendarFile, Session } from '../src/lib/calendar-model.ts';
 
 const ABBR = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];

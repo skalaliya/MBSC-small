@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
-@source not '../../legacy';
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -58,27 +57,45 @@
     @apply font-sans text-base leading-relaxed antialiased;
     text-rendering: optimizeLegibility;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-display text-ink-900;
     text-wrap: balance;
     letter-spacing: -0.015em;
   }
-  p { text-wrap: pretty; }
+  p {
+    text-wrap: pretty;
+  }
   :focus-visible {
     outline: 2px solid var(--color-brand-violet);
     outline-offset: 3px;
     border-radius: 2px;
   }
-  ::selection { background: var(--color-navy-100); color: var(--color-navy-950); }
-  [hidden] { display: none !important; }
+  ::selection {
+    background: var(--color-navy-100);
+    color: var(--color-navy-950);
+  }
+  [hidden] {
+    display: none !important;
+  }
   @media (prefers-reduced-motion: no-preference) {
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
   }
 }
 
-@view-transition { navigation: auto; }
+@view-transition {
+  navigation: auto;
+}
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
 
 @utility bg-brand-gradient {
@@ -114,12 +131,36 @@
   max-width: 80rem;
   margin-inline: auto;
   padding-inline: 1.25rem;
-  @media (width >= 40rem) { padding-inline: 1.5rem; }
-  @media (width >= 64rem) { padding-inline: 2rem; }
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
 }
 
-/* Reveal: content is visible by default; only hidden once JS confirms motion is allowed. */
-html.js-motion [data-reveal] {
-  transition: opacity 600ms var(--ease-out-quint), transform 600ms var(--ease-out-quint);
+/* Reveal: content is visible by default. The reveal script marks only sections that start
+   below the fold as pending, so nothing on screen can flash and no inline script is needed. */
+[data-reveal] {
+  transition:
+    opacity 600ms var(--ease-out-quint),
+    transform 600ms var(--ease-out-quint);
 }
-html.js-motion [data-reveal]:not([data-revealed]) { opacity: 0; transform: translateY(16px); }
+[data-reveal][data-reveal-pending] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+  }
+  [data-reveal][data-reveal-pending] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Training calendar: months collapsed by the "earlier months" toggle. */
+[data-month][data-collapsed] {
+  display: none;
+}

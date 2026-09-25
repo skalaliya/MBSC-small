@@ -74,7 +74,8 @@ const calendars = defineCollection({
   schema: z
     .object({ year: z.number().int().min(2020).max(2100), sessions: z.array(session).min(1) })
     .superRefine((cal, ctx) => {
-      for (const message of validateCalendar(cal as CalendarFile)) ctx.addIssue({ code: 'custom', message });
+      for (const message of validateCalendar(cal as CalendarFile))
+        ctx.addIssue({ code: 'custom', message });
     }),
 });
 

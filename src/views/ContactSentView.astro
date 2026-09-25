@@ -7,14 +7,24 @@ const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
 ---
 
-<Base title={`${t.contact.form.success.title} | MBSC Australia`} description={t.contact.form.success.body} noindex>
+<Base
+  title={`${t.contact.form.success.title} | MBSC Australia`}
+  description={t.contact.form.success.body}
+  noindex
+>
   <section class="container-site flex min-h-[60vh] flex-col items-center justify-center py-24 text-center">
-    <span class="flex size-16 items-center justify-center rounded-full bg-[#effaf2] text-success"><Icon name="circle-check" size={32} /></span>
+    <span class="flex size-16 items-center justify-center rounded-full bg-[#effaf2] text-success">
+      <Icon name="circle-check" size={32} />
+    </span>
     <h1 class="mt-6 font-display text-4xl font-bold">{t.contact.form.success.title}</h1>
     <p class="mt-4 max-w-lg text-lg leading-8 text-ink-700">{t.contact.form.success.body}</p>
     <div class="mt-8 flex gap-3">
-      <Button href={localizePath('/', locale)} variant="primary">{t.notFound.home}</Button>
-      <Button href={localizePath('/contact', locale)} variant="secondary">{t.contact.form.success.again}</Button>
+      <Button href={localizePath('/', locale)} variant="primary">
+        {t.notFound.home}
+      </Button>
+      <Button href={localizePath('/contact', locale)} variant="secondary">
+        {t.contact.form.success.again}
+      </Button>
     </div>
   </section>
 </Base>

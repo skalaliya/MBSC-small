@@ -31,7 +31,8 @@ const seo = buildSeo({
   noindex,
   hasAlternate,
 });
-const isProd = import.meta.env.PROD;
+// Vercel creates the analytics routes only on deployments with Analytics enabled, so skip them elsewhere.
+const onVercel = import.meta.env.PROD && process.env.VERCEL === '1';
 ---
 
 <!doctype html>
@@ -42,12 +43,13 @@ const isProd = import.meta.env.PROD;
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
     <link rel="canonical" href={seo.canonical} />
-    {seo.alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    {seo.alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
     {seo.noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="theme-color" content="#0a1533" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -64,24 +66,33 @@ const isProd = import.meta.env.PROD;
     <meta property="og:locale:alternate" content={seo.ogLocaleAlternate} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <Font cssVariable="--font-manrope" preload={[{ weight: 700, subset: 'latin', style: 'normal' }]} />
-    <Font cssVariable="--font-inter" preload={[{ weight: 400, subset: 'latin', style: 'normal' }]} />
+    <Font
+      cssVariable="--font-manrope"
+      preload={[{ weight: 700, subset: 'latin', style: 'normal' }]}
+    />
+    <Font
+      cssVariable="--font-inter"
+      preload={[{ weight: 400, subset: 'latin', style: 'normal' }]}
+    />
 
-    <script is:inline>
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-motion');
-    </script>
-
-    {jsonLd.map((data) => <script type="application/ld+json" is:inline set:html={JSON.stringify(data).replace(/</g, '\\u003c')} />)}
+    {jsonLd.map((data) => (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={JSON.stringify(data).replace(/</g, '\\u003c')}
+      />
+    ))}
     <slot name="head" />
-    {isProd && <Analytics />}
-    {isProd && <SpeedInsights />}
+    {onVercel && <Analytics />}
+    {onVercel && <SpeedInsights />}
   </head>
   <body class="flex min-h-dvh flex-col bg-paper">
     <a
       href="#main"
       class="sr-only z-100 rounded-sm bg-navy-950 px-4 py-2 font-medium text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
-      >{t.a11y.skipToContent}</a
     >
+      {t.a11y.skipToContent}
+    </a>
     <Navbar />
     <main id="main" tabindex="-1" class="flex-1 outline-none">
       <slot />
