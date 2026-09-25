@@ -8,7 +8,7 @@ authorRole: "Responsable de la formation technique"
 tags: ["training", "vr", "safety"]
 cover: "../../../assets/images/ai-vr-training.jpg"
 coverAlt: "Opérateur en gilet haute visibilité utilisant un casque de réalité virtuelle"
-draft: true
+draft: false
 ---
 
 Certaines des tâches les plus importantes d’un site minier sont aussi les plus difficiles à pratiquer. Consignations, entrées en espace confiné, interventions d’urgence et travaux près d’engins mobiles comportent un risque réel ; les équipes les répètent donc souvent en salle, loin des conditions du site. La réalité virtuelle comble cet écart.

@@ -8,7 +8,7 @@ authorRole: "Géologue principal des ressources"
 tags: ["ai", "geology"]
 cover: "../../../assets/images/ai-geology-pit.jpg"
 coverAlt: "Vue aérienne d’une mine à ciel ouvert en gradins"
-draft: true
+draft: false
 ---
 
 Un modèle de ressources ne vaut que par les sondages qui le fondent. Entre deux sondages, les géologues interprètent les domaines et estiment les teneurs, et chaque interprétation comporte une incertitude qui se répercute sur la planification minière, le contrôle des teneurs et, au bout du compte, sur ce qui part à l’usine.

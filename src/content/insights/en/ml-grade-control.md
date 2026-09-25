@@ -8,7 +8,7 @@ authorRole: "Senior Resource Geologist"
 tags: ["ai", "geology"]
 cover: "../../../assets/images/ai-geology-pit.jpg"
 coverAlt: "Aerial view of a terraced open-pit mine"
-draft: true
+draft: false
 ---
 
 A resource model is only as good as the drilling behind it. Between drill holes, geologists interpret domains and estimate grades, and every interpretation carries uncertainty that flows into mine plans, grade control and, ultimately, what goes to the mill.

@@ -8,7 +8,7 @@ authorRole: "Principal Reliability Engineer"
 tags: ["ai", "maintenance"]
 cover: "../../../assets/images/ai-fleet.jpg"
 coverAlt: "Loader working on a mine haul road seen from above"
-draft: true
+draft: false
 ---
 
 Unplanned failures of haul trucks, conveyors, crushers and pumps are among the most expensive events on a mine site. They stop production, create secondary damage and put people close to equipment that is behaving unpredictably. Predictive maintenance uses data the site already collects to see those failures coming.

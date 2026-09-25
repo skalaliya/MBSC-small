@@ -8,7 +8,7 @@ authorRole: "Ingénieur fiabilité principal"
 tags: ["ai", "maintenance"]
 cover: "../../../assets/images/ai-fleet.jpg"
 coverAlt: "Chargeuse sur une piste minière vue du ciel"
-draft: true
+draft: false
 ---
 
 Les pannes imprévues de camions, convoyeurs, concasseurs et pompes figurent parmi les événements les plus coûteux d’un site minier. Elles arrêtent la production, causent des dommages secondaires et exposent le personnel à des équipements au comportement imprévisible. La maintenance prédictive exploite les données déjà collectées sur site pour anticiper ces pannes.

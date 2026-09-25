@@ -253,8 +253,9 @@ for (const width of [1024, 1280, 1440]) {
   }
 }
 
-// Local and CI builds are previews, so draft articles render (with a banner and noindex).
-test('insights: topic filter works without JavaScript and drafts are marked', async ({ page }) => {
+test('insights: topic filter works without JavaScript and articles are indexable', async ({
+  page,
+}) => {
   await page.goto('/insights');
   const cards = page.locator('.insights li[data-tags]');
   await expect(cards).toHaveCount(3);
@@ -264,8 +265,13 @@ test('insights: topic filter works without JavaScript and drafts are marked', as
   await expect(cards.filter({ visible: true })).toHaveCount(3);
 
   await page.goto('/insights/ml-grade-control');
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
-  await expect(page.getByText('Draft preview')).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+  await expect(page.getByText('Draft preview')).toHaveCount(0);
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+    'content',
+    /\/og\/insights-ml-grade-control\.png$/,
+  );
   const toc = page.getByRole('navigation', { name: 'On this page' });
   await expect(toc.getByRole('link')).not.toHaveCount(0);
   const ld = await page.locator('script[type="application/ld+json"]').allTextContents();

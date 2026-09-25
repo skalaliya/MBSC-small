@@ -8,7 +8,7 @@ authorRole: "Head of Technical Training"
 tags: ["training", "vr", "safety"]
 cover: "../../../assets/images/ai-vr-training.jpg"
 coverAlt: "Worker in a high-visibility jacket using a virtual-reality headset"
-draft: true
+draft: false
 ---
 
 Some of the most important tasks on a mine site are the hardest to practise. Isolations, confined-space entry, emergency response and working near mobile plant carry real risk, so crews often rehearse them in a classroom that looks nothing like the site. Virtual reality closes that gap.
