@@ -68,6 +68,7 @@ export const en = {
   },
   nav: {
     services: 'Services',
+    ai: 'AI & Digital',
     projects: 'Projects',
     training: 'Training',
     rental: 'Equipment',
@@ -416,6 +417,7 @@ export const en = {
       sending: 'Sending…',
       topics: {
         general: 'General enquiry',
+        ai: 'AI & machine learning',
         oilGas: 'Oil & gas consultancy',
         training: 'Training programs',
         digital: 'Digital solutions',
@@ -448,6 +450,194 @@ export const en = {
     title: 'Ready to discuss your next project?',
     lead: 'A senior engineer will reply within one business day.',
     primary: 'Talk to an engineer',
+  },
+  ai: {
+    meta: {
+      title: 'AI & machine learning for mining | MBSC Australia',
+      description:
+        'Predictive maintenance, ML-assisted geology and grade control, computer-vision safety and VR training for mining and energy operators.',
+    },
+    eyebrow: 'AI & Digital',
+    title: 'AI and machine learning for mining',
+    lead: 'We turn the data your operation already produces into earlier warnings, better resource models, safer sites and crews trained before they set foot on the floor.',
+    primary: 'Talk to our data team',
+    secondary: 'See how it works',
+    intro: {
+      title: 'Engineering first, then algorithms',
+      body: [
+        'Most AI projects in mining stall because they start with a tool rather than a problem. Ours start with an engineer who knows the asset, the ore body or the procedure, and a clear decision the model must improve.',
+        'We build on the systems you already run, keep a qualified engineer accountable for every recommendation, and hand over models your team can operate and audit.',
+      ],
+    },
+    principles: [
+      {
+        title: 'Your data stays yours',
+        body: 'Models can run in your own cloud tenancy or on site. We agree data handling before any data moves.',
+      },
+      {
+        title: 'Engineer in the loop',
+        body: 'Every model output is reviewed by a qualified engineer or geologist before it drives a decision.',
+      },
+      {
+        title: 'Built on what you have',
+        body: 'We connect to existing historians, fleet systems, CMMS and geological databases rather than replacing them.',
+      },
+    ],
+    diagram: {
+      eyebrow: 'Architecture',
+      title: 'How our AI platform fits your operation',
+      lead: 'A high-level view of the data flow we design for mining clients. Each deployment is tailored to the systems already on site.',
+      loop: 'Engineer in the loop: reviewed outcomes retrain the models',
+      stages: [
+        {
+          title: 'Data sources',
+          items: [
+            'Fleet and plant sensors (SCADA, IoT)',
+            'Drill-hole, assay and geophysics data',
+            'Fixed cameras and drone surveys',
+            'Maintenance and operator records',
+          ],
+        },
+        {
+          title: 'Edge and ingestion',
+          items: ['Site gateways', 'Validation and cleansing', 'Secure, encrypted transfer'],
+        },
+        {
+          title: 'Data platform',
+          items: ['Engineering data lake', 'Geospatial store', 'Feature store'],
+        },
+        {
+          title: 'Models',
+          items: [
+            'Predictive maintenance',
+            'Ore and grade modelling',
+            'Computer-vision safety',
+            'VR scenario engine',
+          ],
+        },
+        {
+          title: 'Outcomes',
+          items: [
+            'Alerts and dashboards',
+            'Resource model inputs',
+            'Safety interventions',
+            'Trained, assessed crews',
+          ],
+        },
+      ],
+    },
+    capabilities: {
+      eyebrow: 'Capabilities',
+      title: 'Four ways we apply AI on site',
+      problem: 'The challenge',
+      method: 'How we do it',
+      delivers: 'What you receive',
+      items: [
+        {
+          title: 'Predictive maintenance',
+          problem:
+            'Unplanned failures of haul trucks, conveyors, crushers and pumps stop production and create safety risk.',
+          method:
+            'We combine vibration, temperature, oil-analysis and operating data with maintenance history to train models that estimate each asset’s condition and likely time to failure.',
+          delivers: [
+            'Ranked asset risk list, refreshed continuously',
+            'Alerts routed into your maintenance system',
+            'Model documentation and validation report',
+          ],
+          imageAlt: 'Loader working on a mine haul road seen from above',
+        },
+        {
+          title: 'Geology and ore modelling',
+          problem:
+            'Resource models built from sparse drilling carry uncertainty that flows straight into mine plans and grade control.',
+          method:
+            'Machine-learning-assisted domaining and grade estimation run alongside conventional geostatistics, with uncertainty quantified and every result reviewed by our geologists.',
+          delivers: [
+            'Block-model inputs and domain boundaries',
+            'Uncertainty and confidence maps',
+            'Validation report prepared to support Competent Person review',
+          ],
+          imageAlt: 'Aerial view of a terraced open-pit mine',
+        },
+        {
+          title: 'Safety and computer vision',
+          problem:
+            'People and heavy equipment share the same ground, and slopes and tailings dams change between inspections.',
+          method:
+            'Models running on fixed cameras and drone surveys detect exclusion-zone breaches and missing PPE, and track surface movement on slopes and tailings dams over time.',
+          delivers: [
+            'Real-time alerts to supervisors',
+            'Change-detection maps from drone surveys',
+            'Auditable event log, designed with privacy in mind',
+          ],
+          imageAlt: 'Survey drone in flight',
+        },
+        {
+          title: 'VR and immersive training',
+          problem:
+            'High-risk tasks are hard to practise safely, and classroom training rarely matches site conditions.',
+          method:
+            'We build virtual-reality scenarios from your own procedures and equipment so crews rehearse critical tasks and emergencies before doing them for real.',
+          delivers: [
+            'Site-specific VR scenarios',
+            'Assessment results per participant',
+            'Competency records for your training system',
+          ],
+          imageAlt: 'Worker in a high-visibility jacket using a virtual-reality headset',
+        },
+      ],
+    },
+    vr: {
+      eyebrow: 'VR training',
+      title: 'From procedure to headset',
+      steps: [
+        {
+          title: 'Scenario design',
+          body: 'We turn your procedures, equipment and hazards into a scripted scenario with clear pass criteria.',
+        },
+        {
+          title: 'Headset session',
+          body: 'Crews complete the scenario on site or in our Melbourne and Perth training rooms.',
+        },
+        {
+          title: 'Assessment',
+          body: 'Every decision is recorded and assessed against the procedure, with instructor debrief.',
+        },
+        {
+          title: 'Competency record',
+          body: 'Results flow into your competency system, ready for audit.',
+        },
+      ],
+    },
+    courses: 'Digital and AI courses',
+    faqTitle: 'Questions about AI projects',
+    faq: [
+      {
+        q: 'Do we need a data platform before we start?',
+        a: 'No. We begin with an assessment of the data you already have and recommend the smallest platform that supports the first use case.',
+      },
+      {
+        q: 'Where does our data live?',
+        a: 'By default in your own cloud tenancy or on site. We agree data handling, access and retention with you before any data moves.',
+      },
+      {
+        q: 'How do you start?',
+        a: 'With a pilot on one asset class, area or procedure, and success criteria agreed up front. We only scale once the pilot meets them.',
+      },
+      {
+        q: 'Will this replace our engineers?',
+        a: 'No. Models flag issues and quantify uncertainty; qualified people make the decisions and stay accountable for them.',
+      },
+    ],
+    ctaTitle: 'Start with one problem worth solving',
+    ctaLead:
+      'Tell us about the asset, ore body or procedure. We will tell you whether AI can help and what the first step looks like.',
+    teaser: {
+      eyebrow: 'AI & Digital',
+      title: 'AI and machine learning, engineered for mining',
+      lead: 'Predictive maintenance, ML-assisted geology, computer-vision safety and VR training, built on the data your operation already produces.',
+      cta: 'Explore our AI capabilities',
+    },
   },
   footer: {
     tagline:

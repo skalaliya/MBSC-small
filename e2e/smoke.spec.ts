@@ -5,6 +5,7 @@ const ROUTES = [
   '/',
   '/services',
   '/services/oil-gas-engineering',
+  '/services/ai-mining',
   '/projects',
   '/projects/moomba-cementing-qa',
   '/training',
@@ -152,6 +153,8 @@ for (const route of [
   '/contact',
   '/fr',
   '/fr/projects/moomba-cementing-qa',
+  '/services/ai-mining',
+  '/fr/services/ai-mining',
 ]) {
   test(`accessibility: ${route} has no serious or critical axe violations`, async ({ page }) => {
     await page.goto(route);
@@ -201,4 +204,12 @@ test('trust band: duplicate logos are hidden from assistive tech and the marquee
     await band.locator('.trust-track').evaluate((el) => getComputedStyle(el).animationName),
   ).toBe('none');
   await expect(lists.nth(1)).toBeHidden();
+});
+
+test('only one nav item is active on the AI page', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'desktop nav');
+  await page.goto('/services/ai-mining');
+  const current = page.locator('header nav a[aria-current="page"]');
+  await expect(current).toHaveCount(1);
+  await expect(current).toHaveText(/AI & Digital/);
 });

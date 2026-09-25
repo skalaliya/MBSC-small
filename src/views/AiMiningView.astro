@@ -1,0 +1,224 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Button from '../components/ui/Button.astro';
+import Icon, { type IconName } from '../components/ui/Icon.astro';
+import FAQ from '../components/ui/FAQ.astro';
+import CTABand from '../components/ui/CTABand.astro';
+import SessionRow from '../components/SessionRow.astro';
+import AiArchitectureDiagram from '../components/AiArchitectureDiagram.astro';
+import hero from '../assets/images/ai-hero-neural.jpg';
+import fleet from '../assets/images/ai-fleet.jpg';
+import pit from '../assets/images/ai-geology-pit.jpg';
+import drone from '../assets/images/ai-drone.jpg';
+import vrImage from '../assets/images/ai-vr-training.jpg';
+import { localizePath, toLocale, useT } from '../i18n/utils';
+import { getCalendars, upcoming } from '../lib/queries';
+import { breadcrumbs, faqPage, service } from '../lib/jsonld';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const ai = t.ai;
+const L = (p: string) => localizePath(p, locale);
+const path = L('/services/ai-mining');
+const contact = `${L('/contact')}?topic=ai`;
+const crumbs = [
+  { label: t.nav.home, href: L('/') },
+  { label: t.nav.services, href: L('/services') },
+  { label: ai.eyebrow, href: path },
+];
+const capabilityImages = [fleet, pit, drone, vrImage];
+const capabilityIcons: IconName[] = ['gauge', 'mountain', 'scan-eye', 'glasses'];
+const principleIcons: IconName[] = ['shield-check', 'users-round', 'workflow'];
+const courses = upcoming(await getCalendars(), new Date(), 60)
+  .filter((s) => s.category === 'digitalAI')
+  .slice(0, 3);
+---
+
+<Base
+  title={ai.meta.title}
+  description={ai.meta.description}
+  jsonLd={[
+    breadcrumbs(crumbs),
+    faqPage(ai.faq),
+    service({ name: ai.title, description: ai.meta.description, url: path }),
+    ...ai.capabilities.items.map((c) =>
+      service({ name: c.title, description: c.method, url: path }),
+    ),
+  ]}
+>
+  <PageHeader
+    eyebrow={ai.eyebrow}
+    title={ai.title}
+    lead={ai.lead}
+    crumbs={crumbs}
+    crumbLabel={t.a11y.breadcrumb}
+    image={hero}
+    imageAlt=""
+  >
+    <Button
+      slot="actions"
+      href={contact}
+      variant="inverse"
+      iconEnd="arrow-right"
+      data-track="ai_primary"
+    >
+      {ai.primary}
+    </Button>
+    <Button slot="actions" href="#architecture" variant="outline-inverse">
+      {ai.secondary}
+    </Button>
+  </PageHeader>
+
+  <Section tone="surface" labelledby="intro-title">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <SectionHeading id="intro-title" eyebrow={ai.eyebrow} title={ai.intro.title} class="mb-6" />
+        <div class="space-y-5 text-lg leading-8 text-ink-700">
+          {ai.intro.body.map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      </div>
+      <ul class="grid gap-4 lg:col-span-6 lg:pt-16">
+        {ai.principles.map((p, i) => (
+          <li class="flex gap-4 rounded-lg bg-paper p-6 ring-1 ring-line">
+            <span class="flex size-11 shrink-0 items-center justify-center rounded-md bg-navy-950 text-white">
+              <Icon name={principleIcons[i] ?? 'check'} size={20} />
+            </span>
+            <div>
+              <h3 class="font-display text-lg font-bold">{p.title}</h3>
+              <p class="mt-1 leading-7 text-ink-500">{p.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Section>
+
+  <Section tone="navy" grid id="architecture" labelledby="architecture-title" spacing="lg">
+    <SectionHeading
+      id="architecture-title"
+      eyebrow={ai.diagram.eyebrow}
+      title={ai.diagram.title}
+      lead={ai.diagram.lead}
+      dark
+    />
+    <AiArchitectureDiagram />
+  </Section>
+
+  <Section tone="paper" labelledby="capabilities-title">
+    <SectionHeading
+      id="capabilities-title"
+      eyebrow={ai.capabilities.eyebrow}
+      title={ai.capabilities.title}
+    />
+    <div class="space-y-8">
+      {ai.capabilities.items.map((c, i) => (
+        <article
+          class="grid overflow-hidden rounded-lg bg-white ring-1 ring-line lg:grid-cols-2"
+          aria-labelledby={`cap-${i}`}
+        >
+          <div
+            class:list={['relative aspect-[16/10] lg:aspect-auto', i % 2 === 1 && 'lg:order-last']}
+          >
+            <Picture
+              src={capabilityImages[i] ?? fleet}
+              alt={c.imageAlt}
+              formats={['avif', 'webp']}
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              class="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+          <div class="p-7 sm:p-10">
+            <div class="flex items-center gap-3">
+              <span class="flex size-10 items-center justify-center rounded-md bg-navy-50 text-navy-700 ring-1 ring-navy-100">
+                <Icon name={capabilityIcons[i] ?? 'cpu'} size={20} />
+              </span>
+              <span class="font-display text-sm font-bold text-brand-magenta tabular-nums">
+                0{i + 1}
+              </span>
+            </div>
+            <h3 id={`cap-${i}`} class="mt-4 font-display text-2xl font-bold">
+              {c.title}
+            </h3>
+            <dl class="mt-6 space-y-5">
+              <div>
+                <dt class="text-xs font-semibold tracking-[0.12em] text-ink-500 uppercase">
+                  {ai.capabilities.problem}
+                </dt>
+                <dd class="mt-1.5 leading-7 text-ink-700">{c.problem}</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-semibold tracking-[0.12em] text-ink-500 uppercase">
+                  {ai.capabilities.method}
+                </dt>
+                <dd class="mt-1.5 leading-7 text-ink-700">{c.method}</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-semibold tracking-[0.12em] text-ink-500 uppercase">
+                  {ai.capabilities.delivers}
+                </dt>
+                <dd class="mt-2">
+                  <ul class="space-y-2">
+                    {c.delivers.map((x) => (
+                      <li class="flex gap-2.5 text-ink-900">
+                        <Icon name="check" size={18} class="mt-0.5 text-brand-magenta" />
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <Section tone="surface" labelledby="vr-title">
+    <SectionHeading id="vr-title" eyebrow={ai.vr.eyebrow} title={ai.vr.title} />
+    <ol class="grid gap-px overflow-hidden rounded-lg bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {ai.vr.steps.map((s, i) => (
+        <li class="bg-white p-7">
+          <span class="font-display text-sm font-bold text-brand-magenta tabular-nums">
+            0{i + 1}
+          </span>
+          <h3 class="mt-3 font-display text-lg font-bold">{s.title}</h3>
+          <p class="mt-2 leading-7 text-ink-500">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    {courses.length > 0 && (
+      <div class="mt-14">
+        <div class="mb-4 flex flex-wrap items-end justify-between gap-4">
+          <h3 class="font-display text-xl font-bold">{ai.courses}</h3>
+          <Button href={L('/training')} variant="ghost" iconEnd="arrow-right">
+            {t.home.training.all}
+          </Button>
+        </div>
+        <ul class="divide-y divide-line border-y border-line">
+          {courses.map((s) => (
+            <SessionRow session={s} year={s.year} compact />
+          ))}
+        </ul>
+      </div>
+    )}
+  </Section>
+
+  <Section tone="paper" labelledby="faq-title">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading id="faq-title" title={ai.faqTitle} class="mb-0" />
+      </div>
+      <FAQ items={ai.faq} class="lg:col-span-8" />
+    </div>
+  </Section>
+
+  <CTABand title={ai.ctaTitle} lead={ai.ctaLead} primary={{ label: ai.primary, href: contact }} />
+</Base>

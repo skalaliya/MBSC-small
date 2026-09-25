@@ -72,6 +72,7 @@ export const fr: UI = {
   },
   nav: {
     services: 'Services',
+    ai: 'IA et numérique',
     projects: 'Projets',
     training: 'Formation',
     rental: 'Équipement',
@@ -418,6 +419,7 @@ export const fr: UI = {
       sending: 'Envoi…',
       topics: {
         general: 'Demande générale',
+        ai: 'IA et apprentissage automatique',
         oilGas: 'Conseil pétrole et gaz',
         training: 'Programmes de formation',
         digital: 'Solutions numériques',
@@ -450,6 +452,198 @@ export const fr: UI = {
     title: 'Prêt à parler de votre prochain projet ?',
     lead: 'Un ingénieur senior vous répondra sous un jour ouvré.',
     primary: 'Parler à un ingénieur',
+  },
+  ai: {
+    meta: {
+      title: 'IA et apprentissage automatique pour les mines | MBSC Australia',
+      description:
+        'Maintenance prédictive, géologie et contrôle des teneurs assistés par ML, sécurité par vision artificielle et formation en réalité virtuelle pour les opérateurs miniers et énergétiques.',
+    },
+    eyebrow: 'IA et numérique',
+    title: 'IA et apprentissage automatique pour les mines',
+    lead: 'Nous transformons les données que votre exploitation produit déjà en alertes plus précoces, en modèles de ressources plus fiables, en sites plus sûrs et en équipes formées avant même d’être sur le terrain.',
+    primary: 'Parler à notre équipe data',
+    secondary: 'Voir le fonctionnement',
+    intro: {
+      title: 'L’ingénierie d’abord, les algorithmes ensuite',
+      body: [
+        'La plupart des projets d’IA dans les mines s’essoufflent parce qu’ils partent d’un outil plutôt que d’un problème. Les nôtres partent d’un ingénieur qui connaît l’actif, le gisement ou la procédure, et d’une décision précise que le modèle doit améliorer.',
+        'Nous nous appuyons sur vos systèmes existants, un ingénieur qualifié reste responsable de chaque recommandation, et nous livrons des modèles que votre équipe peut exploiter et auditer.',
+      ],
+    },
+    principles: [
+      {
+        title: 'Vos données restent les vôtres',
+        body: 'Les modèles peuvent fonctionner dans votre propre environnement cloud ou sur site. Le traitement des données est convenu avant tout transfert.',
+      },
+      {
+        title: 'L’ingénieur dans la boucle',
+        body: 'Chaque résultat de modèle est vérifié par un ingénieur ou un géologue qualifié avant d’orienter une décision.',
+      },
+      {
+        title: 'Sur votre existant',
+        body: 'Nous nous connectons à vos historiens, systèmes de flotte, GMAO et bases géologiques au lieu de les remplacer.',
+      },
+    ],
+    diagram: {
+      eyebrow: 'Architecture',
+      title: 'Comment notre plateforme d’IA s’intègre à votre exploitation',
+      lead: 'Vue d’ensemble du flux de données que nous concevons pour nos clients miniers. Chaque déploiement est adapté aux systèmes déjà en place.',
+      loop: 'L’ingénieur dans la boucle : les résultats validés réentraînent les modèles',
+      stages: [
+        {
+          title: 'Sources de données',
+          items: [
+            'Capteurs de flotte et d’usine (SCADA, IoT)',
+            'Sondages, analyses et géophysique',
+            'Caméras fixes et relevés par drone',
+            'Historiques de maintenance et d’exploitation',
+          ],
+        },
+        {
+          title: 'Collecte en périphérie',
+          items: [
+            'Passerelles sur site',
+            'Validation et nettoyage',
+            'Transfert sécurisé et chiffré',
+          ],
+        },
+        {
+          title: 'Plateforme de données',
+          items: ['Lac de données d’ingénierie', 'Base géospatiale', 'Référentiel de variables'],
+        },
+        {
+          title: 'Modèles',
+          items: [
+            'Maintenance prédictive',
+            'Modélisation du minerai et des teneurs',
+            'Sécurité par vision artificielle',
+            'Moteur de scénarios VR',
+          ],
+        },
+        {
+          title: 'Résultats',
+          items: [
+            'Alertes et tableaux de bord',
+            'Données pour le modèle de ressources',
+            'Interventions de sécurité',
+            'Équipes formées et évaluées',
+          ],
+        },
+      ],
+    },
+    capabilities: {
+      eyebrow: 'Compétences',
+      title: 'Quatre applications de l’IA sur site',
+      problem: 'L’enjeu',
+      method: 'Notre méthode',
+      delivers: 'Ce que vous recevez',
+      items: [
+        {
+          title: 'Maintenance prédictive',
+          problem:
+            'Les pannes imprévues de camions, convoyeurs, concasseurs et pompes arrêtent la production et créent des risques.',
+          method:
+            'Nous combinons vibrations, températures, analyses d’huile et données d’exploitation avec l’historique de maintenance pour entraîner des modèles qui estiment l’état de chaque actif et le délai probable avant défaillance.',
+          delivers: [
+            'Classement des actifs à risque, actualisé en continu',
+            'Alertes transmises à votre système de maintenance',
+            'Documentation et rapport de validation des modèles',
+          ],
+          imageAlt: 'Chargeuse sur une piste minière vue du ciel',
+        },
+        {
+          title: 'Géologie et modélisation du minerai',
+          problem:
+            'Les modèles de ressources construits sur des sondages espacés comportent une incertitude qui se répercute sur la planification et le contrôle des teneurs.',
+          method:
+            'Le domaining et l’estimation des teneurs assistés par apprentissage automatique complètent la géostatistique classique, avec une incertitude quantifiée et chaque résultat vérifié par nos géologues.',
+          delivers: [
+            'Données et limites de domaines pour le modèle de blocs',
+            'Cartes d’incertitude et de confiance',
+            'Rapport de validation préparé pour l’examen de la Personne compétente',
+          ],
+          imageAlt: 'Vue aérienne d’une mine à ciel ouvert en gradins',
+        },
+        {
+          title: 'Sécurité et vision artificielle',
+          problem:
+            'Personnel et engins lourds partagent le même terrain, et talus et digues à résidus évoluent entre deux inspections.',
+          method:
+            'Des modèles appliqués aux caméras fixes et aux relevés par drone détectent les intrusions en zone d’exclusion et l’absence d’EPI, et suivent les mouvements de surface des talus et digues.',
+          delivers: [
+            'Alertes en temps réel aux superviseurs',
+            'Cartes de détection de changements issues des drones',
+            'Journal d’événements auditable, conçu dans le respect de la vie privée',
+          ],
+          imageAlt: 'Drone de relevé en vol',
+        },
+        {
+          title: 'Réalité virtuelle et formation immersive',
+          problem:
+            'Les tâches à haut risque sont difficiles à pratiquer en sécurité, et la formation en salle reflète rarement les conditions du site.',
+          method:
+            'Nous créons des scénarios de réalité virtuelle à partir de vos propres procédures et équipements pour que les équipes répètent les tâches critiques et les situations d’urgence avant de les réaliser.',
+          delivers: [
+            'Scénarios VR propres à votre site',
+            'Résultats d’évaluation par participant',
+            'Registres de compétences pour votre système de formation',
+          ],
+          imageAlt: 'Opérateur en gilet haute visibilité utilisant un casque de réalité virtuelle',
+        },
+      ],
+    },
+    vr: {
+      eyebrow: 'Formation VR',
+      title: 'De la procédure au casque',
+      steps: [
+        {
+          title: 'Conception du scénario',
+          body: 'Nous transformons vos procédures, équipements et dangers en un scénario scripté avec des critères de réussite clairs.',
+        },
+        {
+          title: 'Session en casque',
+          body: 'Les équipes réalisent le scénario sur site ou dans nos salles de formation de Melbourne et Perth.',
+        },
+        {
+          title: 'Évaluation',
+          body: 'Chaque décision est enregistrée et évaluée au regard de la procédure, avec un débriefing du formateur.',
+        },
+        {
+          title: 'Registre de compétences',
+          body: 'Les résultats alimentent votre système de compétences, prêts pour l’audit.',
+        },
+      ],
+    },
+    courses: 'Formations numérique et IA',
+    faqTitle: 'Questions sur les projets d’IA',
+    faq: [
+      {
+        q: 'Faut-il une plateforme de données avant de commencer ?',
+        a: 'Non. Nous commençons par évaluer les données dont vous disposez et recommandons la plateforme la plus simple pour le premier cas d’usage.',
+      },
+      {
+        q: 'Où sont hébergées nos données ?',
+        a: 'Par défaut dans votre propre environnement cloud ou sur site. Le traitement, l’accès et la conservation des données sont convenus avec vous avant tout transfert.',
+      },
+      {
+        q: 'Comment démarrer ?',
+        a: 'Par un pilote sur une famille d’actifs, une zone ou une procédure, avec des critères de réussite définis à l’avance. Nous n’élargissons qu’une fois ces critères atteints.',
+      },
+      {
+        q: 'Cela remplacera-t-il nos ingénieurs ?',
+        a: 'Non. Les modèles signalent les problèmes et quantifient l’incertitude ; des personnes qualifiées prennent les décisions et en restent responsables.',
+      },
+    ],
+    ctaTitle: 'Commencez par un problème qui en vaut la peine',
+    ctaLead:
+      'Parlez-nous de l’actif, du gisement ou de la procédure. Nous vous dirons si l’IA peut aider et à quoi ressemble la première étape.',
+    teaser: {
+      eyebrow: 'IA et numérique',
+      title: 'L’IA et l’apprentissage automatique, conçus pour les mines',
+      lead: 'Maintenance prédictive, géologie assistée par ML, sécurité par vision artificielle et formation VR, à partir des données que votre exploitation produit déjà.',
+      cta: 'Découvrir nos capacités en IA',
+    },
   },
   footer: {
     tagline:

@@ -7,6 +7,7 @@ export const SERVICE_SLUGS = [
   'digital-solutions',
   'mining-geology',
   'safety-compliance',
+  'ai-mining',
 ] as const;
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 
@@ -18,6 +19,7 @@ export const SECTOR_ORDER: Record<Sector, number> = { oilGas: 0, mining: 1, civi
 
 export const TOPICS = [
   'general',
+  'ai',
   'oilGas',
   'training',
   'digital',

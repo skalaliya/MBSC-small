@@ -8,6 +8,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import UpcomingSessions from '../components/UpcomingSessions.astro';
 import Testimonials from '../components/Testimonials.astro';
 import RegionsBand from '../components/RegionsBand.astro';
+import AiArchitectureDiagram from '../components/AiArchitectureDiagram.astro';
 import Section from '../components/ui/Section.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import Button from '../components/ui/Button.astro';
@@ -21,6 +22,8 @@ const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
 const L = (p: string) => localizePath(p, locale);
 const services = await getServices(locale);
+// Three per row; when the last row would hold two cards, widen them to fill it.
+const wideLast = (i: number) => services.length % 3 === 2 && i >= services.length - 2;
 const featured = (await getProjects(locale)).filter((p) => p.data.featured).slice(0, 3);
 ---
 
@@ -38,6 +41,37 @@ const featured = (await getProjects(locale)).filter((p) => p.data.featured).slic
     </div>
   </section>
 
+  <Section tone="surface" labelledby="ai-teaser-title" spacing="lg">
+    <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+      <div class="lg:col-span-5">
+        <SectionHeading
+          id="ai-teaser-title"
+          eyebrow={t.ai.teaser.eyebrow}
+          title={t.ai.teaser.title}
+          lead={t.ai.teaser.lead}
+          class="mb-8"
+        />
+        <Button
+          href={L('/services/ai-mining')}
+          variant="primary"
+          size="lg"
+          iconEnd="arrow-right"
+          data-track="home_ai"
+        >
+          {t.ai.teaser.cta}
+        </Button>
+      </div>
+      <div class="relative isolate overflow-hidden rounded-lg bg-navy-950 p-6 sm:p-8 lg:col-span-7">
+        <div class="absolute inset-0 -z-10 plan-grid" aria-hidden="true"></div>
+        <div
+          class="absolute -top-20 -right-20 -z-10 size-64 rounded-full bg-brand-violet/30 blur-3xl"
+          aria-hidden="true"
+        ></div>
+        <AiArchitectureDiagram compact />
+      </div>
+    </div>
+  </Section>
+
   <Section tone="paper" labelledby="services-title">
     <SectionHeading
       id="services-title"
@@ -51,8 +85,8 @@ const featured = (await getProjects(locale)).filter((p) => p.data.featured).slic
     </SectionHeading>
     <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
       {services.map((s, i) => (
-        <li class:list={['lg:col-span-2', i >= 3 && 'lg:col-span-3']}>
-          <ServiceCard service={s} wide={i >= 3} />
+        <li class:list={[wideLast(i) ? 'lg:col-span-3' : 'lg:col-span-2']}>
+          <ServiceCard service={s} wide={wideLast(i)} />
         </li>
       ))}
     </ul>

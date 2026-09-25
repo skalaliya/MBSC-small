@@ -69,13 +69,18 @@ const address = [
         {t.footer.company}
       </h3>
       <ul class="mt-5 space-y-3">
-        {NAV.filter((n) => n.key !== 'services').map((n) => (
+        {NAV.filter((n) => n.key !== 'services' && n.key !== 'ai').map((n) => (
           <li>
             <a href={L(n.path)} class="hover:text-white">
               {t.nav[n.key]}
             </a>
           </li>
         ))}
+        <li>
+          <a href={L('/rental')} class="hover:text-white">
+            {t.nav.rental}
+          </a>
+        </li>
       </ul>
     </nav>
 

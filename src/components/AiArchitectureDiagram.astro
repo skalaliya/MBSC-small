@@ -1,0 +1,168 @@
+---
+/**
+ * High-level AI architecture diagram, built in HTML/CSS (not an image) so every label is real
+ * text: it translates, wraps, mirrors for right-to-left languages and reads as an ordered list.
+ * Connectors are decorative. Five columns on wide screens, a vertical flow on small screens.
+ */
+import Icon, { type IconName } from './ui/Icon.astro';
+import { toLocale, useT } from '../i18n/utils';
+
+interface Props {
+  /** Compact: stage titles only (home page teaser). */
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+const t = useT(toLocale(Astro.currentLocale));
+const d = t.ai.diagram;
+const icons: IconName[] = ['radio-tower', 'server', 'database', 'brain-circuit', 'chart-line'];
+---
+
+<figure class:list={['ai-diagram', compact && 'is-compact']}>
+  <ol class="stages">
+    {d.stages.map((stage, i) => (
+      <li class:list={['stage', i === 3 && 'is-models']}>
+        <div class="stage-card">
+          <div class="flex items-center gap-3">
+            <span class="stage-icon" aria-hidden="true">
+              <Icon name={icons[i] ?? 'layers'} size={20} />
+            </span>
+            <span
+              class="font-display text-xs font-bold text-brand-lilac tabular-nums"
+              aria-hidden="true"
+            >
+              0{i + 1}
+            </span>
+          </div>
+          <h3 class="mt-4 font-display text-base font-bold text-white sm:text-lg">{stage.title}</h3>
+          {!compact && (
+            <ul class="mt-3 space-y-2 text-sm leading-5 text-navy-200">
+              {stage.items.map((item) => (
+                <li class="flex gap-2">
+                  <span
+                    class="mt-2 size-1 shrink-0 rounded-full bg-brand-lilac"
+                    aria-hidden="true"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        {i < d.stages.length - 1 && <span class="connector" aria-hidden="true" />}
+      </li>
+    ))}
+  </ol>
+  {!compact && (
+    <figcaption class="loop">
+      <Icon name="repeat" size={18} class="shrink-0 text-brand-lilac" />
+      <span>{d.loop}</span>
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .stages {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+  .stage {
+    position: relative;
+  }
+  .stage-card {
+    height: 100%;
+    border-radius: var(--radius-lg);
+    background: rgb(255 255 255 / 0.04);
+    padding: 1.25rem;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+  }
+  .is-models .stage-card {
+    background:
+      linear-gradient(rgb(15 31 77 / 0.9), rgb(15 31 77 / 0.9)) padding-box,
+      linear-gradient(135deg, #f5565a, #c751af 50%, #914ff7) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 0 40px -12px rgb(145 79 247 / 0.6);
+  }
+  .stage-icon {
+    display: inline-flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: rgb(255 255 255 / 0.08);
+    color: #fff;
+  }
+
+  /* Connectors: vertical below each card on small screens, horizontal between columns on wide. */
+  .connector {
+    position: absolute;
+    inset-inline-start: 50%;
+    top: 100%;
+    width: 2px;
+    height: 2rem;
+    background-image: repeating-linear-gradient(to bottom, #c9b3f5 0 5px, transparent 5px 10px);
+    background-size: 2px 20px;
+    animation: flow-down 1s linear infinite;
+  }
+  @media (min-width: 64rem) {
+    .stages {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    .connector {
+      top: 50%;
+      inset-inline-start: 100%;
+      width: 1.5rem;
+      height: 2px;
+      background-image: repeating-linear-gradient(to right, #c9b3f5 0 5px, transparent 5px 10px);
+      background-size: 20px 2px;
+      animation-name: flow-right;
+    }
+    :global([dir='rtl']) .connector {
+      animation-name: flow-left;
+    }
+  }
+  @keyframes flow-down {
+    to {
+      background-position: 0 20px;
+    }
+  }
+  @keyframes flow-right {
+    to {
+      background-position: 20px 0;
+    }
+  }
+  @keyframes flow-left {
+    to {
+      background-position: -20px 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .connector {
+      animation: none;
+    }
+  }
+
+  .loop {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: var(--radius-md);
+    border: 1px dashed rgb(201 179 245 / 0.5);
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--color-navy-100);
+  }
+  @media (min-width: 64rem) {
+    /* Sit under the Models and Outcomes columns to show the feedback path. */
+    .loop {
+      margin-inline-start: 60%;
+    }
+  }
+
+  .is-compact .stage-card {
+    padding: 1rem;
+  }
+</style>

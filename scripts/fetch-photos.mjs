@@ -25,6 +25,11 @@ const PHOTOS = [
   { file: 'project-port-wharf', id: 'ASPYCE5hrbs', by: 'Ries Bosch', w: 1800 },
   { file: 'project-perth-cbd', id: 'ymgOYi8mroc', by: 'Nathan Hurst', w: 1800 },
   { file: 'project-pilbara-rail', id: 'QYcg2R8cHa0', by: 'Trevar Skillicorn-Chilver', w: 1800 },
+  { file: 'ai-hero-neural', id: 'nGoCBxiaRO0', by: 'Growtika', w: 2400 },
+  { file: 'ai-vr-training', id: 'hIz2lvAo6Po', by: 'XR Expo', w: 1800 },
+  { file: 'ai-geology-pit', id: 'oF7hh97lVqA', by: 'Dion Beetson', w: 1800 },
+  { file: 'ai-drone', id: 'JjtB1atPZ5k', by: 'Sébastien Bourguet', w: 1800 },
+  { file: 'ai-fleet', id: 'jbJp18srifE', by: 'Lachlan', w: 1800 },
 ];
 
 const dir = fileURLToPath(new URL('../src/assets/images/', import.meta.url));

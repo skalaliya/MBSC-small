@@ -45,6 +45,24 @@ import send from 'lucide-static/icons/send.svg?raw';
 import circleAlert from 'lucide-static/icons/circle-alert.svg?raw';
 import info from 'lucide-static/icons/info.svg?raw';
 import slidersHorizontal from 'lucide-static/icons/sliders-horizontal.svg?raw';
+import brainCircuit from 'lucide-static/icons/brain-circuit.svg?raw';
+import cctv from 'lucide-static/icons/cctv.svg?raw';
+import drone from 'lucide-static/icons/drone.svg?raw';
+import glasses from 'lucide-static/icons/glasses.svg?raw';
+import database from 'lucide-static/icons/database.svg?raw';
+import server from 'lucide-static/icons/server.svg?raw';
+import radioTower from 'lucide-static/icons/radio-tower.svg?raw';
+import network from 'lucide-static/icons/network.svg?raw';
+import bellRing from 'lucide-static/icons/bell-ring.svg?raw';
+import chartLine from 'lucide-static/icons/chart-line.svg?raw';
+import repeat from 'lucide-static/icons/repeat.svg?raw';
+import mountain from 'lucide-static/icons/mountain.svg?raw';
+import gauge from 'lucide-static/icons/gauge.svg?raw';
+import workflow from 'lucide-static/icons/workflow.svg?raw';
+import usersRound from 'lucide-static/icons/users-round.svg?raw';
+import scanEye from 'lucide-static/icons/scan-eye.svg?raw';
+import cloud from 'lucide-static/icons/cloud.svg?raw';
+import boxes from 'lucide-static/icons/boxes.svg?raw';
 import linkedin from '../../assets/icons/linkedin.svg?raw';
 
 const ICONS = {
@@ -90,6 +108,24 @@ const ICONS = {
   'circle-alert': circleAlert,
   info: info,
   'sliders-horizontal': slidersHorizontal,
+  'brain-circuit': brainCircuit,
+  cctv: cctv,
+  drone: drone,
+  glasses: glasses,
+  database: database,
+  server: server,
+  'radio-tower': radioTower,
+  network: network,
+  'bell-ring': bellRing,
+  'chart-line': chartLine,
+  repeat: repeat,
+  mountain: mountain,
+  gauge: gauge,
+  workflow: workflow,
+  'users-round': usersRound,
+  'scan-eye': scanEye,
+  cloud: cloud,
+  boxes: boxes,
   linkedin,
 } as const;
 
@@ -113,11 +149,14 @@ const a11y = label
   ? 'role="img" aria-label="' + label.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"'
   : 'aria-hidden="true" focusable="false"';
 const attrs = ' width="' + size + '" height="' + size + '" class="' + classes + '" ' + a11y;
-const svg = raw
-  .replace(/<!--[\s\S]*?-->/g, '')
-  .replace(/\s(width|height|class)="[^"]*"/g, '')
-  .replace(/stroke-width="[^"]*"/, 'stroke-width="' + strokeWidth + '"')
-  .replace(/^\s*<svg/, (m) => m + attrs);
+// Only rewrite the root <svg> tag. Inner elements such as <rect> use width/height too,
+// and stripping those breaks icons like "server" and "calendar-days".
+const svg = raw.replace(/<!--[\s\S]*?-->/g, '').replace(/<svg\b[^>]*>/, (open) =>
+  open
+    .replace(/\s(width|height|class)="[^"]*"/g, '')
+    .replace(/stroke-width="[^"]*"/, 'stroke-width="' + strokeWidth + '"')
+    .replace(/^<svg/, '<svg' + attrs),
+);
 ---
 
 <Fragment set:html={svg} />
