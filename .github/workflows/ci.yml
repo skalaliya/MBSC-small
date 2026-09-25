@@ -29,6 +29,10 @@ jobs:
       - run: npm run test:e2e
         env:
           CI: 'true'
+      - name: Lighthouse budgets
+        # Accessibility, SEO, best practices and layout shift fail the build; performance warns,
+        # so network noise on shared runners can't block a release.
+        run: npx --yes @lhci/cli@0.15 autorun
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

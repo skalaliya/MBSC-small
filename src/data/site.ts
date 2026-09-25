@@ -20,6 +20,11 @@ export const site = {
   geo: { lat: -37.8136, lng: 144.9631 },
   hours: { opens: '07:00', closes: '17:00', days: ['Mo', 'Tu', 'We', 'Th', 'Fr'] },
   linkedin: null as string | null,
+  /**
+   * Google Search Console "HTML tag" verification token (the content="..." value only).
+   * Not a secret. Leave null if you verify with a DNS TXT record in Cloudflare instead.
+   */
+  googleSiteVerification: null as string | null,
   /** Only shown once a certificate number is supplied. */
   iso9001: null as null | { number: string; body: string; expires: string },
   regions: ['au', 'me', 'eu'] as const,

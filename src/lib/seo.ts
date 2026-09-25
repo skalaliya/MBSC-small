@@ -1,4 +1,7 @@
+import { existsSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import { alternatePath, htmlLang, normalizePath, type Locale } from '../i18n/utils';
+import { ogName } from './og';
 
 export interface SeoInput {
   site: URL | string;
@@ -43,7 +46,7 @@ export function buildSeo(input: SeoInput): SeoOutput {
     title: input.title,
     description: input.description,
     canonical: absolute(site, path),
-    ogImage: new URL(input.ogImage ?? '/og/og-default.png', site).href,
+    ogImage: new URL(input.ogImage ?? pageOgImage(path), site).href,
     ogLocale: OG_LOCALE[input.locale],
     ogLocaleAlternate: OG_LOCALE[other],
     alternates,
@@ -55,4 +58,17 @@ export function buildSeo(input: SeoInput): SeoOutput {
 export function absolute(site: URL | string, path: string): string {
   const base = typeof site === 'string' ? new URL(site) : site;
   return new URL(normalizePath(path), base.origin).href;
+}
+
+/** The page's own social card if one has been generated (npm run og), else the default card. */
+// Resolve from the project root: after bundling, import.meta.url no longer points at src/lib.
+const PUBLIC_DIR = pathToFileURL(`${process.cwd()}/public/`);
+
+export function pageOgImage(pathname: string, publicDir: URL = PUBLIC_DIR): string {
+  const file = `/og/${ogName(normalizePath(pathname))}.png`;
+  try {
+    return existsSync(new URL(`.${file}`, publicDir)) ? file : '/og/og-default.png';
+  } catch {
+    return '/og/og-default.png';
+  }
 }

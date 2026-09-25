@@ -40,6 +40,15 @@ const added = [
 ];
 
 const config = JSON.parse(await readFile(path, 'utf8'));
+
+// Unknown URLs are served by the catch-all 404 route at the end of the table, which carries no
+// headers. Give it the CSP Astro generated for the /404 page so error pages are protected too.
+const csp404 = config.routes.find((r) => r.src === '/404' && r.headers?.['content-security-policy'])
+  ?.headers['content-security-policy'];
+const catchAll = config.routes.find((r) => r.dest === '/404.html' && r.status === 404);
+if (csp404 && catchAll)
+  catchAll.headers = { ...(catchAll.headers ?? {}), 'content-security-policy': csp404 };
+else console.warn('[vercel-headers] could not attach CSP to the 404 route');
 const isOurs = (r) => added.some((a) => JSON.stringify(a) === JSON.stringify(r));
 config.routes = [...added, ...(config.routes ?? []).filter((r) => !isOurs(r))];
 await writeFile(path, JSON.stringify(config, null, 2));

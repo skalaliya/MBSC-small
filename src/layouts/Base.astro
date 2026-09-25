@@ -4,6 +4,7 @@ import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/global.css';
 import { buildSeo } from '../lib/seo';
+import { site } from '../data/site';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import StickyMobileCTA from '../components/StickyMobileCTA.astro';
@@ -48,6 +49,9 @@ const onVercel = import.meta.env.PROD && process.env.VERCEL === '1';
     ))}
     {seo.noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="theme-color" content="#0a1533" />
+    {site.googleSiteVerification && (
+      <meta name="google-site-verification" content={site.googleSiteVerification} />
+    )}
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

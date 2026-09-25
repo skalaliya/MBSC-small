@@ -64,6 +64,21 @@ for await (const file of walk(staticDir)) {
   if (!isNotFound && !/<link rel="canonical" href="https:\/\/[^"]+"/.test(html))
     add('missing canonical');
   if (!/<html lang="(en-AU|fr)"/.test(html)) add('missing html lang');
+  // A preloaded image must be one the page actually uses, or it is downloaded twice.
+  for (const m of html.matchAll(/<link rel="preload" as="image"[^>]*imagesrcset="([^"]+)"/g)) {
+    const used = [...html.matchAll(/srcset="([^"]+)"/g)].map((x) => x[1]).join(' ');
+    for (const url of m[1].split(', ').map((u) => u.split(' ')[0]))
+      if (!used.includes(url)) add(`preloaded image not used by the page: ${url}`);
+  }
+  const og = /<meta property="og:image" content="https?:\/\/[^/]+(\/[^"]+)"/.exec(html)?.[1];
+  if (!og) add('missing og:image');
+  else {
+    try {
+      await readFile(join(staticDir, og));
+    } catch {
+      add(`og:image ${og} not found in the build`);
+    }
+  }
 }
 
 if (problems.length) {

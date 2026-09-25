@@ -30,7 +30,8 @@ export default defineConfig({
       provider: fontProviders.fontsource(),
       name: 'Manrope',
       cssVariable: '--font-manrope',
-      weights: [500, 600, 700, 800],
+      // Headings only use bold and extra-bold; fewer files means a faster first paint.
+      weights: [700, 800],
       subsets: ['latin'],
       styles: ['normal'],
       fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
@@ -39,7 +40,8 @@ export default defineConfig({
       provider: fontProviders.fontsource(),
       name: 'Inter',
       cssVariable: '--font-inter',
-      weights: [400, 500, 600],
+      // Body text: regular and semibold. font-medium (500) resolves to 400 by CSS matching rules.
+      weights: [400, 600],
       subsets: ['latin'],
       styles: ['normal'],
       fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
@@ -85,6 +87,6 @@ export default defineConfig({
   },
   markdown: { syntaxHighlight: false },
   image: { layout: 'constrained' },
-  build: { inlineStylesheets: 'never' },
+  build: { inlineStylesheets: 'auto' },
   vite: { plugins: [tailwindcss()] },
 });

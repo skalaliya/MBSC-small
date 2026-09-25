@@ -1,15 +1,63 @@
 ---
+/** Long-form text (rendered Markdown). Light-weight replacement for the typography plugin. */
 interface Props {
   class?: string;
 }
 const { class: className } = Astro.props;
 ---
 
-<div
-  class:list={[
-    'prose prose-lg max-w-none prose-slate prose-headings:font-display prose-headings:text-ink-900 prose-a:text-navy-700 prose-a:underline-offset-4 prose-strong:text-ink-900',
-    className,
-  ]}
->
+<div class:list={['prose-mbsc', className]}>
   <slot />
 </div>
+
+<style>
+  .prose-mbsc {
+    font-size: 1.125rem;
+    line-height: 2rem;
+    color: var(--color-ink-700);
+  }
+  .prose-mbsc :global(> * + *) {
+    margin-top: 1.25rem;
+  }
+  .prose-mbsc :global(h2),
+  .prose-mbsc :global(h3) {
+    margin-top: 2rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-ink-900);
+  }
+  .prose-mbsc :global(h2) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .prose-mbsc :global(h3) {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  .prose-mbsc :global(a) {
+    color: var(--color-navy-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .prose-mbsc :global(strong) {
+    color: var(--color-ink-900);
+  }
+  .prose-mbsc :global(ul),
+  .prose-mbsc :global(ol) {
+    padding-inline-start: 1.5rem;
+  }
+  .prose-mbsc :global(ul) {
+    list-style: disc;
+  }
+  .prose-mbsc :global(ol) {
+    list-style: decimal;
+  }
+  .prose-mbsc :global(li + li) {
+    margin-top: 0.5rem;
+  }
+  .prose-mbsc :global(blockquote) {
+    border-inline-start: 4px solid var(--color-brand-magenta);
+    padding-inline-start: 1rem;
+    color: var(--color-ink-900);
+  }
+</style>

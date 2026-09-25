@@ -17,6 +17,9 @@ import { fmt, localizePath, toLocale, useT } from '../i18n/utils';
 import { getProjects, getServices } from '../lib/queries';
 import { organization, website } from '../lib/jsonld';
 import { site } from '../data/site';
+import { getImage } from 'astro:assets';
+import heroImage from '../assets/images/hero-offshore-platform.jpg';
+import { HERO_IMAGE } from '../lib/hero';
 
 const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
@@ -24,6 +27,16 @@ const L = (p: string) => localizePath(p, locale);
 const services = await getServices(locale);
 // Three per row; when the last row would hold two cards, widen them to fill it.
 const wideLast = (i: number) => services.length % 3 === 2 && i >= services.length - 2;
+// Preload the hero's AVIF variants so the largest image starts downloading before layout.
+const heroPreload = await getImage({
+  src: heroImage,
+  format: 'avif',
+  widths: [...HERO_IMAGE.widths],
+  quality: HERO_IMAGE.quality,
+  layout: 'constrained',
+  fit: HERO_IMAGE.fit,
+  position: HERO_IMAGE.position,
+});
 const featured = (await getProjects(locale)).filter((p) => p.data.featured).slice(0, 3);
 ---
 
@@ -32,6 +45,15 @@ const featured = (await getProjects(locale)).filter((p) => p.data.featured).slic
   description={t.meta.pages.home.description}
   jsonLd={[organization(), website(locale)]}
 >
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    type="image/avif"
+    imagesrcset={heroPreload.srcSet.attribute}
+    imagesizes={HERO_IMAGE.sizes}
+    fetchpriority="high"
+  />
   <Hero />
   <TrustStrip />
 

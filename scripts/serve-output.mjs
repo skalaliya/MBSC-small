@@ -2,6 +2,7 @@
 // routes from .vercel/output/config.json (including per-page CSP), clean URLs and the 404 page.
 // Used for local production previews and end-to-end tests. Not a general Vercel emulator.
 import { createServer } from 'node:http';
+import { gzipSync } from 'node:zlib';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -85,6 +86,16 @@ createServer(async (req, res) => {
     return res.end('Not found');
   }
   headers['content-type'] = TYPES[extname(target)] ?? 'application/octet-stream';
+  let body = await readFile(target);
+  // Compress text like Vercel does, so local performance measurements are realistic.
+  if (
+    /text|javascript|json|xml|svg/.test(headers['content-type']) &&
+    /gzip/.test(req.headers['accept-encoding'] ?? '')
+  ) {
+    body = gzipSync(body);
+    headers['content-encoding'] = 'gzip';
+    headers['vary'] = 'Accept-Encoding';
+  }
   res.writeHead(found ? 200 : 404, headers);
-  res.end(await readFile(target));
+  res.end(body);
 }).listen(port, () => console.log(`Serving .vercel/output on http://localhost:${port}`));

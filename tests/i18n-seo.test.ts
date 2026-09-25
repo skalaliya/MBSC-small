@@ -80,3 +80,18 @@ describe('dictionaries', () => {
     e.forEach((s, i) => expect(ph(f[i]!)).toBe(ph(s)));
   });
 });
+
+describe('social images', async () => {
+  const { ogName } = await import('../src/lib/og');
+  const { pageOgImage } = await import('../src/lib/seo');
+  it('names cards from the path', () => {
+    expect(ogName('/')).toBe('home');
+    expect(ogName('/fr')).toBe('fr');
+    expect(ogName('/services/ai-mining/')).toBe('services-ai-mining');
+    expect(ogName('/fr/projects/moomba-cementing-qa')).toBe('fr-projects-moomba-cementing-qa');
+  });
+  it('falls back to the default card when a page has none', () => {
+    expect(pageOgImage('/no-such-page')).toBe('/og/og-default.png');
+    expect(pageOgImage('/services/ai-mining')).toBe('/og/services-ai-mining.png');
+  });
+});
