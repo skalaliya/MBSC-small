@@ -33,6 +33,8 @@ partner: 'algorythmos'
 
 يحصل مشغّلو التعدين والطاقة على الهندسة الميدانية وهندسة الذكاء الاصطناعي ضمن مهمة واحدة، بمشاركة مهندسين مؤهلين من المراجعة الأولى للبيانات حتى التوصية النهائية. ولمزيد من المعلومات، يمكنكم الاطلاع على [خدمات هندسة الذكاء الاصطناعي لدى Algorythmos (بالإنجليزية)](https://algorythmos.com/au-en/services?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
 
+كما [أعلنت Algorythmos عن الشراكة في مدونتها (بالإنجليزية)](https://algorythmos.com/au-en/blog/mbsc-australia-partnership?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
+
 ## كيف تبدؤون
 
 لمناقشة مشروع ذكاء اصطناعي لعملياتكم، [تحدّثوا إلى مهندس](/ar/contact?topic=ai).

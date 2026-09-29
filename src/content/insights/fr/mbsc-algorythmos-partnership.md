@@ -33,6 +33,8 @@ Les ingénieurs de MBSC restent responsables de l’ingénierie. Ils définissen
 
 Les exploitants miniers et énergétiques bénéficient de l’ingénierie de terrain et de l’ingénierie de l’IA dans une même mission, avec des ingénieurs qualifiés impliqués de la première analyse des données à la recommandation finale. Pour en savoir plus, consultez les [services d’ingénierie de l’IA d’Algorythmos](https://algorythmos.com/fr-fr/services?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
 
+Algorythmos a également [annoncé le partenariat sur son blog](https://algorythmos.com/fr-fr/blog/mbsc-australia-partnership?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
+
 ## Pour commencer
 
 Pour étudier un projet d’IA pour votre exploitation, [parlez à un ingénieur](/fr/contact?topic=ai).

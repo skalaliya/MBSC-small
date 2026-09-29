@@ -384,6 +384,12 @@ test('partnership announcement: first on /insights, links to the partner, schema
   const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).join('');
   expect(ld).toContain('"mentions"');
   expect(ld).toContain('"name":"Algorythmos"');
+  // Reciprocal link to the partner's own announcement.
+  await expect(
+    page.locator(
+      '.prose-mbsc a[href^="https://algorythmos.com/au-en/blog/mbsc-australia-partnership"]',
+    ),
+  ).toHaveCount(1);
   await page.goto('/fr/insights/mbsc-algorythmos-partnership');
   await expect(
     page.locator('.prose-mbsc a[href^="https://algorythmos.com/fr-fr/services"]'),

@@ -33,6 +33,8 @@ MBSC engineers remain responsible for the engineering. They define each problem,
 
 Mining and energy operators get field engineering and AI engineering in one engagement, with qualified engineers involved from the first data review to the final recommendation. You can read more about [Algorythmos's AI engineering services](https://algorythmos.com/au-en/services?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
 
+Algorythmos has also [announced the partnership on its blog](https://algorythmos.com/au-en/blog/mbsc-australia-partnership?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
+
 ## Getting started
 
 To discuss an AI project for your operation, [talk to an engineer](/contact?topic=ai).
