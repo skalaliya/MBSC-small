@@ -137,6 +137,8 @@ export function article(opts: {
   dateModified?: string;
   locale: Locale;
   keywords: string[];
+  /** Organisations the article is about, e.g. a partner. */
+  mentions?: { name: string; url: string }[];
 }): Json {
   const url = absolute(site.url, opts.url);
   return {
@@ -153,5 +155,14 @@ export function article(opts: {
     keywords: opts.keywords.join(', '),
     author: { '@id': ORG_ID },
     publisher: { '@id': ORG_ID },
+    ...(opts.mentions?.length
+      ? {
+          mentions: opts.mentions.map((m) => ({
+            '@type': 'Organization',
+            name: m.name,
+            url: m.url,
+          })),
+        }
+      : {}),
   };
 }

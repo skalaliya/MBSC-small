@@ -708,7 +708,14 @@ export const en = {
       safety: 'Safety',
       training: 'Training',
       vr: 'VR',
+      news: 'News',
     },
+  },
+  partners: {
+    eyebrow: 'Technology partner',
+    sectionTitle: 'Partners',
+    panelTitle: 'Delivered with our technology partner',
+    since: 'Partner since {date}',
   },
   footer: {
     tagline:

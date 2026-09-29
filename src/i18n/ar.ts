@@ -732,7 +732,14 @@ export const ar: UI = {
       safety: 'السلامة',
       training: 'التدريب',
       vr: 'الواقع الافتراضي',
+      news: 'أخبار',
     },
+  },
+  partners: {
+    eyebrow: 'الشريك التقني',
+    sectionTitle: 'شركاؤنا',
+    panelTitle: 'بالتعاون مع شريكنا التقني',
+    since: 'شريك منذ {date}',
   },
   footer: {
     tagline:

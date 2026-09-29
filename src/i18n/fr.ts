@@ -725,7 +725,14 @@ export const fr: UI = {
       safety: 'Sécurité',
       training: 'Formation',
       vr: 'Réalité virtuelle',
+      news: 'Actualités',
     },
+  },
+  partners: {
+    eyebrow: 'Partenaire technologique',
+    sectionTitle: 'Partenaires',
+    panelTitle: 'Réalisé avec notre partenaire technologique',
+    since: 'Partenaire depuis {date}',
   },
   footer: {
     tagline:

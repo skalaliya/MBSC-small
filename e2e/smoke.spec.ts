@@ -183,6 +183,8 @@ for (const route of [
   '/fr/services/ai-mining',
   '/insights',
   '/fr/insights/vr-safety-training-mining',
+  '/about',
+  '/insights/mbsc-algorythmos-partnership',
 ]) {
   test(`accessibility: ${route} has no serious or critical axe violations`, async ({ page }) => {
     await page.goto(route);
@@ -275,11 +277,14 @@ test('insights: topic filter works without JavaScript and articles are indexable
 }) => {
   await page.goto('/insights');
   const cards = page.locator('.insights li[data-tags]');
-  await expect(cards).toHaveCount(3);
+  // Counts come from the page, so adding an article never breaks this test.
+  const tags = await cards.evaluateAll((els) => els.map((e) => e.getAttribute('data-tags') ?? ''));
+  const geology = tags.filter((t) => t.split(' ').includes('geology')).length;
+  expect(tags.length).toBeGreaterThan(geology);
   await page.locator('label', { hasText: 'Geology' }).click();
-  await expect(cards.filter({ visible: true })).toHaveCount(1);
+  await expect(cards.filter({ visible: true })).toHaveCount(geology);
   await page.locator('label', { hasText: 'All' }).click();
-  await expect(cards.filter({ visible: true })).toHaveCount(3);
+  await expect(cards.filter({ visible: true })).toHaveCount(tags.length);
 
   await page.goto('/insights/ml-grade-control');
   await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
@@ -336,4 +341,51 @@ test('audit guards: honest labels and no stray claims', async ({ page }) => {
   await page.goto('/contact');
   // No map of "Melbourne" pretending to be the office until a street address is supplied.
   await expect(page.locator('[data-map]')).toHaveCount(0);
+});
+
+// Technology partner: one followed, contextual link per placement, never sitewide.
+for (const [route, placement, path] of [
+  ['/', 'home', '/au-en'],
+  ['/services/ai-mining', 'ai', '/au-en/services/mlops-cicd'],
+  ['/about', 'about', '/au-en/about'],
+  ['/fr', 'home', '/fr-fr'],
+  ['/fr/about', 'about', '/fr-fr/about'],
+] as const) {
+  test(`partner link on ${route} goes to the right Algorythmos page`, async ({ page }) => {
+    await page.goto(route);
+    const links = page.locator('main a[href^="https://algorythmos.com"]');
+    await expect(links).toHaveCount(1);
+    const link = links.first();
+    const url = new URL((await link.getAttribute('href'))!);
+    expect(url.pathname).toBe(path);
+    expect(url.searchParams.get('utm_content')).toBe(placement);
+    expect(url.searchParams.get('utm_source')).toBe('mbscaustralia.com.au');
+    await expect(link).toHaveAttribute('target', '_blank');
+    const rel = (await link.getAttribute('rel')) ?? '';
+    expect(rel).toContain('noopener');
+    expect(rel).not.toMatch(/nofollow|sponsored/);
+    // Screen readers are told the link opens a new tab (text is in the page's language).
+    await expect(link.locator('.sr-only')).not.toBeEmpty();
+    await expect(page.locator('footer a[href*="algorythmos.com"]')).toHaveCount(0);
+  });
+}
+
+test('partnership announcement: first on /insights, links to the partner, schema mention', async ({
+  page,
+}) => {
+  await page.goto('/insights');
+  await expect(page.locator('.insights li[data-tags]').first()).toContainText('Algorythmos');
+  await page.goto('/insights/mbsc-algorythmos-partnership');
+  const body = page.locator('.prose-mbsc a[href^="https://algorythmos.com/au-en/services"]');
+  await expect(body).toHaveCount(1);
+  expect(new URL((await body.getAttribute('href'))!).searchParams.get('utm_content')).toBe(
+    'article',
+  );
+  const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).join('');
+  expect(ld).toContain('"mentions"');
+  expect(ld).toContain('"name":"Algorythmos"');
+  await page.goto('/fr/insights/mbsc-algorythmos-partnership');
+  await expect(
+    page.locator('.prose-mbsc a[href^="https://algorythmos.com/fr-fr/services"]'),
+  ).toHaveCount(1);
 });

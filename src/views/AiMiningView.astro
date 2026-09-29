@@ -10,6 +10,7 @@ import FAQ from '../components/ui/FAQ.astro';
 import CTABand from '../components/ui/CTABand.astro';
 import SessionRow from '../components/SessionRow.astro';
 import AiArchitectureDiagram from '../components/AiArchitectureDiagram.astro';
+import PartnerSpotlight from '../components/PartnerSpotlight.astro';
 import hero from '../assets/images/ai-hero-neural.jpg';
 import fleet from '../assets/images/ai-fleet.jpg';
 import pit from '../assets/images/ai-geology-pit.jpg';
@@ -108,6 +109,10 @@ const courses = upcoming(await getCalendars(), new Date(), 60)
       dark
     />
     <AiArchitectureDiagram />
+  </Section>
+
+  <Section tone="paper" spacing="sm">
+    <PartnerSpotlight variant="panel" placement="ai" />
   </Section>
 
   <Section tone="paper" labelledby="capabilities-title">

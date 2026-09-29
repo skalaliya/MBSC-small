@@ -1,0 +1,175 @@
+---
+/**
+ * Technology partner mention (home strip, AI page panel, About card). One data entry
+ * (src/content/partners.json) drives every placement; nothing renders unless confirmed.
+ * One stretched link per placement: the whole block is clickable with a single tab stop.
+ */
+import { getCollection } from 'astro:content';
+import Icon from './ui/Icon.astro';
+import { fmt, intlLocale, toLocale, useT } from '../i18n/utils';
+import { parseISODate } from '../lib/dates';
+import {
+  PARTNER_GRADIENTS,
+  assertSafeSvg,
+  partnerHref,
+  svgWithGradient,
+  type Placement,
+} from '../lib/partners';
+
+interface Props {
+  variant: 'strip' | 'panel' | 'card';
+  placement: Exclude<Placement, 'article'>;
+  tone?: 'dark' | 'light';
+}
+const { variant, placement, tone = 'light' } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+
+const logos = import.meta.glob<string>('../assets/logos/partners/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+const partners = (await getCollection('partners'))
+  .filter((p) => p.data.confirmed)
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(({ data: p }) => {
+    const raw = logos[`../assets/logos/partners/${p.id}.svg`];
+    if (!raw)
+      throw new Error(`Partner "${p.id}" has no logo at src/assets/logos/partners/${p.id}.svg`);
+    return {
+      ...p,
+      logo: svgWithGradient(
+        assertSafeSvg(raw, p.id),
+        `partner-${p.id}-${placement}`,
+        PARTNER_GRADIENTS[tone],
+      ),
+      href: partnerHref(p.site[locale], p.paths[placement], placement),
+      since: fmt(t.partners.since, {
+        date: new Intl.DateTimeFormat(intlLocale[locale], {
+          month: 'long',
+          year: 'numeric',
+        }).format(parseISODate(`${p.since}-01`)),
+      }),
+    };
+  });
+const dark = tone === 'dark';
+---
+
+{partners.map((p) => {
+  const headingId = `partner-${p.id}-${placement}-title`;
+  const lockup = (
+    <span class="flex shrink-0 items-center gap-2.5">
+      <span class="partner-mark size-9 shrink-0" set:html={p.logo} />
+      <span
+        dir="ltr"
+        class:list={[
+          'font-display text-xl font-bold tracking-tight',
+          dark ? 'text-white' : 'text-ink-900',
+        ]}
+      >
+        {p.id === 'algorythmos' ? (
+          <>
+            Algoryth
+            <span class:list={['partner-gradient', dark ? 'on-dark' : 'on-light']}>mos</span>
+          </>
+        ) : (
+          p.name
+        )}
+      </span>
+    </span>
+  );
+  const link = (
+    <a
+      href={p.href}
+      target="_blank"
+      rel="noopener"
+      class:list={[
+        'inline-flex items-center gap-1.5 text-sm font-semibold after:absolute after:inset-0 after:rounded-lg focus-visible:outline-none',
+        dark ? 'text-brand-lilac hover:text-white' : 'text-navy-700 hover:text-navy-950',
+      ]}
+    >
+      {p.copy.anchor[placement][locale]}
+      <span class="sr-only">{t.a11y.externalLink}</span>
+      <Icon name="arrow-up-right" size={16} />
+    </a>
+  );
+  return variant === 'strip' ? (
+    <section class="border-b border-white/10 bg-navy-950" aria-labelledby={headingId}>
+      <div class="container-site py-6">
+        <div class="group relative flex flex-col items-center gap-4 rounded-lg px-4 py-3 text-center ring-2 ring-transparent transition-colors has-[a:focus-visible]:ring-brand-violet hover:bg-white/5 md:flex-row md:gap-8 md:text-start">
+          <h2
+            id={headingId}
+            class="text-xs font-semibold tracking-[0.14em] text-navy-200 uppercase md:w-40 md:shrink-0"
+          >
+            {t.partners.eyebrow}
+          </h2>
+          {lockup}
+          <p class="text-sm leading-6 text-navy-200 md:flex-1">{p.copy.strip[locale]}</p>
+          {link}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section
+      class="group relative overflow-hidden rounded-lg bg-white p-6 ring-1 ring-line transition-shadow has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-brand-violet hover:shadow-lift sm:p-8"
+      aria-labelledby={headingId}
+    >
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        {lockup}
+        {variant === 'card' && (
+          <p class="text-xs font-semibold tracking-[0.12em] text-ink-500 uppercase">{p.since}</p>
+        )}
+      </div>
+      <h3 id={headingId} class="mt-5 font-display text-xl font-bold text-ink-900">
+        {variant === 'panel' ? t.partners.panelTitle : t.partners.eyebrow}
+      </h3>
+      <p class="mt-3 max-w-3xl leading-7 text-ink-700">
+        {variant === 'panel' ? p.copy.panelBody[locale] : p.copy.aboutBody[locale]}
+      </p>
+      <ul class="mt-5 flex flex-wrap gap-2">
+        {p.copy.capabilities.map((c) => (
+          <li class="rounded-full bg-paper px-3 py-1 text-xs font-medium text-ink-700 ring-1 ring-line">
+            {c[locale]}
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6">{link}</p>
+    </section>
+  );
+})}
+
+<style>
+  .partner-mark :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  /* Gradient "mos", as in the Algorythmos wordmark, with a solid colour where clipping to text
+     is unsupported or colours are forced. */
+  .partner-gradient.on-dark {
+    color: #a78bfa;
+  }
+  .partner-gradient.on-light {
+    color: #7c3aed;
+  }
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .partner-gradient {
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .partner-gradient.on-dark {
+      background-image: linear-gradient(120deg, #a78bfa 0%, #63b3ed 45%, #22d3ee 100%);
+    }
+    .partner-gradient.on-light {
+      background-image: linear-gradient(120deg, #7c3aed 0%, #2563eb 45%, #0e7490 100%);
+    }
+  }
+  @media (forced-colors: active) {
+    .partner-gradient {
+      background-image: none;
+      color: CanvasText;
+    }
+  }
+</style>

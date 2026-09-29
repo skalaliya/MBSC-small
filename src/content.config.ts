@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -157,6 +157,41 @@ const team = defineCollection({
     }),
 });
 
+const partners = defineCollection({
+  loader: file('./src/content/partners.json'),
+  schema: z
+    .object({
+      id: z.string().regex(/^[a-z0-9-]+$/),
+      name: z.string().min(1),
+      order: z.number().int(),
+      /** Partnership start, YYYY-MM. */
+      since: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/),
+      /** Partner site root per MBSC language (Arabic readers go to the English site). */
+      site: z.object({ en: z.url(), fr: z.url(), ar: z.url() }),
+      /** Page on the partner site for each placement ('' = the site root). */
+      paths: z.object({
+        home: z.string().regex(/^(\/.*)?$/),
+        ai: z.string().regex(/^(\/.*)?$/),
+        about: z.string().regex(/^(\/.*)?$/),
+        article: z.string().regex(/^(\/.*)?$/),
+      }),
+      copy: z.object({
+        strip: localized,
+        panelBody: localized,
+        aboutBody: localized,
+        capabilities: z.array(localized).length(5),
+        anchor: z.object({ home: localized, ai: localized, about: localized }),
+      }),
+      /** Only confirmed partners are shown on the site. */
+      confirmed: z.boolean(),
+      /** Who confirmed the partnership may be shown, and when. Required once confirmed. */
+      evidence: z.string().optional(),
+    })
+    .refine((p) => !p.confirmed || !!p.evidence, {
+      message: 'confirmed partners need an evidence note',
+    }),
+});
+
 const insights = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/insights', generateId: pathId }),
   schema: ({ image }) =>
@@ -174,8 +209,19 @@ const insights = defineCollection({
         coverAlt: z.string().min(1),
         /** Drafts show on previews only. Set false once the article has been reviewed. */
         draft: z.boolean().default(true),
+        /** A partner this article is about; adds a schema.org mention. */
+        partner: reference('partners').optional(),
       })
       .transform(frenchText),
 });
 
-export const collections = { services, projects, calendars, clients, testimonials, team, insights };
+export const collections = {
+  services,
+  projects,
+  calendars,
+  clients,
+  testimonials,
+  team,
+  insights,
+  partners,
+};

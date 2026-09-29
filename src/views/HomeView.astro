@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import TrustStrip from '../components/TrustStrip.astro';
+import PartnerSpotlight from '../components/PartnerSpotlight.astro';
 import StatBand from '../components/StatBand.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
@@ -58,6 +59,7 @@ const latest = (await getInsights(locale)).slice(0, 3);
   />
   <Hero />
   <TrustStrip />
+  <PartnerSpotlight variant="strip" placement="home" tone="dark" />
 
   <section class="bg-navy-950 pt-4 pb-16 sm:pb-20" aria-label={t.stats.labels.projects}>
     <div class="container-site" data-reveal>

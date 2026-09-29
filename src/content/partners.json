@@ -1,0 +1,82 @@
+[
+  {
+    "id": "algorythmos",
+    "name": "Algorythmos",
+    "order": 1,
+    "since": "2026-09",
+    "site": {
+      "en": "https://algorythmos.com/au-en",
+      "fr": "https://algorythmos.com/fr-fr",
+      "ar": "https://algorythmos.com/au-en"
+    },
+    "paths": {
+      "home": "",
+      "ai": "/services/mlops-cicd",
+      "about": "/about",
+      "article": "/services"
+    },
+    "copy": {
+      "strip": {
+        "en": "Our AI technology partner for data platforms, MLOps and applied machine learning in mining and energy.",
+        "fr": "Notre partenaire technologique en IA pour les plateformes de données, le MLOps et l’apprentissage automatique appliqué aux mines et à l’énergie.",
+        "ar": "شريكنا التقني في الذكاء الاصطناعي لمنصات البيانات وعمليات تعلّم الآلة (MLOps) وتطبيقات تعلّم الآلة في التعدين والطاقة."
+      },
+      "panelBody": {
+        "en": "MBSC engineers define the problem, supply the site and asset data, and sign off every engineering decision. Algorythmos engineers the AI behind it: data platforms, model deployment and monitoring, so models stay accurate in production.",
+        "fr": "Les ingénieurs de MBSC définissent le problème, fournissent les données du site et des actifs et valident chaque décision d’ingénierie. Algorythmos conçoit l’IA qui les soutient : plateformes de données, déploiement et surveillance des modèles, pour qu’ils restent fiables en production.",
+        "ar": "يحدد مهندسو MBSC المشكلة، ويوفرون بيانات الموقع والأصول، ويعتمدون كل قرار هندسي. وتتولى Algorythmos هندسة الذكاء الاصطناعي الداعم لذلك: منصات البيانات ونشر النماذج ومراقبتها، لتبقى النماذج دقيقة أثناء التشغيل."
+      },
+      "aboutBody": {
+        "en": "Algorythmos is an AI consultancy based in Sydney and Paris. As our AI technology partner, it engineers and operates the machine learning systems behind MBSC’s AI & Digital services for mining and energy clients, while our engineers remain responsible for the engineering.",
+        "fr": "Algorythmos est un cabinet de conseil en IA basé à Sydney et à Paris. En tant que partenaire technologique en IA, il conçoit et exploite les systèmes d’apprentissage automatique qui sous-tendent les services IA et numérique de MBSC pour les clients des mines et de l’énergie, nos ingénieurs restant responsables de l’ingénierie.",
+        "ar": "Algorythmos شركة استشارات في الذكاء الاصطناعي مقرها سيدني وباريس. وبصفتها شريكنا التقني في الذكاء الاصطناعي، تتولى هندسة أنظمة تعلّم الآلة وتشغيلها ضمن خدمات MBSC في الذكاء الاصطناعي والرقمنة لعملائنا في قطاعَي التعدين والطاقة، فيما يبقى مهندسونا مسؤولين عن الأعمال الهندسية."
+      },
+      "capabilities": [
+        {
+          "en": "MLOps & model deployment",
+          "fr": "MLOps et déploiement de modèles",
+          "ar": "عمليات تعلّم الآلة (MLOps) ونشر النماذج"
+        },
+        {
+          "en": "Model monitoring",
+          "fr": "Surveillance des modèles",
+          "ar": "مراقبة النماذج"
+        },
+        {
+          "en": "Data & feature platforms",
+          "fr": "Plateformes de données et de variables",
+          "ar": "منصات البيانات والخصائص"
+        },
+        {
+          "en": "Agentic automation",
+          "fr": "Automatisation agentique",
+          "ar": "الأتمتة الذكية متعددة الخطوات"
+        },
+        {
+          "en": "Document intelligence",
+          "fr": "Intelligence documentaire",
+          "ar": "استخلاص البيانات من المستندات"
+        }
+      ],
+      "anchor": {
+        "home": {
+          "en": "Visit algorythmos.com",
+          "fr": "Visiter algorythmos.com",
+          "ar": "زيارة موقع algorythmos.com (بالإنجليزية)"
+        },
+        "ai": {
+          "en": "MLOps and model deployment by Algorythmos",
+          "fr": "MLOps et déploiement de modèles par Algorythmos",
+          "ar": "عمليات تعلّم الآلة ونشر النماذج لدى Algorythmos (بالإنجليزية)"
+        },
+        "about": {
+          "en": "About Algorythmos",
+          "fr": "À propos d’Algorythmos",
+          "ar": "نبذة عن Algorythmos (بالإنجليزية)"
+        }
+      }
+    },
+    "confirmed": true,
+    "evidence": "Confirmed by S. Kalaliya, 29 Sep 2026 — MBSC Australia is an Algorythmos client and approved the partnership; independent companies; AI technology partner since Sep 2026"
+  }
+]

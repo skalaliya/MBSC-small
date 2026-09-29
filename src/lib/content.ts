@@ -61,5 +61,13 @@ export const CERTIFICATES = [
 ] as const;
 export type Certificate = (typeof CERTIFICATES)[number];
 
-export const INSIGHT_TAGS = ['ai', 'maintenance', 'geology', 'safety', 'training', 'vr'] as const;
+export const INSIGHT_TAGS = [
+  'ai',
+  'maintenance',
+  'geology',
+  'safety',
+  'training',
+  'vr',
+  'news',
+] as const;
 export type InsightTag = (typeof INSIGHT_TAGS)[number];

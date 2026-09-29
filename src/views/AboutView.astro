@@ -9,6 +9,7 @@ import Icon from '../components/ui/Icon.astro';
 import StatBand from '../components/StatBand.astro';
 import GlobalPresence from '../components/GlobalPresence.astro';
 import TrustStrip from '../components/TrustStrip.astro';
+import PartnerSpotlight from '../components/PartnerSpotlight.astro';
 import CTABand from '../components/ui/CTABand.astro';
 import lab from '../assets/images/about-lab.jpg';
 import engineers from '../assets/images/about-engineers.jpg';
@@ -97,6 +98,11 @@ const valueIcons = ['file-check-2', 'shield-check', 'users'] as const;
         </li>
       ))}
     </ul>
+  </Section>
+
+  <Section tone="paper" labelledby="partners-title">
+    <SectionHeading id="partners-title" title={t.partners.sectionTitle} />
+    <PartnerSpotlight variant="card" placement="about" />
   </Section>
 
   <Section tone="surface" labelledby="clients-title">

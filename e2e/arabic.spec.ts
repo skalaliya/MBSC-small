@@ -15,6 +15,7 @@ const ROUTES = [
   '/ar/projects/moomba-cementing-qa',
   '/ar/insights',
   '/ar/insights/ml-grade-control',
+  '/ar/insights/mbsc-algorythmos-partnership',
   '/ar/training',
   '/ar/training/2027',
   '/ar/rental',
@@ -166,4 +167,12 @@ test.describe('Arabic', () => {
       expect(h).toBeLessThanOrEqual(81);
     });
   }
+  test('the partner mention reads correctly in Arabic', async ({ page }) => {
+    test.skip(!built, 'Arabic not built');
+    await page.goto('/ar/about');
+    await expect(page.locator('main span[dir="ltr"]', { hasText: 'Algoryth' })).toHaveCount(1);
+    await expect(page.locator('main a[href^="https://algorythmos.com/au-en/about"]')).toContainText(
+      'بالإنجليزية',
+    );
+  });
 });

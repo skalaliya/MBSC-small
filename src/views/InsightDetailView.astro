@@ -1,6 +1,6 @@
 ---
 import { Picture, getImage } from 'astro:assets';
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import Section from '../components/ui/Section.astro';
@@ -33,6 +33,12 @@ const translations = await getCollection(
   (e) => e.data.slug === a.slug && e.data.locale !== locale && isPublic(e),
 );
 const cover = await getImage({ src: a.cover, format: 'jpg', width: 1200 });
+// A confirmed partner the article is about becomes a schema.org mention (its site root, no UTM).
+const partner = a.partner ? await getEntry(a.partner) : undefined;
+const mentions =
+  partner?.data.confirmed === true
+    ? [{ name: partner.data.name, url: new URL(partner.data.site.en).origin }]
+    : undefined;
 const path = L(`/insights/${a.slug}`);
 const crumbs = [
   { label: t.nav.home, href: L('/') },
@@ -69,6 +75,7 @@ const meta = [
       dateModified: a.updated,
       locale,
       keywords: a.tags.map((tag) => t.insights.tags[tag]),
+      mentions,
     }),
   ]}
 >
