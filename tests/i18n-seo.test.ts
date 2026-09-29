@@ -45,11 +45,13 @@ describe('buildSeo', () => {
       locale: 'fr',
       title: 't',
       description: 'd',
+      published: ['en', 'fr', 'ar'],
     });
     expect(s.canonical).toBe(`${site}/fr/services`);
     expect(s.alternates).toEqual([
       { hreflang: 'en-AU', href: `${site}/services` },
       { hreflang: 'fr', href: `${site}/fr/services` },
+      { hreflang: 'ar', href: `${site}/ar/services` },
       { hreflang: 'x-default', href: `${site}/services` },
     ]);
     expect(s.ogLocale).toBe('fr_FR');
@@ -137,6 +139,7 @@ describe('Arabic', () => {
       locale: 'ar',
       title: 't',
       description: 'd',
+      published: ['en', 'fr'],
     });
     expect(arPage.noindex).toBe(true);
     expect(arPage.alternates).toEqual([]);
@@ -146,6 +149,7 @@ describe('Arabic', () => {
       locale: 'en',
       title: 't',
       description: 'd',
+      published: ['en', 'fr'],
     });
     expect(enPage.alternates.map((a) => a.hreflang)).toEqual(['en-AU', 'fr', 'x-default']);
     expect(enPage.ogLocaleAlternate).toEqual(['fr_FR']);

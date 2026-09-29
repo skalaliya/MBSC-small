@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { site } from '../src/data/site';
+
+const published = site.locales.ar.published;
 
 // Arabic ships dark. These tests run against a build made with PREVIEW_AR=true (the CI
 // "arabic" job); against a normal build they check that no Arabic page leaks out.
@@ -28,18 +31,28 @@ test.describe('Arabic', () => {
     built = (await request.get('/ar')).status() === 200;
   });
 
-  test('is not published: English pages never link or point to Arabic', async ({ page }) => {
+  test('English pages point to Arabic only once it is published', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('link[hreflang="ar"]')).toHaveCount(0);
-    if (!built) {
-      await expect(page.locator('[data-lang-switch="ar"]')).toHaveCount(0);
-      const res = await page.request.get('/ar/about');
-      expect(res.status()).toBe(404);
+    if (published) {
+      expect(built, 'published Arabic must be built').toBe(true);
+      await expect(page.locator('link[hreflang="ar"]')).toHaveAttribute(
+        'href',
+        'https://www.mbscaustralia.com.au/ar',
+      );
+      await expect(page.locator('[data-lang-switch="ar"]').first()).toHaveAttribute('href', '/ar');
+      const xml = await (await page.request.get('/sitemap-0.xml')).text();
+      expect(xml).toContain('https://www.mbscaustralia.com.au/ar/services/ai-mining');
+    } else {
+      await expect(page.locator('link[hreflang="ar"]')).toHaveCount(0);
+      if (!built) {
+        await expect(page.locator('[data-lang-switch="ar"]')).toHaveCount(0);
+        expect((await page.request.get('/ar/about')).status()).toBe(404);
+      }
     }
   });
 
   for (const route of ROUTES) {
-    test(`${route} renders right-to-left and is kept out of search`, async ({ page }) => {
+    test(`${route} renders right-to-left with the right search signals`, async ({ page }) => {
       test.skip(!built, 'Arabic not built (set PREVIEW_AR=true)');
       const errors: string[] = [];
       page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
@@ -50,8 +63,14 @@ test.describe('Arabic', () => {
       await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
       await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
       await expect(page.locator('h1')).toHaveCount(1);
-      await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
-      await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
+      if (published) {
+        // Public: indexable, with the full hreflang set (en, fr, ar, x-default).
+        await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+        await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(4);
+      } else {
+        await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+        await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
+      }
       // Latin digits only, as agreed for Gulf business usage.
       expect(await page.locator('main').innerText()).not.toMatch(/[٠-٩]/);
       const overflow = await page.evaluate(

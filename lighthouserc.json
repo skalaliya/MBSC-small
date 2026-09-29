@@ -9,7 +9,9 @@
         "http://localhost:4420/training",
         "http://localhost:4420/fr",
         "http://localhost:4420/projects/moomba-cementing-qa",
-        "http://localhost:4420/insights/ml-grade-control"
+        "http://localhost:4420/insights/ml-grade-control",
+        "http://localhost:4420/ar",
+        "http://localhost:4420/ar/services/ai-mining"
       ],
       "numberOfRuns": 3,
       "settings": { "formFactor": "mobile", "chromeFlags": "--headless=new --no-sandbox" }

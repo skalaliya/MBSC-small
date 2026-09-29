@@ -30,7 +30,7 @@ export const site = {
    * hreflang until a native speaker has reviewed them and this is set to true.
    * Previews can still build them with PREVIEW_AR=true (never indexed).
    */
-  locales: { ar: { published: false as boolean } },
+  locales: { ar: { published: true as boolean } },
   /** Only shown once a certificate number is supplied. */
   iso9001: null as null | { number: string; body: string; expires: string },
   regions: ['au', 'me', 'eu'] as const,

@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { site } from '../src/data/site';
 
 const ROUTES = [
   '/',
@@ -52,7 +53,10 @@ for (const route of LOCALISED) {
       'href',
       /^https:\/\/www\.mbscaustralia\.com\.au/,
     );
-    expect(await page.locator('link[rel="alternate"][hreflang]').count()).toBe(3);
+    // en, fr (+ ar once published) and x-default.
+    expect(await page.locator('link[rel="alternate"][hreflang]').count()).toBe(
+      site.locales.ar.published ? 4 : 3,
+    );
     // Give deferred scripts a moment to run so their errors are caught.
     await page.waitForTimeout(300);
     expect(errors).toEqual([]);

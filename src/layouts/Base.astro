@@ -85,7 +85,9 @@ const onVercel = import.meta.env.PROD && process.env.VERCEL === '1';
     {locale === 'ar' ? (
       <Font
         cssVariable="--font-arabic"
-        preload={[{ weight: 400, subset: 'arabic', style: 'normal' }]}
+        // Preload only the bold Arabic file used by the hero heading: it avoids a visible
+        // re-layout when the font swaps in, without flooding slow connections.
+        preload={[{ weight: 700, subset: 'arabic', style: 'normal' }]}
       />
     ) : (
       <>

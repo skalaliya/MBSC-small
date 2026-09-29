@@ -61,7 +61,8 @@ export default defineConfig({
       name: 'IBM Plex Sans Arabic',
       cssVariable: '--font-arabic',
       // Only rendered on Arabic pages (Base.astro), so English and French pages never load it.
-      weights: [400, 600, 700],
+      // Two weights keep the first paint light (semibold text resolves to 700).
+      weights: [400, 700],
       subsets: ['arabic', 'latin'],
       styles: ['normal'],
       fallbacks: ['Tahoma', 'ui-sans-serif', 'system-ui', 'sans-serif'],
