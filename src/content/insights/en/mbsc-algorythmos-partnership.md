@@ -4,6 +4,7 @@ locale: 'en'
 title: 'MBSC Australia partners with Algorythmos on AI'
 description: 'MBSC Australia has partnered with Algorythmos, an AI consultancy in Sydney and Paris, to engineer the AI behind its services for mining and energy.'
 date: '2026-09-29'
+updated: '2026-10-16'
 authorRole: 'MBSC Australia'
 tags: ['news', 'ai']
 cover: '../../../assets/images/about-engineers.jpg'
@@ -34,6 +35,8 @@ MBSC engineers remain responsible for the engineering. They define each problem,
 Mining and energy operators get field engineering and AI engineering in one engagement, with qualified engineers involved from the first data review to the final recommendation. You can read more about [Algorythmos's AI engineering services](https://algorythmos.com/au-en/services?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
 
 Algorythmos has also [announced the partnership on its blog](https://algorythmos.com/au-en/blog/mbsc-australia-partnership?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
+
+Together we have published an industry report, [AI in Mining: Connecting Critical Minerals, Robotics and Intelligent Infrastructure](https://algorythmos.com/au-en/case-studies/ai-in-mining-mbsc?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article). It sets out where AI can support exploration data, predictive maintenance, robotics and remote sites, and what it cannot do.
 
 ## Getting started
 

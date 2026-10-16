@@ -11,7 +11,7 @@
     },
     "paths": {
       "home": "",
-      "ai": "/services/mlops-cicd",
+      "ai": "/case-studies/ai-in-mining-mbsc",
       "about": "/about",
       "article": "/services"
     },
@@ -65,9 +65,9 @@
           "ar": "زيارة موقع algorythmos.com (بالإنجليزية)"
         },
         "ai": {
-          "en": "MLOps and model deployment by Algorythmos",
-          "fr": "MLOps et déploiement de modèles par Algorythmos",
-          "ar": "عمليات تعلّم الآلة ونشر النماذج لدى Algorythmos (بالإنجليزية)"
+          "en": "Read our AI in mining report with Algorythmos",
+          "fr": "Lire notre rapport sur l’IA dans les mines avec Algorythmos",
+          "ar": "اقرأ تقريرنا عن الذكاء الاصطناعي في التعدين مع Algorythmos (بالإنجليزية)"
         },
         "about": {
           "en": "About Algorythmos",

@@ -346,7 +346,7 @@ test('audit guards: honest labels and no stray claims', async ({ page }) => {
 // Technology partner: one followed, contextual link per placement, never sitewide.
 for (const [route, placement, path] of [
   ['/', 'home', '/au-en'],
-  ['/services/ai-mining', 'ai', '/au-en/services/mlops-cicd'],
+  ['/services/ai-mining', 'ai', '/au-en/case-studies/ai-in-mining-mbsc'],
   ['/about', 'about', '/au-en/about'],
   ['/fr', 'home', '/fr-fr'],
   ['/fr/about', 'about', '/fr-fr/about'],

@@ -4,6 +4,7 @@ locale: 'fr'
 title: 'MBSC Australia s’associe à Algorythmos pour l’IA'
 description: 'MBSC Australia s’associe à Algorythmos, cabinet de conseil en IA basé à Sydney et à Paris, pour concevoir l’IA de ses services aux mines et à l’énergie.'
 date: '2026-09-29'
+updated: '2026-10-16'
 authorRole: 'MBSC Australia'
 tags: ['news', 'ai']
 cover: '../../../assets/images/about-engineers.jpg'
@@ -34,6 +35,8 @@ Les ingénieurs de MBSC restent responsables de l’ingénierie. Ils définissen
 Les exploitants miniers et énergétiques bénéficient de l’ingénierie de terrain et de l’ingénierie de l’IA dans une même mission, avec des ingénieurs qualifiés impliqués de la première analyse des données à la recommandation finale. Pour en savoir plus, consultez les [services d’ingénierie de l’IA d’Algorythmos](https://algorythmos.com/fr-fr/services?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
 
 Algorythmos a également [annoncé le partenariat sur son blog](https://algorythmos.com/fr-fr/blog/mbsc-australia-partnership?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
+
+Nous avons publié ensemble un rapport sectoriel, [L’IA dans les mines : relier minéraux critiques, robotique et infrastructures intelligentes](https://algorythmos.com/fr-fr/case-studies/ai-in-mining-mbsc?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article). Il décrit où l’IA peut soutenir les données d’exploration, la maintenance prédictive, la robotique et les sites isolés, et ce qu’elle ne peut pas faire.
 
 ## Pour commencer
 
