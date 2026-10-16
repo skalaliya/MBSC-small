@@ -4,6 +4,7 @@ locale: 'ar'
 title: 'MBSC Australia تتعاون مع Algorythmos في الذكاء الاصطناعي'
 description: 'أبرمت MBSC Australia شراكة مع Algorythmos، شركة استشارات الذكاء الاصطناعي في سيدني وباريس، لهندسة الذكاء الاصطناعي في خدماتها لقطاعَي التعدين والطاقة.'
 date: '2026-09-29'
+updated: '2026-10-16'
 authorRole: 'MBSC Australia'
 tags: ['news', 'ai']
 cover: '../../../assets/images/about-engineers.jpg'
@@ -34,6 +35,8 @@ partner: 'algorythmos'
 يحصل مشغّلو التعدين والطاقة على الهندسة الميدانية وهندسة الذكاء الاصطناعي ضمن مهمة واحدة، بمشاركة مهندسين مؤهلين من المراجعة الأولى للبيانات حتى التوصية النهائية. ولمزيد من المعلومات، يمكنكم الاطلاع على [خدمات هندسة الذكاء الاصطناعي لدى Algorythmos (بالإنجليزية)](https://algorythmos.com/au-en/services?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
 
 كما [أعلنت Algorythmos عن الشراكة في مدونتها (بالإنجليزية)](https://algorythmos.com/au-en/blog/mbsc-australia-partnership?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article).
+
+وقد نشرنا معًا تقريرًا قطاعيًا بعنوان [الذكاء الاصطناعي في التعدين: ربط المعادن الحرجة والروبوتات والبنية التحتية الذكية (بالإنجليزية)](https://algorythmos.com/au-en/case-studies/ai-in-mining-mbsc?utm_source=mbscaustralia.com.au&utm_medium=referral&utm_campaign=partner&utm_content=article)، يوضح المجالات التي يمكن أن يدعم فيها الذكاء الاصطناعي بيانات الاستكشاف والصيانة التنبؤية والروبوتات والمواقع النائية، وحدود ما لا يستطيع القيام به.
 
 ## كيف تبدؤون
 
