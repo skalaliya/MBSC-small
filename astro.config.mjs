@@ -20,7 +20,8 @@ for (const locale of readdirSync('src/content/insights')) {
   for (const file of readdirSync(`src/content/insights/${locale}`)) {
     if (!file.endsWith('.md')) continue;
     const fm = readFileSync(`src/content/insights/${locale}/${file}`, 'utf8').split('---')[1] ?? '';
-    const pick = (k) => fm.match(new RegExp(`^${k}:\\s*['"]?(\\d{4}-\\d{2}-\\d{2})`, 'm'))?.[1];
+    const pick = (/** @type {string} */ k) =>
+      fm.match(new RegExp(`^${k}:\\s*['"]?(\\d{4}-\\d{2}-\\d{2})`, 'm'))?.[1];
     const slug = fm.match(/^slug:\s*['"]?([a-z0-9-]+)/m)?.[1] ?? file.replace(/\.md$/, '');
     const prefix = locale === 'en' ? '' : `/${locale}`;
     const when = pick('updated') ?? pick('date');
