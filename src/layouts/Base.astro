@@ -85,9 +85,13 @@ const onVercel = import.meta.env.PROD && process.env.VERCEL === '1';
     {locale === 'ar' ? (
       <Font
         cssVariable="--font-arabic"
-        // Preload only the bold Arabic file used by the hero heading: it avoids a visible
-        // re-layout when the font swaps in, without flooding slow connections.
-        preload={[{ weight: 700, subset: 'arabic', style: 'normal' }]}
+        // Preload both Arabic files the hero uses: 700 for the heading, 400 for the lead.
+        // The family is display: optional (astro.config.mjs), so whatever is ready at first
+        // paint is kept; preloading both makes that Plex rather than Tahoma.
+        preload={[
+          { weight: 700, subset: 'arabic', style: 'normal' },
+          { weight: 400, subset: 'arabic', style: 'normal' },
+        ]}
       />
     ) : (
       <>

@@ -66,6 +66,10 @@ export default defineConfig({
       subsets: ['arabic', 'latin'],
       styles: ['normal'],
       fallbacks: ['Tahoma', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      // No swap: the Arabic hero heading is a line taller in Tahoma, so a late swap moved
+      // the page by ~0.1 CLS. With both weights preloaded the font is ready on first paint;
+      // on a connection too slow for that, the page keeps Tahoma instead of jumping.
+      display: 'optional',
     },
   ],
   security: {
