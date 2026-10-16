@@ -67,6 +67,7 @@ const valueIcons = ['map-pin', 'award', 'monitor'] as const;
 <Base
   title={fmt(t.meta.pages.training.title, { year })}
   description={fmt(t.meta.pages.training.description, { year })}
+  noindex={year !== primaryYear}
   jsonLd={[
     breadcrumbs(crumbs),
     faqPage(t.faq.training),

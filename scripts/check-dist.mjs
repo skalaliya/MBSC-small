@@ -113,6 +113,16 @@ if ([...routes].some((r) => r === '/ar' || r.startsWith('/ar/')))
     if (!routes.has(ar)) problems.push(`${r}: no Arabic page at ${ar}`);
   }
 
+// A sitemap URL must be indexable: listing a noindex page sends Google mixed signals.
+const sitemap = await readFile(join(staticDir, 'sitemap-0.xml'), 'utf8').catch(() => '');
+for (const [, loc] of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+  const path = new URL(loc).pathname.replace(/\/$/, '');
+  const html = await readFile(join(staticDir, path, 'index.html'), 'utf8').catch(() => null);
+  if (html === null) problems.push(`sitemap lists ${path || '/'} but the build has no such page`);
+  else if (/<meta name="robots" content="[^"]*noindex/.test(html))
+    problems.push(`sitemap lists ${path || '/'}, which is noindex`);
+}
+
 if (problems.length) {
   console.error(
     `check-dist: ${problems.length} problem(s) in ${pages} pages\n` +

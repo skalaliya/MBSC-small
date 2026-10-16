@@ -3,6 +3,7 @@ import { defineConfig, envField, fontProviders } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { readFileSync, readdirSync } from 'node:fs';
 import { site as company } from './src/data/site.ts';
 
 const SITE = process.env.SITE_URL ?? 'https://www.mbscaustralia.com.au';
@@ -11,6 +12,22 @@ const SITE = process.env.SITE_URL ?? 'https://www.mbscaustralia.com.au';
 const isDev = process.argv.includes('dev');
 // Arabic is listed in the sitemap only once published (see site.locales.ar in src/data/site.ts).
 const arPublished = company.locales.ar.published;
+
+// lastmod for insight articles, from their front matter (updated, else date). Other pages carry
+// no lastmod: a build-time date on every URL would tell Google nothing and teach it to ignore it.
+const insightLastmod = new Map();
+for (const locale of readdirSync('src/content/insights')) {
+  for (const file of readdirSync(`src/content/insights/${locale}`)) {
+    if (!file.endsWith('.md')) continue;
+    const fm = readFileSync(`src/content/insights/${locale}/${file}`, 'utf8').split('---')[1] ?? '';
+    const pick = (/** @type {string} */ k) =>
+      fm.match(new RegExp(`^${k}:\\s*['"]?(\\d{4}-\\d{2}-\\d{2})`, 'm'))?.[1];
+    const slug = fm.match(/^slug:\s*['"]?([a-z0-9-]+)/m)?.[1] ?? file.replace(/\.md$/, '');
+    const prefix = locale === 'en' ? '' : `/${locale}`;
+    const when = pick('updated') ?? pick('date');
+    if (when) insightLastmod.set(`${prefix}/insights/${slug}`, when);
+  }
+}
 
 export default defineConfig({
   site: SITE,
@@ -27,7 +44,13 @@ export default defineConfig({
         !page.includes('/api/') &&
         !/\/404\/?$/.test(page) &&
         !/\/contact\/sent\/?$/.test(page) &&
+        // Future-year calendars repeat the current catalogue with new dates; they are noindex.
+        !/\/training\/\d{4}\/?$/.test(page) &&
         (arPublished || !/^https?:\/\/[^/]+\/ar(\/|$)/.test(page)),
+      serialize(item) {
+        const when = insightLastmod.get(new URL(item.url).pathname.replace(/\/$/, ''));
+        return when ? { ...item, lastmod: new Date(when).toISOString() } : item;
+      },
     }),
   ],
   i18n: {

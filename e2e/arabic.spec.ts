@@ -65,8 +65,11 @@ test.describe('Arabic', () => {
       await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
       await expect(page.locator('h1')).toHaveCount(1);
       if (published) {
-        // Public: indexable, with the full hreflang set (en, fr, ar, x-default).
-        await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+        // Public: indexable (except future-year calendars), with the full hreflang set.
+        const futureYear = /\/training\/\d{4}$/.test(route);
+        if (futureYear)
+          await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+        else await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
         await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(4);
       } else {
         await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
