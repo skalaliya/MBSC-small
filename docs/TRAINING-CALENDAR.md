@@ -24,7 +24,7 @@ Do this **before 1 October** each year, when next year's calendar takes over `/t
    npm run calendar:pdf
    ```
    This writes `public/downloads/mbsc-training-calendar-<year>-{en,fr,ar}.pdf` and `calendar-pdf.json`. Commit them.
-6. Run `npm test`, `npm run build` and `npm run test:e2e`, then open a pull request.
+6. Run `npm test`, `npm run build` and `npm run test:e2e`, then open a pull request into `integration`. The change reaches the live site with the next release (`integration` → `main`).
 
 Optional: refresh the launch announcement in `src/content/insights/{en,fr,ar}/` (see `training-calendar-2027.md` for the pattern).
 

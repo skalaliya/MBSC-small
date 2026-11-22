@@ -64,4 +64,17 @@ Set in Vercel > Project > Settings > Environment Variables. See `.env.example`.
 
 ## Deployment
 
-Pushes to `main` deploy to production through Vercel's Git integration. `.github/workflows/ci.yml` runs type checks, unit tests, the build, and Playwright on every push and pull request. `.github/workflows/weekly-rebuild.yml` triggers a Vercel deploy hook every Monday so the training calendar's default year and upcoming sessions stay current; it needs the `VERCEL_DEPLOY_HOOK_URL` repository secret.
+### Branches
+
+| Branch                  | Role                                       | Deploys to                                              |
+| ----------------------- | ------------------------------------------ | ------------------------------------------------------- |
+| `integration` (default) | Development: every change lands here first | Vercel preview (stable branch URL, behind Vercel login) |
+| `main`                  | Production: only what is released          | https://www.mbscaustralia.com.au                        |
+
+Flow: branch from `integration` (`feat/…`, `fix/…`, `docs/…`), open a pull request into `integration`, merge when CI is green. To release, open a pull request from `integration` into `main` titled `Release: …`; merging it deploys production. Hotfixes branch from `main`, go to `main` by pull request, then `main` is merged back into `integration`.
+
+Both branches are protected by repository rulesets: changes only by pull request, the `build-and-test` check must pass (for `main` the branch must also be up to date), review threads must be resolved, and force-pushes and deletion are blocked.
+
+### Deploys
+
+Pushes to `main` deploy to production through Vercel's Git integration. `.github/workflows/ci.yml` runs type checks, unit tests, the build, and Playwright on every pull request and on pushes to `integration` and `main`. `.github/workflows/weekly-rebuild.yml` triggers a Vercel deploy hook every Monday so the training calendar's default year and upcoming sessions stay current; it needs the `VERCEL_DEPLOY_HOOK_URL` repository secret.

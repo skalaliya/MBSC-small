@@ -16,7 +16,8 @@ Everything else (which year leads `/training`, hiding finished sessions, retirin
 
 ## Ground rules
 
-- Run `npm run check`, `npm test`, `npm run build` and `npm run test:e2e` before opening a pull request. Changes go to `main` through pull requests.
+- Branches: `integration` is development (default branch), `main` is production. Branch from `integration` and open pull requests **into `integration`**. Only a release pull request (`integration` → `main`) or a hotfix goes into `main`. Both branches accept changes only through pull requests with a green `build-and-test` check; never force-push or try to push to them directly. See "Branches" in `README.md`.
+- Run `npm run check`, `npm test`, `npm run build` and `npm run test:e2e` before opening a pull request.
 - Commits and pull requests carry no AI attribution lines.
 - Trust content: no invented figures, testimonials or certification claims; numbers shown on the site come from the data.
 - Never write secrets (deploy hook URL, SMTP passwords) into the repository.
