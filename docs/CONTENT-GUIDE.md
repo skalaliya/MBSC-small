@@ -28,7 +28,9 @@ To create next year's calendar from an existing one:
 npm run calendar:year -- 2028 2029
 ```
 
-Sessions keep their ISO week and weekday, so a Monday-to-Friday course stays Monday to Friday. Review the output, then adjust individual dates as needed. The page at `/training` shows the current year by default; other years get `/training/<year>`.
+Sessions keep their ISO week and weekday, so a Monday-to-Friday course stays Monday to Friday. Review the output, then adjust individual dates as needed.
+
+**Every year: follow the checklist in [`TRAINING-CALENDAR.md`](TRAINING-CALENDAR.md)** (add public holidays, create the year, move holiday clashes, generate the PDFs). It also explains which year leads at `/training` and when.
 
 ## Client logos
 
