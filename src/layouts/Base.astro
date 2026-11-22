@@ -18,6 +18,8 @@ interface Props {
   hasAlternate?: boolean;
   ogType?: 'website' | 'article';
   jsonLd?: Record<string, unknown>[];
+  /** Page without navigation, footer or sticky CTA (printable documents). */
+  bare?: boolean;
 }
 
 const locale = toLocale(Astro.currentLocale);
@@ -30,6 +32,7 @@ const {
   hasAlternate,
   ogType = 'website',
   jsonLd = [],
+  bare = false,
 } = Astro.props;
 const seo = buildSeo({
   site: Astro.site ?? 'https://www.mbscaustralia.com.au',
@@ -124,12 +127,12 @@ const onVercel = import.meta.env.PROD && process.env.VERCEL === '1';
     >
       {t.a11y.skipToContent}
     </a>
-    <Navbar />
+    {!bare && <Navbar />}
     <main id="main" tabindex="-1" class="flex-1 outline-none">
       <slot />
     </main>
-    <Footer />
-    <StickyMobileCTA />
+    {!bare && <Footer />}
+    {!bare && <StickyMobileCTA />}
     <script>
       import '../scripts/reveal';
     </script>

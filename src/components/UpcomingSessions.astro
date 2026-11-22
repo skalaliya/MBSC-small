@@ -1,7 +1,7 @@
 ---
 import SessionRow from './SessionRow.astro';
 import { toLocale, useT } from '../i18n/utils';
-import { getCalendars, upcoming } from '../lib/queries';
+import { getCalendarState, upcoming } from '../lib/queries';
 
 interface Props {
   limit?: number;
@@ -10,7 +10,10 @@ const { limit = 3 } = Astro.props;
 const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
 // Render a few extra rows: the browser hides any that have finished since the last build.
-const sessions = upcoming(await getCalendars(), new Date(), limit + 6);
+const { calendars, today } = await getCalendarState();
+const sessions = upcoming(calendars, today, limit + 6);
+// Around New Year the list mixes two years: then every row says which.
+const mixed = new Set(sessions.map((s) => s.year)).size > 1;
 ---
 
 {sessions.length === 0 ? (
@@ -18,7 +21,7 @@ const sessions = upcoming(await getCalendars(), new Date(), limit + 6);
 ) : (
   <ul class="divide-y divide-line border-y border-line" data-upcoming data-limit={limit}>
     {sessions.map((s, i) => (
-      <SessionRow session={s} year={s.year} compact hidden={i >= limit} />
+      <SessionRow session={s} year={s.year} showYear={mixed} compact hidden={i >= limit} />
     ))}
   </ul>
 )}

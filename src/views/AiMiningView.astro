@@ -17,7 +17,7 @@ import pit from '../assets/images/ai-geology-pit.jpg';
 import drone from '../assets/images/ai-drone.jpg';
 import vrImage from '../assets/images/ai-vr-training.jpg';
 import { localizePath, toLocale, useT } from '../i18n/utils';
-import { getCalendars, upcoming } from '../lib/queries';
+import { buildToday, getCalendars, upcoming } from '../lib/queries';
 import { breadcrumbs, faqPage, service } from '../lib/jsonld';
 
 const locale = toLocale(Astro.currentLocale);
@@ -34,7 +34,7 @@ const crumbs = [
 const capabilityImages = [fleet, pit, drone, vrImage];
 const capabilityIcons: IconName[] = ['gauge', 'mountain', 'scan-eye', 'glasses'];
 const principleIcons: IconName[] = ['shield-check', 'users-round', 'workflow'];
-const courses = upcoming(await getCalendars(), new Date(), 60)
+const courses = upcoming(await getCalendars(), buildToday(), 60)
   .filter((s) => s.category === 'digitalAI')
   .slice(0, 3);
 ---

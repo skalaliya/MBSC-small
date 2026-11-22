@@ -1,0 +1,195 @@
+---
+/**
+ * "Next year's calendar is open" promotion, shown between the cutover date (site.calendar) and
+ * New Year, when the primary calendar is for a later year than today. Renders nothing otherwise,
+ * so it switches itself off on the first build of the new year.
+ *
+ * - training: two cards, the new calendar and the outgoing year's final sessions.
+ * - home: one compact band for the new calendar.
+ */
+import Badge from './ui/Badge.astro';
+import Section from './ui/Section.astro';
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+import { fmt, fmtCount, intlLocale, localizePath, toLocale, useT } from '../i18n/utils';
+import { getCalendarState, remaining } from '../lib/queries';
+import { currentPdf } from '../lib/calendar-pdf';
+import { parseISODate } from '../lib/dates';
+
+interface Props {
+  variant?: 'training' | 'home';
+  class?: string;
+}
+const { variant = 'training', class: className } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useT(locale);
+const l = t.training.launch;
+const L = (p: string) => localizePath(p, locale);
+
+const state = await getCalendarState();
+const launching = state.primary > Number(state.today.slice(0, 4));
+const primary = state.calendars.find((c) => c.year === state.primary)!;
+const scheduled = primary.sessions.filter((s) => s.start !== null).length;
+// Courses with at least one scheduled date (on-request programs are not counted).
+const courseCount = new Set(primary.sessions.filter((s) => s.start !== null).map((s) => s.course))
+  .size;
+
+const prev =
+  state.outgoing === null ? null : state.calendars.find((c) => c.year === state.outgoing)!;
+const left = prev ? remaining(prev.sessions, state.today) : [];
+const lastEnd = left.reduce((max, s) => (s.end! > max ? s.end! : max), '');
+const lastEndText = lastEnd
+  ? new Intl.DateTimeFormat(intlLocale[locale], { day: 'numeric', month: 'long' }).format(
+      parseISODate(lastEnd),
+    )
+  : '';
+
+const year = state.primary;
+const body = fmt(l.body, { sessions: scheduled, courses: courseCount });
+const pdf = await currentPdf(year, locale);
+const calendarHref = `${L('/training')}#calendar`;
+---
+
+{launching && variant === 'home' && (
+  <div
+    class:list={[
+      'relative overflow-hidden rounded-lg bg-navy-950 p-6 text-white sm:p-8',
+      className,
+    ]}
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-brand-gradient"
+      aria-hidden="true"
+    />
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+      <div class="max-w-2xl">
+        <Badge tone="dark">
+          <Icon name="calendar-days" size={14} />
+          {l.badge}
+        </Badge>
+        <p class="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">
+          {fmt(l.title, { year })}
+        </p>
+        <p class="mt-2 leading-7 text-navy-100">{body}</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <Button
+          href={calendarHref}
+          variant="inverse"
+          iconEnd="arrow-right"
+          data-track="calendar_launch_home_view"
+        >
+          {fmt(l.view, { year })}
+        </Button>
+        {pdf && (
+          <Button
+            href={pdf}
+            variant="outline-inverse"
+            iconStart="download"
+            data-track="calendar_launch_home_pdf"
+          >
+            {l.pdf}
+          </Button>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
+{launching && variant === 'training' && (
+  <Section
+    tone="surface"
+    spacing="none"
+    innerClass="pt-12 sm:pt-16"
+    labelledby="launch-title"
+    reveal={false}
+  >
+    <div class:list={['grid gap-6', prev && left.length > 0 && 'lg:grid-cols-5', className]}>
+      <div class="relative overflow-hidden rounded-lg bg-navy-950 p-6 text-white sm:p-8 lg:col-span-3">
+        <div
+          class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-brand-gradient"
+          aria-hidden="true"
+        />
+        <Badge tone="dark">
+          <Icon name="calendar-days" size={14} />
+          {l.badge}
+        </Badge>
+        <h2
+          id="launch-title"
+          class="mt-3 font-display text-white text-2xl font-bold tracking-tight sm:text-3xl"
+        >
+          {fmt(l.title, { year })}
+        </h2>
+        <p class="mt-2 max-w-xl leading-7 text-navy-100">{body}</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <Button
+            href="#calendar"
+            variant="inverse"
+            iconEnd="arrow-right"
+            data-track="calendar_launch_view"
+          >
+            {fmt(l.view, { year })}
+          </Button>
+          {pdf && (
+            <Button
+              href={pdf}
+              variant="outline-inverse"
+              iconStart="download"
+              data-track="calendar_launch_pdf"
+            >
+              {l.pdf}
+            </Button>
+          )}
+          <Button
+            href={`${L('/contact')}?topic=training`}
+            variant="ghost-inverse"
+            data-track="calendar_launch_enquire"
+          >
+            {fmt(l.enquire, { year })}
+          </Button>
+        </div>
+      </div>
+      {prev && left.length > 0 && (
+        <div
+          class="flex flex-col rounded-lg bg-white p-6 ring-1 ring-line sm:p-8 lg:col-span-2"
+          data-hide-after={lastEnd}
+        >
+          <Badge tone="brand">
+            <Icon name="hourglass" size={14} />
+            {l.finalBadge}
+          </Badge>
+          <h2 class="mt-3 font-display text-xl font-bold tracking-tight">
+            {fmt(l.finalTitle, { year: prev.year })}
+          </h2>
+          <p class="mt-2 leading-7 text-ink-500">
+            {fmtCount(l.finalBody, left.length, locale, { date: lastEndText })}
+          </p>
+          <div class="mt-auto pt-6">
+            <Button
+              href={`${L(`/training/${prev.year}`)}#calendar`}
+              variant="secondary"
+              iconEnd="arrow-right"
+              data-track="calendar_launch_outgoing"
+            >
+              {fmt(l.finalLink, { year: prev.year })}
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  </Section>
+)}
+
+<script>
+  import { todayISO } from '../scripts/today';
+  // A build can be days old: hide the "final sessions" card once its last session has ended.
+  const today = todayISO();
+  document.querySelectorAll<HTMLElement>('[data-hide-after]').forEach((el) => {
+    if ((el.dataset.hideAfter ?? '') >= today) return;
+    el.hidden = true;
+    // Let the remaining card take the full width.
+    const grid = el.parentElement;
+    if (grid) grid.style.gridTemplateColumns = '1fr';
+    grid?.querySelectorAll<HTMLElement>(':scope > *').forEach((c) => (c.style.gridColumn = 'auto'));
+  });
+</script>

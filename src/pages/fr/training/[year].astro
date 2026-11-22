@@ -1,13 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import TrainingView from '../../../views/TrainingView.astro';
-import { defaultYear } from '../../../lib/queries';
+import { getCalendarState } from '../../../lib/queries';
 
-// The current (default) year lives at /training; other years get their own page.
+// The primary year lives at /training. Later years, and the previous year while it still has
+// sessions to run, get their own page. Other years redirect (scripts/vercel-headers.mjs).
 export async function getStaticPaths() {
-  const years = (await getCollection('calendars')).map((c) => c.data.year);
-  const primary = defaultYear(years);
-  return years.filter((y) => y !== primary).map((y) => ({ params: { year: String(y) } }));
+  const { pages } = await getCalendarState();
+  return pages.map((y) => ({ params: { year: String(y) } }));
 }
 const year = Number(Astro.params.year);
 ---

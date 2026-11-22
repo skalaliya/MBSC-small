@@ -1,4 +1,5 @@
 ---
+import CalendarLaunch from '../components/CalendarLaunch.astro';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import TrustStrip from '../components/TrustStrip.astro';
@@ -181,6 +182,7 @@ const latest = (await getInsights(locale)).slice(0, 3);
   )}
 
   <Section tone="surface" labelledby="training-title">
+    <CalendarLaunch variant="home" class="mb-12" />
     <div class="grid gap-12 lg:grid-cols-12">
       <div class="lg:col-span-4">
         <SectionHeading

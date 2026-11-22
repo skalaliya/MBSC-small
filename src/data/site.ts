@@ -33,6 +33,12 @@ export const site = {
   locales: { ar: { published: true as boolean } },
   /** Only shown once a certificate number is supplied. */
   iso9001: null as null | { number: string; body: string; expires: string },
+  /**
+   * Training calendar. From this date each year, next year's calendar leads at /training and the
+   * current year moves to the back with only its remaining sessions. Set { month: 12, day: 31 }
+   * to switch on New Year's Eve instead.
+   */
+  calendar: { cutover: { month: 10, day: 1 } },
   regions: ['au', 'me', 'eu'] as const,
   stats: {
     basisDate: '2026-09-01',

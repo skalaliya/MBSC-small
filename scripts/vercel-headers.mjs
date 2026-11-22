@@ -3,6 +3,7 @@
 // .vercel/output/config.json, so this runs after `astro build` (see package.json "build").
 import { readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { calendarRedirects, calendarState } from './calendar-state.mjs';
 
 const path = new URL('../.vercel/output/config.json', import.meta.url);
 if (!existsSync(path)) {
@@ -22,6 +23,18 @@ const securityHeaders = {
   'X-Frame-Options': 'DENY',
 };
 
+// /training/<year> for years without their own page goes to /training: the primary year after
+// the cutover (its old URL was shared while it was a future year) and retired past years.
+const staticDir = new URL('../.vercel/output/static/', import.meta.url);
+const prefixes = ['', '/fr', '/ar'].filter(
+  (p) => p === '' || existsSync(new URL(`.${p}/training/index.html`, staticDir)),
+);
+const { redirected, primary, today } = calendarState();
+const yearRedirects = calendarRedirects(redirected, prefixes);
+console.log(
+  `[vercel-headers] calendar ${today}: primary ${primary}, redirecting ${redirected.join(', ') || 'no years'} in ${prefixes.map((p) => p || '/').join(' ')}`,
+);
+
 const added = [
   { src: '/(.*)', headers: securityHeaders, continue: true },
   // Crawlers often guess /sitemap.xml; ours is the Astro sitemap index.
@@ -38,6 +51,7 @@ const added = [
     headers: { Location: '/fr' },
     status: 308,
   },
+  ...yearRedirects,
 ];
 
 const config = JSON.parse(await readFile(path, 'utf8'));
