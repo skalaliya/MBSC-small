@@ -16,6 +16,8 @@ jobs:
       - name: Call Vercel deploy hook
         run: |
           if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
-            echo "VERCEL_DEPLOY_HOOK_URL secret is not set; skipping." && exit 0
+            # Fail loudly: the training calendar (year switch, retiring past years, "upcoming"
+            # lists) only moves on when the site rebuilds.
+            echo "::error::VERCEL_DEPLOY_HOOK_URL secret is not set, so production is not being rebuilt." && exit 1
           fi
           curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
