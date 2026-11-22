@@ -9,8 +9,10 @@ import type { Calendar } from '../lib/queries';
 
 interface Props {
   calendar: Calendar;
+  /** Show only months that have sessions (the outgoing year's remaining sessions). */
+  skipEmptyMonths?: boolean;
 }
-const { calendar } = Astro.props;
+const { calendar, skipEmptyMonths = false } = Astro.props;
 const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
 const c = t.training.calendar;
@@ -21,12 +23,14 @@ const monthName = (m: number) => {
   );
   return name.charAt(0).toLocaleUpperCase(intlLocale[locale]) + name.slice(1);
 };
-const months = Array.from({ length: 12 }, (_, i) => i + 1).map((m) => ({
-  m,
-  sessions: calendar.sessions
-    .filter((s) => s.month === m)
-    .sort((a, b) => (a.start ?? '9999').localeCompare(b.start ?? '9999')),
-}));
+const months = Array.from({ length: 12 }, (_, i) => i + 1)
+  .map((m) => ({
+    m,
+    sessions: calendar.sessions
+      .filter((s) => s.month === m)
+      .sort((a, b) => (a.start ?? '9999').localeCompare(b.start ?? '9999')),
+  }))
+  .filter((x) => !skipEmptyMonths || x.sessions.length > 0);
 const used = {
   category: CATEGORIES.filter((k) => calendar.sessions.some((s) => s.category === k)),
   delivery: DELIVERY.filter((k) => calendar.sessions.some((s) => s.delivery === k)),
@@ -133,7 +137,7 @@ const total = calendar.sessions.length;
         ) : (
           <ul class="divide-y divide-line">
             {sessions.map((s) => (
-              <SessionRow session={s} year={calendar.year} />
+              <SessionRow session={s} year={calendar.year} contextYear={calendar.year} />
             ))}
           </ul>
         )}

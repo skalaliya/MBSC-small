@@ -12,7 +12,14 @@ import CTABand from '../components/ui/CTABand.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SessionRow from '../components/SessionRow.astro';
 import { fmt, localizePath, toLocale, useT } from '../i18n/utils';
-import { getCalendars, getProjects, getServices, upcoming, type Service } from '../lib/queries';
+import {
+  buildToday,
+  getCalendars,
+  getProjects,
+  getServices,
+  upcoming,
+  type Service,
+} from '../lib/queries';
 import { breadcrumbs, service as serviceLd } from '../lib/jsonld';
 
 interface Props {
@@ -29,7 +36,7 @@ const related = (await getProjects(locale))
   .slice(0, 3);
 const others = (await getServices(locale)).filter((o) => o.data.slug !== s.slug);
 const sessions = s.categories.length
-  ? upcoming(await getCalendars(), new Date(), 40)
+  ? upcoming(await getCalendars(), buildToday(), 40)
       .filter((x) => (s.categories as string[]).includes(x.category))
       .slice(0, 4)
   : [];

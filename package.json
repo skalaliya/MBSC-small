@@ -17,7 +17,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "calendar:year": "node scripts/generate-calendar-year.mjs",
-    "og": "npm run build && node scripts/make-og.mjs && npm run build"
+    "og": "npm run build && node scripts/make-og.mjs && npm run build",
+    "calendar:pdf": "astro build && node scripts/vercel-headers.mjs && node scripts/make-calendar-pdf.mjs && npm run build",
+    "calendar:holidays": "node scripts/fix-holiday-clashes.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",

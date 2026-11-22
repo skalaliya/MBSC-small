@@ -4,7 +4,7 @@ import Icon from './ui/Icon.astro';
 import { fmt, fmtCount, intlLocale, localizePath, toLocale, useT } from '../i18n/utils';
 import { CATEGORY_DOT } from '../lib/content';
 import { daysInclusive, formatRange } from '../lib/dates';
-import { sessionDates } from '../lib/queries';
+import { buildToday, sessionDates } from '../lib/queries';
 import type { Session } from '../lib/calendar-model';
 
 interface Props {
@@ -13,16 +13,24 @@ interface Props {
   showYear?: boolean;
   compact?: boolean;
   hidden?: boolean;
+  /** Dates in this year are shown without it. Defaults to the current year. */
+  contextYear?: number;
 }
-const { session: s, year, showYear = false, compact = false, hidden = false } = Astro.props;
+const {
+  session: s,
+  year,
+  showYear = false,
+  compact = false,
+  hidden = false,
+  contextYear = Number(buildToday().slice(0, 4)),
+} = Astro.props;
 const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
 const c = t.training.calendar;
 const dates = sessionDates(s);
 const title = s.title[locale];
-// Show the year whenever a date is not in the current year, so lists that span New Year are clear.
-const withYear =
-  showYear || (dates !== null && dates.end.getFullYear() !== new Date().getFullYear());
+// Show the year whenever a date is outside the context year, so lists that span New Year are clear.
+const withYear = showYear || (dates !== null && dates.end.getFullYear() !== contextYear);
 const when = dates
   ? formatRange(dates.start, dates.end, intlLocale[locale], withYear)
   : c.onRequest;

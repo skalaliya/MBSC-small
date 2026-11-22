@@ -26,6 +26,7 @@ const TYPES = {
   '.avif': 'image/avif',
   '.woff2': 'font/woff2',
   '.ico': 'image/x-icon',
+  '.pdf': 'application/pdf',
   '.webmanifest': 'application/manifest+json',
 };
 

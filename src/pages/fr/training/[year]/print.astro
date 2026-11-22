@@ -1,0 +1,13 @@
+---
+import CalendarPrintView from '../../../../views/CalendarPrintView.astro';
+import { getCalendarState } from '../../../../lib/queries';
+
+// Printable calendar for the primary year only (source of the PDF downloads).
+export async function getStaticPaths() {
+  const { primary } = await getCalendarState();
+  return [{ params: { year: String(primary) } }];
+}
+const year = Number(Astro.params.year);
+---
+
+<CalendarPrintView year={year} />

@@ -1,6 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { site } from '../src/data/site';
+import { calendarState } from '../scripts/calendar-state.mjs';
+
+// Year pages depend on the date (see src/lib/calendar-lifecycle.ts): take them from the same plan.
+const cal = calendarState();
 
 const ROUTES = [
   '/',
@@ -12,7 +16,8 @@ const ROUTES = [
   '/insights',
   '/insights/ml-grade-control',
   '/training',
-  '/training/2027',
+  ...cal.pages.map((y) => `/training/${y}`),
+  `/training/${cal.primary}/print`,
   '/rental',
   '/about',
   '/contact',
@@ -321,6 +326,59 @@ test('duplicate and guessed URLs redirect to the canonical ones', async ({ reque
   }
 });
 
+test('training: year URLs without a page redirect to /training', async ({ request }) => {
+  for (const year of cal.redirected)
+    for (const prefix of ['', '/fr']) {
+      const res = await request.get(`${prefix}/training/${year}`, { maxRedirects: 0 });
+      expect(res.status(), `${prefix}/training/${year}`).toBe(307);
+      expect(res.headers()['location']).toBe(`${prefix}/training`);
+    }
+});
+
+test('training: year tabs follow the calendar plan', async ({ page }) => {
+  await page.goto('/training');
+  const tabs = page.getByRole('navigation', { name: 'Calendar year' }).getByRole('link');
+  await expect(tabs).toHaveCount(cal.active.length);
+  for (const [i, y] of cal.active.entries()) await expect(tabs.nth(i)).toContainText(String(y));
+  await expect(tabs.first()).toHaveAttribute('aria-current', 'page');
+});
+
+test('training: the outgoing year shows only sessions still to run', async ({ page }) => {
+  test.skip(cal.outgoing === null, 'no outgoing year at this date');
+  await page.goto(`/training/${cal.outgoing}`);
+  const ends = await page
+    .locator('[data-calendar] [data-session]')
+    .evaluateAll((rows) => rows.map((r) => (r as HTMLElement).dataset.end ?? ''));
+  expect(ends.length).toBeGreaterThan(0);
+  expect(ends.every((e) => e !== '' && e >= cal.today)).toBe(true);
+  // No empty months before the remaining sessions.
+  await expect(page.locator('[data-calendar] [data-month]:not(:has([data-session]))')).toHaveCount(
+    0,
+  );
+});
+
+test('training: the new-year launch blocks link to the calendar and a valid PDF', async ({
+  page,
+  request,
+}) => {
+  test.skip(cal.primary <= Number(cal.today.slice(0, 4)), 'outside the launch window');
+  for (const path of ['/training', '/']) {
+    await page.goto(path);
+    const pdf = page.locator('a[href^="/downloads/"][href$=".pdf"]').first();
+    await expect(pdf).toBeVisible();
+    const res = await request.get((await pdf.getAttribute('href'))!);
+    expect(res.status()).toBe(200);
+    expect(res.headers()['content-type']).toBe('application/pdf');
+    expect((await res.body()).subarray(0, 5).toString()).toBe('%PDF-');
+  }
+  await page.goto('/training');
+  await expect(page.locator('#launch-title')).toContainText(String(cal.primary));
+  if (cal.outgoing !== null)
+    await expect(
+      page.locator(`a[href="/training/${cal.outgoing}#calendar"]`).first(),
+    ).toBeVisible();
+});
+
 test('the sitemap lists no noindex confirmation pages', async ({ request }) => {
   const xml = await (await request.get('/sitemap-0.xml')).text();
   expect(xml).toContain('/contact</loc>');
@@ -370,11 +428,13 @@ for (const [route, placement, path] of [
   });
 }
 
-test('partnership announcement: first on /insights, links to the partner, schema mention', async ({
+test('partnership announcement: listed on /insights, links to the partner, schema mention', async ({
   page,
 }) => {
   await page.goto('/insights');
-  await expect(page.locator('.insights li[data-tags]').first()).toContainText('Algorythmos');
+  await expect(
+    page.locator('.insights li[data-tags]').filter({ hasText: 'Algorythmos' }),
+  ).toHaveCount(1);
   await page.goto('/insights/mbsc-algorythmos-partnership');
   const body = page.locator('.prose-mbsc a[href^="https://algorythmos.com/au-en/services"]');
   await expect(body).toHaveCount(1);

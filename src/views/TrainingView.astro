@@ -10,10 +10,12 @@ import Button from '../components/ui/Button.astro';
 import CTABand from '../components/ui/CTABand.astro';
 import TrainingCalendar from '../components/TrainingCalendar.astro';
 import UpcomingSessions from '../components/UpcomingSessions.astro';
+import CalendarLaunch from '../components/CalendarLaunch.astro';
+import Callout from '../components/ui/Callout.astro';
 import header from '../assets/images/header-training-classroom.jpg';
 import { fmt, fmtCount, localizePath, toLocale, useT } from '../i18n/utils';
 import { CATEGORIES, CATEGORY_DOT } from '../lib/content';
-import { defaultYear, getCalendars, upcoming } from '../lib/queries';
+import { getCalendarState, remaining, upcoming } from '../lib/queries';
 import { breadcrumbs, courses, faqPage } from '../lib/jsonld';
 
 interface Props {
@@ -23,12 +25,24 @@ const locale = toLocale(Astro.currentLocale);
 const t = useT(locale);
 const c = t.training.calendar;
 const L = (p: string) => localizePath(p, locale);
-const calendars = await getCalendars();
-const years = calendars.map((x) => x.year);
-const primaryYear = defaultYear(years);
+const state = await getCalendarState();
+const { today, outgoing } = state;
+const primaryYear = state.primary;
+// Tab order: primary, later years, then the outgoing year (while it still has sessions to run).
+const years = state.active;
 const year = Astro.props.year ?? primaryYear;
-const calendar = calendars.find((x) => x.year === year);
-if (!calendar) throw new Error(`No calendar for ${year}`);
+const full = state.calendars.find((x) => x.year === year);
+if (!full) throw new Error(`No calendar for ${year}`);
+const isOutgoing = year === outgoing;
+// The outgoing year only shows what is left to run: finished sessions are not advertised.
+const calendar = isOutgoing ? { year, sessions: remaining(full.sessions, today) } : full;
+const outgoingCalendar =
+  outgoing === null
+    ? null
+    : {
+        year: outgoing,
+        sessions: remaining(state.calendars.find((x) => x.year === outgoing)!.sessions, today),
+      };
 const yearHref = (y: number) => (y === primaryYear ? L('/training') : L(`/training/${y}`));
 const path = yearHref(year);
 
@@ -56,11 +70,11 @@ const crumbs = [
   { label: t.nav.training, href: L('/training') },
   ...(year !== primaryYear ? [{ label: String(year), href: path }] : []),
 ];
-const dated = upcoming(
-  [calendar],
-  new Date(year === primaryYear ? Date.now() : new Date(year, 0, 1).getTime()),
-  200,
-);
+// Course markup: on /training, the outgoing year's remaining sessions plus the primary year.
+const dated =
+  year === primaryYear
+    ? upcoming(outgoingCalendar ? [outgoingCalendar, calendar] : [calendar], today, 400)
+    : upcoming([calendar], isOutgoing ? today : `${year}-01-01`, 400);
 const valueIcons = ['map-pin', 'award', 'monitor'] as const;
 ---
 
@@ -90,6 +104,8 @@ const valueIcons = ['map-pin', 'award', 'monitor'] as const;
       {t.training.ctaPrimary}
     </Button>
   </PageHeader>
+
+  {year === primaryYear && <CalendarLaunch />}
 
   <Section tone="surface" labelledby="value-title" spacing="sm">
     <h2 id="value-title" class="sr-only">
@@ -128,6 +144,17 @@ const valueIcons = ['map-pin', 'award', 'monitor'] as const;
     reveal={false}
   >
     <SectionHeading id="calendar-title" title={fmt(c.title, { year })} lead={c.lead} />
+    {isOutgoing && (
+      <Callout tone="brand" class="mb-8">
+        {fmt(t.training.launch.outgoingNotice, { year, next: primaryYear })}{' '}
+        <a
+          href={`${L('/training')}#calendar`}
+          class="font-semibold text-navy-700 underline underline-offset-4"
+        >
+          {fmt(t.training.launch.outgoingLink, { next: primaryYear })}
+        </a>
+      </Callout>
+    )}
     <nav aria-label={c.yearNav} class="mb-8">
       <ul class="inline-flex rounded-md bg-paper p-1 ring-1 ring-line">
         {years.map((y) => (
@@ -141,12 +168,17 @@ const valueIcons = ['map-pin', 'award', 'monitor'] as const;
               ]}
             >
               {y}
+              {y === outgoing && (
+                <span class="ms-2 text-xs font-medium opacity-80">
+                  {t.training.launch.finalBadge}
+                </span>
+              )}
             </a>
           </li>
         ))}
       </ul>
     </nav>
-    <TrainingCalendar calendar={calendar} />
+    <TrainingCalendar calendar={calendar} skipEmptyMonths={isOutgoing} />
   </Section>
 
   <Section tone="paper" labelledby="catalogue-title">

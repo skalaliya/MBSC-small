@@ -5,6 +5,7 @@ import { existsSync } from 'node:fs';
 import { shiftCalendar } from './calendar-shift.ts';
 import { validateCalendar } from '../src/lib/calendar-model.ts';
 import { isWeekend, parseISODate } from '../src/lib/dates.ts';
+import { HOLIDAY_YEARS, holidayClashes } from '../src/lib/holidays.ts';
 
 const [from, to] = process.argv
   .slice(2)
@@ -31,7 +32,16 @@ if (errors.length) {
 const weekend = cal.sessions.filter(
   (s) => s.start && (isWeekend(parseISODate(s.start)) || isWeekend(parseISODate(s.end))),
 );
+const clashes = cal.sessions.filter((s) => holidayClashes(s).length > 0);
 await writeFile(out, JSON.stringify(cal, null, 2) + '\n');
 console.log(
   `Wrote ${to}.json: ${cal.sessions.length} sessions, ${weekend.length} starting or ending on a weekend.`,
 );
+if (!HOLIDAY_YEARS.includes(to))
+  console.warn(
+    `No public holidays for ${to} in src/lib/holidays.ts: add them, then run the next step.`,
+  );
+else if (clashes.length)
+  console.warn(
+    `${clashes.length} session(s) touch a public holiday. Fix with: node scripts/fix-holiday-clashes.mjs ${to} --write`,
+  );

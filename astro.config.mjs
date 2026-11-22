@@ -46,6 +46,8 @@ export default defineConfig({
         !/\/contact\/sent\/?$/.test(page) &&
         // Future-year calendars repeat the current catalogue with new dates; they are noindex.
         !/\/training\/\d{4}\/?$/.test(page) &&
+        // Printable calendars are noindex too (the PDFs are the shareable version).
+        !/\/training\/\d{4}\/print\/?$/.test(page) &&
         (arPublished || !/^https?:\/\/[^/]+\/ar(\/|$)/.test(page)),
       serialize(item) {
         const when = insightLastmod.get(new URL(item.url).pathname.replace(/\/$/, ''));

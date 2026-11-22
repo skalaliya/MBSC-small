@@ -9,6 +9,8 @@ import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { calendarRedirects, calendarState } from './calendar-state.mjs';
+import { PDF_LOCALES, calendarPdfFile, currentPdf } from '../src/lib/calendar-pdf.ts';
 
 const root = fileURLToPath(new URL('../.vercel/output/', import.meta.url));
 const staticDir = join(root, 'static');
@@ -121,6 +123,55 @@ for (const [, loc] of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
   if (html === null) problems.push(`sitemap lists ${path || '/'} but the build has no such page`);
   else if (/<meta name="robots" content="[^"]*noindex/.test(html))
     problems.push(`sitemap lists ${path || '/'}, which is noindex`);
+}
+
+// Training calendars: every year x built locale is either a page or a redirect to /training, and
+// the primary year's PDFs exist and were generated from the current calendar data.
+{
+  const cal = calendarState();
+  const prefixes = ['', '/fr', '/ar'].filter((p) => p === '' || routes.has(`${p}/training`));
+  const redirectSrcs = new Set(config.routes.filter((r) => r.status === 307).map((r) => r.src));
+  for (const prefix of prefixes) {
+    if (!routes.has(`${prefix}/training`)) problems.push(`${prefix}/training: page missing`);
+    for (const { year } of cal.calendars) {
+      const route = `${prefix}/training/${year}`;
+      const isPage = routes.has(route);
+      const isRedirect = calendarRedirects([year], [prefix]).every((r) => redirectSrcs.has(r.src));
+      if (cal.pages.includes(year) && !isPage) problems.push(`${route}: expected a page`);
+      if (!cal.pages.includes(year) && !isRedirect)
+        problems.push(`${route}: no page and no redirect to ${prefix}/training`);
+      if (isPage && isRedirect) problems.push(`${route}: both a page and a redirect`);
+    }
+  }
+  // A PDF that exists must match the current calendar data (else: npm run calendar:pdf). A missing
+  // one only warns: the site hides the download button, so a cutover never breaks the build.
+  for (const locale of PDF_LOCALES) {
+    if (!prefixes.includes(locale === 'en' ? '' : `/${locale}`)) continue;
+    const file = calendarPdfFile(cal.primary, locale);
+    const exists = await readFile(join(staticDir, 'downloads', file)).then(
+      (b) => b.subarray(0, 5).toString() === '%PDF-',
+      () => false,
+    );
+    const current = await currentPdf(cal.primary, locale);
+    if (!exists)
+      console.warn(`check-dist: downloads/${file} not generated yet (npm run calendar:pdf)`);
+    else if (!current)
+      problems.push(
+        `downloads/${file} is out of date with ${cal.primary}.json: run npm run calendar:pdf`,
+      );
+  }
+}
+
+// Every link to a file in /downloads must exist in the build.
+for await (const file of walk(staticDir)) {
+  const html = await readFile(file, 'utf8');
+  for (const [, href] of html.matchAll(/href="(\/downloads\/[^"#?]+)"/g)) {
+    const ok = await readFile(join(staticDir, href)).then(
+      () => true,
+      () => false,
+    );
+    if (!ok) problems.push(`${relative(staticDir, file)} links to missing ${href}`);
+  }
 }
 
 if (problems.length) {

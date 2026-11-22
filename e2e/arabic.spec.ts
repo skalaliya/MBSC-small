@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { site } from '../src/data/site';
+import { calendarState } from '../scripts/calendar-state.mjs';
+
+const cal = calendarState();
 
 const published = site.locales.ar.published;
 
@@ -17,7 +20,7 @@ const ROUTES = [
   '/ar/insights/ml-grade-control',
   '/ar/insights/mbsc-algorythmos-partnership',
   '/ar/training',
-  '/ar/training/2027',
+  ...cal.pages.map((y) => `/ar/training/${y}`),
   '/ar/rental',
   '/ar/about',
   '/ar/contact',
@@ -66,7 +69,7 @@ test.describe('Arabic', () => {
       await expect(page.locator('h1')).toHaveCount(1);
       if (published) {
         // Public: indexable (except future-year calendars), with the full hreflang set.
-        const futureYear = /\/training\/\d{4}$/.test(route);
+        const futureYear = /\/training\/\d{4}(\/print)?$/.test(route);
         if (futureYear)
           await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
         else await expect(page.locator('meta[name="robots"]')).toHaveCount(0);

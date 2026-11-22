@@ -2,7 +2,8 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n/utils';
 import { SECTOR_ORDER } from './content';
 import type { Session } from './calendar-model';
-import type { Calendar } from './queries.pure';
+import { buildToday, calendarPlan, type Calendar, type CalendarPlan } from './queries.pure';
+import { site } from '../data/site';
 import { isPublic } from './publish';
 
 export * from './queries.pure';
@@ -29,6 +30,19 @@ export async function getCalendars(): Promise<Calendar[]> {
   return all
     .map((c) => ({ year: c.data.year, sessions: c.data.sessions as Session[] }))
     .sort((a, b) => a.year - b.year);
+}
+
+export interface CalendarState extends CalendarPlan {
+  calendars: Calendar[];
+  /** YYYY-MM-DD in Melbourne time (or CALENDAR_TODAY). */
+  today: string;
+}
+
+/** Every calendar plus which years are shown, decided once per build from one "today". */
+export async function getCalendarState(): Promise<CalendarState> {
+  const calendars = await getCalendars();
+  const today = buildToday();
+  return { calendars, today, ...calendarPlan(calendars, today, site.calendar.cutover) };
 }
 
 /** Public insights for a locale (drafts only on previews), newest first. */

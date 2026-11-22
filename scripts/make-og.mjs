@@ -148,7 +148,8 @@ for await (const file of pages(staticDir)) {
       .replace(/(^|\/)index\.html$/, '')
       .replace(/\.html$/, '');
   const route = rel === '/' ? '/' : rel.replace(/\/$/, '');
-  if (SKIP.has(route)) continue;
+  // Printable calendars are documents, not pages to share.
+  if (SKIP.has(route) || /\/print$/.test(route)) continue;
   const html = await readFile(file, 'utf8');
   const lang = /<html lang="([^"]+)"/.exec(html)?.[1] ?? 'en-AU';
   if (!/^(en|fr)/.test(lang)) continue; // other scripts (e.g. Arabic) use the default card
