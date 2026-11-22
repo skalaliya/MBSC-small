@@ -26,20 +26,28 @@ npm run format       # prettier
 
 ## Where things live
 
-| Task                                                          | File                                                                        |
-| ------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Company facts (phone, email, address, ABN, ISO number, stats) | `src/data/site.ts`                                                          |
-| UI text, English and French                                   | `src/i18n/en.ts`, `src/i18n/fr.ts` (French is type-checked against English) |
-| Services                                                      | `src/content/services/{en,fr}/<slug>.md`                                    |
-| Case studies                                                  | `src/content/projects/{en,fr}/<slug>.md`                                    |
-| Training calendars                                            | `src/content/calendars/<year>.json`                                         |
-| Client logos                                                  | `src/content/clients.json` and `src/assets/logos/clients/`                  |
-| Testimonials                                                  | `src/content/testimonials.json`                                             |
-| Team                                                          | `src/content/team.json`                                                     |
-| Photos                                                        | `src/assets/images/` with credits in `src/data/credits.json`                |
-| Page layouts                                                  | `src/views/*.astro` (routes in `src/pages/` just render a view)             |
+| Task                                                               | File                                                                        |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Company facts (phone, email, address, ABN, ISO number, stats)      | `src/data/site.ts`                                                          |
+| UI text, English and French                                        | `src/i18n/en.ts`, `src/i18n/fr.ts` (French is type-checked against English) |
+| Services                                                           | `src/content/services/{en,fr}/<slug>.md`                                    |
+| Case studies                                                       | `src/content/projects/{en,fr}/<slug>.md`                                    |
+| Training calendars (yearly checklist: `docs/TRAINING-CALENDAR.md`) | `src/content/calendars/<year>.json`                                         |
+| Client logos                                                       | `src/content/clients.json` and `src/assets/logos/clients/`                  |
+| Testimonials                                                       | `src/content/testimonials.json`                                             |
+| Team                                                               | `src/content/team.json`                                                     |
+| Photos                                                             | `src/assets/images/` with credits in `src/data/credits.json`                |
+| Page layouts                                                       | `src/views/*.astro` (routes in `src/pages/` just render a view)             |
 
 See `docs/CONTENT-GUIDE.md` for how to edit each of these safely.
+
+## Recurring jobs
+
+| When                                         | Job                                                                                                    | How                                                                    |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Every year, before 1 October                 | Add next year's public holidays, create its training calendar, move holiday clashes, generate the PDFs | [`docs/TRAINING-CALENDAR.md`](docs/TRAINING-CALENDAR.md)               |
+| Whenever the leading year's calendar changes | Regenerate the PDFs (`npm run calendar:pdf`); the build fails on a stale PDF                           | same                                                                   |
+| Every Monday (automatic)                     | Production rebuild so the calendar moves on by itself                                                  | `.github/workflows/weekly-rebuild.yml`, needs `VERCEL_DEPLOY_HOOK_URL` |
 
 ## Environment variables
 
