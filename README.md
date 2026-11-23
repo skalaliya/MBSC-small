@@ -26,20 +26,28 @@ npm run format       # prettier
 
 ## Where things live
 
-| Task                                                          | File                                                                        |
-| ------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Company facts (phone, email, address, ABN, ISO number, stats) | `src/data/site.ts`                                                          |
-| UI text, English and French                                   | `src/i18n/en.ts`, `src/i18n/fr.ts` (French is type-checked against English) |
-| Services                                                      | `src/content/services/{en,fr}/<slug>.md`                                    |
-| Case studies                                                  | `src/content/projects/{en,fr}/<slug>.md`                                    |
-| Training calendars                                            | `src/content/calendars/<year>.json`                                         |
-| Client logos                                                  | `src/content/clients.json` and `src/assets/logos/clients/`                  |
-| Testimonials                                                  | `src/content/testimonials.json`                                             |
-| Team                                                          | `src/content/team.json`                                                     |
-| Photos                                                        | `src/assets/images/` with credits in `src/data/credits.json`                |
-| Page layouts                                                  | `src/views/*.astro` (routes in `src/pages/` just render a view)             |
+| Task                                                               | File                                                                        |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Company facts (phone, email, address, ABN, ISO number, stats)      | `src/data/site.ts`                                                          |
+| UI text, English and French                                        | `src/i18n/en.ts`, `src/i18n/fr.ts` (French is type-checked against English) |
+| Services                                                           | `src/content/services/{en,fr}/<slug>.md`                                    |
+| Case studies                                                       | `src/content/projects/{en,fr}/<slug>.md`                                    |
+| Training calendars (yearly checklist: `docs/TRAINING-CALENDAR.md`) | `src/content/calendars/<year>.json`                                         |
+| Client logos                                                       | `src/content/clients.json` and `src/assets/logos/clients/`                  |
+| Testimonials                                                       | `src/content/testimonials.json`                                             |
+| Team                                                               | `src/content/team.json`                                                     |
+| Photos                                                             | `src/assets/images/` with credits in `src/data/credits.json`                |
+| Page layouts                                                       | `src/views/*.astro` (routes in `src/pages/` just render a view)             |
 
 See `docs/CONTENT-GUIDE.md` for how to edit each of these safely.
+
+## Recurring jobs
+
+| When                                         | Job                                                                                                    | How                                                                    |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Every year, before 1 October                 | Add next year's public holidays, create its training calendar, move holiday clashes, generate the PDFs | [`docs/TRAINING-CALENDAR.md`](docs/TRAINING-CALENDAR.md)               |
+| Whenever the leading year's calendar changes | Regenerate the PDFs (`npm run calendar:pdf`); the build fails on a stale PDF                           | same                                                                   |
+| Every Monday (automatic)                     | Production rebuild so the calendar moves on by itself                                                  | `.github/workflows/weekly-rebuild.yml`, needs `VERCEL_DEPLOY_HOOK_URL` |
 
 ## Environment variables
 
@@ -56,4 +64,17 @@ Set in Vercel > Project > Settings > Environment Variables. See `.env.example`.
 
 ## Deployment
 
-Pushes to `main` deploy to production through Vercel's Git integration. `.github/workflows/ci.yml` runs type checks, unit tests, the build, and Playwright on every push and pull request. `.github/workflows/weekly-rebuild.yml` triggers a Vercel deploy hook every Monday so the training calendar's default year and upcoming sessions stay current; it needs the `VERCEL_DEPLOY_HOOK_URL` repository secret.
+### Branches
+
+| Branch                  | Role                                       | Deploys to                                              |
+| ----------------------- | ------------------------------------------ | ------------------------------------------------------- |
+| `integration` (default) | Development: every change lands here first | Vercel preview (stable branch URL, behind Vercel login) |
+| `main`                  | Production: only what is released          | https://www.mbscaustralia.com.au                        |
+
+Flow: branch from `integration` (`feat/…`, `fix/…`, `docs/…`), open a pull request into `integration`, merge when CI is green. To release, open a pull request from `integration` into `main` titled `Release: …`; merging it deploys production. Hotfixes branch from `main`, go to `main` by pull request, then `main` is merged back into `integration`.
+
+Both branches are protected by repository rulesets: changes only by pull request, the `build-and-test` check must pass (for `main` the branch must also be up to date), review threads must be resolved, and force-pushes and deletion are blocked.
+
+### Deploys
+
+Pushes to `main` deploy to production through Vercel's Git integration. `.github/workflows/ci.yml` runs type checks, unit tests, the build, and Playwright on every pull request and on pushes to `integration` and `main`. `.github/workflows/weekly-rebuild.yml` triggers a Vercel deploy hook every Monday so the training calendar's default year and upcoming sessions stay current; it needs the `VERCEL_DEPLOY_HOOK_URL` repository secret.
